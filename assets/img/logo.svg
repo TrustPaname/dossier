@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="Logo MOTOR CONSULTING">
+  <rect width="48" height="48" rx="12" fill="#e4342c"/>
+  <path d="M24 8 8.5 13.4v10.9c0 9.6 6.5 15.6 15.5 17.7 9-2.1 15.5-8.1 15.5-17.7V13.4L24 8Z" fill="#ffffff" opacity=".18"/>
+  <path d="M24 10.4 10.8 15v9.3c0 8.2 5.6 13.4 13.2 15.3 7.6-1.9 13.2-7.1 13.2-15.3V15L24 10.4Z" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linejoin="round"/>
+  <path d="m17.6 24.6 4.3 4.3 8.6-8.6" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

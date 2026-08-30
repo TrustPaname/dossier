@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Illustration de vehicule de type break">
+  <defs>
+    <linearGradient id="fond" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4f6f8"/>
+      <stop offset="1" stop-color="#dde2e8"/>
+    </linearGradient>
+    <linearGradient id="carrosserie" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4a3f4f"/>
+      <stop offset="1" stop-color="#15171b"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#fond)"/>
+  <circle cx="640" cy="120" r="150" fill="#ffffff" opacity=".45"/>
+  <rect y="420" width="800" height="80" fill="#cdd3da"/>
+  <ellipse cx="410" cy="424" rx="330" ry="26" fill="#0b0c0e" opacity=".14"/>
+  <polygon points="80,354 84,298 152,286 256,280 322,198 664,194 694,212 718,288 730,304 732,354" fill="url(#carrosserie)"/>
+    <polygon points="288,275 338,212 428,209 428,275" fill="#d9e4ee" opacity=".85"/>
+    <polygon points="448,209 646,207 676,275 448,275" fill="#d9e4ee" opacity=".85"/>
+    <g><circle cx="238" cy="366" r="54" fill="#15171b"/><circle cx="238" cy="366" r="27" fill="#c3c8d0"/><circle cx="238" cy="366" r="9" fill="#8a9099"/></g>
+    <g><circle cx="588" cy="366" r="54" fill="#15171b"/><circle cx="588" cy="366" r="27" fill="#c3c8d0"/><circle cx="588" cy="366" r="9" fill="#8a9099"/></g>
+  <rect x="96" y="300" width="34" height="14" rx="7" fill="#f6e7a8" opacity=".9"/>
+  <rect x="690" y="300" width="30" height="12" rx="6" fill="#e4342c" opacity=".85"/>
+</svg>

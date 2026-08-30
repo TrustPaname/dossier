@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Véhicules d’occasion disponibles à Chartres (28) — MOTOR CONSULTING</title>
+  <meta name="description" content="Voitures d’occasion expertisées et garanties, disponibles à Mainvilliers et Chartres. Filtrez par prix, type, année et énergie, ou confiez-nous votre recherche de véhicule.">
+  <link rel="canonical" href="https://www.motor-consulting.fr/vehicules.html">
+  <meta name="theme-color" content="#0b0c0e">
+  <meta name="author" content="MOTOR CONSULTING">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="MOTOR CONSULTING">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:title" content="Véhicules d’occasion disponibles à Chartres (28) — MOTOR CONSULTING">
+  <meta property="og:description" content="Voitures d’occasion expertisées et garanties, disponibles à Mainvilliers et Chartres. Filtrez par prix, type, année et énergie, ou confiez-nous votre recherche de véhicule.">
+  <meta property="og:url" content="https://www.motor-consulting.fr/vehicules.html">
+  <meta property="og:image" content="https://www.motor-consulting.fr/assets/img/partage.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/logo.svg">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script defer src="assets/js/config.js"></script>
+  <script defer src="assets/js/vehicules-data.js"></script>
+  <script defer src="assets/js/vehicules.js"></script>
+  <script defer src="assets/js/site.js"></script>
+</head>
+<body>
+  <a class="lien-saut" href="#contenu">Aller au contenu principal</a>
+
+  <header class="entete">
+    <div class="conteneur entete__inner">
+      <a class="logo" href="index.html" aria-label="MOTOR CONSULTING, accueil">
+        <img src="assets/img/logo.svg" alt="" width="40" height="40">
+        <span class="logo__marque">
+          <span class="logo__nom">MOTOR <em>CONSULTING</em></span>
+          <span class="logo__baseline">Conseil &amp; expertise auto</span>
+        </span>
+      </a>
+
+      <button class="nav-bascule" type="button" aria-expanded="false"
+              aria-controls="navigation-principale">
+        <span class="nav-bascule__barres" aria-hidden="true"></span>
+        <span>Menu</span>
+      </button>
+
+      <nav class="nav" id="navigation-principale" aria-label="Navigation principale">
+        <ul class="nav__liste">
+          <li><a class="nav__lien" href="index.html">Accueil</a></li>
+          <li><a class="nav__lien" href="services.html">Nos services</a></li>
+          <li><a class="nav__lien" href="vehicules.html" aria-current="page">Véhicules</a></li>
+          <li><a class="nav__lien" href="estimation.html">Estimation gratuite</a></li>
+          <li><a class="nav__lien" href="a-propos.html">À propos</a></li>
+          <li><a class="nav__lien" href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav__actions">
+          <a class="btn btn--principal btn--petit" href="estimation.html">Vendre ma voiture</a>
+        </div>
+      </nav>
+
+      <a class="entete__tel" href="tel:+33261911234">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+        02 61 91 12 34
+      </a>
+    </div>
+  </header>
+
+  <main id="contenu">
+
+  <section class="entete-page">
+    <div class="conteneur">
+      <nav class="fil-ariane" aria-label="Fil d’Ariane">
+        <ol>
+          <li><a href="index.html">Accueil</a></li>
+          <li>Véhicules</li>
+        </ol>
+      </nav>
+      <h1>Véhicules d’occasion disponibles</h1>
+      <p>Chaque voiture de cette sélection a été expertisée par nos soins : historique vérifié, entretien à jour et prix aligné sur la cote réelle du marché. Filtrez selon votre budget et votre usage.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="conteneur">
+
+      <form class="filtres" id="filtres" role="search" aria-label="Filtrer les véhicules">
+        <div class="filtres__grille">
+          <div class="champ">
+            <label for="f-recherche">Rechercher</label>
+            <input type="search" id="f-recherche" name="recherche"
+                   placeholder="Marque, modèle, énergie…" autocomplete="off">
+          </div>
+
+          <div class="champ">
+            <label for="f-type">Type</label>
+            <select id="f-type" name="type">
+              <option value="">Tous les types</option>
+              <option value="citadine">Citadine</option>
+              <option value="berline">Berline</option>
+              <option value="suv">SUV / 4x4</option>
+              <option value="break">Break</option>
+              <option value="monospace">Monospace</option>
+              <option value="utilitaire">Utilitaire</option>
+            </select>
+          </div>
+
+          <div class="champ">
+            <label for="f-prix">Budget maximum</label>
+            <select id="f-prix" name="prixMax">
+              <option value="">Sans limite</option>
+              <option value="10000">Jusqu’à 10 000 €</option>
+              <option value="15000">Jusqu’à 15 000 €</option>
+              <option value="20000">Jusqu’à 20 000 €</option>
+              <option value="25000">Jusqu’à 25 000 €</option>
+              <option value="30000">Jusqu’à 30 000 €</option>
+            </select>
+          </div>
+
+          <div class="champ">
+            <label for="f-annee">Année minimum</label>
+            <select id="f-annee" name="anneeMin">
+              <option value="">Toutes années</option>
+              <option value="2022">2022 et plus</option>
+              <option value="2021">2021 et plus</option>
+              <option value="2020">2020 et plus</option>
+              <option value="2019">2019 et plus</option>
+              <option value="2018">2018 et plus</option>
+            </select>
+          </div>
+
+          <div class="champ">
+            <label for="f-tri">Trier par</label>
+            <select id="f-tri" name="tri">
+              <option value="recent">Les plus récents</option>
+              <option value="prix-croissant">Prix croissant</option>
+              <option value="prix-decroissant">Prix décroissant</option>
+              <option value="km-croissant">Kilométrage croissant</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="champs champs--2 mt-2">
+          <div class="champ">
+            <label for="f-energie">Énergie</label>
+            <select id="f-energie" name="energie">
+              <option value="">Toutes énergies</option>
+              <option value="Essence">Essence</option>
+              <option value="Diesel">Diesel</option>
+              <option value="Hybride">Hybride</option>
+              <option value="Électrique">Électrique</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="filtres__pied">
+          <p class="filtres__compteur" id="compteur" role="status" aria-live="polite"></p>
+          <button class="btn btn--secondaire btn--petit" type="button" id="reinitialiser">
+            Réinitialiser les filtres
+          </button>
+        </div>
+      </form>
+
+      <div class="grille grille--3 vehicules" id="liste-vehicules"></div>
+
+      <div class="etat-vide mt-3" id="aucun-resultat" hidden>
+        <h3>Aucun véhicule ne correspond à ces critères</h3>
+        <p>Élargissez votre recherche… ou confiez-nous la vôtre : nous trouvons le véhicule
+        pour vous, partout en France, sous 15 jours en moyenne.</p>
+        <a class="btn btn--principal mt-2" href="contact.html">Confier ma recherche</a>
+      </div>
+
+      <noscript>
+        <div class="etat-vide mt-3">
+          <h3>Activez JavaScript pour parcourir le catalogue</h3>
+          <p>Vous pouvez aussi nous appeler au <a href="tel:+33261911234">02 61 91 12 34</a> :
+          nous vous envoyons la liste complète des véhicules disponibles par e-mail.</p>
+        </div>
+      </noscript>
+
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="conteneur">
+      <div class="grille grille--2" style="align-items:center;gap:44px">
+        <div class="apparait">
+          <span class="surtitre">Vous ne trouvez pas votre bonheur ?</span>
+          <h2>Nous cherchons le véhicule à votre place</h2>
+          <p>Notre stock visible ne représente qu’une partie de ce à quoi nous avons accès.
+          Décrivez-nous le véhicule recherché et votre budget : nous prospectons les
+          professionnels, les particuliers et les ventes aux enchères, puis nous expertisons
+          les candidats sérieux avant que vous ne vous déplaciez.</p>
+          <div class="groupe-btn mt-2">
+            <a class="btn btn--principal" href="contact.html">Décrire ma recherche</a>
+            <a class="btn btn--secondaire" href="services.html#achat">Comment ça marche</a>
+          </div>
+        </div>
+        <div class="carte apparait">
+          <h3>Tous nos véhicules sont livrés avec</h3>
+          <ul class="liste-coches">
+            <li><span class="coche" aria-hidden="true">✓</span> Un rapport d’expertise écrit (120 points contrôlés)</li>
+            <li><span class="coche" aria-hidden="true">✓</span> L’historique d’entretien et le certificat de non-gage</li>
+            <li><span class="coche" aria-hidden="true">✓</span> Un contrôle technique de moins de six mois</li>
+            <li><span class="coche" aria-hidden="true">✓</span> Une garantie de 12 mois pièces et main-d’œuvre</li>
+            <li><span class="coche" aria-hidden="true">✓</span> La prise en charge complète du changement de carte grise</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <footer class="pied">
+    <div class="conteneur">
+      <div class="pied__grille">
+        <div>
+          <a class="logo" href="index.html" aria-label="MOTOR CONSULTING, accueil">
+            <img src="assets/img/logo.svg" alt="" width="40" height="40">
+            <span class="logo__marque">
+              <span class="logo__nom">MOTOR <em>CONSULTING</em></span>
+              <span class="logo__baseline">Conseil &amp; expertise auto</span>
+            </span>
+          </a>
+          <p class="mt-2">Cabinet de conseil automobile indépendant. Nous accompagnons
+          particuliers et professionnels dans l’achat, la vente et l’expertise de
+          véhicules d’occasion à Mainvilliers, Chartres et toute l’Eure-et-Loir.</p>
+          <p><a class="btn btn--principal btn--petit" href="estimation.html">Estimation gratuite</a></p>
+        </div>
+
+        <div>
+          <h3>Nos services</h3>
+          <ul class="pied__liste">
+            <li><a href="services.html#achat">Achat pour compte de tiers</a></li>
+            <li><a href="services.html#vente">Vente accompagnée</a></li>
+            <li><a href="services.html#expertise">Expertise &amp; estimation</a></li>
+            <li><a href="services.html#negociation">Contrôle technique &amp; négociation</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Le site</h3>
+          <ul class="pied__liste">
+            <li><a href="vehicules.html">Véhicules disponibles</a></li>
+            <li><a href="estimation.html">Estimation gratuite</a></li>
+            <li><a href="a-propos.html">À propos</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="mentions-legales.html">Mentions légales</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Nous joindre</h3>
+          <ul class="pied__liste">
+            <li><a href="tel:+33261911234">02 61 91 12 34</a></li>
+            <li><a href="mailto:contact@motor-consulting.fr">contact@motor-consulting.fr</a></li>
+            <li><a data-whatsapp href="https://wa.me/" rel="noopener" target="_blank">WhatsApp</a></li>
+            <li>3 rue Florence Arthaud<br>28300 Mainvilliers</li>
+          </ul>
+          <ul class="horaires mt-2">
+            <li><span>Lun. – Ven.</span><span>9h – 19h</span></li>
+            <li><span>Samedi</span><span>9h – 13h</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="pied__seo">Achat vente voiture occasion à Mainvilliers et Chartres · Rachat de voiture
+      Eure-et-Loir · Expertise automobile indépendante · Vendre sa voiture rapidement
+      · Estimation gratuite véhicule Mainvilliers (28) · Recherche de véhicule sur mesure
+      partout en France.</p>
+
+      <div class="pied__bas">
+        <span>© <span data-annee>2026</span> MOTOR CONSULTING. Tous droits réservés.</span>
+        <span><a href="mentions-legales.html">Mentions légales &amp; confidentialité</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <nav class="barre-mobile" aria-label="Contact rapide">
+    <a href="tel:+33261911234">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+      Appeler
+    </a>
+    <a class="est-whatsapp" data-whatsapp href="https://wa.me/" rel="noopener" target="_blank">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1a13.6 13.6 0 0 1-5.9-4.8c-.4-.6-1-1.5-1-2.9 0-1.3.7-2 .9-2.2.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .6l-.4.5-.3.4c-.1.1-.2.3 0 .5.2.4.8 1.3 1.7 2 1.1.9 1.9 1.2 2.2 1.4.2.1.4 0 .5-.1l.8-.9c.2-.2.3-.2.5-.1l2 1c.2.1.4.2.4.3.1.1.1.5 0 1.1Z"/></svg>
+      WhatsApp
+    </a>
+  </nav>
+</body>
+</html>
