@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.autoprestige-conseil.fr/sitemap.xml
