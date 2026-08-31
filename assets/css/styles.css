@@ -419,10 +419,15 @@ li { margin-bottom: .35rem; }
 
 .liste-coches { list-style: none; padding: 0; margin: 16px 0 0; }
 .liste-coches li {
-  display: flex; align-items: flex-start; gap: 10px;
+  position: relative;
+  padding-left: 26px;
   font-size: .94rem; color: var(--texte-doux); margin-bottom: .5rem;
 }
-.liste-coches .coche { color: var(--succes); flex-shrink: 0; margin-top: 3px; }
+.liste-coches .coche {
+  position: absolute; left: 0; top: 0;
+  color: var(--succes); font-weight: 700;
+}
+.liste-coches strong { color: var(--texte); }
 
 /* -------------------------------------------------------------- Service */
 .service {
@@ -902,3 +907,10 @@ body { padding-bottom: 62px; }
   .hero .groupe-btn .btn,
   .bandeau-cta .groupe-btn .btn { width: 100%; }
 }
+
+/* Cartes : le lien final est aligne en bas quel que soit le texte */
+.carte { display: flex; flex-direction: column; }
+.carte > p:last-child { margin-top: auto; padding-top: 10px; }
+
+/* Bande de chiffres cles : espacement resserre avec la section suivante */
+.bande-stats { margin-bottom: -18px; }
