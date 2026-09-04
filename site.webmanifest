@@ -1,0 +1,13 @@
+{
+  "name": "Trust Auto Paris — Achat, vente et expertise de véhicules d'occasion",
+  "short_name": "Trust Auto Paris",
+  "description": "Conseil automobile indépendant : achat, vente, expertise et estimation gratuite de voitures d'occasion à Paris et en Île-de-France.",
+  "lang": "fr",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d0f12",
+  "theme_color": "#0d0f12",
+  "icons": [
+    { "src": "assets/img/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
