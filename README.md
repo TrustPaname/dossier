@@ -1,11 +1,15 @@
-# Trust Auto Paris — site vitrine
+# Motor Consulting — site vitrine
 
 Site vitrine **statique** (HTML / CSS / JavaScript, sans dépendance ni build) pour une société
 de conseil automobile spécialisée dans l'achat, la vente et l'expertise de véhicules d'occasion.
 
-> **Nom et coordonnées** : le site est livré avec le nom **Trust Auto Paris** et une zone
-> **Paris / Île-de-France**, ainsi que des coordonnées de démonstration (téléphone, e-mail,
-> adresse). Remplacez-les avant mise en ligne — voir « Personnalisation » ci-dessous.
+> **Identité** : le design reprend la charte de la carte de visite Motor Consulting —
+> noir profond, or, lettrage chrome, et les quatre piliers Recherche / Négociation /
+> Achat-Vente / Location.
+>
+> **Coordonnées** : zone **Paris / Île-de-France** et coordonnées de démonstration
+> (téléphone, e-mail, adresse, domaine). Remplacez-les avant mise en ligne — voir
+> « Personnalisation » ci-dessous.
 
 ## Aperçu local
 
@@ -24,6 +28,7 @@ index.html              Page unique (toutes les sections, ancres SEO-friendly)
 assets/css/styles.css   Styles — mobile-first, thème noir/gris + accent rouge
 assets/js/data.js       Données : véhicules, témoignages, silhouettes SVG
 assets/js/main.js       Interactions : menu, filtres, modale, carrousel, formulaires
+assets/fonts/           Polices auto-hébergées (Michroma + Archivo, woff2)
 assets/img/             Favicon et image de partage (SVG)
 robots.txt / sitemap.xml / site.webmanifest
 ```
@@ -32,8 +37,8 @@ robots.txt / sitemap.xml / site.webmanifest
 
 1. **Accueil** — accroche, phrase de présentation, boutons « Vendre ma voiture » / « Trouver un
    véhicule », mini-formulaire d'estimation et chiffres clés animés.
-2. **Nos services** — achat pour compte de tiers, vente accompagnée, expertise/estimation,
-   contrôle technique & négociation.
+2. **Nos services** — recherche de véhicule, négociation, achat/vente, location (courte et
+   longue durée, LOA/LLD), expertise & estimation, démarches et transaction sécurisée.
 3. **Véhicules disponibles** — grille de fiches avec recherche plein texte, filtres (type,
    budget, année), tri, pagination « voir plus » et fiche détaillée en modale.
 4. **Comment ça marche** — 4 étapes (contact → expertise → proposition → transaction sécurisée).
@@ -55,12 +60,12 @@ WhatsApp) suffit :
 
 | À remplacer | Où | Valeur de démonstration |
 |---|---|---|
-| Nom de l'entreprise | `index.html` (titre, header, footer, JSON-LD) | Trust Auto Paris |
+| Nom de l'entreprise | `index.html` (titre, header, footer, JSON-LD) | Motor Consulting |
 | Téléphone affiché | `index.html` | `06 12 34 56 78` |
 | Téléphone / WhatsApp technique | `index.html` (`tel:`, `wa.me/`) et `CONFIG.whatsapp` dans `main.js` | `33612345678` |
-| E-mail | `index.html` et `CONFIG.email` dans `main.js` | `contact@trustautoparis.fr` |
+| E-mail | `index.html` et `CONFIG.email` dans `main.js` | `contact@motor-consulting.fr` |
 | Adresse + coordonnées GPS | `index.html` (bloc contact, iframe carte, JSON-LD) | 24 avenue de la Grande-Armée, 75017 Paris |
-| Domaine | balises `canonical`, `og:url`, `robots.txt`, `sitemap.xml` | `www.trustautoparis.fr` |
+| Domaine | balises `canonical`, `og:url`, `robots.txt`, `sitemap.xml` | `www.motor-consulting.fr` |
 | Chiffres clés | attributs `data-count` dans la section `#stats` | 1 850 / 12 ans / 4,9 |
 
 ### 2. Branchement des formulaires
@@ -68,7 +73,7 @@ WhatsApp) suffit :
 Les trois formulaires (mini-estimation, estimation complète, contact) partagent la même
 mécanique. Par défaut, `CONFIG.formEndpoint` est vide : le site est en **mode démonstration**
 — la demande est validée, une référence est générée, un message de confirmation s'affiche et
-la demande est conservée dans le `localStorage` du visiteur (clé `tap_demandes`).
+la demande est conservée dans le `localStorage` du visiteur (clé `mc_demandes`).
 
 Pour recevoir réellement les demandes, renseignez une URL en haut de `assets/js/main.js` :
 
@@ -76,7 +81,7 @@ Pour recevoir réellement les demandes, renseignez une URL en haut de `assets/js
 const CONFIG = {
   formEndpoint: "https://formspree.io/f/VOTRE_ID", // ou Getform, Brevo, votre API…
   whatsapp: "33612345678",
-  email: "contact@trustautoparis.fr"
+  email: "contact@motor-consulting.fr"
 };
 ```
 
@@ -96,19 +101,37 @@ Pour utiliser de vraies photos, remplacez l'appel à `carSvg(v, …)` par une ba
 `<img src="…" alt="…" loading="lazy" width="800" height="500">` dans `vehicleCard()`
 (`assets/js/main.js`) et dans la modale.
 
-### 4. Couleur d'accent
+### 4. Charte graphique
 
-Une seule variable à changer dans `assets/css/styles.css` (`:root`) pour passer du rouge au
-bleu :
+Toute l'identité tient dans les variables du bloc `:root` de `assets/css/styles.css` :
 
-```css
---accent:#1d6ff2;
---accent-dark:#1557c0;
---accent-soft:rgba(29,111,242,.12);
-```
+| Rôle | Variable | Valeur |
+|---|---|---|
+| Noir de fond | `--noir` | `#08080a` |
+| Noir secondaire (sections alternées) | `--noir-2` | `#0e0e11` |
+| Charbon (cartes, champs) | `--charbon` | `#15151a` |
+| Or principal | `--or` | `#d4af37` |
+| Or clair (survols, reflets) | `--or-clair` | `#f0dc9b` |
+| Or foncé (bas du dégradé) | `--or-fonce` | `#8a6e1e` |
+| Chrome (logotype) | `--chrome-1/2/3` | `#ffffff` → `#c6ccd4` → `#767c85` |
+| Texte courant | `--texte` / `--texte-2` | `#ededea` / `#a9adb5` |
 
-Pensez à mettre à jour les deux SVG encodés en `data:` (coches des listes) qui contiennent
-la couleur `%23e11d2e`, ainsi que `assets/img/favicon.svg`.
+Trois dégradés en découlent : `--grad-or` (aplats et boutons), `--grad-or-txt` (texte doré,
+plus lumineux pour rester lisible sur fond noir) et `--grad-chrome` (le mot « MOTOR »).
+Deux SVG encodés en `data:` reprennent la couleur `%23d4af37` — les coches des listes et la
+flèche des menus déroulants : pensez à les modifier si vous changez l'or.
+
+Le site assume un **thème sombre unique** (comme la carte de visite) : il n'y a pas de
+variante claire à maintenir.
+
+**Typographie** : `Michroma` pour le lettrage large (logo, sur-titres, libellés) et `Archivo`
+pour les titres et le texte courant. Les deux polices sont **auto-hébergées** dans
+`assets/fonts/` (~98 Ko, formats woff2, `font-display:swap`) : aucun appel à Google Fonts,
+ce qui évite le transfert d'adresses IP vers un service tiers — un point régulièrement
+sanctionné en France sur le terrain du RGPD.
+
+**Texture** : le motif nid d'abeille et les biseaux dorés de la carte sont reproduits en CSS
+pur (variable `--hex` et éléments `.hero__diag`) — aucune image de fond à charger.
 
 ## SEO
 
@@ -120,7 +143,8 @@ la couleur `%23e11d2e`, ainsi que `assets/img/favicon.svg`.
 
 ## Performance et compatibilité
 
-- Zéro dépendance externe, zéro webfont, zéro image bitmap : le rendu ne dépend d'aucun CDN.
+- Zéro dépendance externe, zéro image bitmap, polices auto-hébergées : le rendu ne dépend
+  d'aucun CDN.
 - Seule ressource tierce : l'iframe OpenStreetMap de la section contact, chargée en `lazy`
   (un texte de repli s'affiche si elle est bloquée). Supprimez le bloc `.map` pour un site
   totalement autonome.
@@ -134,4 +158,6 @@ la couleur `%23e11d2e`, ainsi que `assets/img/favicon.svg`.
 - [ ] Remplacer les véhicules et témoignages de démonstration par les vôtres.
 - [ ] Rédiger les pages Mentions légales / Politique de confidentialité / CGV (liens du footer).
 - [ ] Vérifier les chiffres clés et la note clients annoncés (ils doivent être exacts).
+- [ ] Remplacer le monogramme SVG du header/footer par votre logo définitif si vous en avez
+      une version vectorielle (chercher `brand__mark` dans `index.html`).
 - [ ] Mettre à jour le domaine dans `canonical`, `og:url`, `robots.txt` et `sitemap.xml`.

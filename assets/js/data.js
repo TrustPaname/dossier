@@ -1,5 +1,5 @@
 /* =========================================================
-   Trust Auto Paris — Données du site
+   Motor Consulting — Données du site
    Modifiez librement ce fichier : véhicules et témoignages
    sont rendus dynamiquement à partir de ces tableaux.
    ========================================================= */
@@ -51,28 +51,30 @@ function carSvg(v, idSuffix) {
   const shape = CAR_SHAPES[TYPE_TO_SHAPE[v.type] || "berline"];
   const uid = `c${v.id}${idSuffix || ""}`;
   const wheels = shape.wheels.map(([cx, cy]) => `
-      <circle cx="${cx}" cy="${cy}" r="${shape.r}" fill="#0b0d10"/>
+      <circle cx="${cx}" cy="${cy}" r="${shape.r}" fill="#08080a"/>
+      <circle cx="${cx}" cy="${cy}" r="${shape.r}" fill="none" stroke="#d4af37" stroke-opacity=".3"/>
       <circle cx="${cx}" cy="${cy}" r="${shape.r - 9}" fill="#2b3138"/>
-      <circle cx="${cx}" cy="${cy}" r="${shape.r - 15}" fill="#8d97a4"/>`).join("");
+      <circle cx="${cx}" cy="${cy}" r="${shape.r - 15}" fill="#c6ccd4"/>`).join("");
 
   return `
 <svg viewBox="0 0 400 220" role="img" aria-label="${v.marque} ${v.modele}" preserveAspectRatio="xMidYMid slice">
   <defs>
     <linearGradient id="bg-${uid}" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#1c2128"/><stop offset="100%" stop-color="#0d0f12"/>
+      <stop offset="0%" stop-color="#16161b"/><stop offset="100%" stop-color="#08080a"/>
     </linearGradient>
     <linearGradient id="body-${uid}" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="${v.couleurs[0]}"/><stop offset="100%" stop-color="${v.couleurs[1]}"/>
     </linearGradient>
   </defs>
   <rect width="400" height="220" fill="url(#bg-${uid})"/>
-  <circle cx="330" cy="46" r="72" fill="#ffffff" opacity=".05"/>
+  <circle cx="330" cy="44" r="78" fill="#d4af37" opacity=".07"/>
+  <path d="M0 196h400" stroke="#d4af37" stroke-opacity=".22" stroke-width="1"/>
   <ellipse cx="200" cy="188" rx="168" ry="14" fill="#000" opacity=".38"/>
   <path d="${shape.body}" fill="url(#body-${uid})"/>
   <path d="${shape.glass}" fill="#0d1218" opacity=".72"/>
-  <path d="${shape.body}" fill="none" stroke="#ffffff" stroke-opacity=".18" stroke-width="2"/>
+  <path d="${shape.body}" fill="none" stroke="#d4af37" stroke-opacity=".55" stroke-width="1.6"/>
   ${wheels}
-  <rect x="0" y="196" width="400" height="24" fill="#0b0d10"/>
+  <rect x="0" y="196" width="400" height="24" fill="#08080a"/>
 </svg>`;
 }
 
@@ -122,7 +124,7 @@ const VEHICLES = [
     id: 6, marque: "Dacia", modele: "Sandero", version: "TCe 90 Stepway Expression",
     annee: 2022, km: 31200, prix: 14300, carburant: "Essence", boite: "Manuelle",
     type: "Citadine", places: 5, tag: "Petit budget", garantie: "12 mois",
-    couleurs: ["#3b6d5a", "#1e3a30"],
+    couleurs: ["#4a5a68", "#232d36"],
     description: "Le meilleur rapport équipement/prix du marché, garantie constructeur restante et faible coût d'usage.",
     options: ["Écran Media Display", "Clim automatique", "Barres de toit", "Radar de recul"]
   },
@@ -170,7 +172,7 @@ const VEHICLES = [
     id: 12, marque: "Renault", modele: "Captur", version: "E-Tech 145 Techno",
     annee: 2023, km: 18700, prix: 23200, carburant: "Hybride", boite: "Automatique",
     type: "SUV", places: 5, tag: "Faible kilométrage", garantie: "Garantie constructeur",
-    couleurs: ["#e5762a", "#a34a14"],
+    couleurs: ["#a8762e", "#5d3d12"],
     description: "SUV urbain hybride quasi neuf, consommation moyenne 4,8 l/100 km, garantie constructeur jusqu'en 2027.",
     options: ["Écran vertical 9,3\"", "Caméra de recul", "Régulateur adaptatif", "Sellerie mixte"]
   }

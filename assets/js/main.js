@@ -1,5 +1,5 @@
 /* =========================================================
-   Trust Auto Paris — Interactions
+   Motor Consulting — Interactions
    ========================================================= */
 (function () {
   "use strict";
@@ -14,7 +14,7 @@
   const CONFIG = {
     formEndpoint: "",
     whatsapp: "33612345678",
-    email: "contact@trustautoparis.fr"
+    email: "contact@motor-consulting.fr"
   };
 
   const $ = (sel, ctx) => (ctx || document).querySelector(sel);
@@ -238,7 +238,7 @@
       <div class="modal__media">${carSvg(v, "m")}</div>
       <div class="modal__body">
         <h3 id="modal-title">${v.marque} ${v.modele}</h3>
-        <p style="color:#6b7280;margin:0">${v.version}</p>
+        <p class="modal__version">${v.version}</p>
         <p class="modal__price">${euros(v.prix)}</p>
         <dl class="specs-table">
           <div><dt>Année</dt><dd>${v.annee}</dd></div>
@@ -249,7 +249,7 @@
           <div><dt>Garantie</dt><dd>${v.garantie}</dd></div>
         </dl>
         <p>${v.description}</p>
-        <h4 style="margin:0 0 .5em">Équipements principaux</h4>
+        <p class="modal__subtitle">Équipements principaux</p>
         <ul class="ticks">${v.options.map((o) => `<li>${o}</li>`).join("")}</ul>
         <div class="modal__actions">
           <a class="btn btn--primary" href="https://wa.me/${CONFIG.whatsapp}?text=${waText}" target="_blank" rel="noopener">Demander un essai</a>
@@ -440,12 +440,12 @@
 
   function reference() {
     const d = new Date();
-    return "TAP-" + d.getFullYear() + String(d.getMonth() + 1).padStart(2, "0") + "-" + Math.random().toString(36).slice(2, 6).toUpperCase();
+    return "MC-" + d.getFullYear() + String(d.getMonth() + 1).padStart(2, "0") + "-" + Math.random().toString(36).slice(2, 6).toUpperCase();
   }
 
   function saveLocally(payload) {
     try {
-      const key = "tap_demandes";
+      const key = "mc_demandes";
       const all = JSON.parse(localStorage.getItem(key) || "[]");
       all.push(payload);
       localStorage.setItem(key, JSON.stringify(all.slice(-50)));
@@ -479,15 +479,15 @@
       const waText = encodeURIComponent(`Bonjour, je viens d'envoyer une demande sur votre site (référence ${data.reference}).`);
       setStatus(statusEl,
         `${successMsg}<br><small style="font-weight:500">Référence de votre demande : <strong>${data.reference}</strong> — besoin d'une réponse immédiate ?
-         <a href="https://wa.me/${CONFIG.whatsapp}?text=${waText}" target="_blank" rel="noopener" style="text-decoration:underline">écrivez-nous sur WhatsApp</a>.</small>`,
+         <a href="https://wa.me/${CONFIG.whatsapp}?text=${waText}" target="_blank" rel="noopener" >écrivez-nous sur WhatsApp</a>.</small>`,
         "success");
       form.reset();
       $$(".field.has-error", form).forEach((f) => f.classList.remove("has-error"));
     } catch (err) {
       setStatus(statusEl,
         `L'envoi a échoué. Réessayez ou contactez-nous directement au
-         <a href="tel:+${CONFIG.whatsapp}" style="text-decoration:underline">06 12 34 56 78</a>
-         ou par e-mail à <a href="mailto:${CONFIG.email}" style="text-decoration:underline">${CONFIG.email}</a>.`,
+         <a href="tel:+${CONFIG.whatsapp}" >06 12 34 56 78</a>
+         ou par e-mail à <a href="mailto:${CONFIG.email}" >${CONFIG.email}</a>.`,
         "error");
     } finally {
       btn.disabled = false;
