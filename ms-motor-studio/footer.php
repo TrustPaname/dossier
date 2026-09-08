@@ -12,7 +12,7 @@
 		<div class="ms-pied-grille">
 			<div>
 				<p class="ms-pied-logo">
-					<b>MS</b>
+					<b aria-hidden="true">MS</b>
 					<span>Motors <i>Studio</i></span>
 				</p>
 				<p class="ms-pied-texte">Carrosserie, mécanique, vitrage et pneumatiques à <?php echo esc_html( msms_get( 'adresse_ville' ) ); ?>, près de Chartres. Interventions sur rendez-vous.</p>

@@ -36,14 +36,9 @@
 <header class="ms-entete" id="ms-entete">
 	<div class="ms-boite ms-entete-int">
 		<a class="ms-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php echo esc_attr( msms_get( 'nom' ) ); ?> — accueil">
-			<span class="ms-logo-ms">
-				<svg class="ms-logo-arc" viewBox="0 0 120 22" aria-hidden="true" fill="none"><path d="M2 20C14 6 34 1 60 1s46 5 58 19" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-				<b>MS</b>
-			</span>
-			<span class="ms-logo-texte">
-				<span class="ms-logo-motor">Motors</span>
-				<span class="ms-logo-studio"><i aria-hidden="true"></i>Studio<i aria-hidden="true"></i></span>
-			</span>
+			<span class="ms-logo-sigle" aria-hidden="true">MS</span>
+			<span class="ms-logo-sep" aria-hidden="true"></span>
+			<span class="ms-logo-nom">Motors <small>Studio</small></span>
 		</a>
 
 		<nav class="ms-nav" aria-label="Navigation principale">

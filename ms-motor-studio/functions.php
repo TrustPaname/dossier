@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'MSMS_VERSION', '2.0.0' );
+define( 'MSMS_VERSION', '2.1.0' );
 
 require_once get_theme_file_path( 'inc/config.php' );
 require_once get_theme_file_path( 'inc/services.php' );
@@ -37,7 +37,7 @@ add_action( 'after_setup_theme', 'msms_setup' );
 function msms_assets(): void {
 	wp_enqueue_style(
 		'msms-polices',
-		'https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Manrope:wght@300;400;500;600&display=swap',
+		'https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500&display=swap',
 		array(),
 		null
 	);
