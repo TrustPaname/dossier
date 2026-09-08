@@ -137,22 +137,24 @@ sanctionné en France sur le terrain du RGPD.
 
 ## Page Motor Corp (holding)
 
-`motor-corp/index.html` est une page d'entrée autonome : l'écran est coupé en deux,
-**Motors Studio** à gauche, **Motor Consulting** à droite, chaque moitié menant à son site.
-Même identité (noir, or, Michroma + Archivo, polices partagées dans `assets/fonts/`).
-Sur mobile, les deux univers s'empilent.
+`motor-corp/index.html` est le site de la holding, autonome (CSS et JS intégrés, polices
+partagées avec le site Motor Consulting). Identité noir / chrome / **rouge** ; l'or ne sert
+qu'aux logos des deux marques.
 
-À adapter avant mise en ligne :
+Sections : accueil animé (monogramme « MC », lettrage chrome, devise), bandeau défilant,
+présentation du groupe et ses trois piliers, les deux marques (Motor Studio — carrosserie,
+Motor Consulting — conseil) avec lien vers leur site, parcours « synergies » en quatre étapes,
+contact.
 
-| À remplacer | Où | Valeur de démonstration |
-|---|---|---|
-| Lien Motors Studio | `href` du premier bloc `.half` | `https://www.motors-studio.fr/` |
-| Lien Motor Consulting | `href` du second bloc `.half` | `../index.html` (à remplacer par le domaine définitif) |
-| Phrase de Motors Studio | `.half__desc` du premier bloc | « Préparation, personnalisation et esthétique automobile. » (hypothèse) |
-| E-mail et domaine | pied de page, `canonical`, `og:url` | `contact@motor-corp.fr`, `www.motor-corp.fr` |
+Mouvement : fond en lignes de vitesse dessiné sur `<canvas>` (170 particules, mis en pause
+quand l'onglet est masqué), grille en perspective animée, reflet qui balaie le monogramme et le
+lettrage, bandeau défilant, apparitions au défilement, parallaxe à la souris sur l'accueil,
+inclinaison 3D et halo sur les cartes des marques. Tout est désactivé si l'utilisateur a
+demandé la réduction des animations (`prefers-reduced-motion`).
 
-Si Motor Corp est hébergé sur son propre domaine, copiez `assets/fonts/` à côté de la page
-(ou remplacez les chemins `../assets/fonts/` en tête du `<style>`).
+À mettre à jour dans `motor-corp/index.html` : l'adresse du site Motor Studio
+(`https://www.motor-studio.fr/`), le lien vers Motor Consulting (`../index.html`, à remplacer
+par son domaine), l'e-mail, le téléphone et l'adresse.
 
 ## SEO
 
