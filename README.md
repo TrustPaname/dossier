@@ -25,7 +25,8 @@ hébergement statique (OVH, Netlify, Vercel, GitHub Pages, o2switch…).
 ## Structure
 
 ```
-index.html              Page unique (toutes les sections, ancres SEO-friendly)
+index.html              Site Motor Consulting — page unique (toutes les sections)
+motor-corp/index.html   Page d'entrée de la holding Motor Corp (écran coupé en deux)
 assets/css/styles.css   Styles — mobile-first, thème noir/gris + accent rouge
 assets/js/data.js       Données : véhicules, témoignages, silhouettes SVG
 assets/js/main.js       Interactions : menu, filtres, modale, carrousel, formulaires
@@ -133,6 +134,25 @@ pour les titres et le texte courant. Les deux polices sont **auto-hébergées** 
 `assets/fonts/` (~98 Ko, formats woff2, `font-display:swap`) : aucun appel à Google Fonts,
 ce qui évite le transfert d'adresses IP vers un service tiers — un point régulièrement
 sanctionné en France sur le terrain du RGPD.
+
+## Page Motor Corp (holding)
+
+`motor-corp/index.html` est une page d'entrée autonome : l'écran est coupé en deux,
+**Motors Studio** à gauche, **Motor Consulting** à droite, chaque moitié menant à son site.
+Même identité (noir, or, Michroma + Archivo, polices partagées dans `assets/fonts/`).
+Sur mobile, les deux univers s'empilent.
+
+À adapter avant mise en ligne :
+
+| À remplacer | Où | Valeur de démonstration |
+|---|---|---|
+| Lien Motors Studio | `href` du premier bloc `.half` | `https://www.motors-studio.fr/` |
+| Lien Motor Consulting | `href` du second bloc `.half` | `../index.html` (à remplacer par le domaine définitif) |
+| Phrase de Motors Studio | `.half__desc` du premier bloc | « Préparation, personnalisation et esthétique automobile. » (hypothèse) |
+| E-mail et domaine | pied de page, `canonical`, `og:url` | `contact@motor-corp.fr`, `www.motor-corp.fr` |
+
+Si Motor Corp est hébergé sur son propre domaine, copiez `assets/fonts/` à côté de la page
+(ou remplacez les chemins `../assets/fonts/` en tête du `<style>`).
 
 ## SEO
 
