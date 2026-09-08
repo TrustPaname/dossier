@@ -110,14 +110,29 @@ button.link{background:none;border:0;border-bottom:1px solid var(--or-line);padd
 .header.is-scrolled{background:rgba(10,10,11,.94);border-bottom-color:var(--line)}
 .header__inner{display:flex;align-items:center;justify-content:space-between;height:var(--header-h);gap:16px}
 
-.brand{display:flex;align-items:center;gap:12px}
-.brand__mark{display:grid;place-items:center;flex:none}
-.brand__text{display:flex;flex-direction:column;line-height:1.1}
-.brand__text strong{
-  font-family:var(--font-display);font-size:.92rem;letter-spacing:.16em;font-weight:400;
-  background:var(--grad-chrome);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent
+/* ---------- Logo Motor Consulting (celui de la carte) ---------- */
+.logo{display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center}
+.logo__mark{width:150px;height:auto;display:block;filter:drop-shadow(0 3px 3px rgba(0,0,0,.9));margin-bottom:-6px}
+.logo__text{display:flex;flex-direction:column;align-items:center;gap:2px;width:150px}
+.logo__name{font-family:var(--font-display);font-size:1.5rem;letter-spacing:.12em;padding-left:.12em;line-height:1}
+.logo__sub{
+  display:flex;align-items:center;gap:8px;width:100%;font-family:var(--font-display);font-size:.52rem;letter-spacing:.3em;padding-left:.3em;
+  background:linear-gradient(90deg,#8a6e1e 0%,#f3e2a4 40%,#d4af37 60%,#8a6e1e 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent
 }
-.brand__text em{font-family:var(--font-display);font-size:.46rem;letter-spacing:.38em;color:var(--or);margin-top:4px;text-transform:uppercase}
+.logo__sub i{flex:1;height:1px;background:linear-gradient(90deg,#8a6e1e,#d4af37)}
+.logo__tag{margin-top:8px;font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--texte-2)}
+.chrome{
+  background:var(--grad-chrome);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 1px 1px rgba(0,0,0,.8))
+}
+/* version horizontale pour l'en-tête */
+.logo--compact{flex-direction:row;gap:10px;text-align:left}
+.logo--compact .logo__mark{width:66px;margin:0}
+.logo--compact .logo__text{width:auto;align-items:flex-start;gap:3px}
+.logo--compact .logo__name{font-size:1rem}
+.logo--compact .logo__sub{font-size:.46rem;letter-spacing:.26em;padding-left:0;width:auto}
+.logo--compact .logo__sub i{display:none}
 
 .nav{
   position:fixed;top:var(--header-h);left:0;right:0;background:var(--noir);
@@ -324,6 +339,9 @@ button.link{background:none;border:0;border-bottom:1px solid var(--or-line);padd
 .footer__col li{margin-bottom:.7em}
 .footer__col a{transition:color var(--t)}
 .footer__col a:hover{color:#fff}
+.footer__brand{display:flex;flex-direction:column;align-items:flex-start}
+.footer__brand .logo{align-items:flex-start;text-align:left}
+.footer__brand .logo__text{align-items:flex-start}
 .footer__brand p{max-width:40ch;color:var(--texte-3);margin:18px 0 0}
 .footer__seo{font-size:.84rem;color:var(--texte-3);line-height:1.75}
 .footer__bottom{
