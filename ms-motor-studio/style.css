@@ -1,0 +1,16 @@
+/*
+Theme Name: MS Motors Studio
+Theme URI: https://github.com/le8eme/le8eme-app
+Author: MS Motors Studio
+Description: Thème sur mesure du garage MS MOTORS STUDIO (Mainvilliers) — carrosserie et peinture, mécanique et entretien, pare-brise et vitrage, pneumatiques. Design automobile premium noir, or et argent. Les coordonnées se règlent dans Apparence → Personnaliser.
+Version: 2.0.0
+Requires at least: 6.0
+Tested up to: 6.7
+Requires PHP: 8.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: ms-motor-studio
+Tags: black, custom-menu, one-column, right-sidebar
+*/
+
+/* Les styles du thème sont chargés depuis assets/css/main.css. */

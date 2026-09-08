@@ -1,0 +1,1027 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   MS MOTORS STUDIO — feuille de style du thème
+   Palette : noir profond, anthracite, argent, or chaud en accent.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+	--encre: #050506;
+	--carbone: #0a0b0d;
+	--graphite: #14161a;
+	--acier: #2a2e35;
+	--argent: #c3c8cf;
+	--cendre: #979da6;
+	--craie: #f2f0ec;
+	--or: #c8a45c;
+	--or-clair: #e7cd93;
+	--or-sombre: #8a6a2c;
+
+	--police-titres: "Archivo", "Arial Narrow", system-ui, sans-serif;
+	--police-texte: "Manrope", system-ui, -apple-system, sans-serif;
+	--courbe: cubic-bezier(0.22, 1, 0.36, 1);
+	--entete-h: 78px;
+}
+
+/* ── Base ─────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; min-width: 0; }
+
+html {
+	scroll-behavior: smooth;
+	scroll-padding-top: calc(var(--entete-h) + 16px);
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	background: var(--encre);
+	color: var(--craie);
+	font-family: var(--police-texte);
+	font-size: 16px;
+	line-height: 1.65;
+	-webkit-font-smoothing: antialiased;
+	overflow-x: hidden;
+	padding-bottom: 64px; /* barre d'actions mobile */
+}
+
+@media (min-width: 1024px) {
+	body { padding-bottom: 0; }
+}
+
+::selection { background: var(--or); color: #0b0b0b; }
+
+:focus-visible {
+	outline: 2px solid var(--or-clair);
+	outline-offset: 3px;
+	border-radius: 2px;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+iframe { border: 0; display: block; }
+
+h1, h2, h3, h4 {
+	font-family: var(--police-titres);
+	font-weight: 600;
+	letter-spacing: -0.01em;
+	line-height: 1.06;
+	text-wrap: balance;
+}
+
+a { color: inherit; }
+p { text-wrap: pretty; }
+
+.ms-boite {
+	max-width: 1380px;
+	margin-inline: auto;
+	padding-inline: 20px;
+}
+@media (min-width: 640px) { .ms-boite { padding-inline: 32px; } }
+
+/* Lien d'évitement */
+.ms-evitement {
+	position: fixed; top: -100px; left: 16px; z-index: 200;
+	background: var(--or); color: #141007;
+	font-family: var(--police-titres); font-size: 12px;
+	letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none;
+	padding: 14px 22px; transition: top 0.2s;
+}
+.ms-evitement:focus { top: 16px; }
+
+/* ── Petits éléments de charte ────────────────────────────────────────── */
+.ms-kicker {
+	display: flex; align-items: center; gap: 12px;
+	font-family: var(--police-titres);
+	font-size: 11px; font-weight: 500;
+	letter-spacing: 0.28em; text-transform: uppercase;
+	color: var(--or);
+}
+.ms-kicker-filet { width: 40px; height: 1px; background: linear-gradient(90deg, var(--or), transparent); }
+
+.ms-index {
+	font-family: var(--police-titres);
+	font-size: 11px; letter-spacing: 0.3em;
+	color: var(--or);
+}
+
+.ms-or {
+	background: linear-gradient(165deg, #f0dcae 0%, #c8a45c 45%, #8a6a2c 75%, #e0c48b 100%);
+	-webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+.ms-filet-or { display: block; width: 40px; height: 1px; background: var(--or); }
+
+.ms-lien-or {
+	display: inline-flex; align-items: center; gap: 10px;
+	font-family: var(--police-titres); font-size: 11px;
+	letter-spacing: 0.24em; text-transform: uppercase;
+	color: var(--or); text-decoration: none;
+	transition: color 0.3s;
+}
+.ms-lien-or:hover { color: var(--or-clair); }
+
+.ms-fleche { width: 20px; height: 8px; flex-shrink: 0; transition: transform 0.45s var(--courbe); }
+a:hover > .ms-fleche, .ms-btn:hover .ms-fleche { transform: translateX(5px); }
+
+/* Boutons */
+.ms-btn {
+	display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+	font-family: var(--police-titres); font-size: 12px; font-weight: 500;
+	letter-spacing: 0.22em; text-transform: uppercase; text-decoration: none;
+	padding: 17px 30px; cursor: pointer; border: 0;
+	transition: all 0.45s var(--courbe);
+}
+.ms-btn--plein { background: var(--or); color: #141007; }
+.ms-btn--plein:hover { background: var(--or-clair); box-shadow: 0 0 38px -12px rgba(200, 164, 92, 0.85); }
+.ms-btn--contour { border: 1px solid rgba(255, 255, 255, 0.22); color: var(--craie); background: transparent; }
+.ms-btn--contour:hover { border-color: rgba(200, 164, 92, 0.7); color: var(--or-clair); }
+.ms-btn--compact { padding: 12px 22px; }
+.ms-btn-rangee { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+
+/* ── Bandeau promo ────────────────────────────────────────────────────── */
+.ms-promo {
+	background: linear-gradient(90deg, #0d0b06 0%, #1b1508 50%, #0d0b06 100%);
+	border-bottom: 1px solid rgba(200, 164, 92, 0.25);
+}
+.ms-promo-int { display: flex; align-items: center; gap: 14px; padding-block: 9px; }
+.ms-promo p {
+	flex: 1; display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+	gap: 4px 14px; font-size: 12.5px; text-align: center; color: var(--argent);
+}
+.ms-promo strong {
+	font-family: var(--police-titres); font-weight: 500; font-size: 12px;
+	letter-spacing: 0.18em; text-transform: uppercase; color: var(--or-clair);
+}
+.ms-promo em { font-style: normal; color: var(--cendre); }
+.ms-promo-sep { width: 1px; height: 13px; background: rgba(200, 164, 92, 0.4); }
+.ms-promo a { color: var(--or); text-underline-offset: 4px; text-decoration-color: rgba(200, 164, 92, 0.4); }
+.ms-promo a:hover { color: var(--or-clair); }
+.ms-promo-fermer { background: none; border: 0; color: var(--cendre); cursor: pointer; padding: 6px; }
+.ms-promo-fermer:hover { color: var(--craie); }
+.ms-promo-fermer svg { width: 13px; height: 13px; display: block; }
+@media (max-width: 640px) {
+	.ms-promo em, .ms-promo-sep { display: none; }
+}
+
+/* ── En-tête ──────────────────────────────────────────────────────────── */
+.ms-entete {
+	position: sticky; top: 0; z-index: 100;
+	background: linear-gradient(to bottom, rgba(5, 5, 6, 0.85), transparent);
+	transition: background 0.5s var(--courbe), box-shadow 0.5s var(--courbe);
+}
+.ms-entete.est-figee, .ms-entete.est-ouvert {
+	background: rgba(5, 5, 6, 0.96);
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
+	backdrop-filter: blur(6px);
+}
+.ms-entete-int {
+	display: flex; align-items: center; justify-content: space-between;
+	gap: 24px; height: var(--entete-h);
+}
+
+/* Logo */
+.ms-logo { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; }
+.ms-logo-ms { position: relative; display: flex; flex-direction: column; align-items: center; }
+.ms-logo-arc { width: 46px; height: 8px; color: var(--or); margin-bottom: 1px; }
+.ms-logo-ms b {
+	font-family: var(--police-titres); font-weight: 700; font-size: 27px;
+	line-height: 0.85; letter-spacing: -0.04em;
+	background: linear-gradient(170deg, #fff 0%, #b9bec6 30%, #7d838c 50%, #eef0f3 64%, #9aa0a8 84%, #d7dade 100%);
+	-webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.ms-logo-texte { display: flex; flex-direction: column; gap: 3px; }
+.ms-logo-motor {
+	font-family: var(--police-titres); font-size: 13px; font-weight: 500;
+	letter-spacing: 0.34em; text-transform: uppercase; color: #cdd2d8;
+}
+.ms-logo-studio {
+	display: flex; align-items: center; gap: 6px;
+	font-family: var(--police-titres); font-size: 8.5px; font-weight: 500;
+	letter-spacing: 0.4em; text-transform: uppercase; color: var(--or);
+}
+.ms-logo-studio i { width: 12px; height: 1px; background: rgba(200, 164, 92, 0.6); }
+
+/* Navigation bureau */
+.ms-nav { display: none; align-items: center; gap: 34px; }
+@media (min-width: 1024px) { .ms-nav { display: flex; } }
+
+.ms-nav-lien {
+	position: relative; background: none; border: 0; cursor: pointer;
+	font-family: var(--police-titres); font-size: 12px; font-weight: 500;
+	letter-spacing: 0.22em; text-transform: uppercase;
+	color: var(--craie); text-decoration: none; padding: 8px 0;
+	transition: color 0.3s;
+}
+.ms-nav-lien::after {
+	content: ""; position: absolute; left: 0; right: 0; bottom: 0;
+	height: 1px; background: var(--or);
+	transform: scaleX(0); transform-origin: left;
+	transition: transform 0.4s var(--courbe);
+}
+.ms-nav-lien:hover, .ms-nav-lien.est-actif { color: var(--or-clair); }
+.ms-nav-lien:hover::after, .ms-nav-lien.est-actif::after { transform: scaleX(1); }
+
+.ms-nav-tel {
+	display: inline-flex; align-items: center; gap: 9px;
+	font-family: var(--police-titres); font-size: 12.5px; letter-spacing: 0.12em;
+	color: var(--argent); text-decoration: none; transition: color 0.3s;
+}
+.ms-nav-tel:hover { color: var(--or-clair); }
+.ms-nav-tel svg { width: 14px; height: 14px; }
+
+/* Panneau prestations */
+.ms-panneau {
+	position: absolute; inset-inline: 0; top: 100%;
+	background: rgba(5, 5, 6, 0.98);
+	border-block: 1px solid rgba(255, 255, 255, 0.08);
+	backdrop-filter: blur(6px);
+	opacity: 0; visibility: hidden; transform: translateY(-10px);
+	transition: opacity 0.35s var(--courbe), transform 0.35s var(--courbe), visibility 0.35s;
+}
+.ms-nav-groupe.est-ouvert .ms-panneau,
+.ms-nav-groupe:focus-within .ms-panneau {
+	opacity: 1; visibility: visible; transform: translateY(0);
+}
+@media (hover: hover) {
+	.ms-nav-groupe:hover .ms-panneau { opacity: 1; visibility: visible; transform: translateY(0); }
+}
+.ms-panneau-grille {
+	display: grid; grid-template-columns: repeat(4, 1fr);
+	gap: 1px; background: rgba(255, 255, 255, 0.06);
+}
+.ms-panneau-carte {
+	display: flex; flex-direction: column; gap: 10px;
+	background: var(--encre); padding: 30px 26px 34px;
+	text-decoration: none; transition: background 0.4s var(--courbe);
+}
+.ms-panneau-carte:hover { background: var(--graphite); }
+.ms-panneau-carte strong {
+	font-family: var(--police-titres); font-size: 17px; font-weight: 600;
+	color: var(--craie); transition: color 0.3s;
+}
+.ms-panneau-carte:hover strong { color: var(--or-clair); }
+.ms-panneau-desc { font-size: 12.5px; color: var(--cendre); }
+
+/* Bouton menu mobile */
+.ms-burger {
+	display: flex; flex-direction: column; justify-content: center; gap: 7px;
+	width: 44px; height: 44px; padding: 10px; margin-right: -10px;
+	background: none; border: 0; cursor: pointer;
+}
+@media (min-width: 1024px) { .ms-burger { display: none; } }
+.ms-burger span { height: 1px; background: var(--craie); transition: all 0.4s var(--courbe); }
+.ms-burger span:last-child { width: 66%; }
+.ms-burger[aria-expanded="true"] span:first-child { transform: translateY(4px) rotate(45deg); }
+.ms-burger[aria-expanded="true"] span:last-child { width: 100%; transform: translateY(-4px) rotate(-45deg); }
+
+/* Menu mobile */
+.ms-menu-mobile {
+	position: absolute; inset-inline: 0; top: 100%;
+	height: calc(100svh - var(--entete-h));
+	overflow-y: auto; background: var(--encre);
+	border-top: 1px solid rgba(255, 255, 255, 0.08);
+	padding: 20px 20px 120px;
+}
+.ms-menu-mobile-lien {
+	display: flex; align-items: baseline; gap: 16px;
+	padding: 19px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+	font-family: var(--police-titres); font-size: 23px; font-weight: 600;
+	color: var(--craie); text-decoration: none;
+}
+.ms-menu-mobile-infos { margin-top: 30px; font-size: 14px; color: var(--cendre); }
+.ms-menu-mobile-infos a {
+	font-family: var(--police-titres); font-size: 19px; letter-spacing: 0.08em;
+	color: var(--or-clair); text-decoration: none;
+}
+.ms-menu-mobile-infos p { margin-top: 10px; }
+
+/* ── Écrans d'ouverture ───────────────────────────────────────────────── */
+.ms-hero {
+	position: relative; display: flex; align-items: flex-end;
+	min-height: calc(100svh - var(--entete-h));
+	margin-top: calc(-1 * var(--entete-h));
+	padding-top: calc(var(--entete-h) + 90px);
+	padding-bottom: 70px;
+	overflow: hidden;
+}
+.ms-hero--page { min-height: 62svh; padding-top: calc(var(--entete-h) + 70px); padding-bottom: 56px; }
+.ms-hero--court { min-height: 40svh; }
+
+.ms-hero-video {
+	position: absolute; inset: 0; z-index: -2;
+	width: 100%; height: 100%; object-fit: cover;
+}
+
+.ms-hero-fond {
+	position: absolute; inset: 0; z-index: -1;
+	background:
+		radial-gradient(110% 120% at 82% -5%, rgba(200, 164, 92, 0.14), transparent 55%),
+		radial-gradient(90% 100% at 10% 110%, rgba(42, 46, 53, 0.5), transparent 60%),
+		linear-gradient(178deg, #101114 0%, var(--encre) 65%);
+}
+.ms-hero-fond::before {
+	content: ""; position: absolute; inset: 0;
+	background-image: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.045) 0 1px, transparent 1px 25%);
+	mask-image: linear-gradient(to bottom, transparent 0%, #000 35%, #000 75%, transparent 100%);
+}
+.ms-hero-fond::after {
+	content: ""; position: absolute; inset: auto 0 0 0; height: 1px;
+	background: linear-gradient(90deg, transparent, rgba(200, 164, 92, 0.55) 30%, rgba(231, 205, 147, 0.9) 50%, rgba(200, 164, 92, 0.55) 70%, transparent);
+}
+
+.ms-hero-filigrane {
+	position: absolute; right: -1%; bottom: -6%; z-index: -1;
+	font-family: var(--police-titres); font-weight: 700;
+	font-size: clamp(180px, 34vw, 460px); line-height: 0.8; letter-spacing: -0.05em;
+	color: transparent;
+	-webkit-text-stroke: 1px rgba(255, 255, 255, 0.055);
+	user-select: none;
+}
+
+.ms-hero-int {
+	display: grid; gap: 48px; width: 100%;
+	align-items: end;
+}
+@media (min-width: 1100px) {
+	.ms-hero:not(.ms-hero--page) .ms-hero-int { grid-template-columns: 1.5fr 0.9fr; }
+	.ms-hero--flyers .ms-hero-int { grid-template-columns: 1.25fr 0.75fr; align-items: center; }
+}
+
+.ms-hero h1 {
+	margin-top: 26px;
+	font-size: clamp(2.2rem, 4.1vw, 3.6rem);
+	font-weight: 600; letter-spacing: -0.02em; line-height: 0.99;
+}
+.ms-hero--page h1 { font-size: clamp(2.1rem, 5.4vw, 4.2rem); }
+.ms-ligne { display: block; overflow: hidden; }
+.ms-ligne i { display: block; font-style: normal; }
+
+.ms-hero-sous {
+	margin-top: 26px; max-width: 620px;
+	font-size: 16.5px; line-height: 1.7; color: var(--argent);
+}
+.ms-hero-sous a { color: var(--or-clair); }
+
+.ms-ariane { margin-bottom: 26px; }
+.ms-ariane ol { display: flex; gap: 10px; list-style: none; padding: 0; }
+.ms-ariane li {
+	font-family: var(--police-titres); font-size: 10.5px;
+	letter-spacing: 0.22em; text-transform: uppercase; color: var(--cendre);
+}
+.ms-ariane a { color: inherit; text-decoration: none; }
+.ms-ariane a:hover { color: var(--or-clair); }
+.ms-ariane [aria-current] { color: var(--argent); }
+
+/* Carte d'informations dans le hero d'accueil */
+.ms-hero-carte {
+	position: relative;
+	border: 1px solid rgba(255, 255, 255, 0.09);
+	background: linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0) 55%), rgba(10, 11, 13, 0.72);
+	padding: 34px 32px;
+	display: flex; flex-direction: column; gap: 24px;
+}
+.ms-hero-carte::before, .ms-hero-carte::after {
+	content: ""; position: absolute; width: 18px; height: 18px;
+	border: 1px solid rgba(200, 164, 92, 0.55); pointer-events: none;
+}
+.ms-hero-carte::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+.ms-hero-carte::after { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
+.ms-hero-carte-ligne span {
+	font-family: var(--police-titres); font-size: 10.5px;
+	letter-spacing: 0.26em; text-transform: uppercase; color: var(--or);
+}
+.ms-hero-carte-ligne p { margin-top: 7px; font-size: 15px; color: var(--argent); }
+.ms-hero-carte-ligne a {
+	font-family: var(--police-titres); font-size: 21px; letter-spacing: 0.05em;
+	color: var(--craie); text-decoration: none; transition: color 0.3s;
+}
+.ms-hero-carte-ligne a:hover { color: var(--or-clair); }
+
+/* ── Carrousel de flyers (accueil) ─────────────────────────────────────── */
+.ms-flyers {
+	display: flex; flex-direction: column; align-items: center; gap: 16px;
+	width: 100%;
+}
+
+.ms-flyers-cadre {
+	position: relative; width: 100%; max-width: 430px;
+	aspect-ratio: 1058 / 1500;
+	max-height: min(66vh, 640px);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	background: var(--carbone);
+	overflow: hidden;
+	box-shadow: 0 26px 60px -30px rgba(0, 0, 0, 0.9);
+	/* Glisser-déposer : le balayage horizontal pilote le carrousel,
+	   le défilement vertical de la page reste possible au doigt. */
+	touch-action: pan-y;
+	cursor: grab;
+	user-select: none; -webkit-user-select: none;
+}
+.ms-flyers-cadre.est-saisi { cursor: grabbing; }
+/* Repères d'angle dorés, comme sur les autres cadres du site */
+.ms-flyers-cadre::before, .ms-flyers-cadre::after {
+	content: ""; position: absolute; z-index: 2;
+	width: 20px; height: 20px;
+	border: 1px solid rgba(200, 164, 92, 0.65);
+	pointer-events: none;
+}
+.ms-flyers-cadre::before { top: 0; left: 0; border-right: 0; border-bottom: 0; }
+.ms-flyers-cadre::after { bottom: 0; right: 0; border-left: 0; border-top: 0; }
+
+.ms-flyers-piste {
+	display: flex; height: 100%;
+	transition: transform 0.85s var(--courbe);
+	will-change: transform;
+}
+.ms-flyer {
+	flex: 0 0 100%; position: relative; margin: 0; height: 100%;
+}
+.ms-flyer img {
+	width: 100%; height: 100%; object-fit: contain; object-position: center;
+	pointer-events: none; -webkit-user-drag: none;
+}
+
+.ms-flyers-points { display: flex; gap: 10px; }
+.ms-flyers-points button {
+	width: 26px; height: 3px; padding: 0; cursor: pointer;
+	background: rgba(255, 255, 255, 0.22); border: 0;
+	transition: background 0.4s var(--courbe);
+}
+.ms-flyers-points button:hover { background: rgba(255, 255, 255, 0.45); }
+.ms-flyers-points button.est-actif { background: var(--or); }
+
+@media (max-width: 1099px) {
+	.ms-flyers-cadre { max-width: 330px; max-height: 52vh; }
+}
+@media (max-width: 760px) {
+	.ms-flyers { margin-top: 8px; }
+	.ms-flyers-cadre { max-width: 260px; max-height: 42vh; }
+}
+
+/* ── Bande d'informations sous le hero ─────────────────────────────────── */
+.ms-infos-bande {
+	background: var(--carbone);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+.ms-infos-bande-grille {
+	display: grid; gap: 1px;
+	background: rgba(255, 255, 255, 0.07);
+	border-inline: 1px solid rgba(255, 255, 255, 0.07);
+}
+@media (min-width: 760px) { .ms-infos-bande-grille { grid-template-columns: repeat(4, 1fr); } }
+.ms-infos-bande-grille > div {
+	display: flex; flex-direction: column; justify-content: center; gap: 6px;
+	background: var(--carbone); padding: 20px 24px;
+}
+.ms-infos-bande-grille span {
+	font-family: var(--police-titres); font-size: 10.5px;
+	letter-spacing: 0.26em; text-transform: uppercase; color: var(--or);
+}
+.ms-infos-bande-grille p { font-size: 14px; color: var(--argent); }
+.ms-infos-bande-grille a { color: inherit; text-decoration: none; }
+.ms-infos-bande-grille a:hover { color: var(--or-clair); }
+
+.ms-hero-indicateur {
+	position: absolute; right: 34px; bottom: 46px;
+	display: none; flex-direction: column; align-items: center; gap: 14px;
+}
+@media (min-width: 1024px) { .ms-hero-indicateur { display: flex; } }
+.ms-hero-indicateur span {
+	font-family: var(--police-titres); font-size: 10px;
+	letter-spacing: 0.3em; text-transform: uppercase; color: var(--cendre);
+	writing-mode: vertical-rl;
+}
+.ms-hero-indicateur i { width: 1px; height: 58px; background: rgba(255, 255, 255, 0.15); position: relative; overflow: hidden; }
+.ms-hero-indicateur i::after {
+	content: ""; position: absolute; inset-inline: 0; top: 0; height: 22px; background: var(--or);
+	animation: ms-defile 2.6s ease-in-out infinite;
+}
+@keyframes ms-defile { 0% { transform: translateY(-100%); } 60%, 100% { transform: translateY(280%); } }
+
+/* Quand une vidéo est présente, le fond devient un voile de lecture
+   translucide : la vidéo reste visible, le texte reste lisible. */
+.ms-hero--video .ms-hero-fond {
+	background:
+		radial-gradient(110% 120% at 82% -5%, rgba(200, 164, 92, 0.10), transparent 55%),
+		linear-gradient(178deg, rgba(10, 11, 14, 0.34) 0%, rgba(5, 5, 6, 0.5) 55%, rgba(5, 5, 6, 0.88) 100%);
+}
+
+/* ── Sections ─────────────────────────────────────────────────────────── */
+.ms-section { padding-block: clamp(70px, 9vw, 120px); }
+.ms-section--carbone {
+	background: var(--carbone);
+	border-block: 1px solid rgba(255, 255, 255, 0.07);
+}
+.ms-tete-section { max-width: 780px; margin-bottom: clamp(40px, 5vw, 64px); }
+.ms-tete-section h2, .ms-deux-colonnes h2 {
+	margin-top: 20px;
+	font-size: clamp(1.85rem, 4vw, 3.1rem);
+}
+.ms-chapeau { margin-top: 20px; font-size: 16px; line-height: 1.7; color: var(--cendre); }
+.ms-texte { margin-top: 18px; font-size: 15.5px; line-height: 1.75; color: var(--cendre); }
+.ms-h2-simple { font-size: clamp(1.5rem, 2.6vw, 2rem); }
+
+.ms-deux-colonnes { display: grid; gap: 48px; align-items: center; }
+@media (min-width: 1024px) {
+	.ms-deux-colonnes { grid-template-columns: 1.05fr 0.95fr; gap: 76px; }
+	.ms-deux-colonnes--inverse { grid-template-columns: 0.8fr 1.2fr; align-items: start; }
+}
+
+/* ── Pôles (accueil) ──────────────────────────────────────────────────── */
+.ms-poles { border-top: 1px solid rgba(255, 255, 255, 0.09); }
+.ms-pole {
+	position: relative;
+	display: grid; grid-template-columns: auto 1fr auto; align-items: center;
+	gap: clamp(18px, 4vw, 56px);
+	padding: clamp(26px, 3.5vw, 44px) clamp(4px, 1.5vw, 20px);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+	text-decoration: none;
+	transition: background 0.5s var(--courbe), padding-left 0.5s var(--courbe);
+}
+.ms-pole::before {
+	content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+	background: var(--or); transform: scaleY(0); transform-origin: top;
+	transition: transform 0.5s var(--courbe);
+}
+.ms-pole:hover { background: rgba(255, 255, 255, 0.022); padding-left: clamp(14px, 2.5vw, 34px); }
+.ms-pole:hover::before { transform: scaleY(1); }
+.ms-pole-index {
+	font-family: var(--police-titres); font-weight: 700;
+	font-size: clamp(2.4rem, 6vw, 4.6rem); line-height: 1; letter-spacing: -0.04em;
+	color: transparent; -webkit-text-stroke: 1px rgba(255, 255, 255, 0.16);
+	transition: -webkit-text-stroke-color 0.4s, color 0.4s;
+}
+.ms-pole:hover .ms-pole-index { -webkit-text-stroke-color: rgba(200, 164, 92, 0.65); }
+.ms-pole-corps { display: flex; flex-direction: column; gap: 8px; }
+.ms-pole-kicker {
+	font-family: var(--police-titres); font-size: 10.5px;
+	letter-spacing: 0.26em; text-transform: uppercase; color: var(--or);
+}
+.ms-pole strong {
+	font-family: var(--police-titres); font-weight: 600;
+	font-size: clamp(1.35rem, 2.6vw, 2rem); color: var(--craie);
+	transition: color 0.3s;
+}
+.ms-pole:hover strong { color: var(--or-clair); }
+.ms-pole-texte { max-width: 640px; font-size: 14.5px; line-height: 1.65; color: var(--cendre); }
+.ms-pole-fleche { color: var(--argent); opacity: 0.6; transition: opacity 0.3s, color 0.3s; }
+.ms-pole:hover .ms-pole-fleche { opacity: 1; color: var(--or-clair); }
+@media (max-width: 640px) { .ms-pole-fleche { display: none; } .ms-pole { grid-template-columns: auto 1fr; } }
+
+/* ── Bande de repères ─────────────────────────────────────────────────── */
+.ms-bande { background: var(--carbone); border-block: 1px solid rgba(255, 255, 255, 0.07); }
+.ms-bande-grille { display: grid; grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 900px) { .ms-bande-grille { grid-template-columns: repeat(4, 1fr); } }
+.ms-bande-item {
+	display: flex; flex-direction: column; gap: 8px;
+	padding: 34px 26px;
+	border-left: 1px solid rgba(255, 255, 255, 0.07);
+}
+.ms-bande-item:first-child { border-left: 0; }
+@media (max-width: 899px) { .ms-bande-item:nth-child(3) { border-left: 0; } .ms-bande-item { padding: 26px 20px; } }
+.ms-bande-item b {
+	font-family: var(--police-titres); font-weight: 600;
+	font-size: clamp(1.9rem, 3.4vw, 2.8rem); line-height: 1;
+	background: linear-gradient(165deg, #f0dcae 0%, #c8a45c 45%, #8a6a2c 80%);
+	-webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.ms-bande-item span { font-size: 13.5px; color: var(--cendre); }
+
+/* ── Étapes (méthode) ─────────────────────────────────────────────────── */
+.ms-etapes {
+	display: grid; gap: 1px; list-style: none; padding: 0; counter-reset: etape;
+	background: rgba(255, 255, 255, 0.07);
+	border: 1px solid rgba(255, 255, 255, 0.07);
+}
+@media (min-width: 700px) { .ms-etapes { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .ms-etapes { grid-template-columns: repeat(4, 1fr); } }
+.ms-etape { background: var(--encre); padding: 32px 28px 36px; position: relative; }
+.ms-section--carbone .ms-etape { background: var(--carbone); }
+.ms-etape-num {
+	display: block;
+	font-family: var(--police-titres); font-weight: 700; font-size: 42px; line-height: 1;
+	color: transparent; -webkit-text-stroke: 1px rgba(255, 255, 255, 0.14);
+}
+.ms-etape h3 { margin-top: 18px; font-size: 17.5px; }
+.ms-etape p { margin-top: 12px; font-size: 14px; line-height: 1.7; color: var(--cendre); }
+
+/* ── Engagements ──────────────────────────────────────────────────────── */
+.ms-engagements { display: grid; gap: 34px; list-style: none; padding: 0; }
+@media (min-width: 700px) { .ms-engagements { grid-template-columns: repeat(2, 1fr); gap: 44px 40px; } }
+.ms-engagements h3 { margin-top: 16px; font-size: 17.5px; }
+.ms-engagements p { margin-top: 10px; font-size: 14.5px; line-height: 1.7; color: var(--cendre); }
+
+/* ── Prestations détaillées ───────────────────────────────────────────── */
+.ms-grille-prestations {
+	display: grid; gap: 1px;
+	background: rgba(255, 255, 255, 0.07);
+	border: 1px solid rgba(255, 255, 255, 0.07);
+}
+@media (min-width: 640px) { .ms-grille-prestations { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .ms-grille-prestations { grid-template-columns: repeat(3, 1fr); } }
+.ms-prestation {
+	background: var(--encre); padding: 30px 28px 34px;
+	transition: background 0.4s var(--courbe);
+}
+.ms-section--carbone .ms-prestation { background: var(--carbone); }
+.ms-prestation:hover { background: var(--graphite); }
+.ms-prestation h3 { margin-top: 14px; font-size: 17px; }
+.ms-prestation p { margin-top: 11px; font-size: 14px; line-height: 1.7; color: var(--cendre); }
+
+/* ── Conseils ─────────────────────────────────────────────────────────── */
+.ms-conseils { display: grid; gap: 34px; }
+@media (min-width: 900px) { .ms-conseils { grid-template-columns: repeat(3, 1fr); gap: 44px; } }
+.ms-conseil h3 { margin-top: 16px; font-size: 16.5px; }
+.ms-conseil p { margin-top: 10px; font-size: 14px; line-height: 1.7; color: var(--cendre); }
+
+/* ── FAQ ──────────────────────────────────────────────────────────────── */
+.ms-faq { border-top: 1px solid rgba(255, 255, 255, 0.09); max-width: 900px; }
+.ms-faq-item { border-bottom: 1px solid rgba(255, 255, 255, 0.09); }
+.ms-faq-item summary {
+	display: flex; align-items: center; justify-content: space-between; gap: 24px;
+	padding: 24px 4px; cursor: pointer; list-style: none;
+	font-family: var(--police-titres); font-size: 16.5px; font-weight: 500;
+	transition: color 0.3s;
+}
+.ms-faq-item summary::-webkit-details-marker { display: none; }
+.ms-faq-item summary:hover { color: var(--or-clair); }
+.ms-faq-item summary i {
+	position: relative; flex-shrink: 0; width: 14px; height: 14px;
+}
+.ms-faq-item summary i::before, .ms-faq-item summary i::after {
+	content: ""; position: absolute; inset: 0; margin: auto; background: var(--or);
+	transition: transform 0.4s var(--courbe);
+}
+.ms-faq-item summary i::before { width: 14px; height: 1px; }
+.ms-faq-item summary i::after { width: 1px; height: 14px; }
+.ms-faq-item[open] summary { color: var(--or-clair); }
+.ms-faq-item[open] summary i::after { transform: rotate(90deg); }
+.ms-faq-item p {
+	padding: 0 4px 26px; max-width: 800px;
+	font-size: 14.5px; line-height: 1.75; color: var(--cendre);
+}
+
+/* ── Autres prestations ───────────────────────────────────────────────── */
+.ms-autres {
+	display: grid; gap: 1px;
+	background: rgba(255, 255, 255, 0.07);
+	border: 1px solid rgba(255, 255, 255, 0.07);
+}
+@media (min-width: 640px) { .ms-autres { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .ms-autres { grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); grid-auto-flow: column; } }
+.ms-autre {
+	display: flex; flex-direction: column; gap: 9px;
+	background: var(--encre); padding: 28px 26px 32px;
+	text-decoration: none; transition: background 0.4s var(--courbe);
+}
+.ms-section--carbone .ms-autre { background: var(--carbone); }
+.ms-autre:hover { background: var(--graphite); }
+.ms-autre strong {
+	font-family: var(--police-titres); font-size: 18px; font-weight: 600;
+	color: var(--craie); transition: color 0.3s;
+}
+.ms-autre:hover strong { color: var(--or-clair); }
+.ms-autre > span:last-child { font-size: 13px; color: var(--cendre); }
+
+/* ── Villes ───────────────────────────────────────────────────────────── */
+.ms-villes { display: flex; flex-wrap: wrap; gap: 12px; list-style: none; padding: 0; }
+.ms-villes li {
+	display: inline-flex; align-items: baseline; gap: 10px;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	background: linear-gradient(160deg, rgba(255, 255, 255, 0.035), transparent 55%);
+	padding: 12px 20px;
+	font-family: var(--police-titres); font-size: 12.5px;
+	letter-spacing: 0.12em; text-transform: uppercase; color: var(--argent);
+	transition: border-color 0.4s;
+}
+.ms-villes li:hover { border-color: rgba(200, 164, 92, 0.4); }
+.ms-villes .ms-index { font-size: 9.5px; }
+
+/* ── Coordonnées ──────────────────────────────────────────────────────── */
+.ms-coordonnees {
+	display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px;
+	background: rgba(255, 255, 255, 0.07);
+	border: 1px solid rgba(255, 255, 255, 0.07);
+	margin-top: 34px;
+}
+.ms-coordonnees > div { background: var(--encre); padding: 22px 22px 24px; }
+.ms-coordonnees dt {
+	font-family: var(--police-titres); font-size: 10.5px;
+	letter-spacing: 0.26em; text-transform: uppercase; color: var(--or);
+}
+.ms-coordonnees dd { margin: 10px 0 0; font-size: 14.5px; color: var(--argent); overflow-wrap: anywhere; }
+.ms-coordonnees a { text-decoration: none; color: inherit; }
+.ms-coordonnees a:hover { color: var(--or-clair); }
+.ms-coordonnees-tel { font-family: var(--police-titres); font-size: 20px !important; letter-spacing: 0.05em; color: var(--craie) !important; }
+.ms-coordonnees-tel:hover { color: var(--or-clair) !important; }
+
+/* ── Carte ────────────────────────────────────────────────────────────── */
+.ms-carte { position: relative; }
+.ms-carte iframe {
+	width: 100%; height: 400px;
+	border: 1px solid rgba(255, 255, 255, 0.09);
+	filter: grayscale(0.75) contrast(1.05) brightness(0.72) invert(0.92) hue-rotate(180deg);
+}
+.ms-carte-source { margin-top: 10px; font-size: 12px; color: var(--cendre); }
+.ms-carte-source a { color: var(--or); text-underline-offset: 4px; }
+
+/* ── Réserves média ───────────────────────────────────────────────────── */
+.ms-reserve, .ms-figure { position: relative; margin: 0; }
+.ms-reserve-fond {
+	position: absolute; inset: 0;
+	display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+	border: 1px solid rgba(255, 255, 255, 0.09);
+	background:
+		linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+		radial-gradient(120% 90% at 30% 0%, rgba(200, 164, 92, 0.07), transparent 60%),
+		#0c0e11;
+	background-size: 38px 38px, 38px 38px, 100% 100%, 100% 100%;
+	color: var(--cendre);
+}
+.ms-reserve-fond svg { width: 44px; height: 32px; color: rgba(200, 164, 92, 0.7); }
+.ms-reserve-fond span {
+	font-family: var(--police-titres); font-size: 10.5px;
+	letter-spacing: 0.3em; text-transform: uppercase;
+}
+.ms-reserve figcaption, .ms-figure figcaption {
+	position: absolute; top: calc(100% + 10px); left: 0;
+	display: flex; align-items: center; gap: 8px;
+	font-family: var(--police-titres); font-size: 10.5px;
+	letter-spacing: 0.22em; text-transform: uppercase; color: var(--cendre);
+}
+.ms-reserve figcaption::before, .ms-figure figcaption::before {
+	content: ""; width: 16px; height: 1px; background: rgba(200, 164, 92, 0.6);
+}
+.ms-reserve { margin-bottom: 34px; }
+.ms-figure img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+.ms-galerie { display: grid; gap: 44px 28px; }
+@media (min-width: 640px) { .ms-galerie { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .ms-galerie { grid-template-columns: repeat(3, 1fr); } }
+
+/* ── Formulaire ───────────────────────────────────────────────────────── */
+.ms-contact-grille { display: grid; gap: 56px; align-items: start; }
+@media (min-width: 1100px) { .ms-contact-grille { grid-template-columns: 1.15fr 0.85fr; gap: 72px; } }
+
+.ms-formulaire { margin-top: 34px; }
+.ms-form-grille { display: grid; gap: 22px; }
+@media (min-width: 640px) { .ms-form-grille { grid-template-columns: repeat(2, 1fr); } }
+.ms-champ { display: flex; flex-direction: column; gap: 8px; margin-top: 22px; }
+.ms-form-grille .ms-champ { margin-top: 0; }
+.ms-champ label {
+	font-family: var(--police-titres); font-size: 11px;
+	letter-spacing: 0.22em; text-transform: uppercase; color: var(--argent);
+}
+.ms-champ input, .ms-champ select, .ms-champ textarea {
+	width: 100%; padding: 14px 16px;
+	background: var(--carbone); color: var(--craie);
+	border: 1px solid rgba(255, 255, 255, 0.13);
+	font-family: var(--police-texte); font-size: 15px;
+	transition: border-color 0.3s;
+}
+.ms-champ input::placeholder, .ms-champ textarea::placeholder { color: var(--cendre); }
+.ms-champ input:focus, .ms-champ select:focus, .ms-champ textarea:focus {
+	outline: none; border-color: rgba(200, 164, 92, 0.6);
+}
+.ms-champ textarea { resize: vertical; }
+.ms-note { margin-top: 20px; font-size: 13px; color: var(--cendre); }
+.ms-note a { color: var(--or); text-underline-offset: 4px; }
+.ms-piege { position: absolute; left: -9999px; width: 0; height: 0; overflow: hidden; }
+.ms-consentement { display: flex; gap: 12px; margin-top: 22px; align-items: flex-start; }
+.ms-consentement input { margin-top: 4px; width: 16px; height: 16px; accent-color: var(--or); flex-shrink: 0; }
+.ms-consentement label { font-size: 13px; line-height: 1.65; color: var(--cendre); }
+.ms-consentement a { color: var(--or); text-underline-offset: 4px; }
+.ms-form-pied { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; margin-top: 28px; }
+.ms-form-pied span { font-size: 12px; color: var(--cendre); }
+
+.ms-avis { border-left: 2px solid; padding: 18px 22px; margin-top: 28px; }
+.ms-avis strong { font-family: var(--police-titres); font-size: 15px; }
+.ms-avis p { margin-top: 8px; font-size: 14px; color: var(--cendre); }
+.ms-avis a { color: var(--or-clair); }
+.ms-avis--ok { border-color: var(--or); background: rgba(200, 164, 92, 0.07); }
+.ms-avis--erreur { border-color: #c96a5e; background: rgba(201, 106, 94, 0.08); }
+
+.ms-encart {
+	border: 1px solid rgba(255, 255, 255, 0.09);
+	background: linear-gradient(160deg, rgba(255, 255, 255, 0.035), transparent 55%), var(--carbone);
+	padding: 30px 28px; margin-bottom: 30px;
+}
+.ms-encart address { font-style: normal; display: flex; flex-direction: column; gap: 20px; margin-top: 22px; }
+.ms-encart-ligne span {
+	font-family: var(--police-titres); font-size: 10.5px;
+	letter-spacing: 0.26em; text-transform: uppercase; color: var(--cendre);
+}
+.ms-encart-ligne p { margin-top: 7px; font-size: 14.5px; color: var(--argent); overflow-wrap: anywhere; }
+.ms-encart-ligne a { color: inherit; text-decoration: none; }
+.ms-encart-ligne a:hover { color: var(--or-clair); }
+
+/* ── Appel final ──────────────────────────────────────────────────────── */
+.ms-cta-final {
+	position: relative; overflow: hidden;
+	background: var(--graphite);
+	border-top: 1px solid rgba(255, 255, 255, 0.08);
+	padding-block: clamp(70px, 8vw, 110px);
+}
+.ms-cta-final::before {
+	content: ""; position: absolute; inset: 0;
+	background: radial-gradient(120% 130% at 82% -10%, rgba(200, 164, 92, 0.16), transparent 58%);
+}
+.ms-cta-final-grille { position: relative; display: grid; gap: 40px; align-items: end; }
+@media (min-width: 1024px) { .ms-cta-final-grille { grid-template-columns: 1.3fr 1fr; gap: 64px; } }
+.ms-cta-final h2 { margin-top: 20px; font-size: clamp(1.9rem, 4vw, 3.2rem); }
+.ms-cta-final p { margin-top: 18px; max-width: 560px; font-size: 15.5px; line-height: 1.7; color: var(--cendre); }
+.ms-cta-tel {
+	display: block;
+	font-family: var(--police-titres); font-weight: 600;
+	font-size: clamp(1.7rem, 3vw, 2.4rem); letter-spacing: 0.04em;
+	color: var(--craie); text-decoration: none; transition: color 0.3s;
+}
+.ms-cta-tel:hover { color: var(--or-clair); }
+.ms-cta-final-actions .ms-btn-rangee { margin-top: 22px; }
+
+/* ── Pied de page ─────────────────────────────────────────────────────── */
+.ms-pied { background: var(--carbone); border-top: 1px solid rgba(255, 255, 255, 0.08); padding-block: 64px 34px; }
+.ms-pied-grille { display: grid; gap: 44px; }
+@media (min-width: 900px) { .ms-pied-grille { grid-template-columns: 1.2fr 1fr 1fr 1.1fr; gap: 40px; } }
+.ms-pied-logo { display: flex; align-items: baseline; gap: 10px; }
+.ms-pied-logo b {
+	font-family: var(--police-titres); font-weight: 700; font-size: 30px; letter-spacing: -0.04em;
+	background: linear-gradient(170deg, #fff 0%, #9aa0a8 55%, #d7dade 100%);
+	-webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.ms-pied-logo span {
+	font-family: var(--police-titres); font-size: 13px; letter-spacing: 0.3em;
+	text-transform: uppercase; color: #cdd2d8;
+}
+.ms-pied-logo i { font-style: normal; color: var(--or); }
+.ms-pied-texte { margin-top: 18px; max-width: 300px; font-size: 14px; line-height: 1.7; color: var(--cendre); }
+.ms-pied-reseaux { display: flex; gap: 18px; margin-top: 18px; }
+.ms-pied-reseaux a {
+	font-family: var(--police-titres); font-size: 11px; letter-spacing: 0.2em;
+	text-transform: uppercase; color: var(--argent); text-decoration: none;
+}
+.ms-pied-reseaux a:hover { color: var(--or-clair); }
+.ms-pied-titre {
+	font-family: var(--police-titres); font-size: 11px; font-weight: 500;
+	letter-spacing: 0.28em; text-transform: uppercase; color: var(--or);
+}
+.ms-pied ul { list-style: none; padding: 0; margin-top: 20px; display: flex; flex-direction: column; gap: 12px; }
+.ms-pied ul a { font-size: 14px; color: var(--argent); text-decoration: none; transition: color 0.3s; }
+.ms-pied ul a:hover { color: var(--or-clair); }
+.ms-pied address { font-style: normal; margin-top: 20px; display: flex; flex-direction: column; gap: 14px; font-size: 14px; color: var(--argent); }
+.ms-pied address a { text-decoration: none; color: inherit; }
+.ms-pied address a:hover { color: var(--or-clair); }
+.ms-pied-tel { font-family: var(--police-titres); font-size: 17px; letter-spacing: 0.06em; color: var(--craie) !important; }
+.ms-pied-horaires { color: var(--cendre); }
+.ms-pied-filet {
+	height: 1px; margin-top: 52px;
+	background: linear-gradient(90deg, transparent, rgba(200, 164, 92, 0.5) 30%, rgba(231, 205, 147, 0.8) 50%, rgba(200, 164, 92, 0.5) 70%, transparent);
+	opacity: 0.5;
+}
+.ms-pied-bas {
+	display: flex; flex-direction: column; gap: 8px;
+	margin-top: 22px; font-size: 12px; color: var(--cendre);
+}
+@media (min-width: 700px) { .ms-pied-bas { flex-direction: row; justify-content: space-between; } }
+
+/* ── Barre d'actions mobile ───────────────────────────────────────────── */
+.ms-barre-mobile {
+	position: fixed; inset-inline: 0; bottom: 0; z-index: 90;
+	display: grid; grid-template-columns: repeat(3, 1fr);
+	background: rgba(5, 5, 6, 0.97);
+	border-top: 1px solid rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(6px);
+	padding-bottom: env(safe-area-inset-bottom);
+}
+@media (min-width: 1024px) { .ms-barre-mobile { display: none; } }
+.ms-barre-mobile a {
+	display: flex; flex-direction: column; align-items: center; gap: 5px;
+	padding: 11px 0 12px;
+	font-family: var(--police-titres); font-size: 10px;
+	letter-spacing: 0.2em; text-transform: uppercase;
+	color: var(--argent); text-decoration: none;
+	border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+.ms-barre-mobile a:first-child { border-left: 0; }
+.ms-barre-mobile svg { width: 16px; height: 16px; }
+.ms-barre-mobile-rdv { background: rgba(200, 164, 92, 0.95); color: #141007 !important; font-weight: 600; }
+
+/* ── Fenêtre de prise de rendez-vous ───────────────────────────────────── */
+.ms-rdv {
+	width: min(760px, calc(100% - 28px));
+	padding: 0; border: 0; background: transparent; color: var(--craie);
+	/* La règle globale « * { margin: 0 } » neutralise le centrage que le
+	   navigateur applique par défaut aux fenêtres : on le rétablit ici. */
+	margin: auto;
+	max-height: calc(100% - 32px);
+	overflow: auto;
+}
+.ms-rdv::backdrop {
+	background: rgba(3, 3, 4, 0.82);
+	backdrop-filter: blur(3px);
+}
+.ms-rdv[open] { animation: ms-rdv-entree 0.45s var(--courbe) both; }
+@keyframes ms-rdv-entree {
+	from { opacity: 0; transform: translateY(14px); }
+	to { opacity: 1; transform: none; }
+}
+
+.ms-rdv-int {
+	position: relative;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	background:
+		radial-gradient(120% 130% at 85% -10%, rgba(200, 164, 92, 0.14), transparent 58%),
+		var(--graphite);
+	padding: 40px 34px 34px;
+}
+.ms-rdv-int::before, .ms-rdv-int::after {
+	content: ""; position: absolute; width: 20px; height: 20px;
+	border: 1px solid rgba(200, 164, 92, 0.6); pointer-events: none;
+}
+.ms-rdv-int::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+.ms-rdv-int::after { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
+
+.ms-rdv-fermer {
+	position: absolute; top: 14px; right: 14px;
+	display: flex; align-items: center; justify-content: center;
+	width: 40px; height: 40px; padding: 0;
+	background: none; border: 0; cursor: pointer; color: var(--cendre);
+	transition: color 0.3s;
+}
+.ms-rdv-fermer:hover { color: var(--craie); }
+.ms-rdv-fermer svg { width: 14px; height: 14px; }
+
+.ms-rdv h2 { margin-top: 16px; font-size: clamp(1.4rem, 3.2vw, 2rem); }
+.ms-rdv-texte { margin-top: 12px; max-width: 46ch; font-size: 14.5px; line-height: 1.7; color: var(--cendre); }
+
+.ms-rdv-choix {
+	display: grid; gap: 1px; margin-top: 28px;
+	background: rgba(255, 255, 255, 0.09);
+	border: 1px solid rgba(255, 255, 255, 0.09);
+}
+@media (min-width: 700px) { .ms-rdv-choix { grid-template-columns: 1fr 1fr; } }
+
+.ms-rdv-option {
+	display: flex; flex-direction: column; gap: 8px;
+	background: var(--carbone); padding: 26px 24px 28px;
+	text-decoration: none;
+	transition: background 0.4s var(--courbe);
+}
+.ms-rdv-option:hover { background: #16191d; }
+.ms-rdv-icone {
+	display: flex; align-items: center; justify-content: center;
+	width: 44px; height: 44px; margin-bottom: 6px;
+	border: 1px solid rgba(200, 164, 92, 0.4); color: var(--or);
+	transition: border-color 0.4s var(--courbe);
+}
+.ms-rdv-option:hover .ms-rdv-icone { border-color: var(--or); }
+.ms-rdv-icone svg { width: 19px; height: 19px; }
+.ms-rdv-option strong {
+	font-family: var(--police-titres); font-size: 17px; font-weight: 600;
+	color: var(--craie); transition: color 0.3s;
+}
+.ms-rdv-option:hover strong { color: var(--or-clair); }
+.ms-rdv-numero {
+	font-family: var(--police-titres); font-size: 17px; letter-spacing: 0.05em;
+	color: var(--or-clair);
+}
+.ms-rdv-detail { font-size: 13px; line-height: 1.6; color: var(--cendre); }
+
+/* ── Pages de contenu (mentions légales…) ─────────────────────────────── */
+.ms-prose { max-width: 760px; }
+.ms-prose h2 { margin-top: 44px; font-size: 22px; }
+.ms-prose h2:first-child { margin-top: 0; }
+.ms-prose p { margin-top: 16px; font-size: 15px; line-height: 1.75; color: var(--cendre); }
+.ms-prose a { color: var(--or); text-underline-offset: 4px; }
+.ms-prose ul, .ms-prose ol { margin-top: 16px; padding-left: 22px; color: var(--cendre); font-size: 15px; }
+
+/* ── Animations au défilement ─────────────────────────────────────────── */
+/* Les éléments restent visibles par défaut : sans JavaScript ou avec les
+   animations réduites, rien n'est jamais masqué. */
+.ms-anime [data-anim] {
+	opacity: 0; transform: translateY(26px);
+	transition: opacity 0.9s var(--courbe), transform 0.9s var(--courbe);
+}
+.ms-anime [data-anim].est-visible { opacity: 1; transform: none; }
+.ms-anime .ms-ligne i {
+	transform: translateY(110%);
+	transition: transform 0.95s var(--courbe);
+}
+.ms-anime .ms-ligne.est-visible i, .ms-anime .est-visible .ms-ligne i { transform: none; }
+.ms-anime .ms-hero .ms-ligne i { animation: ms-leve 0.95s var(--courbe) 0.15s both; }
+.ms-anime .ms-hero .ms-ligne:nth-child(2) i { animation-delay: 0.26s; }
+@keyframes ms-leve { from { transform: translateY(110%); } to { transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+	html { scroll-behavior: auto; }
+	*, *::before, *::after {
+		animation-duration: 0.001ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.001ms !important;
+	}
+	.ms-anime [data-anim], .ms-anime .ms-ligne i { opacity: 1 !important; transform: none !important; }
+	.ms-flyers-piste { transition-duration: 0.001ms !important; }
+}
+
+/* Impression */
+@media print {
+	body { background: #fff; color: #000; }
+	.ms-promo, .ms-barre-mobile, .ms-hero-indicateur { display: none; }
+}
