@@ -4,8 +4,9 @@ Site vitrine **statique** (HTML / CSS / JavaScript, sans dépendance ni build) p
 de conseil automobile spécialisée dans l'achat, la vente et l'expertise de véhicules d'occasion.
 
 > **Identité** : le design reprend la charte de la carte de visite Motor Consulting —
-> noir profond, or, lettrage chrome, et les quatre piliers Recherche / Négociation /
-> Achat-Vente / Location.
+> noir profond, or, lettrage chrome — dans une version **épurée** : beaucoup d'espace,
+> peu de texte, aucune texture ni carte encadrée, une seule couleur d'accent. Les quatre
+> piliers Recherche / Négociation / Achat-Vente / Location structurent la page.
 >
 > **Coordonnées** : zone **Paris / Île-de-France** et coordonnées de démonstration
 > (téléphone, e-mail, adresse, domaine). Remplacez-les avant mise en ligne — voir
@@ -35,21 +36,21 @@ robots.txt / sitemap.xml / site.webmanifest
 
 ## Sections
 
-1. **Accueil** — accroche, phrase de présentation, boutons « Vendre ma voiture » / « Trouver un
-   véhicule », mini-formulaire d'estimation et chiffres clés animés.
+1. **Accueil** — accroche, phrase de présentation, bouton « Vendre ma voiture », lien vers les
+   véhicules, et les chiffres clés sur une ligne discrète.
 2. **Nos services** — recherche de véhicule, négociation, achat/vente, location (courte et
-   longue durée, LOA/LLD), expertise & estimation, démarches et transaction sécurisée.
+   longue durée, LOA/LLD). L'expertise et les démarches sont mentionnées en introduction.
 3. **Véhicules disponibles** — grille de fiches avec recherche plein texte, filtres (type,
    budget, année), tri, pagination « voir plus » et fiche détaillée en modale.
 4. **Comment ça marche** — 4 étapes (contact → expertise → proposition → transaction sécurisée).
 5. **Estimation gratuite** — formulaire complet avec validation et confirmation.
-6. **Témoignages** — carrousel avec notes en étoiles (clavier + swipe tactile).
+6. **Témoignages** — une citation à la fois, notes en étoiles, navigation clavier et swipe.
 7. **À propos** — histoire, valeurs, équipe.
 8. **Contact** — coordonnées, carte, WhatsApp et formulaire.
 
-Fonctionnalités transverses : barre fixe Appeler / WhatsApp / Estimation sur mobile, bouton
-retour en haut, navigation active au défilement, apparitions au scroll, respect de
-`prefers-reduced-motion`, focus visible et libellés accessibles.
+Fonctionnalités transverses : barre fixe Appeler / WhatsApp / Estimation sur mobile,
+navigation active au défilement, respect de `prefers-reduced-motion`, focus visible et
+libellés accessibles.
 
 ## Personnalisation
 
@@ -66,12 +67,11 @@ WhatsApp) suffit :
 | E-mail | `index.html` et `CONFIG.email` dans `main.js` | `contact@motor-consulting.fr` |
 | Adresse + coordonnées GPS | `index.html` (bloc contact, iframe carte, JSON-LD) | 24 avenue de la Grande-Armée, 75017 Paris |
 | Domaine | balises `canonical`, `og:url`, `robots.txt`, `sitemap.xml` | `www.motor-consulting.fr` |
-| Chiffres clés | attributs `data-count` dans la section `#stats` | 1 850 / 12 ans / 4,9 |
+| Chiffres clés | liste `.facts` sous l'accroche de la page d'accueil | 1 850 / 12 ans / 4,9 |
 
 ### 2. Branchement des formulaires
 
-Les trois formulaires (mini-estimation, estimation complète, contact) partagent la même
-mécanique. Par défaut, `CONFIG.formEndpoint` est vide : le site est en **mode démonstration**
+Les deux formulaires (estimation, contact) partagent la même mécanique. Par défaut, `CONFIG.formEndpoint` est vide : le site est en **mode démonstration**
 — la demande est validée, une référence est générée, un message de confirmation s'affiche et
 la demande est conservée dans le `localStorage` du visiteur (clé `mc_demandes`).
 
@@ -108,18 +108,22 @@ Toute l'identité tient dans les variables du bloc `:root` de `assets/css/styles
 | Rôle | Variable | Valeur |
 |---|---|---|
 | Noir de fond | `--noir` | `#08080a` |
-| Noir secondaire (sections alternées) | `--noir-2` | `#0e0e11` |
-| Charbon (cartes, champs) | `--charbon` | `#15151a` |
+| Noir secondaire (visuels, carte) | `--noir-2` | `#111114` |
+| Filets | `--line` / `--or-line` | blanc 9 % / or 28 % |
 | Or principal | `--or` | `#d4af37` |
-| Or clair (survols, reflets) | `--or-clair` | `#f0dc9b` |
-| Or foncé (bas du dégradé) | `--or-fonce` | `#8a6e1e` |
+| Or clair (survol du bouton) | `--or-clair` | `#eddca0` |
 | Chrome (logotype) | `--chrome-1/2/3` | `#ffffff` → `#c6ccd4` → `#767c85` |
-| Texte courant | `--texte` / `--texte-2` | `#ededea` / `#a9adb5` |
+| Texte courant | `--texte` / `--texte-2` | `#f2f1ec` / `#a5a8ad` |
 
-Trois dégradés en découlent : `--grad-or` (aplats et boutons), `--grad-or-txt` (texte doré,
-plus lumineux pour rester lisible sur fond noir) et `--grad-chrome` (le mot « MOTOR »).
-Deux SVG encodés en `data:` reprennent la couleur `%23d4af37` — les coches des listes et la
-flèche des menus déroulants : pensez à les modifier si vous changez l'or.
+L'or est utilisé en aplat (`--or`) : un seul bouton plein par écran, des filets d'un pixel,
+les libellés en Michroma et les prix. Le dégradé chrome (`--grad-chrome`) ne sert qu'au
+mot « MOTOR ». Deux SVG encodés en `data:` reprennent la couleur `%23d4af37` — les étoiles
+des avis et la flèche des menus déroulants : pensez à les modifier si vous changez l'or.
+
+Principes de l'épure, à conserver lors des évolutions : pas de fond alterné entre sections
+(un filet suffit), pas de carte encadrée ni d'ombre, pas d'icône décorative, une seule
+famille de boutons (contour or, plein or pour l'action principale), champs de formulaire
+soulignés plutôt qu'encadrés.
 
 Le site assume un **thème sombre unique** (comme la carte de visite) : il n'y a pas de
 variante claire à maintenir.
@@ -129,9 +133,6 @@ pour les titres et le texte courant. Les deux polices sont **auto-hébergées** 
 `assets/fonts/` (~98 Ko, formats woff2, `font-display:swap`) : aucun appel à Google Fonts,
 ce qui évite le transfert d'adresses IP vers un service tiers — un point régulièrement
 sanctionné en France sur le terrain du RGPD.
-
-**Texture** : le motif nid d'abeille et les biseaux dorés de la carte sont reproduits en CSS
-pur (variable `--hex` et éléments `.hero__diag`) — aucune image de fond à charger.
 
 ## SEO
 

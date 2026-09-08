@@ -55,11 +55,11 @@
   const onScroll = () => {
     const y = window.scrollY;
     header.classList.toggle("is-scrolled", y > 20);
-    toTop.classList.toggle("is-visible", y > 600);
+    if (toTop) toTop.classList.toggle("is-visible", y > 600);
   };
 
   const toTop = $("#to-top");
-  toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+  if (toTop) toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
@@ -143,24 +143,22 @@
 
   function vehicleCard(v) {
     return `
-      <article class="vehicle reveal">
+      <article class="vehicle" data-vehicle="${v.id}">
         <div class="vehicle__media">
           ${carSvg(v, "g")}
-          ${v.tag ? `<span class="vehicle__tag${/budget|places|Pro/.test(v.tag) ? " vehicle__tag--soft" : ""}">${v.tag}</span>` : ""}
+          ${v.tag ? `<span class="vehicle__tag">${v.tag}</span>` : ""}
         </div>
-        <div class="vehicle__body">
+        <div class="vehicle__head">
           <h3 class="vehicle__title">${v.marque} ${v.modele}<span>${v.version}</span></h3>
-          <ul class="vehicle__specs">
-            <li>${v.annee}</li>
-            <li>${nombre(v.km)} km</li>
-            <li>${v.carburant}</li>
-            <li>${v.boite}</li>
-          </ul>
-          <div class="vehicle__foot">
-            <p class="vehicle__price">${euros(v.prix)}<small>${garantieLabel(v)}</small></p>
-            <button class="vehicle__btn" type="button" data-vehicle="${v.id}">Voir la fiche</button>
-          </div>
+          <p class="vehicle__price">${euros(v.prix)}</p>
         </div>
+        <ul class="vehicle__specs">
+          <li>${v.annee}</li>
+          <li>${nombre(v.km)} km</li>
+          <li>${v.carburant}</li>
+          <li>${v.boite}</li>
+        </ul>
+        <button class="link" type="button" data-vehicle="${v.id}">Voir la fiche <span aria-hidden="true">→</span></button>
       </article>`;
   }
 
@@ -191,7 +189,6 @@
   function render() {
     const list = filtered.slice(0, visible);
     grid.innerHTML = list.map(vehicleCard).join("");
-    $$(".vehicle", grid).forEach((el) => el.classList.add("is-in"));
 
     emptyMsg.hidden = filtered.length > 0;
     loadMore.hidden = visible >= filtered.length;
@@ -253,7 +250,7 @@
         <ul class="ticks">${v.options.map((o) => `<li>${o}</li>`).join("")}</ul>
         <div class="modal__actions">
           <a class="btn btn--primary" href="https://wa.me/${CONFIG.whatsapp}?text=${waText}" target="_blank" rel="noopener">Demander un essai</a>
-          <a class="btn btn--outline" href="#contact" data-close>Poser une question</a>
+          <a class="btn" href="#contact" data-close>Poser une question</a>
         </div>
       </div>`;
 
@@ -291,26 +288,23 @@
     <article class="testimonial">
       ${starsHtml(t.note)}
       <p class="testimonial__quote">${t.texte}</p>
-      <div class="testimonial__who">
-        <span class="testimonial__avatar" aria-hidden="true">${t.nom.split(" ").map((p) => p[0]).join("")}</span>
-        <div>
-          <strong>${t.nom}</strong>
-          <small>${t.ville} · ${t.service}</small>
-        </div>
-      </div>
+      <p class="testimonial__who">
+        <strong>${t.nom}</strong>
+        <small>${t.ville} · ${t.service}</small>
+      </p>
     </article>`).join("");
 
   $$(".stars--lg").forEach((el) => { el.innerHTML = "<i></i><i></i><i></i><i></i><i></i>"; });
 
   let slide = 0;
-  const perView = () => (window.innerWidth >= 900 ? 3 : window.innerWidth >= 600 ? 2 : 1);
+  const perView = () => 1;
   const maxSlide = () => Math.max(0, TESTIMONIALS.length - perView());
 
   function goTo(i) {
     slide = Math.min(Math.max(i, 0), maxSlide());
     const card = $(".testimonial", track);
     if (!card) return;
-    const step = card.getBoundingClientRect().width + 20;
+    const step = card.getBoundingClientRect().width;
     track.style.transform = `translateX(-${slide * step}px)`;
     $$("button", dotsBox).forEach((d, idx) => {
       d.classList.toggle("is-active", idx === slide);

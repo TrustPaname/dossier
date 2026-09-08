@@ -60,21 +60,20 @@ function carSvg(v, idSuffix) {
 <svg viewBox="0 0 400 220" role="img" aria-label="${v.marque} ${v.modele}" preserveAspectRatio="xMidYMid slice">
   <defs>
     <linearGradient id="bg-${uid}" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#16161b"/><stop offset="100%" stop-color="#08080a"/>
+      <stop offset="0%" stop-color="#141417"/><stop offset="100%" stop-color="#0c0c0e"/>
     </linearGradient>
     <linearGradient id="body-${uid}" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="${v.couleurs[0]}"/><stop offset="100%" stop-color="${v.couleurs[1]}"/>
     </linearGradient>
   </defs>
   <rect width="400" height="220" fill="url(#bg-${uid})"/>
-  <circle cx="330" cy="44" r="78" fill="#d4af37" opacity=".07"/>
-  <path d="M0 196h400" stroke="#d4af37" stroke-opacity=".22" stroke-width="1"/>
+  <path d="M0 196h400" stroke="#d4af37" stroke-opacity=".25" stroke-width="1"/>
   <ellipse cx="200" cy="188" rx="168" ry="14" fill="#000" opacity=".38"/>
-  <path d="${shape.body}" fill="url(#body-${uid})"/>
+  <path d="${shape.body}" fill="url(#body-${uid})" opacity=".8"/>
   <path d="${shape.glass}" fill="#0d1218" opacity=".72"/>
   <path d="${shape.body}" fill="none" stroke="#d4af37" stroke-opacity=".55" stroke-width="1.6"/>
   ${wheels}
-  <rect x="0" y="196" width="400" height="24" fill="#08080a"/>
+  <rect x="0" y="196" width="400" height="24" fill="#0a0a0b"/>
 </svg>`;
 }
 
