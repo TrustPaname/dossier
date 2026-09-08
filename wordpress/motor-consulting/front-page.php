@@ -1,5 +1,11 @@
+<?php
+/**
+ * Page d'accueil Motor Consulting — générée par wordpress/build.py à partir de index.html.
+ * Ne pas modifier ici : modifiez index.html à la racine puis relancez le script.
+ */
+?>
 <!DOCTYPE html>
-<html lang="fr">
+<html <?php language_attributes(); ?>>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,23 +14,21 @@
 <meta name="keywords" content="achat vente voiture occasion, rachat de voiture, expertise automobile, vendre sa voiture rapidement, estimation gratuite véhicule Paris, location véhicule">
 <meta name="author" content="Motor Consulting">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://www.motor-consulting.fr/">
+<link rel="canonical" href="<?php echo esc_url( home_url( '/' ) ); ?>">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="Motor Consulting">
 <meta property="og:title" content="Motor Consulting — L'expertise automobile à votre service">
 <meta property="og:description" content="Recherche, négociation, achat, vente et location de véhicules d'occasion. Estimation gratuite sous 24h, transaction sécurisée.">
-<meta property="og:url" content="https://www.motor-consulting.fr/">
-<meta property="og:image" content="https://www.motor-consulting.fr/assets/img/og-cover.svg">
+<meta property="og:url" content="<?php echo esc_url( home_url( '/' ) ); ?>">
+<meta property="og:image" content="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/og-cover.svg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#08080a">
 
-<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="assets/img/favicon.svg">
-<link rel="manifest" href="site.webmanifest">
+<link rel="icon" href="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/favicon.svg">
 
-<link rel="stylesheet" href="assets/css/styles.css">
 <script>document.documentElement.classList.add("js");</script>
 
 <script type="application/ld+json">
@@ -34,11 +38,11 @@
   "name": "Motor Consulting",
   "slogan": "L'expertise automobile à votre service",
   "description": "Conseil automobile indépendant : recherche de véhicule, négociation, achat, vente, location et expertise de voitures d'occasion.",
-  "url": "https://www.motor-consulting.fr/",
-  "telephone": "+33612345678",
-  "email": "contact@motor-consulting.fr",
+  "url": "<?php echo esc_url( home_url( '/' ) ); ?>",
+  "telephone": "<?php echo esc_attr( motor_opt( 'phone_e164' ) ); ?>",
+  "email": "<?php echo esc_html( motor_opt( 'email' ) ); ?>",
   "priceRange": "€€",
-  "image": "https://www.motor-consulting.fr/assets/img/og-cover.svg",
+  "image": "<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/og-cover.svg",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "24 avenue de la Grande-Armée",
@@ -59,8 +63,9 @@
   "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "312", "bestRating": "5" }
 }
 </script>
+<?php wp_head(); ?>
 </head>
-<body>
+<body <?php body_class(); ?>>
 <a class="skip-link" href="#main">Aller au contenu principal</a>
 
 <!-- ============ HEADER ============ -->
@@ -96,7 +101,7 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
       <div class="nav__cta">
-        <a class="nav__tel" href="tel:+33612345678">06 12 34 56 78</a>
+        <a class="nav__tel" href="tel:<?php echo esc_attr( motor_opt( 'phone_e164' ) ); ?>"><?php echo esc_html( motor_opt( 'phone_display' ) ); ?></a>
         <a class="btn" href="#estimation" data-intent="vendre">Estimation gratuite</a>
       </div>
     </nav>
@@ -294,7 +299,7 @@
         </div>
         <div class="field">
           <label for="e-tel">Téléphone <span class="req" aria-hidden="true">*</span></label>
-          <input type="tel" id="e-tel" name="telephone" autocomplete="tel" placeholder="06 12 34 56 78" required>
+          <input type="tel" id="e-tel" name="telephone" autocomplete="tel" placeholder="<?php echo esc_html( motor_opt( 'phone_display' ) ); ?>" required>
           <p class="field__error" data-error-for="e-tel"></p>
         </div>
       </div>
@@ -427,13 +432,13 @@
     <div class="contact">
       <div>
         <ul class="infos">
-          <li><strong>Téléphone</strong><a href="tel:+33612345678">06 12 34 56 78</a><small>Lun–Ven 9h–19h · Sam 10h–17h</small></li>
-          <li><strong>E-mail</strong><a href="mailto:contact@motor-consulting.fr">contact@motor-consulting.fr</a></li>
-          <li><strong>WhatsApp</strong><a href="https://wa.me/33612345678?text=Bonjour%2C%20je%20souhaite%20des%20informations%20sur%20la%20vente%20de%20mon%20v%C3%A9hicule." target="_blank" rel="noopener">Discuter sur WhatsApp</a><small>Envoyez-nous directement vos photos</small></li>
-          <li><strong>Adresse</strong><span>24 avenue de la Grande-Armée, 75017 Paris</span><small>Sur rendez-vous · Déplacements en Île-de-France</small></li>
+          <li><strong>Téléphone</strong><a href="tel:<?php echo esc_attr( motor_opt( 'phone_e164' ) ); ?>"><?php echo esc_html( motor_opt( 'phone_display' ) ); ?></a><small><?php echo esc_html( motor_opt( 'hours' ) ); ?></small></li>
+          <li><strong>E-mail</strong><a href="mailto:<?php echo esc_html( motor_opt( 'email' ) ); ?>"><?php echo esc_html( motor_opt( 'email' ) ); ?></a></li>
+          <li><strong>WhatsApp</strong><a href="https://wa.me/<?php echo esc_attr( motor_opt( 'whatsapp' ) ); ?>?text=Bonjour%2C%20je%20souhaite%20des%20informations%20sur%20la%20vente%20de%20mon%20v%C3%A9hicule." target="_blank" rel="noopener">Discuter sur WhatsApp</a><small>Envoyez-nous directement vos photos</small></li>
+          <li><strong>Adresse</strong><span><?php echo esc_html( motor_opt( 'address' ) ); ?></span><small>Sur rendez-vous · Déplacements en Île-de-France</small></li>
         </ul>
         <div class="map">
-          <p class="map__fallback">24 avenue de la Grande-Armée, 75017 Paris</p>
+          <p class="map__fallback"><?php echo esc_html( motor_opt( 'address' ) ); ?></p>
           <iframe title="Localisation de Motor Consulting sur la carte"
             src="https://www.openstreetmap.org/export/embed.html?bbox=2.2755%2C48.8705%2C2.3035%2C48.8815&amp;layer=mapnik&amp;marker=48.8759%2C2.2895"
             loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -451,7 +456,7 @@
           </div>
           <div class="field">
             <label for="c-tel">Téléphone <span class="req" aria-hidden="true">*</span></label>
-            <input type="tel" id="c-tel" name="telephone" autocomplete="tel" placeholder="06 12 34 56 78" required>
+            <input type="tel" id="c-tel" name="telephone" autocomplete="tel" placeholder="<?php echo esc_html( motor_opt( 'phone_display' ) ); ?>" required>
             <p class="field__error" data-error-for="c-tel"></p>
           </div>
         </div>
@@ -553,8 +558,8 @@
 </footer>
 
 <div class="mobile-bar" aria-label="Contact rapide">
-  <a class="mobile-bar__btn" href="tel:+33612345678"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 6 6l1.5-2 4 1.5v3c0 .9-.7 1.6-1.6 1.5C10.6 19.9 4.1 13.4 3.5 5.1A1.5 1.5 0 0 1 5 3.5h1.5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg> Appeler</a>
-  <a class="mobile-bar__btn mobile-bar__btn--wa" href="https://wa.me/33612345678?text=Bonjour%2C%20je%20souhaite%20une%20estimation%20de%20mon%20v%C3%A9hicule." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5a8.5 8.5 0 0 0-7.3 12.8L3.5 20.5l4.4-1.1A8.5 8.5 0 1 0 12 3.5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg> WhatsApp</a>
+  <a class="mobile-bar__btn" href="tel:<?php echo esc_attr( motor_opt( 'phone_e164' ) ); ?>"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 6 6l1.5-2 4 1.5v3c0 .9-.7 1.6-1.6 1.5C10.6 19.9 4.1 13.4 3.5 5.1A1.5 1.5 0 0 1 5 3.5h1.5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg> Appeler</a>
+  <a class="mobile-bar__btn mobile-bar__btn--wa" href="https://wa.me/<?php echo esc_attr( motor_opt( 'whatsapp' ) ); ?>?text=Bonjour%2C%20je%20souhaite%20une%20estimation%20de%20mon%20v%C3%A9hicule." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5a8.5 8.5 0 0 0-7.3 12.8L3.5 20.5l4.4-1.1A8.5 8.5 0 1 0 12 3.5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg> WhatsApp</a>
   <a class="mobile-bar__btn mobile-bar__btn--cta" href="#estimation" data-intent="vendre">Estimation</a>
 </div>
 
@@ -566,7 +571,6 @@
   </div>
 </div>
 
-<script src="assets/js/data.js" defer></script>
-<script src="assets/js/main.js" defer></script>
+<?php wp_footer(); ?>
 </body>
 </html>
