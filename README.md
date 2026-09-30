@@ -4,9 +4,11 @@ Site vitrine **statique** (HTML / CSS / JavaScript, sans dépendance ni build) p
 de conseil automobile spécialisée dans l'achat, la vente et l'expertise de véhicules d'occasion.
 
 > **Identité** : le design reprend la charte de la carte de visite Motor Consulting —
-> noir profond, or, lettrage chrome — dans une version **épurée** : beaucoup d'espace,
-> peu de texte, aucune texture ni carte encadrée, une seule couleur d'accent. Les quatre
-> piliers Recherche / Négociation / Achat-Vente / Location structurent la page.
+> noir profond, or, lettrage chrome, nid d'abeille et faisceaux dorés — dans une version
+> **premium et animée** : lignes de vitesse sur l'accueil, reflet chromé sur le logotype,
+> bandeau défilant, cartes en verre avec halo doré et inclinaison au survol, compteurs et
+> apparitions au défilement. Les quatre piliers Recherche / Négociation / Achat-Vente /
+> Location structurent la page.
 >
 > **Coordonnées** : zone **Paris / Île-de-France** et coordonnées de démonstration
 > (téléphone, e-mail, adresse, domaine). Remplacez-les avant mise en ligne — voir
@@ -121,16 +123,17 @@ les libellés en Michroma et les prix. Le dégradé chrome (`--grad-chrome`) ne 
 mot « MOTOR ». Deux SVG encodés en `data:` reprennent la couleur `%23d4af37` — les étoiles
 des avis et la flèche des menus déroulants : pensez à les modifier si vous changez l'or.
 
-Principes de l'épure, à conserver lors des évolutions : pas de fond alterné entre sections
-(un filet suffit), pas de carte encadrée ni d'ombre, pas d'icône décorative, une seule
-famille de boutons (contour or, plein or pour l'action principale), champs de formulaire
-soulignés plutôt qu'encadrés.
+Grammaire du design : cartes `.card` (verre, halo doré suivant le curseur, filet or en bas au
+survol, coins dorés optionnels `.card__corner`), boutons à balayage doré, libellés Michroma
+précédés d'un trait, sections alternées `.section--alt` avec nid d'abeille discret. Tout
+le mouvement respecte `prefers-reduced-motion`.
 
 Le site assume un **thème sombre unique** (comme la carte de visite) : il n'y a pas de
 variante claire à maintenir.
 
-**Typographie** : `Michroma` pour le lettrage large (logo, sur-titres, libellés) et `Archivo`
-pour les titres et le texte courant. Les deux polices sont **auto-hébergées** dans
+**Typographie** : `Michroma` pour le lettrage large (logo, sur-titres, libellés), `Exo 2`
+(gras, capitales) pour les titres, les chiffres et le texte courant. Michroma ne possède pas
+le signe « € » : prix et chiffres restent en Exo 2. Les deux polices sont **auto-hébergées** dans
 `assets/fonts/` (~98 Ko, formats woff2, `font-display:swap`) : aucun appel à Google Fonts,
 ce qui évite le transfert d'adresses IP vers un service tiers — un point régulièrement
 sanctionné en France sur le terrain du RGPD.

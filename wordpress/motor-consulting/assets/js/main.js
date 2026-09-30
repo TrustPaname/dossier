@@ -151,7 +151,7 @@
 
   function vehicleCard(v) {
     return `
-      <article class="vehicle" data-vehicle="${v.id}">
+      <article class="vehicle card" data-vehicle="${v.id}">
         <div class="vehicle__media">
           ${media(v, "g")}
           ${v.tag ? `<span class="vehicle__tag">${v.tag}</span>` : ""}
@@ -302,7 +302,7 @@
   }
 
   track.innerHTML = AVIS.map((t) => `
-    <article class="testimonial">
+    <article class="testimonial card">
       ${starsHtml(t.note)}
       <p class="testimonial__quote">${t.texte}</p>
       <p class="testimonial__who">
@@ -314,14 +314,14 @@
   $$(".stars--lg").forEach((el) => { el.innerHTML = "<i></i><i></i><i></i><i></i><i></i>"; });
 
   let slide = 0;
-  const perView = () => 1;
+  const perView = () => (window.innerWidth >= 900 ? 3 : window.innerWidth >= 600 ? 2 : 1);
   const maxSlide = () => Math.max(0, AVIS.length - perView());
 
   function goTo(i) {
     slide = Math.min(Math.max(i, 0), maxSlide());
     const card = $(".testimonial", track);
     if (!card) return;
-    const step = card.getBoundingClientRect().width;
+    const step = card.getBoundingClientRect().width + 20;
     track.style.transform = `translateX(-${slide * step}px)`;
     $$("button", dotsBox).forEach((d, idx) => {
       d.classList.toggle("is-active", idx === slide);
@@ -553,6 +553,76 @@
       $$("input", quick).forEach((i) => { i.dataset.sent = i.value; });
     }, true);
   }
+
+
+  /* =========================================================
+     6 bis. Mouvement : lignes de vitesse, parallaxe, inclinaison
+     ========================================================= */
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const fine = window.matchMedia("(pointer:fine)").matches;
+
+  const canvas = $("#speed");
+  if (canvas && !reduced) {
+    const ctx = canvas.getContext("2d");
+    let w, h, cx, cy, dpr, particles = [], raf, running = true;
+    const N = 150;
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = canvas.clientWidth; h = canvas.clientHeight;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      cx = w * .62; cy = h * .45;
+    };
+    const spawn = (p) => { p.a = Math.random() * Math.PI * 2; p.r = Math.random() * 40; p.v = .5 + Math.random() * 1.5; p.gold = Math.random() < .3; return p; };
+    const init = () => { particles = Array.from({ length: N }, () => spawn({})); };
+    const step = () => {
+      if (!running) return;
+      ctx.clearRect(0, 0, w, h);
+      const maxR = Math.hypot(w, h) * .6;
+      for (const p of particles) {
+        p.r += p.v * (1 + p.r / 130);
+        if (p.r > maxR) spawn(p);
+        const len = 6 + p.r * .13;
+        const x1 = cx + Math.cos(p.a) * p.r, y1 = cy + Math.sin(p.a) * p.r;
+        const x0 = cx + Math.cos(p.a) * Math.max(0, p.r - len), y0 = cy + Math.sin(p.a) * Math.max(0, p.r - len);
+        const alpha = Math.min(1, p.r / 180) * (p.gold ? .8 : .45);
+        ctx.strokeStyle = p.gold ? `rgba(212,175,55,${alpha})` : `rgba(200,205,212,${alpha})`;
+        ctx.lineWidth = p.gold ? 1.3 : .8;
+        ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
+      }
+      raf = requestAnimationFrame(step);
+    };
+    resize(); init(); step();
+    window.addEventListener("resize", resize);
+    document.addEventListener("visibilitychange", () => { running = !document.hidden; if (running) step(); else cancelAnimationFrame(raf); });
+  }
+
+  const heroInner = $("#hero-inner");
+  if (heroInner && !reduced && fine) {
+    let tx = 0, ty = 0, x = 0, y = 0;
+    window.addEventListener("mousemove", (e) => { tx = (e.clientX / window.innerWidth - .5) * 14; ty = (e.clientY / window.innerHeight - .5) * 10; }, { passive: true });
+    const loop = () => { x += (tx - x) * .06; y += (ty - y) * .06; heroInner.style.transform = `translate(${x}px,${y}px)`; requestAnimationFrame(loop); };
+    loop();
+  }
+
+  if (!reduced && fine) {
+    document.addEventListener("mousemove", (e) => {
+      const card = e.target.closest(".card");
+      if (!card) return;
+      const r = card.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+      card.style.setProperty("--mx", (px * 100) + "%"); card.style.setProperty("--my", (py * 100) + "%");
+      if (card.classList.contains("tilt")) card.style.transform = `perspective(1000px) rotateX(${(py - .5) * -5}deg) rotateY(${(px - .5) * 7}deg) translateY(-4px)`;
+    }, { passive: true });
+    document.addEventListener("mouseout", (e) => {
+      const card = e.target.closest(".card.tilt");
+      if (card && !card.contains(e.relatedTarget)) card.style.transform = "";
+    });
+  }
+
+  // Cartes véhicules et avis générées après coup : apparition immédiate
+  const revealNow = () => $$(".vehicle.reveal, .testimonial.reveal").forEach((el) => el.classList.add("is-in"));
+  revealNow();
 
   /* =========================================================
      7. Divers

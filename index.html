@@ -111,54 +111,94 @@
 
 <!-- ============ ACCUEIL ============ -->
 <section class="hero" id="accueil">
+  <canvas class="hero__canvas" id="speed" aria-hidden="true"></canvas>
+  <div class="hero__hex" aria-hidden="true"></div>
+  <span class="hero__beam hero__beam--l" aria-hidden="true"></span>
+  <span class="hero__beam hero__beam--r" aria-hidden="true"></span>
+  <div class="hero__vignette" aria-hidden="true"></div>
   <div class="container hero__inner">
-    <span class="label">L'expertise automobile à votre service · Paris</span>
-    <h1>Achat, vente et location de véhicules d'occasion, <span class="or">sans mauvaise surprise</span>.</h1>
-    <p class="lead">Nous cherchons, inspectons et négocions le véhicule à votre place. Ou nous vendons le vôtre, au juste prix, sans que vous ayez rien à gérer.</p>
-    <div class="hero__actions">
-      <a class="btn btn--primary" href="#estimation" data-intent="vendre">Vendre ma voiture</a>
-      <a class="link" href="#vehicules">Voir les véhicules disponibles <span aria-hidden="true">→</span></a>
+    <div id="hero-inner">
+      <div class="hero__brand">
+        <svg class="logo__mark" viewBox="0 0 300 96" aria-hidden="true">
+          <defs>
+            <linearGradient id="lg-chr-x" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffffff"/><stop offset="45%" stop-color="#cfd4da"/><stop offset="55%" stop-color="#6c727a"/><stop offset="100%" stop-color="#f1f4f7"/></linearGradient>
+            <linearGradient id="lg-gld-x" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#8a6e1e"/><stop offset="40%" stop-color="#f3e2a4"/><stop offset="60%" stop-color="#d4af37"/><stop offset="100%" stop-color="#8a6e1e"/></linearGradient>
+          </defs>
+          <path d="M126 46V32l24-18 24 18v14" fill="none" stroke="url(#lg-gld-x)" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round"/>
+          <path d="M2 80C34 62 68 46 108 38c34-7 72-7 108 0 34 7 60 20 80 40-26-14-56-22-90-24-44-3-90 4-130 14-26 6-50 12-74 12Z" fill="url(#lg-chr-x)"/>
+          <path d="M60 86c40-10 90-14 180-8" fill="none" stroke="url(#lg-chr-x)" stroke-width="3.5" stroke-linecap="round"/>
+        </svg>
+        <span class="logo__text">
+          <span class="logo__name chrome chrome--live">MOTOR</span>
+          <span class="logo__sub"><i></i>CONSULTING<i></i></span>
+          <span class="logo__tag">L'expertise automobile à votre service</span>
+        </span>
+      </div>
+      <h1>Achat, vente et location de véhicules d'occasion, <span class="or">sans mauvaise surprise</span>.</h1>
+      <p class="lead">Nous cherchons, inspectons et négocions le véhicule à votre place. Ou nous vendons le vôtre, au juste prix, sans que vous ayez rien à gérer.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#estimation" data-intent="vendre">Vendre ma voiture <span aria-hidden="true">→</span></a>
+        <a class="btn" href="#vehicules">Voir les véhicules</a>
+      </div>
+      <ul class="hero__trust">
+        <li>Expertise indépendante</li>
+        <li>Réponse sous 24h</li>
+        <li>Transaction sécurisée</li>
+      </ul>
     </div>
-  </div>
-  <div class="container">
-    <ul class="facts">
-      <li><strong>1 850</strong> véhicules accompagnés</li>
-      <li><strong>12 ans</strong> d'expérience</li>
-      <li><strong>4,9 / 5</strong> sur 312 avis clients</li>
-      <li>Réponse sous <strong>24h</strong></li>
+    <ul class="stats" id="stats">
+      <li class="stat reveal"><span class="stat__value" data-count="1850" data-suffix="+">0</span><span class="stat__label">véhicules accompagnés</span></li>
+      <li class="stat reveal reveal--d1"><span class="stat__value" data-count="12" data-suffix=" ans">0</span><span class="stat__label">d'expérience</span></li>
+      <li class="stat reveal reveal--d2"><span class="stat__value" data-count="4.9" data-decimals="1" data-suffix="/5">0</span><span class="stat__label">note clients · 312 avis</span></li>
+      <li class="stat reveal reveal--d3"><span class="stat__value" data-count="24" data-suffix="h">0</span><span class="stat__label">délai de réponse</span></li>
     </ul>
   </div>
 </section>
 
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span>Recherche</span><span>Négociation</span><span>Achat / Vente</span><span>Location</span><span>Expertise</span><span>Paris &amp; Île-de-France</span>
+    <span>Recherche</span><span>Négociation</span><span>Achat / Vente</span><span>Location</span><span>Expertise</span><span>Paris &amp; Île-de-France</span>
+  </div>
+</div>
+
 <!-- ============ SERVICES ============ -->
 <section class="section" id="services">
   <div class="container">
-    <header class="section__head">
+    <header class="section__head reveal">
       <span class="label">Nos services</span>
       <h2>Quatre expertises, un seul interlocuteur</h2>
       <p class="lead">Pour les particuliers comme pour les professionnels. L'expertise du véhicule, le contrôle technique et les démarches administratives sont inclus à chaque étape.</p>
     </header>
 
     <div class="services">
-      <article class="service">
+      <article class="service card tilt reveal ">
+        <span class="card__corner card__corner--tl" aria-hidden="true"></span><span class="card__corner card__corner--br" aria-hidden="true"></span>
+        <span class="service__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m15.5 15.5 5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
         <span class="label">Recherche</span>
         <h3>Le bon véhicule, trouvé pour vous</h3>
         <p>Vous décrivez le véhicule et le budget. Nous le trouvons partout en France, vérifions son historique et l'inspectons avant toute visite.</p>
         <a class="link" href="#contact">Confier ma recherche <span aria-hidden="true">→</span></a>
       </article>
-      <article class="service">
+      <article class="service card tilt reveal reveal--d1">
+        <span class="card__corner card__corner--tl" aria-hidden="true"></span><span class="card__corner card__corner--br" aria-hidden="true"></span>
+        <span class="service__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v16M7.5 20h9M3.5 8.5h17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M3.5 8.5 1.4 13.6a2.6 2.6 0 0 0 4.2 0L3.5 8.5Zm17 0-2.1 5.1a2.6 2.6 0 0 0 4.2 0L20.5 8.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
         <span class="label">Négociation</span>
         <h3>Le juste prix, argumenté</h3>
         <p>État réel, historique, cote du marché : nous négocions à votre place, à l'achat comme à la vente. En moyenne 1 480 € économisés par dossier.</p>
         <a class="link" href="#contact">Faire négocier mon dossier <span aria-hidden="true">→</span></a>
       </article>
-      <article class="service">
+      <article class="service card tilt reveal reveal--d2">
+        <span class="card__corner card__corner--tl" aria-hidden="true"></span><span class="card__corner card__corner--br" aria-hidden="true"></span>
+        <span class="service__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 17.5v-3.4l2-4.4c.35-.8 1-1.2 1.9-1.2h9.2c.9 0 1.55.4 1.9 1.2l2 4.4v3.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M3.5 17.5h17M5.6 14.1h2.6M15.8 14.1h2.6M10.4 14.1h3.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
         <span class="label">Achat / Vente</span>
         <h3>Une transaction sans effort</h3>
         <p>Achat pour votre compte ou vente accompagnée : photos, annonce, visites filtrées, paiement sécurisé et dossier administratif complet.</p>
         <a class="link" href="#estimation" data-intent="vendre">Mettre en vente <span aria-hidden="true">→</span></a>
       </article>
-      <article class="service">
+      <article class="service card tilt reveal reveal--d3">
+        <span class="card__corner card__corner--tl" aria-hidden="true"></span><span class="card__corner card__corner--br" aria-hidden="true"></span>
+        <span class="service__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="15.6" cy="8.4" r="4.4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12.5 11.5 3.5 20.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="m6.4 17.6 2.1 2.1M8.8 15.2l2.1 2.1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
         <span class="label">Location</span>
         <h3>Courte ou longue durée</h3>
         <p>Location, LOA ou LLD : nous comparons les offres, décryptons les contrats et sélectionnons la formule réellement adaptée à votre usage.</p>
@@ -169,9 +209,9 @@
 </section>
 
 <!-- ============ VEHICULES ============ -->
-<section class="section" id="vehicules">
+<section class="section section--alt" id="vehicules">
   <div class="container">
-    <header class="section__head section__head--row">
+    <header class="section__head section__head--row reveal">
       <div>
         <span class="label">Véhicules disponibles</span>
         <h2>La sélection du moment</h2>
@@ -232,7 +272,7 @@
       Aucun véhicule ne correspond à votre recherche. <a href="#contact">Confiez-nous votre recherche</a> : nous trouvons le véhicule pour vous, sous 15 jours en moyenne.
     </p>
     <div class="center">
-      <button class="btn" id="load-more" type="button">Voir plus de véhicules</button>
+      <button class="btn" id="load-more" type="button">Voir plus de véhicules <span aria-hidden="true">→</span></button>
     </div>
   </div>
 </section>
@@ -240,28 +280,28 @@
 <!-- ============ METHODE ============ -->
 <section class="section" id="methode">
   <div class="container">
-    <header class="section__head">
+    <header class="section__head reveal">
       <span class="label">Comment ça marche</span>
       <h2>Quatre étapes, du premier appel à la remise des clés</h2>
     </header>
     <ol class="steps">
-      <li class="step">
-        <span class="step__num">01 — Contact</span>
+      <li class="step card reveal ">
+        <span class="step__num">01</span><span class="label">Contact</span>
         <h3>Vous nous décrivez votre projet</h3>
         <p>Formulaire ou appel. Dix minutes suffisent pour cadrer le besoin, le budget et les délais.</p>
       </li>
-      <li class="step">
-        <span class="step__num">02 — Expertise</span>
+      <li class="step card reveal reveal--d1">
+        <span class="step__num">02</span><span class="label">Expertise</span>
         <h3>Nous inspectons le véhicule</h3>
         <p>Mécanique, carrosserie, historique, kilométrage, documents. Vous recevez un rapport écrit.</p>
       </li>
-      <li class="step">
-        <span class="step__num">03 — Proposition</span>
+      <li class="step card reveal reveal--d2">
+        <span class="step__num">03</span><span class="label">Proposition</span>
         <h3>Vous recevez une offre chiffrée</h3>
         <p>Prix conseillé, offre de rachat ou formule de location, avec les arguments qui justifient chaque euro.</p>
       </li>
-      <li class="step">
-        <span class="step__num">04 — Transaction</span>
+      <li class="step card reveal reveal--d3">
+        <span class="step__num">04</span><span class="label">Transaction</span>
         <h3>Nous sécurisons la vente</h3>
         <p>Négociation, paiement vérifié, carte grise et certificat de cession : l'administratif est géré jusqu'au bout.</p>
       </li>
@@ -270,7 +310,7 @@
 </section>
 
 <!-- ============ ESTIMATION ============ -->
-<section class="section" id="estimation">
+<section class="section section--alt" id="estimation">
   <div class="container estimation">
     <div>
       <span class="label">Estimation gratuite</span>
@@ -283,7 +323,8 @@
         <li>Vos données ne sont jamais revendues</li>
       </ul>
     </div>
-    <form class="form" id="estimation-form" novalidate>
+    <form class="form card" id="estimation-form" novalidate>
+      <span class="card__corner card__corner--tl" aria-hidden="true"></span><span class="card__corner card__corner--br" aria-hidden="true"></span>
       <h3 class="form__title">Demander mon estimation</h3>
       <p class="hp" aria-hidden="true"><label>Ne pas remplir <input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
             <div class="field-row">
@@ -362,7 +403,7 @@
 <!-- ============ TEMOIGNAGES ============ -->
 <section class="section" id="avis">
   <div class="container">
-    <header class="section__head section__head--row">
+    <header class="section__head section__head--row reveal">
       <div>
         <span class="label">Avis clients</span>
         <h2>Ils nous ont fait confiance</h2>
@@ -384,7 +425,7 @@
 </section>
 
 <!-- ============ A PROPOS ============ -->
-<section class="section" id="apropos">
+<section class="section section--alt" id="apropos">
   <div class="container about">
     <div class="about__text">
       <span class="label">À propos</span>
@@ -392,15 +433,15 @@
       <p>Motor Consulting est né en 2013 d'un constat simple : acheter ou vendre une voiture d'occasion reste une épreuve. Prix opaques, historiques flous, acheteurs fantômes, démarches interminables.</p>
       <p>Anciens expert automobile et acheteur en concession, nous avons créé une structure <strong>100&nbsp;% indépendante</strong>, payée ni par les vendeurs ni par les constructeurs. Notre seul intérêt est que votre transaction soit la bonne.</p>
       <div class="values">
-        <div class="value">
+        <div class="value card">
           <span class="label">Expertise</span>
           <p>12 ans de métier, une inspection en 120 points, une lecture fine de la cote réelle.</p>
         </div>
-        <div class="value">
+        <div class="value card">
           <span class="label">Confiance</span>
           <p>Un tarif annoncé à l'avance et un rapport écrit sur chaque véhicule, défauts compris.</p>
         </div>
-        <div class="value">
+        <div class="value card">
           <span class="label">Exigence</span>
           <p>Un véhicule sur cinq seulement passe notre sélection.</p>
         </div>
@@ -409,9 +450,9 @@
     <div class="about__team">
       <h3 class="team__title">L'équipe</h3>
       <ul class="team">
-        <li class="member"><strong>Karim M.</strong><span>Fondateur · Expert automobile</span><p>15 ans d'expertise technique, spécialiste des véhicules premium et hybrides.</p></li>
-        <li class="member"><strong>Laure D.</strong><span>Responsable achats</span><p>Ancienne acheteuse en concession, elle négocie chaque dossier.</p></li>
-        <li class="member"><strong>Thomas B.</strong><span>Conseiller clients</span><p>Votre interlocuteur unique, du premier appel à la remise des clés.</p></li>
+        <li class="member card"><strong>Karim M.</strong><span>Fondateur · Expert automobile</span><p>15 ans d'expertise technique, spécialiste des véhicules premium et hybrides.</p></li>
+        <li class="member card"><strong>Laure D.</strong><span>Responsable achats</span><p>Ancienne acheteuse en concession, elle négocie chaque dossier.</p></li>
+        <li class="member card"><strong>Thomas B.</strong><span>Conseiller clients</span><p>Votre interlocuteur unique, du premier appel à la remise des clés.</p></li>
       </ul>
     </div>
   </div>
@@ -420,17 +461,17 @@
 <!-- ============ CONTACT ============ -->
 <section class="section" id="contact">
   <div class="container">
-    <header class="section__head">
+    <header class="section__head reveal">
       <span class="label">Contact</span>
       <h2>Parlons de votre projet</h2>
     </header>
     <div class="contact">
       <div>
         <ul class="infos">
-          <li><strong>Téléphone</strong><a href="tel:+33612345678">06 12 34 56 78</a><small>Lun–Ven 9h–19h · Sam 10h–17h</small></li>
-          <li><strong>E-mail</strong><a href="mailto:contact@motor-consulting.fr">contact@motor-consulting.fr</a></li>
-          <li><strong>WhatsApp</strong><a href="https://wa.me/33612345678?text=Bonjour%2C%20je%20souhaite%20des%20informations%20sur%20la%20vente%20de%20mon%20v%C3%A9hicule." target="_blank" rel="noopener">Discuter sur WhatsApp</a><small>Envoyez-nous directement vos photos</small></li>
-          <li><strong>Adresse</strong><span>24 avenue de la Grande-Armée, 75017 Paris</span><small>Sur rendez-vous · Déplacements en Île-de-France</small></li>
+          <li class="card"><strong>Téléphone</strong><a href="tel:+33612345678">06 12 34 56 78</a><small>Lun–Ven 9h–19h · Sam 10h–17h</small></li>
+          <li class="card"><strong>E-mail</strong><a href="mailto:contact@motor-consulting.fr">contact@motor-consulting.fr</a></li>
+          <li class="card"><strong>WhatsApp</strong><a href="https://wa.me/33612345678?text=Bonjour%2C%20je%20souhaite%20des%20informations%20sur%20la%20vente%20de%20mon%20v%C3%A9hicule." target="_blank" rel="noopener">Discuter sur WhatsApp</a><small>Envoyez-nous directement vos photos</small></li>
+          <li class="card"><strong>Adresse</strong><span>24 avenue de la Grande-Armée, 75017 Paris</span><small>Sur rendez-vous · Déplacements en Île-de-France</small></li>
         </ul>
         <div class="map">
           <p class="map__fallback">24 avenue de la Grande-Armée, 75017 Paris</p>
@@ -440,7 +481,8 @@
           <a class="map__link" href="https://www.openstreetmap.org/?mlat=48.8759&amp;mlon=2.2895#map=16/48.8759/2.2895" target="_blank" rel="noopener">Itinéraire ↗</a>
         </div>
       </div>
-      <form class="form" id="contact-form" novalidate>
+      <form class="form card" id="contact-form" novalidate>
+        <span class="card__corner card__corner--tl" aria-hidden="true"></span><span class="card__corner card__corner--br" aria-hidden="true"></span>
         <h3 class="form__title">Nous écrire</h3>
         <p class="hp" aria-hidden="true"><label>Ne pas remplir <input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
               <div class="field-row">
