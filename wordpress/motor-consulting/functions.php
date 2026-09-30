@@ -12,7 +12,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'MOTOR_VERSION', '1.0.0' );
+define( 'MOTOR_VERSION', '1.1.0' );
+require get_template_directory() . '/inc-stock.php';
 
 /* ------------------------------------------------------------------
  * 1. Réglages de base, styles et scripts
@@ -38,7 +39,7 @@ add_action( 'wp_enqueue_scripts', function () {
 	);
 	wp_add_inline_script( 'motor-main', 'window.MC_CONFIG = ' . wp_json_encode( $config ) . ';', 'before' );
 
-	$vehicules = motor_get_vehicules();
+	$vehicules = apply_filters( 'motor_vehicules', motor_get_vehicules() );
 	if ( ! empty( $vehicules ) || ! motor_opt( 'demo' ) ) {
 		wp_add_inline_script( 'motor-main', 'window.MC_VEHICLES = ' . wp_json_encode( $vehicules ) . ';', 'before' );
 	}

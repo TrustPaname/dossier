@@ -240,7 +240,8 @@
     const waText = encodeURIComponent(`Bonjour, je suis intéressé(e) par la ${v.marque} ${v.modele} ${v.version} (${v.annee}, ${nombre(v.km)} km) à ${euros(v.prix)}.`);
 
     modalContent.innerHTML = `
-      <div class="modal__media">${media(v, "m")}</div>
+      <div class="modal__media" id="modal-media">${media(v, "m")}</div>
+      ${Array.isArray(v.photos) && v.photos.length > 1 ? `<div class="modal__thumbs">${v.photos.map((p, i) => `<button type="button" class="${i === 0 ? "is-active" : ""}" data-photo="${p}" aria-label="Photo ${i + 1}"><img src="${p}" alt="" loading="lazy"></button>`).join("")}</div>` : ""}
       <div class="modal__body">
         <h3 id="modal-title">${v.marque} ${v.modele}</h3>
         <p class="modal__version">${v.version}</p>
@@ -277,7 +278,15 @@
     const btn = e.target.closest("[data-vehicle]");
     if (btn) openVehicle(btn.dataset.vehicle);
   });
-  modal.addEventListener("click", (e) => { if (e.target.closest("[data-close]")) closeModal(); });
+  modal.addEventListener("click", (e) => {
+    if (e.target.closest("[data-close]")) return closeModal();
+    const t = e.target.closest("[data-photo]");
+    if (t) {
+      const img = $("#modal-media img");
+      if (img) img.src = t.dataset.photo;
+      $$(".modal__thumbs button", modal).forEach((b) => b.classList.toggle("is-active", b === t));
+    }
+  });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !modal.hidden) closeModal(); });
 
   /* =========================================================

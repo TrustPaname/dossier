@@ -38,6 +38,27 @@ Menu **Véhicules → Ajouter un véhicule** :
 
 Les filtres, le tri et la fiche détaillée fonctionnent automatiquement avec ces données.
 
+### Stock synchronisé avec Kepler VO (recommandé)
+Plutôt que de saisir les véhicules à la main, le thème peut lire le **flux de stock** de votre
+logiciel de gestion (Kepler VO : « API véhicule » ou export). Le site se met alors à jour tout
+seul, avec les photos, à la fréquence choisie.
+
+1. Demandez à votre conseiller Kepler VO l'**adresse du flux pour votre site internet** et,
+   le cas échéant, la **clé d'accès**.
+2. Apparence → Personnaliser → **Stock Kepler / flux d'annonces** : collez l'adresse, la clé,
+   choisissez la fréquence (1 h par défaut) → Publier.
+3. Menu **Véhicules → Stock Kepler** → **Synchroniser maintenant** : le tableau liste les
+   véhicules reconnus.
+
+Le convertisseur reconnaît les champs usuels (marque, modèle, version, année ou date de mise
+en circulation, kilométrage, prix, énergie, boîte, carrosserie, photos, équipements,
+description) en JSON, XML ou CSV. Si un champ n'est pas repris correctement, envoyez un
+extrait du flux : la correspondance s'ajuste via le filtre `motor_stock_map` dans
+`inc-stock.php`.
+
+Les véhicules saisis à la main peuvent être ignorés ou affichés en plus du flux (réglage
+« Véhicules saisis dans WordPress »).
+
 ### Témoignages
 Menu **Témoignages → Ajouter** : titre = nom du client, texte = témoignage, puis ville, note
 sur 5 et service concerné.
