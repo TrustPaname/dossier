@@ -1,0 +1,13 @@
+/*
+Theme Name: Motor Consulting
+Theme URI: https://www.motor-consulting.fr/
+Author: Motor Corp
+Description: Site vitrine Motor Consulting — conseil, achat, vente, location et expertise de véhicules d'occasion. Identité noir et or. Stock synchronisé depuis Kepler VO (ou tout flux JSON/XML/CSV), véhicules et témoignages gérables depuis l'administration, formulaires envoyés par e-mail, coordonnées dans le Personnalisateur.
+Version: 1.1.0
+Requires at least: 6.0
+Tested up to: 6.6
+Requires PHP: 7.4
+License: Proprietary
+Text Domain: motor-consulting
+*/
+/* La feuille de styles réelle est assets/css/styles.css, chargée par functions.php. */
