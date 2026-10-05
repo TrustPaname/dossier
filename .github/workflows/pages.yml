@@ -1,0 +1,40 @@
+# Mise en ligne provisoire sur GitHub Pages.
+# Adresse : https://trustpaname.github.io/dossier/  (holding : …/dossier/motor-corp/)
+# Se déclenche à chaque push sur main ou sur la branche de travail.
+name: Déployer sur GitHub Pages
+
+on:
+  push:
+    branches: [main, claude/auto-resale-website-79qcdr]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Préparer le site (sans les fichiers techniques)
+        run: |
+          mkdir -p _site
+          cp -r index.html assets motor-corp robots.txt sitemap.xml site.webmanifest _site/
+          touch _site/.nojekyll
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4
