@@ -22,7 +22,7 @@ ou un menu dans WordPress.
 
 **Apparence → Personnaliser → Coordonnées** (Motor Consulting) ou **Motor Corp — liens et
 coordonnées** (Motor Corp). Téléphone, WhatsApp, e-mail, adresse, horaires, et pour Motor Corp
-les adresses des sites Motor Studio et Motor Consulting. Les changements sont visibles en direct
+les adresses des sites Motors Studio et Motor Consulting. Les changements sont visibles en direct
 avant publication.
 
 ## 3. Motor Consulting : véhicules, avis, formulaires

@@ -27,7 +27,7 @@ function corp_opt( $key ) {
 add_action( 'customize_register', function ( $wp_customize ) {
 	$wp_customize->add_section( 'corp_links', array( 'title' => 'Motor Corp — liens et coordonnées', 'priority' => 20 ) );
 	$fields = array(
-		'studio_url'     => array( 'Adresse du site Motor Studio', 'url' ),
+		'studio_url'     => array( 'Adresse du site Motors Studio', 'url' ),
 		'consulting_url' => array( 'Adresse du site Motor Consulting', 'url' ),
 		'email'          => array( 'E-mail de la holding', 'email' ),
 		'phone_display'  => array( 'Téléphone affiché', 'text' ),

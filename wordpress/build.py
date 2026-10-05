@@ -66,6 +66,7 @@ def build_corp():
     html  = open(os.path.join(ROOT, "motor-corp", "index.html"), encoding="utf-8").read()
     html  = '<?php\n/**\n * Page d\'accueil Motor Corp — générée par wordpress/build.py à partir de motor-corp/index.html.\n */\n?>\n' + html
     html = html.replace("url('../assets/fonts/", f"url('{URI}/assets/fonts/")
+    html = html.replace('src="../assets/img/', f'src="{URI}/assets/img/')
     html = html.replace('href="favicon.svg"', f'href="{URI}/favicon.svg"')
     html = html.replace('href="https://www.motor-corp.fr/"', 'href="<?php echo esc_url( home_url( \'/\' ) ); ?>"')
     html = html.replace('content="https://www.motor-corp.fr/"', 'content="<?php echo esc_url( home_url( \'/\' ) ); ?>"')
@@ -86,6 +87,9 @@ def build_corp():
 
     fonts = os.path.join(theme, "assets", "fonts")
     copy_tree(os.path.join(ROOT, "assets", "fonts"), fonts)
+    img = os.path.join(theme, "assets", "img"); os.makedirs(img, exist_ok=True)
+    for f in ("logo-motor-corp.png", "logo-motors-studio.png", "logo-motor-consulting-600.png"):
+        shutil.copy(os.path.join(ROOT, "assets", "img", f), os.path.join(img, f))
     shutil.copy(os.path.join(ROOT, "motor-corp", "favicon.svg"), os.path.join(theme, "favicon.svg"))
     print("thème motor-corp : front-page.php + polices")
 

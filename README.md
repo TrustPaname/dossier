@@ -145,7 +145,7 @@ partagées avec le site Motor Consulting). Identité noir / chrome / **rouge** ;
 qu'aux logos des deux marques.
 
 Sections : accueil animé (monogramme « MC », lettrage chrome, devise), bandeau défilant,
-présentation du groupe et ses trois piliers, les deux marques (Motor Studio — carrosserie,
+présentation du groupe et ses trois piliers, les deux marques (Motors Studio — carrosserie,
 Motor Consulting — conseil) avec lien vers leur site, parcours « synergies » en quatre étapes,
 contact.
 
@@ -155,7 +155,7 @@ lettrage, bandeau défilant, apparitions au défilement, parallaxe à la souris 
 inclinaison 3D et halo sur les cartes des marques. Tout est désactivé si l'utilisateur a
 demandé la réduction des animations (`prefers-reduced-motion`).
 
-À mettre à jour dans `motor-corp/index.html` : l'adresse du site Motor Studio
+À mettre à jour dans `motor-corp/index.html` : l'adresse du site Motors Studio
 (`https://www.motor-studio.fr/`), le lien vers Motor Consulting (`../index.html`, à remplacer
 par son domaine), l'e-mail, le téléphone et l'adresse.
 
