@@ -4,7 +4,7 @@ Site vitrine **statique** (HTML / CSS / JavaScript, sans dépendance ni build) p
 de conseil automobile spécialisée dans l'achat, la vente et l'expertise de véhicules d'occasion.
 
 > **Identité** : le design reprend la charte de la carte de visite Motor Consulting —
-> noir profond, or, lettrage chrome, nid d'abeille et faisceaux dorés — dans une version
+> noir profond, **bleu électrique**, lettrage chrome, nid d'abeille et faisceaux bleus — dans une version
 > **premium et animée** : lignes de vitesse sur l'accueil, reflet chromé sur le logotype,
 > bandeau défilant, cartes en verre avec halo doré et inclinaison au survol, compteurs et
 > apparitions au défilement. Les quatre piliers Recherche / Négociation / Achat-Vente /
@@ -112,19 +112,19 @@ Toute l'identité tient dans les variables du bloc `:root` de `assets/css/styles
 |---|---|---|
 | Noir de fond | `--noir` | `#08080a` |
 | Noir secondaire (visuels, carte) | `--noir-2` | `#111114` |
-| Filets | `--line` / `--or-line` | blanc 9 % / or 28 % |
-| Or principal | `--or` | `#d4af37` |
-| Or clair (survol du bouton) | `--or-clair` | `#eddca0` |
+| Filets | `--line` / `--bleu-line` | blanc 8 % / bleu 38 % |
+| Bleu principal | `--bleu` | `#0a8cff` |
+| Bleu clair (survols, reflets) | `--bleu-clair` | `#6fd6ff` |
 | Chrome (logotype) | `--chrome-1/2/3` | `#ffffff` → `#c6ccd4` → `#767c85` |
 | Texte courant | `--texte` / `--texte-2` | `#f2f1ec` / `#a5a8ad` |
 
-L'or est utilisé en aplat (`--or`) : un seul bouton plein par écran, des filets d'un pixel,
-les libellés en Michroma et les prix. Le dégradé chrome (`--grad-chrome`) ne sert qu'au
-mot « MOTOR ». Deux SVG encodés en `data:` reprennent la couleur `%23d4af37` — les étoiles
-des avis et la flèche des menus déroulants : pensez à les modifier si vous changez l'or.
+Le bleu est utilisé en aplat (`--bleu`) : un seul bouton plein par écran, des filets d'un pixel,
+les libellés en Michroma et les prix. Le logo officiel (`assets/img/logo-motor-consulting*.png`, fond transparent, trois tailles) remplace tout logotype dessiné. Le dégradé chrome (`--grad-chrome`) ne sert qu'au
+mot « MOTOR ». Deux SVG encodés en `data:` reprennent la couleur `%230a8cff` — les étoiles
+des avis et la flèche des menus déroulants : pensez à les modifier si vous changez le bleu.
 
-Grammaire du design : cartes `.card` (verre, halo doré suivant le curseur, filet or en bas au
-survol, coins dorés optionnels `.card__corner`), boutons à balayage doré, libellés Michroma
+Grammaire du design : cartes `.card` (verre, halo bleu suivant le curseur, filet bleu en bas au
+survol, coins bleus optionnels `.card__corner`), boutons à balayage bleu, libellés Michroma
 précédés d'un trait, sections alternées `.section--alt` avec nid d'abeille discret. Tout
 le mouvement respecte `prefers-reduced-motion`.
 

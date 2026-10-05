@@ -200,6 +200,7 @@ strong{color:#fff;font-weight:500}
 }
 .bcard:hover{border-color:rgba(255,255,255,.22);box-shadow:0 30px 80px rgba(0,0,0,.7)}
 .bcard:hover::before{opacity:1}
+.bcard__logo--img img{width:min(340px,100%);height:auto;filter:drop-shadow(0 10px 30px rgba(10,140,255,.25))}
 .bcard__logo{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;width:min(320px,100%);margin:0 auto;transform:translateZ(30px)}
 .mark{width:100%;height:auto;display:block;filter:drop-shadow(0 3px 3px rgba(0,0,0,.9));margin-bottom:-8px}
 .mark__name{font-family:var(--font-display);font-size:clamp(1.9rem,6vw,2.8rem);letter-spacing:.12em;padding-left:.12em;line-height:1}
@@ -416,21 +417,7 @@ strong{color:#fff;font-weight:500}
       </a>
       <a class="bcard reveal reveal--d1 tilt" href="../index.html" aria-label="Accéder au site Motor Consulting, l'expertise automobile à votre service">
         <span class="bcard__num">02</span>
-        <div class="bcard__logo"><svg class="mark" viewBox="0 0 300 96" aria-hidden="true">
-            <defs>
-              <linearGradient id="mk-chr-c" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#ffffff"/><stop offset="45%" stop-color="#cfd4da"/><stop offset="55%" stop-color="#6c727a"/><stop offset="100%" stop-color="#f1f4f7"/>
-              </linearGradient>
-              <linearGradient id="mk-gld-c" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#8a6e1e"/><stop offset="40%" stop-color="#f3e2a4"/><stop offset="60%" stop-color="#d4af37"/><stop offset="100%" stop-color="#8a6e1e"/>
-              </linearGradient>
-            </defs>
-            <path d="M126 46V32l24-18 24 18v14" fill="none" stroke="url(#mk-gld-c)" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round"/>
-            <path d="M2 80C34 62 68 46 108 38c34-7 72-7 108 0 34 7 60 20 80 40-26-14-56-22-90-24-44-3-90 4-130 14-26 6-50 12-74 12Z" fill="url(#mk-chr-c)"/>
-            <path d="M60 86c40-10 90-14 180-8" fill="none" stroke="url(#mk-chr-c)" stroke-width="3.5" stroke-linecap="round"/>
-          </svg>
-          <span class="mark__name chrome">MOTOR</span>
-          <span class="mark__sub"><i></i>CONSULTING<i></i></span></div>
+        <div class="bcard__logo bcard__logo--img"><img src="../assets/img/logo-motor-consulting-600.png" alt="Motor Consulting" width="600" height="345" loading="lazy"></div>
         <p class="bcard__kicker">L'expertise automobile à votre service</p>
         <p class="bcard__desc">Le conseil du groupe. Recherche, négociation, achat, vente et location de véhicules d'occasion, pour particuliers et professionnels.</p>
         <ul class="bcard__list">

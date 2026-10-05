@@ -22,9 +22,9 @@
 <meta property="og:title" content="Motor Consulting — L'expertise automobile à votre service">
 <meta property="og:description" content="Recherche, négociation, achat, vente et location de véhicules d'occasion. Estimation gratuite sous 24h, transaction sécurisée.">
 <meta property="og:url" content="<?php echo esc_url( home_url( '/' ) ); ?>">
-<meta property="og:image" content="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/og-cover.svg">
+<meta property="og:image" content="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/og-cover.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#08080a">
+<meta name="theme-color" content="#050506">
 
 <link rel="icon" href="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/favicon.svg">
@@ -42,7 +42,7 @@
   "telephone": "<?php echo esc_attr( motor_opt( 'phone_e164' ) ); ?>",
   "email": "<?php echo esc_html( motor_opt( 'email' ) ); ?>",
   "priceRange": "€€",
-  "image": "<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/og-cover.svg",
+  "image": "<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/og-cover.png",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "24 avenue de la Grande-Armée",
@@ -72,23 +72,7 @@
 <header class="header" id="header">
   <div class="container header__inner">
     <a class="logo logo--compact" href="#accueil" aria-label="Motor Consulting, retour à l'accueil">
-      <svg class="logo__mark" viewBox="0 0 300 96" aria-hidden="true">
-        <defs>
-          <linearGradient id="lg-chr-h" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#ffffff"/><stop offset="45%" stop-color="#cfd4da"/><stop offset="55%" stop-color="#6c727a"/><stop offset="100%" stop-color="#f1f4f7"/>
-          </linearGradient>
-          <linearGradient id="lg-gld-h" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#8a6e1e"/><stop offset="40%" stop-color="#f3e2a4"/><stop offset="60%" stop-color="#d4af37"/><stop offset="100%" stop-color="#8a6e1e"/>
-          </linearGradient>
-        </defs>
-        <path d="M126 46V32l24-18 24 18v14" fill="none" stroke="url(#lg-gld-h)" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round"/>
-        <path d="M2 80C34 62 68 46 108 38c34-7 72-7 108 0 34 7 60 20 80 40-26-14-56-22-90-24-44-3-90 4-130 14-26 6-50 12-74 12Z" fill="url(#lg-chr-h)"/>
-        <path d="M60 86c40-10 90-14 180-8" fill="none" stroke="url(#lg-chr-h)" stroke-width="3.5" stroke-linecap="round"/>
-      </svg>
-      <span class="logo__text">
-        <span class="logo__name chrome">MOTOR</span>
-        <span class="logo__sub"><i></i>CONSULTING<i></i></span>
-      </span>
+      <img src="assets/img/logo-motor-consulting-300.png" alt="Motor Consulting" width="300" height="172">
     </a>
 
     <nav class="nav" id="nav" aria-label="Navigation principale">
@@ -123,23 +107,10 @@
   <div class="hero__vignette" aria-hidden="true"></div>
   <div class="container hero__inner">
     <div id="hero-inner">
-      <div class="hero__brand">
-        <svg class="logo__mark" viewBox="0 0 300 96" aria-hidden="true">
-          <defs>
-            <linearGradient id="lg-chr-x" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffffff"/><stop offset="45%" stop-color="#cfd4da"/><stop offset="55%" stop-color="#6c727a"/><stop offset="100%" stop-color="#f1f4f7"/></linearGradient>
-            <linearGradient id="lg-gld-x" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#8a6e1e"/><stop offset="40%" stop-color="#f3e2a4"/><stop offset="60%" stop-color="#d4af37"/><stop offset="100%" stop-color="#8a6e1e"/></linearGradient>
-          </defs>
-          <path d="M126 46V32l24-18 24 18v14" fill="none" stroke="url(#lg-gld-x)" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round"/>
-          <path d="M2 80C34 62 68 46 108 38c34-7 72-7 108 0 34 7 60 20 80 40-26-14-56-22-90-24-44-3-90 4-130 14-26 6-50 12-74 12Z" fill="url(#lg-chr-x)"/>
-          <path d="M60 86c40-10 90-14 180-8" fill="none" stroke="url(#lg-chr-x)" stroke-width="3.5" stroke-linecap="round"/>
-        </svg>
-        <span class="logo__text">
-          <span class="logo__name chrome chrome--live">MOTOR</span>
-          <span class="logo__sub"><i></i>CONSULTING<i></i></span>
-          <span class="logo__tag">L'expertise automobile à votre service</span>
-        </span>
+      <div class="hero__brand reveal">
+        <img src="assets/img/logo-motor-consulting-600.png" alt="Motor Consulting — L'expertise automobile à votre service" width="600" height="345" fetchpriority="high">
       </div>
-      <h1>Achat, vente et location de véhicules d'occasion, <span class="or">sans mauvaise surprise</span>.</h1>
+      <h1>Achat, vente et location de véhicules d'occasion, <span class="accent">sans mauvaise surprise</span>.</h1>
       <p class="lead">Nous cherchons, inspectons et négocions le véhicule à votre place. Ou nous vendons le vôtre, au juste prix, sans que vous ayez rien à gérer.</p>
       <div class="hero__actions">
         <a class="btn btn--primary" href="#estimation" data-intent="vendre">Vendre ma voiture <span aria-hidden="true">→</span></a>
@@ -543,24 +514,7 @@
   <div class="container footer__inner">
     <div class="footer__brand">
       <a class="logo" href="#accueil" aria-label="Motor Consulting, retour à l'accueil">
-      <svg class="logo__mark" viewBox="0 0 300 96" aria-hidden="true">
-        <defs>
-          <linearGradient id="lg-chr-f" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#ffffff"/><stop offset="45%" stop-color="#cfd4da"/><stop offset="55%" stop-color="#6c727a"/><stop offset="100%" stop-color="#f1f4f7"/>
-          </linearGradient>
-          <linearGradient id="lg-gld-f" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#8a6e1e"/><stop offset="40%" stop-color="#f3e2a4"/><stop offset="60%" stop-color="#d4af37"/><stop offset="100%" stop-color="#8a6e1e"/>
-          </linearGradient>
-        </defs>
-        <path d="M126 46V32l24-18 24 18v14" fill="none" stroke="url(#lg-gld-f)" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round"/>
-        <path d="M2 80C34 62 68 46 108 38c34-7 72-7 108 0 34 7 60 20 80 40-26-14-56-22-90-24-44-3-90 4-130 14-26 6-50 12-74 12Z" fill="url(#lg-chr-f)"/>
-        <path d="M60 86c40-10 90-14 180-8" fill="none" stroke="url(#lg-chr-f)" stroke-width="3.5" stroke-linecap="round"/>
-      </svg>
-      <span class="logo__text">
-        <span class="logo__name chrome">MOTOR</span>
-        <span class="logo__sub"><i></i>CONSULTING<i></i></span>
-      <span class="logo__tag">L'expertise automobile à votre service</span>
-      </span>
+      <img src="assets/img/logo-motor-consulting-600.png" alt="Motor Consulting" width="600" height="345" loading="lazy">
     </a>
       <p>L'expertise automobile à votre service. Recherche, négociation, achat, vente et location de véhicules d'occasion à Paris et en Île-de-France.</p>
     </div>

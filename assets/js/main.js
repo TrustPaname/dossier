@@ -573,7 +573,7 @@
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       cx = w * .62; cy = h * .45;
     };
-    const spawn = (p) => { p.a = Math.random() * Math.PI * 2; p.r = Math.random() * 40; p.v = .5 + Math.random() * 1.5; p.gold = Math.random() < .3; return p; };
+    const spawn = (p) => { p.a = Math.random() * Math.PI * 2; p.r = Math.random() * 40; p.v = .5 + Math.random() * 1.5; p.blue = Math.random() < .3; return p; };
     const init = () => { particles = Array.from({ length: N }, () => spawn({})); };
     const step = () => {
       if (!running) return;
@@ -585,9 +585,9 @@
         const len = 6 + p.r * .13;
         const x1 = cx + Math.cos(p.a) * p.r, y1 = cy + Math.sin(p.a) * p.r;
         const x0 = cx + Math.cos(p.a) * Math.max(0, p.r - len), y0 = cy + Math.sin(p.a) * Math.max(0, p.r - len);
-        const alpha = Math.min(1, p.r / 180) * (p.gold ? .8 : .45);
-        ctx.strokeStyle = p.gold ? `rgba(212,175,55,${alpha})` : `rgba(200,205,212,${alpha})`;
-        ctx.lineWidth = p.gold ? 1.3 : .8;
+        const alpha = Math.min(1, p.r / 180) * (p.blue ? .8 : .45);
+        ctx.strokeStyle = p.blue ? `rgba(10,140,255,${alpha})` : `rgba(200,205,212,${alpha})`;
+        ctx.lineWidth = p.blue ? 1.3 : .8;
         ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
       }
       raf = requestAnimationFrame(step);

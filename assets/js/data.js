@@ -53,7 +53,7 @@ function carSvg(v, idSuffix) {
   const couleurs = v.couleurs && v.couleurs.length === 2 ? v.couleurs : ["#3c4652", "#1b2027"];
   const wheels = shape.wheels.map(([cx, cy]) => `
       <circle cx="${cx}" cy="${cy}" r="${shape.r}" fill="#08080a"/>
-      <circle cx="${cx}" cy="${cy}" r="${shape.r}" fill="none" stroke="#d4af37" stroke-opacity=".3"/>
+      <circle cx="${cx}" cy="${cy}" r="${shape.r}" fill="none" stroke="#0a8cff" stroke-opacity=".3"/>
       <circle cx="${cx}" cy="${cy}" r="${shape.r - 9}" fill="#2b3138"/>
       <circle cx="${cx}" cy="${cy}" r="${shape.r - 15}" fill="#c6ccd4"/>`).join("");
 
@@ -68,11 +68,11 @@ function carSvg(v, idSuffix) {
     </linearGradient>
   </defs>
   <rect width="400" height="220" fill="url(#bg-${uid})"/>
-  <path d="M0 196h400" stroke="#d4af37" stroke-opacity=".25" stroke-width="1"/>
+  <path d="M0 196h400" stroke="#0a8cff" stroke-opacity=".25" stroke-width="1"/>
   <ellipse cx="200" cy="188" rx="168" ry="14" fill="#000" opacity=".38"/>
   <path d="${shape.body}" fill="url(#body-${uid})" opacity=".8"/>
   <path d="${shape.glass}" fill="#0d1218" opacity=".72"/>
-  <path d="${shape.body}" fill="none" stroke="#d4af37" stroke-opacity=".55" stroke-width="1.6"/>
+  <path d="${shape.body}" fill="none" stroke="#0a8cff" stroke-opacity=".55" stroke-width="1.6"/>
   ${wheels}
   <rect x="0" y="196" width="400" height="24" fill="#0a0a0b"/>
 </svg>`;

@@ -36,7 +36,7 @@ def build_consulting():
     html = re.sub(r'<link rel="manifest" href="site.webmanifest">\n', '', html)
     html = re.sub(r'<script src="assets/js/[^"]+" defer></script>\n', '', html)
     html = html.replace('href="assets/img/favicon.svg"', f'href="{URI}/assets/img/favicon.svg"')
-    html = html.replace('https://www.motor-consulting.fr/assets/img/og-cover.svg', f'{URI}/assets/img/og-cover.svg')
+    html = html.replace('https://www.motor-consulting.fr/assets/img/og-cover.png', f'{URI}/assets/img/og-cover.png')
     html = html.replace('href="https://www.motor-consulting.fr/"', 'href="<?php echo esc_url( home_url( \'/\' ) ); ?>"')
     html = html.replace('content="https://www.motor-consulting.fr/"', 'content="<?php echo esc_url( home_url( \'/\' ) ); ?>"')
     html = html.replace('"url": "https://www.motor-consulting.fr/"', '"url": "<?php echo esc_url( home_url( \'/\' ) ); ?>"')
