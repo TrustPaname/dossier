@@ -3,16 +3,13 @@
 Site vitrine **statique** (HTML / CSS / JavaScript, sans dépendance ni build) pour une société
 de conseil automobile spécialisée dans l'achat, la vente et l'expertise de véhicules d'occasion.
 
-> **Identité** : le design reprend la charte de la carte de visite Motor Consulting —
-> noir profond, **bleu électrique**, lettrage chrome, nid d'abeille et faisceaux bleus — dans une version
-> **premium et animée** : lignes de vitesse sur l'accueil, reflet chromé sur le logotype,
-> bandeau défilant, cartes en verre avec halo doré et inclinaison au survol, compteurs et
-> apparitions au défilement. Les quatre piliers Recherche / Négociation / Achat-Vente /
-> Location structurent la page.
->
-> **Coordonnées** : zone **Paris / Île-de-France** et coordonnées de démonstration
-> (téléphone, e-mail, adresse, domaine). Remplacez-les avant mise en ligne — voir
-> « Personnalisation » ci-dessous.
+> **Identité** : mise en page « concession » claire inspirée des sites de distributeurs
+> professionnels — en-tête blanc avec menu centré, accueil plein écran sur photo sombre
+> avec moteur de recherche, titres gras avec une ligne d'accent en italique, boutons et
+> pastilles arrondis, cartes blanches à coins arrondis. Les couleurs restent celles du logo
+> Motor Consulting : **bleu électrique** sur blanc, noir profond pour l'accueil et le pied
+> de page. Les quatre piliers Recherche / Négociation / Achat-Vente / Location structurent
+> la page. Une bulle de discussion WhatsApp est fixée en bas à droite.
 
 ## Aperçu local
 
@@ -32,7 +29,7 @@ motor-corp/index.html   Page d'entrée de la holding Motor Corp (écran coupé e
 assets/css/styles.css   Styles — mobile-first, thème noir/gris + accent rouge
 assets/js/data.js       Données : véhicules, témoignages, silhouettes SVG
 assets/js/main.js       Interactions : menu, filtres, modale, carrousel, formulaires
-assets/fonts/           Polices auto-hébergées (Michroma + Archivo, woff2)
+assets/fonts/           Polices auto-hébergées (Outfit + Inter ; Michroma + Archivo pour Motor Corp)
 assets/img/             Favicon et image de partage (SVG)
 robots.txt / sitemap.xml / site.webmanifest
 ```
@@ -110,33 +107,43 @@ Toute l'identité tient dans les variables du bloc `:root` de `assets/css/styles
 
 | Rôle | Variable | Valeur |
 |---|---|---|
-| Noir de fond | `--noir` | `#08080a` |
-| Noir secondaire (visuels, carte) | `--noir-2` | `#111114` |
-| Filets | `--line` / `--bleu-line` | blanc 8 % / bleu 38 % |
+| Fond principal / secondaire | `--bg` / `--bg-2` | `#ffffff` / `#f5f6f8` |
+| Texte | `--ink` / `--ink-2` / `--ink-3` | `#0f172a` / `#4b5563` / `#8b93a1` |
+| Filets | `--line` | `#e5e8ee` |
+| Noir (accueil, pied de page, visuels) | `--dark` | `#0f1115` |
 | Bleu principal | `--bleu` | `#0a8cff` |
-| Bleu clair (survols, reflets) | `--bleu-clair` | `#6fd6ff` |
-| Chrome (logotype) | `--chrome-1/2/3` | `#ffffff` → `#c6ccd4` → `#767c85` |
-| Texte courant | `--texte` / `--texte-2` | `#f2f1ec` / `#a5a8ad` |
+| Bleu foncé (survols) | `--bleu-fonce` | `#0066cc` |
+| Bleu clair (ligne d'accent de l'accueil) | `--bleu-clair` | `#5fc3ff` |
+| Bleu pâle (fonds d'icônes, pastilles) | `--bleu-soft` | `#e8f3ff` |
+| Rayons | `--radius` / `--pill` | `16px` / `999px` |
+| Photo d'accueil | `--hero-photo` | `none` (voir ci-dessous) |
 
-Le bleu est utilisé en aplat (`--bleu`) : un seul bouton plein par écran, des filets d'un pixel,
-les libellés en Michroma et les prix. Le logo officiel (`assets/img/logo-motor-consulting*.png`, fond transparent, trois tailles) remplace tout logotype dessiné. Le dégradé chrome (`--grad-chrome`) ne sert qu'au
-mot « MOTOR ». Deux SVG encodés en `data:` reprennent la couleur `%230a8cff` — les étoiles
-des avis et la flèche des menus déroulants : pensez à les modifier si vous changez le bleu.
+Le bleu sert aux boutons pleins, aux sur-titres, aux liens et à la **ligne d'accent en
+italique** de chaque titre (`<span class="accent">`). Le logo officiel existe en deux
+versions : `logo-motor-consulting*.png` (mot CONSULTING clair, pour les fonds sombres :
+pied de page, bulle WhatsApp) et `logo-motor-consulting-light*.png` (mot CONSULTING
+foncé, pour l'en-tête blanc). Deux SVG encodés en `data:` reprennent la couleur `%230a8cff`
+— les étoiles des avis et la flèche des menus déroulants : pensez à les modifier si vous
+changez le bleu.
 
-Grammaire du design : cartes `.card` (verre, halo bleu suivant le curseur, filet bleu en bas au
-survol, coins bleus optionnels `.card__corner`), boutons à balayage bleu, libellés Michroma
-précédés d'un trait, sections alternées `.section--alt` avec nid d'abeille discret. Tout
-le mouvement respecte `prefers-reduced-motion`.
+**Photo d'accueil** : par défaut, l'accueil affiche un fond sombre généré en CSS. Pour y
+mettre une photo (showroom, véhicule), déposez-la dans `assets/img/hero.jpg` et remplacez
+`--hero-photo:none` par `--hero-photo:url(../img/hero.jpg)` dans `styles.css`. Un voile
+sombre est appliqué automatiquement pour garder le texte lisible.
 
-Le site assume un **thème sombre unique** (comme la carte de visite) : il n'y a pas de
-variante claire à maintenir.
+**Moteur de recherche de l'accueil** : le bloc « Trouvez votre véhicule » (recherche
+libre, budget, carburant, transmission, carrosserie, recherches populaires) alimente les
+filtres de la section Véhicules et y fait défiler la page.
 
-**Typographie** : `Michroma` pour le lettrage large (logo, sur-titres, libellés), `Exo 2`
-(gras, capitales) pour les titres, les chiffres et le texte courant. Michroma ne possède pas
-le signe « € » : prix et chiffres restent en Exo 2. Les deux polices sont **auto-hébergées** dans
-`assets/fonts/` (~98 Ko, formats woff2, `font-display:swap`) : aucun appel à Google Fonts,
-ce qui évite le transfert d'adresses IP vers un service tiers — un point régulièrement
-sanctionné en France sur le terrain du RGPD.
+**Bulle WhatsApp** : le bouton rond en bas à droite ouvre un petit panneau de discussion
+(logo, message d'accueil, champ de saisie). L'envoi ouvre WhatsApp avec le message
+pré-rempli vers le numéro `whatsapp` de `window.MC_CONFIG` (ou celui de `main.js`).
+
+**Typographie** : `Outfit` (gras, 700–800) pour les titres, les prix et les chiffres,
+`Inter` (400–600) pour le texte courant, les menus et les formulaires. Les polices sont
+**auto-hébergées** dans `assets/fonts/` (formats woff2, `font-display:swap`) : aucun appel
+à Google Fonts, ce qui évite le transfert d'adresses IP vers un service tiers — un point
+régulièrement sanctionné en France sur le terrain du RGPD.
 
 ## Page Motor Corp (holding)
 
@@ -169,7 +176,7 @@ par son domaine), l'e-mail, le téléphone et l'adresse.
 
 ## Performance et compatibilité
 
-- Zéro dépendance externe, zéro image bitmap, polices auto-hébergées : le rendu ne dépend
+- Zéro dépendance externe, images limitées aux logos, polices auto-hébergées : le rendu ne dépend
   d'aucun CDN.
 - Seule ressource tierce : l'iframe OpenStreetMap de la section contact, chargée en `lazy`
   (un texte de repli s'affiche si elle est bloquée). Supprimez le bloc `.map` pour un site

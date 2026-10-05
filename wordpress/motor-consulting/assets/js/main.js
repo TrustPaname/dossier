@@ -145,7 +145,7 @@
   let visible = PAGE;
   let filtered = LIST.slice();
 
-  const state = { q: "", type: "", price: "", year: "", sort: "recent" };
+  const state = { q: "", type: "", price: "", year: "", fuel: "", gear: "", sort: "recent" };
 
   const garantieLabel = (v) => (/garantie/i.test(v.garantie) ? v.garantie : "Garantie " + v.garantie);
 
@@ -178,6 +178,8 @@
       if (state.type && v.type !== state.type) return false;
       if (state.price && v.prix > parseInt(state.price, 10)) return false;
       if (state.year && v.annee < parseInt(state.year, 10)) return false;
+      if (state.fuel && v.carburant !== state.fuel) return false;
+      if (state.gear && v.boite !== state.gear) return false;
       return true;
     });
 
@@ -219,14 +221,52 @@
   $("#f-price").addEventListener("change", (e) => { state.price = e.target.value; applyFilters(); });
   $("#f-year").addEventListener("change", (e) => { state.year = e.target.value; applyFilters(); });
   $("#f-sort").addEventListener("change", (e) => { state.sort = e.target.value; applyFilters(); });
+  const fFuel = $("#f-fuel"), fGear = $("#f-gear");
+  if (fFuel) fFuel.addEventListener("change", (e) => { state.fuel = e.target.value; applyFilters(); });
+  if (fGear) fGear.addEventListener("change", (e) => { state.gear = e.target.value; applyFilters(); });
   $("#f-reset").addEventListener("click", () => {
     $("#filters").reset();
-    Object.assign(state, { q: "", type: "", price: "", year: "", sort: "recent" });
+    Object.assign(state, { q: "", type: "", price: "", year: "", fuel: "", gear: "", sort: "recent" });
     applyFilters();
   });
   $("#filters").addEventListener("submit", (e) => e.preventDefault());
 
   applyFilters();
+
+  /* ---------------- Moteur de recherche de l'accueil ---------------- */
+  const setSelect = (sel, val) => { if (sel) sel.value = val || ""; };
+  function searchFromHero(values) {
+    Object.assign(state, { q: values.q || "", type: values.type || "", price: values.price || "", fuel: values.fuel || "", gear: values.gear || "", year: "" });
+    searchInput.value = state.q;
+    setSelect($("#f-type"), state.type);
+    setSelect($("#f-price"), state.price);
+    setSelect(fFuel, state.fuel);
+    setSelect(fGear, state.gear);
+    setSelect($("#f-year"), "");
+    applyFilters();
+    const target = $("#vehicules");
+    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  const heroForm = $("#hero-search");
+  if (heroForm) {
+    heroForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      searchFromHero({
+        q: ($("#hs-q") || {}).value,
+        price: ($("#hs-price") || {}).value,
+        fuel: ($("#hs-fuel") || {}).value,
+        gear: ($("#hs-gear") || {}).value,
+        type: ($("#hs-type") || {}).value
+      });
+    });
+    $$("[data-q]", heroForm).forEach((chip) => chip.addEventListener("click", () => {
+      const q = chip.getAttribute("data-q") || "";
+      const hsq = $("#hs-q");
+      if (hsq) hsq.value = q;
+      searchFromHero({ q });
+    }));
+  }
+  $$("#hero-count, #hero-count-2").forEach((el) => { el.textContent = LIST.length; });
 
   /* ------------------------- Modale véhicule ------------------------- */
   const modal = $("#vehicle-modal");
@@ -555,74 +595,41 @@
   }
 
 
-  /* =========================================================
-     6 bis. Mouvement : lignes de vitesse, parallaxe, inclinaison
-     ========================================================= */
-  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const fine = window.matchMedia("(pointer:fine)").matches;
-
-  const canvas = $("#speed");
-  if (canvas && !reduced) {
-    const ctx = canvas.getContext("2d");
-    let w, h, cx, cy, dpr, particles = [], raf, running = true;
-    const N = 150;
-    const resize = () => {
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
-      w = canvas.clientWidth; h = canvas.clientHeight;
-      canvas.width = w * dpr; canvas.height = h * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      cx = w * .62; cy = h * .45;
-    };
-    const spawn = (p) => { p.a = Math.random() * Math.PI * 2; p.r = Math.random() * 40; p.v = .5 + Math.random() * 1.5; p.blue = Math.random() < .3; return p; };
-    const init = () => { particles = Array.from({ length: N }, () => spawn({})); };
-    const step = () => {
-      if (!running) return;
-      ctx.clearRect(0, 0, w, h);
-      const maxR = Math.hypot(w, h) * .6;
-      for (const p of particles) {
-        p.r += p.v * (1 + p.r / 130);
-        if (p.r > maxR) spawn(p);
-        const len = 6 + p.r * .13;
-        const x1 = cx + Math.cos(p.a) * p.r, y1 = cy + Math.sin(p.a) * p.r;
-        const x0 = cx + Math.cos(p.a) * Math.max(0, p.r - len), y0 = cy + Math.sin(p.a) * Math.max(0, p.r - len);
-        const alpha = Math.min(1, p.r / 180) * (p.blue ? .8 : .45);
-        ctx.strokeStyle = p.blue ? `rgba(10,140,255,${alpha})` : `rgba(200,205,212,${alpha})`;
-        ctx.lineWidth = p.blue ? 1.3 : .8;
-        ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
-      }
-      raf = requestAnimationFrame(step);
-    };
-    resize(); init(); step();
-    window.addEventListener("resize", resize);
-    document.addEventListener("visibilitychange", () => { running = !document.hidden; if (running) step(); else cancelAnimationFrame(raf); });
-  }
-
-  const heroInner = $("#hero-inner");
-  if (heroInner && !reduced && fine) {
-    let tx = 0, ty = 0, x = 0, y = 0;
-    window.addEventListener("mousemove", (e) => { tx = (e.clientX / window.innerWidth - .5) * 14; ty = (e.clientY / window.innerHeight - .5) * 10; }, { passive: true });
-    const loop = () => { x += (tx - x) * .06; y += (ty - y) * .06; heroInner.style.transform = `translate(${x}px,${y}px)`; requestAnimationFrame(loop); };
-    loop();
-  }
-
-  if (!reduced && fine) {
-    document.addEventListener("mousemove", (e) => {
-      const card = e.target.closest(".card");
-      if (!card) return;
-      const r = card.getBoundingClientRect();
-      const px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
-      card.style.setProperty("--mx", (px * 100) + "%"); card.style.setProperty("--my", (py * 100) + "%");
-      if (card.classList.contains("tilt")) card.style.transform = `perspective(1000px) rotateX(${(py - .5) * -5}deg) rotateY(${(px - .5) * 7}deg) translateY(-4px)`;
-    }, { passive: true });
-    document.addEventListener("mouseout", (e) => {
-      const card = e.target.closest(".card.tilt");
-      if (card && !card.contains(e.relatedTarget)) card.style.transform = "";
-    });
-  }
-
   // Cartes véhicules et avis générées après coup : apparition immédiate
   const revealNow = () => $$(".vehicle.reveal, .testimonial.reveal").forEach((el) => el.classList.add("is-in"));
   revealNow();
+
+  /* =========================================================
+     6 bis. Discussion WhatsApp (bulle en bas à droite)
+     ========================================================= */
+  const waOpen = $("#wa-open"), waPanel = $("#wa-panel"), waClose = $("#wa-close");
+  if (waOpen && waPanel) {
+    const waText = $("#wa-text"), waSend = $("#wa-send"), waTime = $("#wa-time"), waBadge = $(".wa__badge", waOpen);
+    const greeting = "Bonjour Motor Consulting, je souhaite avoir des informations.";
+    const buildLink = () => {
+      const msg = (waText && waText.value.trim()) || greeting;
+      return `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`;
+    };
+    const toggle = (open) => {
+      waPanel.hidden = !open;
+      waOpen.setAttribute("aria-expanded", String(open));
+      waOpen.classList.toggle("is-open", open);
+      if (open) {
+        if (waBadge) waBadge.hidden = true;
+        if (waTime) { const d = new Date(); waTime.textContent = `${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}`; }
+        if (waSend) waSend.href = buildLink();
+        setTimeout(() => { if (waText) waText.focus({ preventScroll: true }); }, 50);
+      }
+    };
+    waOpen.addEventListener("click", () => toggle(waPanel.hidden));
+    if (waClose) waClose.addEventListener("click", () => toggle(false));
+    if (waText && waSend) {
+      waText.addEventListener("input", () => { waSend.href = buildLink(); });
+      waText.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); waSend.href = buildLink(); waSend.click(); } });
+    }
+    if (waSend) waSend.addEventListener("click", () => { waSend.href = buildLink(); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !waPanel.hidden) toggle(false); });
+  }
 
   /* =========================================================
      7. Divers
