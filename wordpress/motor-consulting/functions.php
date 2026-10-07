@@ -388,3 +388,54 @@ function motor_handle_lead( WP_REST_Request $req ) {
 	}
 	return new WP_REST_Response( array( 'ok' => true, 'reference' => $ref ), 200 );
 }
+
+/* -------------------------------------------------------------------------
+ * Redirection de www vers l'adresse sans www (hébergement mutualisé OVH).
+ *
+ * OVH n'accepte pas deux domaines sur un même dossier. On rattache donc
+ * www.<domaine> à un dossier voisin « <dossier-du-site>-www » et on y dépose
+ * un .htaccess qui renvoie tout vers l'adresse principale en 301, sauf les
+ * fichiers de validation Let's Encrypt (pour que le certificat www s'émette).
+ * Le fichier est (re)créé automatiquement à chaque visite de l'administration.
+ * ---------------------------------------------------------------------- */
+function motor_www_redirect_dir() {
+	$site_dir = rtrim( ABSPATH, '/\\' );
+	return dirname( $site_dir ) . '/' . basename( $site_dir ) . '-www';
+}
+
+function motor_www_redirect_rules() {
+	$home = rtrim( home_url( '/' ), '/' );
+	return "# Généré par le thème Motor Consulting — redirige www vers " . $home . "\n"
+		. "RewriteEngine On\n"
+		. "RewriteCond %{REQUEST_URI} !^/\\.well-known/ [NC]\n"
+		. "RewriteRule ^(.*)$ " . $home . "/$1 [R=301,L]\n";
+}
+
+add_action( 'admin_init', function () {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+	$dir   = motor_www_redirect_dir();
+	$file  = $dir . '/.htaccess';
+	$rules = motor_www_redirect_rules();
+	if ( ! is_dir( $dir ) ) {
+		@mkdir( $dir, 0755 );
+	}
+	if ( is_dir( $dir ) && ( ! file_exists( $file ) || file_get_contents( $file ) !== $rules ) ) {
+		@file_put_contents( $file, $rules );
+		@file_put_contents( $dir . '/index.html', '<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=' . esc_attr( home_url( '/' ) ) . '">' );
+	}
+} );
+
+// Rappel dans l'administration : quel dossier rattacher à www chez OVH.
+add_action( 'admin_notices', function () {
+	if ( ! current_user_can( 'manage_options' ) || get_option( 'motor_www_notice_dismissed' ) ) {
+		return;
+	}
+	$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+	if ( ! $screen || ! in_array( $screen->id, array( 'dashboard', 'themes' ), true ) ) {
+		return;
+	}
+	$dir = basename( motor_www_redirect_dir() );
+	echo '<div class="notice notice-info is-dismissible"><p><strong>Motor Consulting :</strong> pour que l\'adresse www fonctionne en HTTPS, rattachez chez OVH le domaine <code>www.' . esc_html( wp_parse_url( home_url(), PHP_URL_HOST ) ) . '</code> au dossier <code>' . esc_html( $dir ) . '</code> avec SSL (Hébergement → Mes sites → Ajouter un site). Le thème y a déposé la redirection.</p></div>';
+} );
