@@ -72,7 +72,7 @@
 <header class="header" id="header">
   <div class="container header__inner">
     <a class="logo logo--compact" href="#accueil" aria-label="Motor Consulting, retour à l'accueil">
-      <img src="assets/img/logo-motor-consulting-light-300.png" alt="Motor Consulting" width="300" height="172">
+      <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/logo-motor-consulting-light-300.png" alt="Motor Consulting" width="300" height="172">
     </a>
     <nav class="nav" id="nav" aria-label="Navigation principale">
       <ul class="nav__list">
@@ -471,7 +471,7 @@
 <footer class="footer">
   <div class="container footer__inner">
     <div class="footer__brand">
-      <a class="logo" href="#accueil" aria-label="Motor Consulting, retour à l'accueil"><img src="assets/img/logo-motor-consulting-600.png" alt="Motor Consulting" width="600" height="345" loading="lazy"></a>
+      <a class="logo" href="#accueil" aria-label="Motor Consulting, retour à l'accueil"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/logo-motor-consulting-600.png" alt="Motor Consulting" width="600" height="345" loading="lazy"></a>
       <p>L'expertise automobile à votre service. Recherche, négociation, achat, vente et location de véhicules d'occasion à Paris et en Île-de-France.</p>
     </div>
     <nav class="footer__col" aria-label="Services"><h3>Services</h3><ul><li><a href="#services">Recherche de véhicule</a></li><li><a href="#services">Négociation</a></li><li><a href="#services">Achat / Vente</a></li><li><a href="#services">Location</a></li><li><a href="#estimation">Estimation gratuite</a></li></ul></nav>
@@ -488,7 +488,7 @@
 <div class="wa" id="wa">
   <div class="wa__panel" id="wa-panel" hidden>
     <div class="wa__head">
-      <img src="assets/img/logo-motor-consulting-300.png" alt="" width="40" height="40">
+      <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/logo-motor-consulting-300.png" alt="" width="40" height="40">
       <div><strong>Motor Consulting</strong><small>En ligne · répond en quelques minutes</small></div>
       <button class="wa__close" type="button" id="wa-close" aria-label="Fermer la discussion">✕</button>
     </div>
@@ -503,7 +503,7 @@
   </div>
   <button class="wa__btn" id="wa-open" type="button" aria-label="Discuter en direct sur WhatsApp" aria-expanded="false" aria-controls="wa-panel">
     <span class="wa__ring" aria-hidden="true"></span>
-    <img src="assets/img/logo-motor-consulting-300.png" alt="" width="44" height="25">
+    <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/logo-motor-consulting-300.png" alt="" width="44" height="25">
     <span class="wa__badge" aria-hidden="true">1</span>
   </button>
 </div>

@@ -37,6 +37,9 @@ def build_consulting():
     html = re.sub(r'<script src="assets/js/[^"]+" defer></script>\n', '', html)
     html = html.replace('href="assets/img/favicon.svg"', f'href="{URI}/assets/img/favicon.svg"')
     html = html.replace('https://www.motorconsulting.fr/assets/img/og-cover.png', f'{URI}/assets/img/og-cover.png')
+    # images (logos) : chemins relatifs -> URL du thème
+    html = html.replace('src="assets/img/', f'src="{URI}/assets/img/')
+    html = html.replace("url(assets/img/", f"url({URI}/assets/img/")
     html = html.replace('href="https://www.motorconsulting.fr/"', 'href="<?php echo esc_url( home_url( \'/\' ) ); ?>"')
     html = html.replace('content="https://www.motorconsulting.fr/"', 'content="<?php echo esc_url( home_url( \'/\' ) ); ?>"')
     html = html.replace('"url": "https://www.motorconsulting.fr/"', '"url": "<?php echo esc_url( home_url( \'/\' ) ); ?>"')
