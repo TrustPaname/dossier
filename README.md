@@ -64,9 +64,9 @@ WhatsApp) suffit :
 | Nom de l'entreprise | `index.html` (titre, header, footer, JSON-LD) | Motor Consulting |
 | Téléphone affiché | `index.html` | `06 12 34 56 78` |
 | Téléphone / WhatsApp technique | `index.html` (`tel:`, `wa.me/`) et `CONFIG.whatsapp` dans `main.js` | `33612345678` |
-| E-mail | `index.html` et `CONFIG.email` dans `main.js` | `contact@motor-consulting.fr` |
+| E-mail | `index.html` et `CONFIG.email` dans `main.js` | `contact@motorconsulting.fr` |
 | Adresse + coordonnées GPS | `index.html` (bloc contact, iframe carte, JSON-LD) | 24 avenue de la Grande-Armée, 75017 Paris |
-| Domaine | balises `canonical`, `og:url`, `robots.txt`, `sitemap.xml` | `www.motor-consulting.fr` |
+| Domaine | balises `canonical`, `og:url`, `robots.txt`, `sitemap.xml` | `www.motorconsulting.fr` |
 | Chiffres clés | liste `.facts` sous l'accroche de la page d'accueil | 1 850 / 12 ans / 4,9 |
 
 ### 2. Branchement des formulaires
@@ -81,7 +81,7 @@ Pour recevoir réellement les demandes, renseignez une URL en haut de `assets/js
 const CONFIG = {
   formEndpoint: "https://formspree.io/f/VOTRE_ID", // ou Getform, Brevo, votre API…
   whatsapp: "33612345678",
-  email: "contact@motor-consulting.fr"
+  email: "contact@motorconsulting.fr"
 };
 ```
 
@@ -163,7 +163,7 @@ inclinaison 3D et halo sur les cartes des marques. Tout est désactivé si l'uti
 demandé la réduction des animations (`prefers-reduced-motion`).
 
 À mettre à jour dans `motor-corp/index.html` : l'adresse du site Motors Studio
-(`https://www.motor-studio.fr/`), le lien vers Motor Consulting (`../index.html`, à remplacer
+(`https://www.motors-studio.fr/`), le lien vers Motor Consulting (`../index.html`, à remplacer
 par son domaine), l'e-mail, le téléphone et l'adresse.
 
 ## SEO

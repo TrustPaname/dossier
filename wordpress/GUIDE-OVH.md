@@ -1,6 +1,6 @@
 # Mettre les sites en ligne chez OVH (WordPress)
 
-Objectif : deux sites WordPress — **motor-consulting.fr** et **motor-corp.fr** — sur un seul
+Objectif : deux sites WordPress — **motorconsulting.fr** et **motorcorp.fr** — sur un seul
 hébergement OVH, chacun avec son thème (`motor-consulting.zip`, `motor-corp.zip`).
 
 Tout se passe dans l'espace client OVH : https://www.ovh.com/manager/ → onglet **Web Cloud**.
@@ -11,8 +11,8 @@ Tout se passe dans l'espace client OVH : https://www.ovh.com/manager/ → onglet
   commandés : Web Cloud → Commander → Nom de domaine.
 - Un **Hébergement Web** (offre *Pro* recommandée pour deux sites ; l'offre *Perso* fonctionne
   aussi). Web Cloud → Commander → Hébergement Web. Lors de la commande, rattachez
-  motor-consulting.fr ; motor-corp.fr sera ajouté ensuite.
-- Deux adresses e-mail sur vos domaines (contact@motor-consulting.fr, contact@motor-corp.fr) :
+  motorconsulting.fr ; motorcorp.fr sera ajouté ensuite.
+- Deux adresses e-mail sur vos domaines (contact@motorconsulting.fr, contact@motorcorp.fr) :
   Web Cloud → E-mails → votre domaine → **Ajouter un compte**. Elles serviront aux formulaires.
 
 Compter 10 à 30 minutes pour l'activation de l'hébergement (e-mail d'OVH), jusqu'à 24 h pour
@@ -21,10 +21,10 @@ la propagation des domaines.
 ## Étape 1 — Rattacher le second domaine à l'hébergement
 
 1. Web Cloud → **Hébergements** → votre hébergement → onglet **Multisite**.
-2. **Ajouter un domaine ou sous-domaine** → choisissez *motor-corp.fr* (domaine OVH).
+2. **Ajouter un domaine ou sous-domaine** → choisissez *motorcorp.fr* (domaine OVH).
 3. Cochez **www**, indiquez le dossier racine `motor-corp`, cochez **SSL**, laissez le pays
    par défaut, validez. OVH configure la zone DNS tout seul.
-4. Vérifiez que *motor-consulting.fr* est bien présent lui aussi (dossier `motor-consulting`
+4. Vérifiez que *motorconsulting.fr* est bien présent lui aussi (dossier `motor-consulting`
    ou `www`, SSL coché). Sinon, ajoutez-le de la même façon.
 5. Onglet **Informations générales** → bloc *Configuration* → **Modifier** → version PHP
    **8.2** ou supérieure, moteur *php*. Validez.
@@ -36,15 +36,15 @@ générales → IPv4**.
 ## Étape 2 — Installer WordPress en un clic (à faire deux fois)
 
 1. Hébergement → onglet **Modules en 1 clic** → **Ajouter un module**.
-2. Choisissez **WordPress**, puis le domaine (*motor-consulting.fr* la première fois,
-   *motor-corp.fr* la seconde). Langue : Français.
+2. Choisissez **WordPress**, puis le domaine (*motorconsulting.fr* la première fois,
+   *motorcorp.fr* la seconde). Langue : Français.
 3. Laissez « Installation avec les paramètres par défaut » ou renseignez vous-même
    l'identifiant administrateur et le mot de passe.
 4. Validez. Une base de données est créée automatiquement. Dans les 10 minutes, OVH vous
-   envoie un e-mail avec l'adresse d'administration (`https://motor-consulting.fr/wp-admin`)
+   envoie un e-mail avec l'adresse d'administration (`https://motorconsulting.fr/wp-admin`)
    et les identifiants.
 
-Refaites l'opération pour *motor-corp.fr*.
+Refaites l'opération pour *motorcorp.fr*.
 
 ## Étape 3 — Installer le thème (sur chaque site)
 
@@ -76,7 +76,7 @@ votre domaine.
 2. WP Mail SMTP → Réglages : *Autre SMTP* avec
    - Serveur SMTP : `ssl0.ovh.net`
    - Chiffrement : **SSL**, port **465**
-   - Authentification : oui — identifiant : l'adresse complète (`contact@motor-consulting.fr`),
+   - Authentification : oui — identifiant : l'adresse complète (`contact@motorconsulting.fr`),
      mot de passe : celui de la boîte créée à l'étape 0
    - Adresse d'expédition : la même adresse, nom : Motor Consulting
 3. Onglet **Test e-mail** : envoyez-vous un message.

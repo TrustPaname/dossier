@@ -14,7 +14,7 @@
   const CONFIG = Object.assign({
     formEndpoint: "",
     whatsapp: "33612345678",
-    email: "contact@motor-consulting.fr"
+    email: "contact@motorconsulting.fr"
   }, window.MC_CONFIG || {});
 
   /* Sur WordPress, les véhicules et les avis viennent de l'administration

@@ -57,7 +57,7 @@ function motor_defaults() {
 		'phone_display' => '06 12 34 56 78',
 		'phone_e164'    => '+33612345678',
 		'whatsapp'      => '33612345678',
-		'email'         => 'contact@motor-consulting.fr',
+		'email'         => 'contact@motorconsulting.fr',
 		'lead_email'    => get_option( 'admin_email' ),
 		'address'       => '24 avenue de la Grande-Armée, 75017 Paris',
 		'hours'         => 'Lun–Ven 9h–19h · Sam 10h–17h',

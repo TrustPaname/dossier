@@ -36,17 +36,17 @@ def build_consulting():
     html = re.sub(r'<link rel="manifest" href="site.webmanifest">\n', '', html)
     html = re.sub(r'<script src="assets/js/[^"]+" defer></script>\n', '', html)
     html = html.replace('href="assets/img/favicon.svg"', f'href="{URI}/assets/img/favicon.svg"')
-    html = html.replace('https://www.motor-consulting.fr/assets/img/og-cover.png', f'{URI}/assets/img/og-cover.png')
-    html = html.replace('href="https://www.motor-consulting.fr/"', 'href="<?php echo esc_url( home_url( \'/\' ) ); ?>"')
-    html = html.replace('content="https://www.motor-consulting.fr/"', 'content="<?php echo esc_url( home_url( \'/\' ) ); ?>"')
-    html = html.replace('"url": "https://www.motor-consulting.fr/"', '"url": "<?php echo esc_url( home_url( \'/\' ) ); ?>"')
+    html = html.replace('https://www.motorconsulting.fr/assets/img/og-cover.png', f'{URI}/assets/img/og-cover.png')
+    html = html.replace('href="https://www.motorconsulting.fr/"', 'href="<?php echo esc_url( home_url( \'/\' ) ); ?>"')
+    html = html.replace('content="https://www.motorconsulting.fr/"', 'content="<?php echo esc_url( home_url( \'/\' ) ); ?>"')
+    html = html.replace('"url": "https://www.motorconsulting.fr/"', '"url": "<?php echo esc_url( home_url( \'/\' ) ); ?>"')
 
     # coordonnées → Personnalisateur
     rep = {
         '06 12 34 56 78'                          : "<?php echo esc_html( motor_opt( 'phone_display' ) ); ?>",
         '+33612345678'                            : "<?php echo esc_attr( motor_opt( 'phone_e164' ) ); ?>",
         'wa.me/33612345678'                       : "wa.me/<?php echo esc_attr( motor_opt( 'whatsapp' ) ); ?>",
-        'contact@motor-consulting.fr'             : "<?php echo esc_html( motor_opt( 'email' ) ); ?>",
+        'contact@motorconsulting.fr'             : "<?php echo esc_html( motor_opt( 'email' ) ); ?>",
         '24 avenue de la Grande-Armée, 75017 Paris': "<?php echo esc_html( motor_opt( 'address' ) ); ?>",
         'Lun–Ven 9h–19h · Sam 10h–17h'            : "<?php echo esc_html( motor_opt( 'hours' ) ); ?>",
     }
@@ -68,14 +68,14 @@ def build_corp():
     html = html.replace("url('../assets/fonts/", f"url('{URI}/assets/fonts/")
     html = html.replace('src="../assets/img/', f'src="{URI}/assets/img/')
     html = html.replace('href="favicon.svg"', f'href="{URI}/favicon.svg"')
-    html = html.replace('href="https://www.motor-corp.fr/"', 'href="<?php echo esc_url( home_url( \'/\' ) ); ?>"')
-    html = html.replace('content="https://www.motor-corp.fr/"', 'content="<?php echo esc_url( home_url( \'/\' ) ); ?>"')
+    html = html.replace('href="https://www.motorcorp.fr/"', 'href="<?php echo esc_url( home_url( \'/\' ) ); ?>"')
+    html = html.replace('content="https://www.motorcorp.fr/"', 'content="<?php echo esc_url( home_url( \'/\' ) ); ?>"')
     rep = {
-        'https://www.motor-studio.fr/'             : "<?php echo esc_url( corp_opt( 'studio_url' ) ); ?>",
+        'https://www.motors-studio.fr/'             : "<?php echo esc_url( corp_opt( 'studio_url' ) ); ?>",
         '../index.html#contact'                    : "<?php echo esc_url( corp_opt( 'consulting_url' ) ); ?>#contact",
         '../index.html#apropos'                    : "<?php echo esc_url( corp_opt( 'consulting_url' ) ); ?>#apropos",
         '../index.html'                            : "<?php echo esc_url( corp_opt( 'consulting_url' ) ); ?>",
-        'contact@motor-corp.fr'                    : "<?php echo esc_html( corp_opt( 'email' ) ); ?>",
+        'contact@motorcorp.fr'                    : "<?php echo esc_html( corp_opt( 'email' ) ); ?>",
         '06 12 34 56 78'                           : "<?php echo esc_html( corp_opt( 'phone_display' ) ); ?>",
         '+33612345678'                             : "<?php echo esc_attr( corp_opt( 'phone_e164' ) ); ?>",
         '24 avenue de la Grande-Armée, 75017 Paris': "<?php echo esc_html( corp_opt( 'address' ) ); ?>",

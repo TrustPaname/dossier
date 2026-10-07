@@ -4,8 +4,8 @@ Deux thèmes WordPress prêts à l'emploi, construits à partir des sources de c
 
 | Thème | Archive | Pour quel site |
 |---|---|---|
-| **Motor Consulting** | `wordpress/motor-consulting.zip` | motor-consulting.fr (conseil, achat, vente, location) |
-| **Motor Corp** | `wordpress/motor-corp.zip` | motor-corp.fr (holding) |
+| **Motor Consulting** | `wordpress/motor-consulting.zip` | motorconsulting.fr (conseil, achat, vente, location) |
+| **Motor Corp** | `wordpress/motor-corp.zip` | motorcorp.fr (holding) |
 
 Chaque site est une installation WordPress distincte (un domaine = un WordPress = un thème).
 

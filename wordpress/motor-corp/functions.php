@@ -9,9 +9,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 function corp_defaults() {
 	return array(
-		'studio_url'     => 'https://www.motor-studio.fr/',
-		'consulting_url' => 'https://www.motor-consulting.fr/',
-		'email'          => 'contact@motor-corp.fr',
+		'studio_url'     => 'https://www.motors-studio.fr/',
+		'consulting_url' => 'https://www.motorconsulting.fr/',
+		'email'          => 'contact@motorcorp.fr',
 		'phone_display'  => '06 12 34 56 78',
 		'phone_e164'     => '+33612345678',
 		'address'        => '24 avenue de la Grande-Armée, 75017 Paris',
