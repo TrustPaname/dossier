@@ -436,6 +436,7 @@ add_action( 'admin_notices', function () {
 	if ( ! $screen || ! in_array( $screen->id, array( 'dashboard', 'themes' ), true ) ) {
 		return;
 	}
-	$dir = basename( motor_www_redirect_dir() );
-	echo '<div class="notice notice-info is-dismissible"><p><strong>Motor Consulting :</strong> pour que l\'adresse www fonctionne en HTTPS, rattachez chez OVH le domaine <code>www.' . esc_html( wp_parse_url( home_url(), PHP_URL_HOST ) ) . '</code> au dossier <code>' . esc_html( $dir ) . '</code> avec SSL (Hébergement → Mes sites → Ajouter un site). Le thème y a déposé la redirection.</p></div>';
+	$dir  = basename( motor_www_redirect_dir() );
+	$host = wp_parse_url( home_url(), PHP_URL_HOST );
+	echo '<div class="notice notice-success is-dismissible"><p><strong>Motor Consulting :</strong> la redirection de <code>www.' . esc_html( $host ) . '</code> vers ce site est prête dans le dossier <code>' . esc_html( $dir ) . '</code>. Rien à faire si ce domaine www est déjà rattaché à ce dossier chez OVH (Hébergement → Mes sites). Sinon, rattachez-le une fois : Ajouter un site → www → Configuration avancée → dossier <code>' . esc_html( $dir ) . '</code>.</p></div>';
 } );

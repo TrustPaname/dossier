@@ -45,3 +45,49 @@ add_action( 'customize_register', function ( $wp_customize ) {
 add_action( 'after_setup_theme', function () {
 	add_theme_support( 'html5', array( 'script', 'style' ) );
 } );
+
+/* -------------------------------------------------------------------------
+ * Redirection de www vers l'adresse sans www (hébergement mutualisé OVH).
+ * OVH n'accepte pas deux domaines sur un même dossier : www.<domaine> est
+ * rattaché au dossier voisin « motor-corp-www », où le thème dépose un
+ * .htaccess qui renvoie tout vers l'adresse principale (sauf Let's Encrypt).
+ * ---------------------------------------------------------------------- */
+function corp_www_redirect_dir() {
+	return dirname( rtrim( ABSPATH, '/\\' ) ) . '/motor-corp-www';
+}
+
+function corp_www_redirect_rules() {
+	$home = rtrim( home_url( '/' ), '/' );
+	return "# Généré par le thème Motor Corp — redirige www vers " . $home . "\n"
+		. "RewriteEngine On\n"
+		. "RewriteCond %{REQUEST_URI} !^/\\.well-known/ [NC]\n"
+		. "RewriteRule ^(.*)$ " . $home . "/$1 [R=301,L]\n";
+}
+
+add_action( 'admin_init', function () {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+	$dir   = corp_www_redirect_dir();
+	$file  = $dir . '/.htaccess';
+	$rules = corp_www_redirect_rules();
+	if ( ! is_dir( $dir ) ) {
+		@mkdir( $dir, 0755 );
+	}
+	if ( is_dir( $dir ) && ( ! file_exists( $file ) || file_get_contents( $file ) !== $rules ) ) {
+		@file_put_contents( $file, $rules );
+		@file_put_contents( $dir . '/index.html', '<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=' . esc_attr( home_url( '/' ) ) . '">' );
+	}
+} );
+
+add_action( 'admin_notices', function () {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+	$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+	if ( ! $screen || ! in_array( $screen->id, array( 'dashboard', 'themes' ), true ) ) {
+		return;
+	}
+	$host = wp_parse_url( home_url(), PHP_URL_HOST );
+	echo '<div class="notice notice-success is-dismissible"><p><strong>Motor Corp :</strong> la redirection de <code>www.' . esc_html( $host ) . '</code> vers ce site est prête dans le dossier <code>motor-corp-www</code>. Rien à faire si ce domaine www est déjà rattaché à ce dossier chez OVH (Hébergement → Mes sites). Sinon, rattachez-le une fois : Ajouter un site → www → Configuration avancée → dossier <code>motor-corp-www</code>.</p></div>';
+} );
