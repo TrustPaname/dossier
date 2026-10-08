@@ -14,7 +14,9 @@
   const CONFIG = Object.assign({
     formEndpoint: "",
     whatsapp: "33612345678",
-    email: "contact@motorconsulting.fr"
+    email: "contact@motorconsulting.fr",
+    refPrefix: "MC",
+    brand: "Motor Consulting"
   }, window.MC_CONFIG || {});
 
   /* Sur WordPress, les véhicules et les avis viennent de l'administration
@@ -138,6 +140,7 @@
      4. Véhicules : rendu, filtres, tri, modale
      ========================================================= */
   const grid = $("#vehicles-grid");
+  if (grid) {
   const emptyMsg = $("#vehicles-empty");
   const countEl = $("#results-count");
   const loadMore = $("#load-more");
@@ -328,6 +331,7 @@
     }
   });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !modal.hidden) closeModal(); });
+  }
 
   /* =========================================================
      5. Témoignages
@@ -491,7 +495,7 @@
 
   function reference() {
     const d = new Date();
-    return "MC-" + d.getFullYear() + String(d.getMonth() + 1).padStart(2, "0") + "-" + Math.random().toString(36).slice(2, 6).toUpperCase();
+    return CONFIG.refPrefix + "-" + d.getFullYear() + String(d.getMonth() + 1).padStart(2, "0") + "-" + Math.random().toString(36).slice(2, 6).toUpperCase();
   }
 
   function saveLocally(payload) {
@@ -605,7 +609,7 @@
   const waOpen = $("#wa-open"), waPanel = $("#wa-panel"), waClose = $("#wa-close");
   if (waOpen && waPanel) {
     const waText = $("#wa-text"), waSend = $("#wa-send"), waTime = $("#wa-time"), waBadge = $(".wa__badge", waOpen);
-    const greeting = "Bonjour Motor Consulting, je souhaite avoir des informations.";
+    const greeting = "Bonjour " + CONFIG.brand + ", je souhaite avoir des informations.";
     const buildLink = () => {
       const msg = (waText && waText.value.trim()) || greeting;
       return `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`;

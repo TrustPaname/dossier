@@ -1,0 +1,63 @@
+/* =========================================================
+   MOTORS STUDIO — surcharges de la feuille Motor Consulting
+   Même mise en page, palette rouge du logo Motors Studio.
+   ========================================================= */
+:root{
+  --bleu:#e3231a;          /* rouge principal (logo) */
+  --bleu-fonce:#b5160f;    /* survols */
+  --bleu-clair:#ff6a5f;    /* ligne d'accent sur fond sombre */
+  --bleu-soft:#fdeceb;     /* fonds d'icônes, pastilles */
+}
+.btn--primary{box-shadow:0 10px 26px rgba(227,35,26,.28)}
+.search__count{background:rgba(227,35,26,.14);border-color:rgba(227,35,26,.35)}
+/* icônes SVG encodées en bleu dans la feuille de base */
+.field--select select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6' fill='none' stroke='%23e3231a' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+.search__field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6' fill='none' stroke='%23ff6a5f' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+.list li::before{background-color:var(--bleu-soft);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m5 12.5 4.5 4.5L19 7.5' fill='none' stroke='%23e3231a' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+
+/* logo : proportions du logo Motors Studio (2:1) */
+.logo--compact img{width:124px}
+.footer__brand img{width:200px}
+.wa__btn img{width:46px}
+
+/* accueil : lueur rouge dans le fond généré */
+.hero__bg::before{background:
+  radial-gradient(60% 50% at 78% 38%,rgba(227,35,26,.28),transparent 60%),
+  radial-gradient(40% 40% at 20% 80%,rgba(255,106,95,.14),transparent 60%),
+  linear-gradient(180deg,#15171c 0%,#0f1115 60%,#0b0c10 100%)}
+
+/* devis express : champs texte sur fond sombre */
+.search__field input{width:100%;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:#fff;font:inherit;font-size:.95rem}
+.search__field input::placeholder{color:rgba(255,255,255,.4)}
+.search__field input:focus{outline:none;border-color:var(--bleu)}
+.search__field .field__error{color:#ff8a80;font-size:.76rem;margin:0;display:none}
+.search__field .field__error.is-visible{display:block}
+.search__field.has-error input{border-color:#ff6a5f}
+.search__submit{display:inline-flex;align-items:center;justify-content:center;gap:.5em;width:100%;padding:14px 20px;border:0;border-radius:12px;background:var(--bleu);color:#fff;font:inherit;font-weight:600;cursor:pointer;transition:background var(--t)}
+.search__submit:hover{background:var(--bleu-fonce)}
+.search__submit svg{width:16px;height:16px}
+.search .form__status{margin-top:4px}
+
+/* réalisations : vignettes avant / après */
+.works{display:grid;gap:18px}
+.work{display:flex;flex-direction:column;overflow:hidden;padding:0}
+.work__visual{position:relative;aspect-ratio:16/9;background:#1a1d23;overflow:hidden}
+.work__visual::before,.work__visual::after{content:"";position:absolute;inset:0}
+.work__visual::before{clip-path:polygon(0 0,58% 0,42% 100%,0 100%);filter:saturate(.25) brightness(.7)}
+.work__visual::after{clip-path:polygon(58% 0,100% 0,100% 100%,42% 100%)}
+.work__visual--1::before,.work__visual--1::after{background:radial-gradient(80% 60% at 50% 70%,#9aa3ad 0%,#4b535c 55%,#1a1d23 100%)}
+.work__visual--2::before,.work__visual--2::after{background:radial-gradient(80% 60% at 50% 60%,#cfd5db 0%,#6b737c 55%,#1a1d23 100%)}
+.work__visual--3::before,.work__visual--3::after{background:radial-gradient(80% 60% at 50% 70%,#e3231a 0%,#7a1410 55%,#1a1d23 100%)}
+.work__visual--4::before,.work__visual--4::after{background:radial-gradient(80% 60% at 50% 70%,#5b7fa6 0%,#243a55 55%,#1a1d23 100%)}
+.work__visual--5::before,.work__visual--5::after{background:radial-gradient(70% 60% at 50% 60%,#d9dde2 0%,#8a9098 55%,#1a1d23 100%)}
+.work__visual--6::before,.work__visual--6::after{background:radial-gradient(80% 60% at 50% 70%,#b3b9c2 0%,#3b424b 55%,#1a1d23 100%)}
+.work__tag{position:absolute;top:12px;z-index:1;padding:5px 11px;border-radius:var(--pill);font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.work__tag--before{left:12px;background:rgba(15,17,21,.75);color:#fff}
+.work__tag--after{right:12px;background:var(--bleu);color:#fff}
+.work__body{padding:18px 20px 20px;display:grid;gap:6px}
+.work__body h3{font-size:1.05rem;margin:0}
+.work__body p{margin:0;color:var(--ink-2);font-size:.92rem}
+.work__meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;padding:0;list-style:none}
+.work__meta li{padding:4px 10px;border-radius:var(--pill);background:var(--bg-2);border:1px solid var(--line);font-size:.74rem;color:var(--ink-2)}
+@media (min-width:600px){.works{grid-template-columns:1fr 1fr}}
+@media (min-width:900px){.works{grid-template-columns:repeat(3,1fr)}}

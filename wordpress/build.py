@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Construit les deux thèmes WordPress à partir des sources du dépôt.
+"""Construit les thèmes WordPress à partir des sources du dépôt.
 
   python3 wordpress/build.py
 
@@ -107,8 +107,13 @@ def zip_theme(name):
                 z.write(full, os.path.join(name, os.path.relpath(full, theme)))
     print(f"{out} ({os.path.getsize(out) // 1024} Ko)")
 
+# ---------------------------------------------------------------- MS Motors Studio
+# Thème existant du garage (fourni par le client), modifié : logo, charte rouge,
+# bulle WhatsApp. Pas de génération : le dossier wordpress/ms-motor-studio est la source.
+
 if __name__ == "__main__":
     build_consulting()
     build_corp()
     zip_theme("motor-consulting")
     zip_theme("motor-corp")
+    zip_theme("ms-motor-studio")
