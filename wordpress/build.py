@@ -107,6 +107,53 @@ def zip_theme(name):
                 z.write(full, os.path.join(name, os.path.relpath(full, theme)))
     print(f"{out} ({os.path.getsize(out) // 1024} Ko)")
 
+# ---------------------------------------------------------------- Motors Studio (nouveau site, base Consulting)
+def build_studio():
+    theme = os.path.join(WP, "motors-studio")
+    src   = os.path.join(ROOT, "motors-studio")
+    html  = open(os.path.join(src, "index.html"), encoding="utf-8").read()
+    html  = '<?php\n/**\n * Page d\'accueil Motors Studio — générée par wordpress/build.py à partir de motors-studio/index.html.\n * Ne pas modifier ici : modifiez motors-studio/index.html puis relancez le script.\n */\n?>\n' + html
+
+    # ressources gérées par functions.php
+    html = re.sub(r'<link rel="stylesheet" href="\.\./assets/css/styles\.css">\n', '', html)
+    html = re.sub(r'<link rel="stylesheet" href="studio\.css">\n', '', html)
+    html = re.sub(r'<script>window\.MC_CONFIG = [^\n]*</script>\n', '', html)
+    html = re.sub(r'<script src="(?:\.\./assets/js/|)[^"]+\.js" defer></script>\n', '', html)
+    html = html.replace('href="favicon.svg"', f'href="{URI}/favicon.svg"')
+    html = html.replace('https://www.motors-studio.fr/assets/img/og-cover.png', f'{URI}/assets/img/og-cover.png')
+    html = html.replace('href="https://www.motors-studio.fr/"', 'href="<?php echo esc_url( home_url( \'/\' ) ); ?>"')
+    html = html.replace('content="https://www.motors-studio.fr/"', 'content="<?php echo esc_url( home_url( \'/\' ) ); ?>"')
+    html = html.replace('"url": "https://www.motors-studio.fr/"', '"url": "<?php echo esc_url( home_url( \'/\' ) ); ?>"')
+    html = html.replace('src="../assets/img/', f'src="{URI}/assets/img/')
+
+    rep = {
+        'wa.me/33612345678'                           : "wa.me/<?php echo esc_attr( motor_opt( 'whatsapp' ) ); ?>",
+        'contact@motors-studio.fr'                    : "<?php echo esc_html( motor_opt( 'email' ) ); ?>",
+        '06 12 34 56 78'                              : "<?php echo esc_html( motor_opt( 'phone_display' ) ); ?>",
+        '+33612345678'                                : "<?php echo esc_attr( motor_opt( 'phone_e164' ) ); ?>",
+        '3 rue Florence Arthaud, 28310 Mainvilliers'  : "<?php echo esc_html( motor_opt( 'address' ) ); ?>",
+        'Lun–Sam 9h–12h · 13h30–19h'                  : "<?php echo esc_html( motor_opt( 'hours' ) ); ?>",
+    }
+    for a, b in rep.items():
+        html = html.replace(a, b)
+    html = php_head_foot(html)
+    open(os.path.join(theme, "front-page.php"), "w", encoding="utf-8").write(html)
+
+    # ressources : feuille commune + surcharge, scripts, polices, logos
+    css = os.path.join(theme, "assets", "css"); os.makedirs(css, exist_ok=True)
+    shutil.copy(os.path.join(ROOT, "assets", "css", "styles.css"), os.path.join(css, "styles.css"))
+    shutil.copy(os.path.join(src, "studio.css"), os.path.join(css, "studio.css"))
+    js = os.path.join(theme, "assets", "js"); os.makedirs(js, exist_ok=True)
+    shutil.copy(os.path.join(ROOT, "assets", "js", "main.js"), os.path.join(js, "main.js"))
+    shutil.copy(os.path.join(src, "studio.js"), os.path.join(js, "studio.js"))
+    shutil.copy(os.path.join(src, "data.js"), os.path.join(js, "data.js"))
+    copy_tree(os.path.join(ROOT, "assets", "fonts"), os.path.join(theme, "assets", "fonts"))
+    img = os.path.join(theme, "assets", "img"); os.makedirs(img, exist_ok=True)
+    for f in ("logo-motors-studio.png", "logo-motors-studio-light.png"):
+        shutil.copy(os.path.join(ROOT, "assets", "img", f), os.path.join(img, f))
+    shutil.copy(os.path.join(src, "favicon.svg"), os.path.join(theme, "favicon.svg"))
+    print("thème motors-studio : front-page.php + assets")
+
 # ---------------------------------------------------------------- MS Motors Studio
 # Thème existant du garage (fourni par le client), modifié : logo, charte rouge,
 # bulle WhatsApp. Pas de génération : le dossier wordpress/ms-motor-studio est la source.
@@ -114,6 +161,8 @@ def zip_theme(name):
 if __name__ == "__main__":
     build_consulting()
     build_corp()
+    build_studio()
     zip_theme("motor-consulting")
     zip_theme("motor-corp")
+    zip_theme("motors-studio")
     zip_theme("ms-motor-studio")

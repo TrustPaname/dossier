@@ -1,5 +1,11 @@
+<?php
+/**
+ * Page d'accueil Motors Studio — générée par wordpress/build.py à partir de motors-studio/index.html.
+ * Ne pas modifier ici : modifiez motors-studio/index.html puis relancez le script.
+ */
+?>
 <!DOCTYPE html>
-<html lang="fr">
+<html <?php language_attributes(); ?>>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,23 +14,21 @@
 <meta name="keywords" content="carrosserie, garage automobile, peinture voiture, débosselage sans peinture, réparation pare-chocs, entretien auto, vidange, freins, pneus, devis carrosserie gratuit">
 <meta name="author" content="Motors Studio">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://www.motors-studio.fr/">
+<link rel="canonical" href="<?php echo esc_url( home_url( '/' ) ); ?>">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="Motors Studio">
 <meta property="og:title" content="Motors Studio — Carrosserie & mécanique toutes marques">
 <meta property="og:description" content="Carrosserie, peinture, débosselage, mécanique et entretien. Devis gratuit, prise en charge assurance, véhicule de courtoisie.">
-<meta property="og:url" content="https://www.motors-studio.fr/">
-<meta property="og:image" content="https://www.motors-studio.fr/assets/img/og-cover.png">
+<meta property="og:url" content="<?php echo esc_url( home_url( '/' ) ); ?>">
+<meta property="og:image" content="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/og-cover.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#ffffff">
 
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="favicon.svg">
+<link rel="icon" href="<?php echo esc_url( get_template_directory_uri() ); ?>/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="<?php echo esc_url( get_template_directory_uri() ); ?>/favicon.svg">
 
-<link rel="stylesheet" href="../assets/css/styles.css">
-<link rel="stylesheet" href="studio.css">
 <script>document.documentElement.classList.add("js");</script>
 
 <script type="application/ld+json">
@@ -34,11 +38,11 @@
   "name": "Motors Studio",
   "slogan": "Carrosserie & mécanique toutes marques",
   "description": "Atelier de carrosserie et de mécanique automobile : redressage, peinture, débosselage sans peinture, entretien, révision, pneus, diagnostic. Devis gratuit et prise en charge assurance.",
-  "url": "https://www.motors-studio.fr/",
-  "telephone": "+33612345678",
-  "email": "contact@motors-studio.fr",
+  "url": "<?php echo esc_url( home_url( '/' ) ); ?>",
+  "telephone": "<?php echo esc_attr( motor_opt( 'phone_e164' ) ); ?>",
+  "email": "<?php echo esc_html( motor_opt( 'email' ) ); ?>",
   "priceRange": "€€",
-  "image": "https://www.motors-studio.fr/assets/img/og-cover.png",
+  "image": "<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/og-cover.png",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "3 rue Florence Arthaud",
@@ -55,15 +59,16 @@
   "sameAs": ["https://www.motorcorp.fr/"]
 }
 </script>
+<?php wp_head(); ?>
 </head>
-<body>
+<body <?php body_class(); ?>>
 <a class="skip-link" href="#main">Aller au contenu principal</a>
 
 <!-- ============ EN-TÊTE ============ -->
 <header class="header" id="header">
   <div class="container header__inner">
     <a class="logo logo--compact" href="#accueil" aria-label="Motors Studio, retour à l'accueil">
-      <img src="../assets/img/logo-motors-studio-light.png" alt="Motors Studio" width="300" height="150">
+      <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/logo-motors-studio-light.png" alt="Motors Studio" width="300" height="150">
     </a>
     <nav class="nav" id="nav" aria-label="Navigation principale">
       <ul class="nav__list">
@@ -76,7 +81,7 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
       <div class="nav__cta">
-        <a class="nav__tel" href="tel:+33612345678"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 6 6l1.5-2 4 1.5v3c0 .9-.7 1.6-1.6 1.5C10.6 19.9 4.1 13.4 3.5 5.1A1.5 1.5 0 0 1 5 3.5h1.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg> 06 12 34 56 78</a>
+        <a class="nav__tel" href="tel:<?php echo esc_attr( motor_opt( 'phone_e164' ) ); ?>"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 6 6l1.5-2 4 1.5v3c0 .9-.7 1.6-1.6 1.5C10.6 19.9 4.1 13.4 3.5 5.1A1.5 1.5 0 0 1 5 3.5h1.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg> <?php echo esc_html( motor_opt( 'phone_display' ) ); ?></a>
         <a class="btn btn--primary" href="#devis">Devis gratuit</a>
       </div>
     </nav>
@@ -118,7 +123,7 @@
         <div class="search__field"><label for="q-marque">Marque et modèle</label>
           <input type="text" id="q-marque" name="vehicule" placeholder="Peugeot 308"></div>
         <div class="search__field"><label for="q-tel">Téléphone</label>
-          <input type="tel" id="q-tel" name="telephone" placeholder="06 12 34 56 78" required><p class="field__error" data-error-for="q-tel"></p></div>
+          <input type="tel" id="q-tel" name="telephone" placeholder="<?php echo esc_html( motor_opt( 'phone_display' ) ); ?>" required><p class="field__error" data-error-for="q-tel"></p></div>
         <div class="search__field"><label for="q-sinistre">Sinistre assurance ?</label>
           <select id="q-sinistre" name="assurance"><option>Non</option><option>Oui, dossier assurance</option><option>Je ne sais pas</option></select></div>
       </div>
@@ -225,7 +230,7 @@
         </div>
         <div class="field">
           <label for="e-tel">Téléphone <span class="req" aria-hidden="true">*</span></label>
-          <input type="tel" id="e-tel" name="telephone" autocomplete="tel" placeholder="06 12 34 56 78" required>
+          <input type="tel" id="e-tel" name="telephone" autocomplete="tel" placeholder="<?php echo esc_html( motor_opt( 'phone_display' ) ); ?>" required>
           <p class="field__error" data-error-for="e-tel"></p>
         </div>
       </div>
@@ -338,13 +343,13 @@
     <div class="contact">
       <div class="reveal">
         <ul class="infos">
-          <li class="card"><strong>Téléphone</strong><a href="tel:+33612345678">06 12 34 56 78</a><small>Lun–Sam 9h–12h · 13h30–19h</small></li>
-          <li class="card"><strong>E-mail</strong><a href="mailto:contact@motors-studio.fr">contact@motors-studio.fr</a></li>
-          <li class="card"><strong>WhatsApp</strong><a href="https://wa.me/33612345678?text=Bonjour%2C%20je%20souhaite%20un%20devis%20carrosserie." target="_blank" rel="noopener">Envoyer des photos sur WhatsApp</a><small>Premier chiffrage sous 24h</small></li>
-          <li class="card"><strong>Atelier</strong><span>3 rue Florence Arthaud, 28310 Mainvilliers</span><small>Aux portes de Chartres · Dépôt du véhicule dès 9h</small></li>
+          <li class="card"><strong>Téléphone</strong><a href="tel:<?php echo esc_attr( motor_opt( 'phone_e164' ) ); ?>"><?php echo esc_html( motor_opt( 'phone_display' ) ); ?></a><small><?php echo esc_html( motor_opt( 'hours' ) ); ?></small></li>
+          <li class="card"><strong>E-mail</strong><a href="mailto:<?php echo esc_html( motor_opt( 'email' ) ); ?>"><?php echo esc_html( motor_opt( 'email' ) ); ?></a></li>
+          <li class="card"><strong>WhatsApp</strong><a href="https://wa.me/<?php echo esc_attr( motor_opt( 'whatsapp' ) ); ?>?text=Bonjour%2C%20je%20souhaite%20un%20devis%20carrosserie." target="_blank" rel="noopener">Envoyer des photos sur WhatsApp</a><small>Premier chiffrage sous 24h</small></li>
+          <li class="card"><strong>Atelier</strong><span><?php echo esc_html( motor_opt( 'address' ) ); ?></span><small>Aux portes de Chartres · Dépôt du véhicule dès 9h</small></li>
         </ul>
         <div class="map">
-          <p class="map__fallback">3 rue Florence Arthaud, 28310 Mainvilliers</p>
+          <p class="map__fallback"><?php echo esc_html( motor_opt( 'address' ) ); ?></p>
           <a class="map__link" href="https://www.google.com/maps/dir/?api=1&amp;destination=Motors%20Studio%2C%203%20rue%20Florence%20Arthaud%2C%2028310%20Mainvilliers" target="_blank" rel="noopener">Itinéraire ↗</a>
         </div>
       </div>
@@ -359,7 +364,7 @@
           </div>
           <div class="field">
             <label for="c-tel">Téléphone <span class="req" aria-hidden="true">*</span></label>
-            <input type="tel" id="c-tel" name="telephone" autocomplete="tel" placeholder="06 12 34 56 78" required>
+            <input type="tel" id="c-tel" name="telephone" autocomplete="tel" placeholder="<?php echo esc_html( motor_opt( 'phone_display' ) ); ?>" required>
             <p class="field__error" data-error-for="c-tel"></p>
           </div>
         </div>
@@ -403,7 +408,7 @@
 <footer class="footer">
   <div class="container footer__inner">
     <div class="footer__brand">
-      <a class="logo" href="#accueil" aria-label="Motors Studio, retour à l'accueil"><img src="../assets/img/logo-motors-studio.png" alt="Motors Studio" width="510" height="255" loading="lazy"></a>
+      <a class="logo" href="#accueil" aria-label="Motors Studio, retour à l'accueil"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/logo-motors-studio.png" alt="Motors Studio" width="510" height="255" loading="lazy"></a>
       <p>Carrosserie, peinture, débosselage sans peinture, mécanique et entretien toutes marques. Atelier du groupe <a href="https://www.motorcorp.fr/">Motor Corp</a>.</p>
     </div>
     <nav class="footer__col" aria-label="Prestations"><h3>Prestations</h3><ul><li><a href="#services">Carrosserie</a></li><li><a href="#services">Peinture</a></li><li><a href="#services">Débosselage sans peinture</a></li><li><a href="#services">Mécanique et entretien</a></li><li><a href="#devis">Devis gratuit</a></li></ul></nav>
@@ -420,7 +425,7 @@
 <div class="wa" id="wa">
   <div class="wa__panel" id="wa-panel" hidden>
     <div class="wa__head">
-      <img src="../assets/img/logo-motors-studio-light.png" alt="" width="40" height="40">
+      <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/logo-motors-studio-light.png" alt="" width="40" height="40">
       <div><strong>Motors Studio</strong><small>En ligne · répond en quelques minutes</small></div>
       <button class="wa__close" type="button" id="wa-close" aria-label="Fermer la discussion">✕</button>
     </div>
@@ -430,26 +435,23 @@
     <div class="wa__form">
       <label class="sr-only" for="wa-text">Votre message</label>
       <input type="text" id="wa-text" placeholder="Écrivez votre message…" autocomplete="off">
-      <a id="wa-send" href="https://wa.me/33612345678" target="_blank" rel="noopener" aria-label="Envoyer sur WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 11.5 20 4l-4 16-4.5-6.5L3.5 11.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m11.5 13.5 8.5-9.5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></a>
+      <a id="wa-send" href="https://wa.me/<?php echo esc_attr( motor_opt( 'whatsapp' ) ); ?>" target="_blank" rel="noopener" aria-label="Envoyer sur WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 11.5 20 4l-4 16-4.5-6.5L3.5 11.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m11.5 13.5 8.5-9.5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></a>
     </div>
   </div>
   <button class="wa__btn" id="wa-open" type="button" aria-label="Discuter en direct sur WhatsApp" aria-expanded="false" aria-controls="wa-panel">
     <span class="wa__ring" aria-hidden="true"></span>
-    <img src="../assets/img/logo-motors-studio-light.png" alt="" width="44" height="22">
+    <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/logo-motors-studio-light.png" alt="" width="44" height="22">
     <span class="wa__badge" aria-hidden="true">1</span>
   </button>
 </div>
 
 <!-- Barre d'action mobile -->
 <div class="mobile-bar" aria-label="Contact rapide">
-  <a class="mobile-bar__btn" href="tel:+33612345678"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 6 6l1.5-2 4 1.5v3c0 .9-.7 1.6-1.6 1.5C10.6 19.9 4.1 13.4 3.5 5.1A1.5 1.5 0 0 1 5 3.5h1.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg> Appeler</a>
-  <a class="mobile-bar__btn mobile-bar__btn--wa" href="https://wa.me/33612345678?text=Bonjour%2C%20je%20souhaite%20un%20devis%20carrosserie." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5a8.5 8.5 0 0 0-7.3 12.8L3.5 20.5l4.4-1.1A8.5 8.5 0 1 0 12 3.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 8.6c.3-.6.6-.6 1-.6.4 0 .6.4.8.9.2.5.4.9.1 1.3-.2.3-.5.4-.3.8.4.9 1.4 1.9 2.3 2.3.4.2.5-.1.8-.3.4-.3.8-.1 1.3.1.5.2.9.4.9.8s0 .7-.6 1c-.6.3-1.6.4-3-.2a8 8 0 0 1-3.7-3.7c-.6-1.4-.5-2.4-.2-3Z" fill="currentColor"/></svg> WhatsApp</a>
+  <a class="mobile-bar__btn" href="tel:<?php echo esc_attr( motor_opt( 'phone_e164' ) ); ?>"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 6 6l1.5-2 4 1.5v3c0 .9-.7 1.6-1.6 1.5C10.6 19.9 4.1 13.4 3.5 5.1A1.5 1.5 0 0 1 5 3.5h1.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg> Appeler</a>
+  <a class="mobile-bar__btn mobile-bar__btn--wa" href="https://wa.me/<?php echo esc_attr( motor_opt( 'whatsapp' ) ); ?>?text=Bonjour%2C%20je%20souhaite%20un%20devis%20carrosserie." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5a8.5 8.5 0 0 0-7.3 12.8L3.5 20.5l4.4-1.1A8.5 8.5 0 1 0 12 3.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 8.6c.3-.6.6-.6 1-.6.4 0 .6.4.8.9.2.5.4.9.1 1.3-.2.3-.5.4-.3.8.4.9 1.4 1.9 2.3 2.3.4.2.5-.1.8-.3.4-.3.8-.1 1.3.1.5.2.9.4.9.8s0 .7-.6 1c-.6.3-1.6.4-3-.2a8 8 0 0 1-3.7-3.7c-.6-1.4-.5-2.4-.2-3Z" fill="currentColor"/></svg> WhatsApp</a>
   <a class="mobile-bar__btn mobile-bar__btn--cta" href="#devis">Devis</a>
 </div>
 
-<script>window.MC_CONFIG = Object.assign({ refPrefix: "MS", brand: "Motors Studio", email: "contact@motors-studio.fr" }, window.MC_CONFIG || {});</script>
-<script src="data.js" defer></script>
-<script src="../assets/js/main.js" defer></script>
-<script src="studio.js" defer></script>
+<?php wp_footer(); ?>
 </body>
 </html>

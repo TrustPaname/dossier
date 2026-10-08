@@ -1,0 +1,13 @@
+/*
+Theme Name: Motors Studio
+Theme URI: https://www.motors-studio.fr/
+Author: Motor Corp
+Description: Site vitrine Motors Studio — carrosserie, peinture, débosselage sans peinture, mécanique et entretien toutes marques à Mainvilliers. Même base que le thème Motor Consulting : devis express, formulaires envoyés par e-mail, témoignages gérables dans l'administration, coordonnées dans le Personnalisateur, bulle WhatsApp.
+Version: 1.0.0
+Requires at least: 6.0
+Tested up to: 6.6
+Requires PHP: 7.4
+License: Proprietary
+Text Domain: motors-studio
+*/
+/* La feuille de styles réelle est assets/css/styles.css + assets/css/studio.css, chargées par functions.php. */
