@@ -36,7 +36,7 @@ function motor_ouverture_mod( $k, $d = '' ) {
 
 /** Date-heure d'ouverture (objet DateTime dans le fuseau du site) ou null. */
 function motor_ouverture_date() {
-	$date  = trim( (string) motor_ouverture_mod( 'date', '2027-11-05' ) );
+	$date  = trim( (string) motor_ouverture_mod( 'date', '2026-11-05' ) );
 	$heure = trim( (string) motor_ouverture_mod( 'heure', '09:00' ) );
 	try {
 		return new DateTime( $date . ' ' . ( $heure ? $heure : '09:00' ), wp_timezone() );
@@ -72,7 +72,7 @@ add_action( 'customize_register', function ( $wp_customize ) {
 	) );
 	$fields = array(
 		'active'  => array( 'Afficher la page d\'attente aux visiteurs', 'checkbox', 1 ),
-		'date'    => array( 'Date d\'ouverture (AAAA-MM-JJ)', 'text', '2027-11-05' ),
+		'date'    => array( 'Date d\'ouverture (AAAA-MM-JJ)', 'text', '2026-11-05' ),
 		'heure'   => array( 'Heure d\'ouverture (HH:MM)', 'text', '09:00' ),
 		'titre'   => array( 'Texte au-dessus de la date', 'text', 'Ouverture le' ),
 		'message' => array( 'Phrase sous le compte à rebours (facultatif)', 'text', '' ),
