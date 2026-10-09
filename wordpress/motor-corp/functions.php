@@ -7,6 +7,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// Page « Ouverture prochaine » avec compte à rebours (Apparence → Personnaliser).
+$motor_ouverture = array(
+	'prefix'  => 'corp_',
+	'nom'     => 'Motor Corp',
+	'logo'    => 'assets/img/logo-motor-corp.png',
+	'couleur' => '#f04a00',
+	'police'  => array( 'Archivo', 'assets/fonts/archivo-latin.woff2' ),
+);
+require get_template_directory() . '/inc-ouverture.php';
+
 function corp_defaults() {
 	return array(
 		'studio_url'     => 'https://www.motors-studio.fr/',

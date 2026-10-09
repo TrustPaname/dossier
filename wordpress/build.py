@@ -158,10 +158,17 @@ def build_studio():
 # Thème existant du garage (fourni par le client), modifié : logo, charte rouge,
 # bulle WhatsApp. Pas de génération : le dossier wordpress/ms-motor-studio est la source.
 
+def copy_shared():
+    """Modules partagés (page d'ouverture avec compte à rebours)."""
+    for name in ("motor-consulting", "motor-corp", "motors-studio"):
+        shutil.copy(os.path.join(WP, "_partage", "inc-ouverture.php"), os.path.join(WP, name, "inc-ouverture.php"))
+    print("module inc-ouverture.php copié dans les trois thèmes")
+
 if __name__ == "__main__":
     build_consulting()
     build_corp()
     build_studio()
+    copy_shared()
     zip_theme("motor-consulting")
     zip_theme("motor-corp")
     zip_theme("motors-studio")

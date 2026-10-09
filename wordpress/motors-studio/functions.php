@@ -14,6 +14,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 define( 'MOTOR_VERSION', '1.0.0' );
 
+// Page « Ouverture prochaine » avec compte à rebours (Apparence → Personnaliser).
+$motor_ouverture = array(
+	'prefix'  => 'motor_',
+	'nom'     => 'Motors Studio',
+	'logo'    => 'assets/img/logo-motors-studio.png',
+	'couleur' => '#e3231a',
+	'police'  => array( 'Outfit', 'assets/fonts/outfit-300-800-latin.woff2' ),
+);
+require get_template_directory() . '/inc-ouverture.php';
+
 /* ------------------------------------------------------------------
  * 1. Réglages de base, styles et scripts
  * ---------------------------------------------------------------- */
