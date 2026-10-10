@@ -1,0 +1,13 @@
+{
+  "name": "Motor Consulting — Achat, vente et location de véhicules d'occasion",
+  "short_name": "Motor Consulting",
+  "description": "L'expertise automobile à votre service : recherche, négociation, achat, vente et location de véhicules d'occasion à Paris et en Île-de-France.",
+  "lang": "fr",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#08080a",
+  "theme_color": "#08080a",
+  "icons": [
+    { "src": "assets/img/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
