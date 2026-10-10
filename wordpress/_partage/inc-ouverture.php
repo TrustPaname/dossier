@@ -50,7 +50,9 @@ function motor_ouverture_active() {
 	if ( ! motor_ouverture_mod( 'active', 1 ) ) {
 		return false;
 	}
-	if ( is_user_logged_in() && current_user_can( 'edit_theme_options' ) ) {
+	// ?ouverture=1 dans l'adresse : force l'affichage de la page d'attente, même connecté (pour vérifier).
+	$force = isset( $_GET['ouverture'] ) && '1' === $_GET['ouverture']; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	if ( ! $force && is_user_logged_in() && current_user_can( 'edit_theme_options' ) ) {
 		return false; // l'administrateur continue de voir et régler le vrai site
 	}
 	if ( is_customize_preview() ) {
@@ -99,7 +101,7 @@ add_action( 'admin_notices', function () {
 	if ( ! $d || $d->getTimestamp() <= current_time( 'timestamp', true ) ) {
 		return;
 	}
-	echo '<div class="notice notice-warning"><p><strong>' . esc_html( motor_ouverture_cfg( 'nom', 'Site' ) ) . ' :</strong> les visiteurs voient la page « Ouverture le ' . esc_html( wp_date( 'j F Y', $d->getTimestamp() ) ) . ' » avec le compte à rebours. Vous voyez le vrai site parce que vous êtes connecté. Pour ouvrir le site : Apparence → Personnaliser → Ouverture prochaine → décochez la case.</p></div>';
+	echo '<div class="notice notice-warning"><p><strong>' . esc_html( motor_ouverture_cfg( 'nom', 'Site' ) ) . ' :</strong> les visiteurs voient la page « Ouverture le ' . esc_html( wp_date( 'j F Y', $d->getTimestamp() ) ) . ' » avec le compte à rebours. Vous voyez le vrai site parce que vous êtes connecté : pour la voir vous-même, <a href="' . esc_url( home_url( '/?ouverture=1' ) ) . '" target="_blank">ouvrez cette page</a>. Pour ouvrir le site au public : Apparence → Personnaliser → Ouverture prochaine → décochez la case.</p></div>';
 } );
 
 /** Interception de toutes les pages publiques. */
