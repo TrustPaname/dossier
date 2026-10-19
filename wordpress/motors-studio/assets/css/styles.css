@@ -156,6 +156,12 @@ button.link{background:none;border:0;padding:0;cursor:pointer;font-family:var(--
 .search__field select:focus{outline:none;border-color:var(--bleu)}
 .search--vente{gap:14px}
 .search--vente .search__grid{gap:10px 12px}
+.search--vente .search__grid{grid-template-columns:repeat(6,1fr)}
+.search--vente .search__field{grid-column:span 3}
+.search--vente .search__field--third{grid-column:span 2}
+.search--vente .search__field--full{grid-column:1 / -1}
+.search--vente .search__field select{padding-top:12px;padding-bottom:12px;color:#fff}
+.search--vente .search__field.has-error select{border-color:#f87171}
 .search__field--full{grid-column:1 / -1}
 .search__field input{width:100%;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:#fff;font:inherit;font-size:.95rem;transition:border-color var(--t),background var(--t)}
 .search__field input::placeholder{color:rgba(255,255,255,.38)}

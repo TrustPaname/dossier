@@ -379,8 +379,9 @@ function motor_handle_lead( WP_REST_Request $req ) {
 
 	$labels = array(
 		'nom' => 'Nom', 'telephone' => 'Téléphone', 'email' => 'E-mail', 'sujet' => 'Demande',
-		'marque' => 'Marque', 'modele' => 'Modèle', 'annee' => 'Année', 'kilometrage' => 'Kilométrage',
-		'carburant' => 'Carburant', 'etat' => 'État', 'message' => 'Message', 'reference' => 'Référence',
+		'marque' => 'Marque', 'modele' => 'Modèle', 'finition' => 'Finition', 'immatriculation' => 'Immatriculation',
+		'annee' => 'Année', 'kilometrage' => 'Kilométrage', 'carburant' => 'Carburant', 'boite' => 'Boîte',
+		'etat' => 'État', 'message' => 'Message', 'reference' => 'Référence',
 	);
 	$lines = array( 'Nouvelle demande reçue sur le site Motor Consulting.', '' );
 	foreach ( $labels as $k => $label ) {

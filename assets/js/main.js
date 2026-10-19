@@ -459,6 +459,11 @@
       const k = parseInt(val, 10);
       if (isNaN(k) || k < 0 || k > 1000000) { showError(field, "Indiquez un kilométrage réaliste (0 à 1 000 000 km)."); return false; }
     }
+    if (field.name === "immatriculation") {
+      const im = val.toUpperCase().replace(/[\s-]+/g, "");
+      if (!/^[A-Z]{2}\d{3}[A-Z]{2}$/.test(im) && !/^\d{1,4}[A-Z]{1,3}\d{2,3}$/.test(im)) { showError(field, "Plaque invalide (ex. AB-123-CD)."); return false; }
+      field.value = /^[A-Z]{2}\d{3}[A-Z]{2}$/.test(im) ? im.replace(/^([A-Z]{2})(\d{3})([A-Z]{2})$/, "$1-$2-$3") : im;
+    }
     if (field.name === "nom" && val.length < 2) { showError(field, "Indiquez votre nom complet."); return false; }
     if (field.name === "message" && field.required && val.length < 10) { showError(field, "Détaillez un peu votre demande (10 caractères minimum)."); return false; }
 

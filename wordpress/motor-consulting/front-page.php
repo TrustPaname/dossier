@@ -129,10 +129,16 @@
           <input type="text" id="v-marque" name="marque" placeholder="Renault" autocomplete="off" required><p class="field__error" data-error-for="v-marque"></p></div>
         <div class="search__field field"><label for="v-modele">Modèle <span class="req" aria-hidden="true">*</span></label>
           <input type="text" id="v-modele" name="modele" placeholder="Clio V" autocomplete="off" required><p class="field__error" data-error-for="v-modele"></p></div>
-        <div class="search__field field"><label for="v-annee">Année <span class="req" aria-hidden="true">*</span></label>
+        <div class="search__field field"><label for="v-finition">Finition <span class="req" aria-hidden="true">*</span></label>
+          <input type="text" id="v-finition" name="finition" placeholder="TCe 100 Intens" autocomplete="off" required><p class="field__error" data-error-for="v-finition"></p></div>
+        <div class="search__field field"><label for="v-immat">Immatriculation <span class="req" aria-hidden="true">*</span></label>
+          <input type="text" id="v-immat" name="immatriculation" placeholder="AB-123-CD" autocomplete="off" autocapitalize="characters" spellcheck="false" required><p class="field__error" data-error-for="v-immat"></p></div>
+        <div class="search__field search__field--third field"><label for="v-annee">Année <span class="req" aria-hidden="true">*</span></label>
           <input type="number" id="v-annee" name="annee" placeholder="2019" min="1950" max="2027" inputmode="numeric" required><p class="field__error" data-error-for="v-annee"></p></div>
-        <div class="search__field field"><label for="v-km">Kilométrage <span class="req" aria-hidden="true">*</span></label>
+        <div class="search__field search__field--third field"><label for="v-km">Kilométrage <span class="req" aria-hidden="true">*</span></label>
           <input type="number" id="v-km" name="kilometrage" placeholder="85000" min="0" max="1000000" inputmode="numeric" required><p class="field__error" data-error-for="v-km"></p></div>
+        <div class="search__field search__field--third field"><label for="v-carburant">Carburant <span class="req" aria-hidden="true">*</span></label>
+          <select id="v-carburant" name="carburant" required><option value="">Choisir…</option><option>Essence</option><option>Diesel</option><option>Hybride</option><option>Hybride rechargeable</option><option>Électrique</option><option>GPL</option></select><p class="field__error" data-error-for="v-carburant"></p></div>
         <div class="search__field field"><label for="v-nom">Nom et prénom <span class="req" aria-hidden="true">*</span></label>
           <input type="text" id="v-nom" name="nom" autocomplete="name" required><p class="field__error" data-error-for="v-nom"></p></div>
         <div class="search__field field"><label for="v-tel">Téléphone <span class="req" aria-hidden="true">*</span></label>
@@ -314,6 +320,18 @@
           <label for="e-modele">Modèle <span class="req" aria-hidden="true">*</span></label>
           <input type="text" id="e-modele" name="modele" placeholder="Clio V" required>
           <p class="field__error" data-error-for="e-modele"></p>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="e-finition">Finition <span class="req" aria-hidden="true">*</span></label>
+          <input type="text" id="e-finition" name="finition" placeholder="TCe 100 Intens" required>
+          <p class="field__error" data-error-for="e-finition"></p>
+        </div>
+        <div class="field">
+          <label for="e-immat">Immatriculation <span class="req" aria-hidden="true">*</span></label>
+          <input type="text" id="e-immat" name="immatriculation" placeholder="AB-123-CD" autocapitalize="characters" spellcheck="false" required>
+          <p class="field__error" data-error-for="e-immat"></p>
         </div>
       </div>
       <div class="field-row field-row--3">
