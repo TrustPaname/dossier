@@ -141,10 +141,12 @@ def build_studio():
     html = html.replace('src="../assets/img/', f'src="{URI}/assets/img/')
 
     rep = {
-        'wa.me/33612345678'                           : "wa.me/<?php echo esc_attr( motor_opt( 'whatsapp' ) ); ?>",
+        'wa.me/33766636776'                           : "wa.me/<?php echo esc_attr( motor_opt( 'whatsapp' ) ); ?>",
         'contact@motors-studio.fr'                    : "<?php echo esc_html( motor_opt( 'email' ) ); ?>",
-        '06 12 34 56 78'                              : "<?php echo esc_html( motor_opt( 'phone_display' ) ); ?>",
-        '+33612345678'                                : "<?php echo esc_attr( motor_opt( 'phone_e164' ) ); ?>",
+        '09 55 32 08 89'                              : "<?php echo esc_html( motor_opt( 'phone_display' ) ); ?>",
+        '+33955320889'                                : "<?php echo esc_attr( motor_opt( 'phone_e164' ) ); ?>",
+        '07 66 63 67 76'                              : "<?php echo esc_html( motor_opt( 'mobile_display' ) ); ?>",
+        '+33766636776'                                : "<?php echo esc_attr( motor_opt( 'mobile_e164' ) ); ?>",
         '3 rue Florence Arthaud, 28300 Mainvilliers'  : "<?php echo esc_html( motor_opt( 'address' ) ); ?>",
         'href="mentions-legales.html"'              : 'href="<?php echo esc_url( home_url( \'/mentions-legales/\' ) ); ?>"',
         'href="confidentialite.html"'               : 'href="<?php echo esc_url( home_url( \'/confidentialite/\' ) ); ?>"',
@@ -175,8 +177,8 @@ def build_studio():
         nom="Motors Studio", domaine="motors-studio.fr", logo="assets/img/logo-motors-studio-light.png", type="atelier",
         opt="motor_opt", legal_fn="mc_legal", static_dir=src, theme_dir=theme, assets_prefix="../",
         css_extra='\n<link rel="stylesheet" href="studio.css">',
-        static=dict(tel="06 12 34 56 78", tel_link="+33612345678", email="contact@motors-studio.fr",
-                    adresse="3 rue Florence Arthaud, 28300 Mainvilliers", raison="MOTORS STUDIO", rcs="Chartres"),
+        static=dict(tel="09 55 32 08 89", tel_link="+33955320889", email="contact@motors-studio.fr",
+                    adresse="3 rue Florence Arthaud, 28300 Mainvilliers", raison="MOTORS STUDIO", rcs="Chartres", siret="109 223 586 00016"),
     ), php_head_foot)
 
 # ---------------------------------------------------------------- MS Motors Studio

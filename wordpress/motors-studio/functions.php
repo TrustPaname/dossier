@@ -24,7 +24,7 @@ $motor_ouverture = array(
 );
 require get_template_directory() . '/inc-ouverture.php';
 
-$motor_legal = array( 'prefix' => 'motor_', 'nom' => 'Motors Studio', 'opt' => 'motor_opt' );
+$motor_legal = array( 'prefix' => 'motor_', 'nom' => 'Motors Studio', 'opt' => 'motor_opt', 'defaults' => array( 'siret' => '109 223 586 00016' ) );
 require get_template_directory() . '/inc-legal.php';
 
 $motor_mail = array( 'prefix' => 'motor_', 'opt' => 'motor_opt', 'nom' => 'Motors Studio' );
@@ -70,11 +70,13 @@ add_action( 'wp_enqueue_scripts', function () {
  * ---------------------------------------------------------------- */
 function motor_defaults() {
 	return array(
-		'phone_display' => '06 12 34 56 78',
-		'phone_e164'    => '+33612345678',
-		'whatsapp'      => '33612345678',
+		'phone_display'  => '09 55 32 08 89',
+		'phone_e164'     => '+33955320889',
+		'mobile_display' => '07 66 63 67 76',
+		'mobile_e164'    => '+33766636776',
+		'whatsapp'       => '33766636776',
 		'email'         => 'contact@motors-studio.fr',
-		'lead_email'    => get_option( 'admin_email' ),
+		'lead_email'    => 'contact@motors-studio.fr',
 		'address'       => '3 rue Florence Arthaud, 28300 Mainvilliers',
 		'hours'         => 'Lun–Sam 9h–12h · 13h30–19h',
 		'demo'          => 1,
@@ -94,9 +96,11 @@ add_action( 'customize_register', function ( $wp_customize ) {
 	) );
 
 	$fields = array(
-		'phone_display' => array( 'Téléphone affiché', 'text' ),
-		'phone_e164'    => array( 'Téléphone pour les liens (format +33…)', 'text' ),
-		'whatsapp'      => array( 'Numéro WhatsApp (chiffres seulement, ex. 33612345678)', 'text' ),
+		'phone_display'  => array( 'Téléphone fixe affiché', 'text' ),
+		'phone_e164'     => array( 'Téléphone fixe pour les liens (format +33…)', 'text' ),
+		'mobile_display' => array( 'Téléphone mobile affiché', 'text' ),
+		'mobile_e164'    => array( 'Téléphone mobile pour les liens (format +33…)', 'text' ),
+		'whatsapp'       => array( 'Numéro WhatsApp (chiffres seulement, ex. 33766636776)', 'text' ),
 		'email'         => array( 'E-mail affiché sur le site', 'email' ),
 		'lead_email'    => array( 'E-mail qui reçoit les demandes des formulaires', 'email' ),
 		'address'       => array( 'Adresse', 'text' ),

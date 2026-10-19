@@ -40,7 +40,8 @@ function mc_legal_fields() {
 }
 
 function mc_legal_defaults() {
-	return array(
+	$cfg = $GLOBALS['mc_legal_cfg'];
+	return array_merge( array(
 		'raison'        => strtoupper( mc_legal_cfg( 'nom' ) ),
 		'forme'         => '',
 		'capital'       => '',
@@ -50,7 +51,7 @@ function mc_legal_defaults() {
 		'gerant'        => '',
 		'mediateur'     => '',
 		'mediateur_url' => '',
-	);
+	), isset( $cfg['defaults'] ) && is_array( $cfg['defaults'] ) ? $cfg['defaults'] : array() );
 }
 
 function mc_legal_val( $key ) {

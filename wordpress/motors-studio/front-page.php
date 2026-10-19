@@ -122,7 +122,7 @@
         <div class="search__field"><label for="q-marque">Marque et modèle</label>
           <input type="text" id="q-marque" name="vehicule" placeholder="Peugeot 308"></div>
         <div class="search__field"><label for="q-tel">Téléphone</label>
-          <input type="tel" id="q-tel" name="telephone" placeholder="<?php echo esc_html( motor_opt( 'phone_display' ) ); ?>" required><p class="field__error" data-error-for="q-tel"></p></div>
+          <input type="tel" id="q-tel" name="telephone" placeholder="06 00 00 00 00" required><p class="field__error" data-error-for="q-tel"></p></div>
         <div class="search__field"><label for="q-sinistre">Sinistre assurance ?</label>
           <select id="q-sinistre" name="assurance"><option>Non</option><option>Oui, dossier assurance</option><option>Je ne sais pas</option></select></div>
       </div>
@@ -229,7 +229,7 @@
         </div>
         <div class="field">
           <label for="e-tel">Téléphone <span class="req" aria-hidden="true">*</span></label>
-          <input type="tel" id="e-tel" name="telephone" autocomplete="tel" placeholder="<?php echo esc_html( motor_opt( 'phone_display' ) ); ?>" required>
+          <input type="tel" id="e-tel" name="telephone" autocomplete="tel" placeholder="06 00 00 00 00" required>
           <p class="field__error" data-error-for="e-tel"></p>
         </div>
       </div>
@@ -341,7 +341,7 @@
     <div class="contact">
       <div class="reveal">
         <ul class="infos">
-          <li class="card"><strong>Téléphone</strong><a href="tel:<?php echo esc_attr( motor_opt( 'phone_e164' ) ); ?>"><?php echo esc_html( motor_opt( 'phone_display' ) ); ?></a><small><?php echo esc_html( motor_opt( 'hours' ) ); ?></small></li>
+          <li class="card"><strong>Téléphone</strong><a href="tel:<?php echo esc_attr( motor_opt( 'phone_e164' ) ); ?>"><?php echo esc_html( motor_opt( 'phone_display' ) ); ?></a><a href="tel:<?php echo esc_attr( motor_opt( 'mobile_e164' ) ); ?>"><?php echo esc_html( motor_opt( 'mobile_display' ) ); ?></a><small><?php echo esc_html( motor_opt( 'hours' ) ); ?></small></li>
           <li class="card"><strong>E-mail</strong><a href="mailto:<?php echo esc_html( motor_opt( 'email' ) ); ?>"><?php echo esc_html( motor_opt( 'email' ) ); ?></a></li>
           <li class="card"><strong>WhatsApp</strong><a href="https://wa.me/<?php echo esc_attr( motor_opt( 'whatsapp' ) ); ?>?text=Bonjour%2C%20je%20souhaite%20un%20devis%20carrosserie." target="_blank" rel="noopener">Envoyer des photos sur WhatsApp</a><small>Premier chiffrage sous 24h</small></li>
           <li class="card"><strong>Atelier</strong><span><?php echo esc_html( motor_opt( 'address' ) ); ?></span><small>Aux portes de Chartres · Dépôt du véhicule dès 9h</small></li>
@@ -362,7 +362,7 @@
           </div>
           <div class="field">
             <label for="c-tel">Téléphone <span class="req" aria-hidden="true">*</span></label>
-            <input type="tel" id="c-tel" name="telephone" autocomplete="tel" placeholder="<?php echo esc_html( motor_opt( 'phone_display' ) ); ?>" required>
+            <input type="tel" id="c-tel" name="telephone" autocomplete="tel" placeholder="06 00 00 00 00" required>
             <p class="field__error" data-error-for="c-tel"></p>
           </div>
         </div>
