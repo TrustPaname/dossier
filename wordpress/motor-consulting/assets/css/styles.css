@@ -443,8 +443,8 @@ body.is-locked{overflow:hidden}
   .hero__inner{grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
   .search{padding:28px}
   .grid{grid-template-columns:repeat(3,1fr)}
-  .services{grid-template-columns:repeat(5,1fr)}
-  .services .service{padding:26px 20px}
+  .services{grid-template-columns:repeat(3,1fr)}
+  .values--2{grid-template-columns:repeat(2,1fr)}
   .steps{grid-template-columns:repeat(4,1fr)}
   .steps--col{grid-template-columns:1fr}
   .depot{grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
@@ -488,6 +488,8 @@ body.is-locked{overflow:hidden}
 /* ==================== DÉPÔT-VENTE & FAQ ==================== */
 .depot{display:grid;gap:40px}
 .depot .list{margin-top:18px}
+.depot .list li strong{color:var(--ink)}
+.values--2{margin-top:16px}
 .depot__actions{margin-top:24px}
 .steps--col{list-style:none;margin:0;padding:0;display:grid;gap:14px}
 .faq{display:grid;gap:12px;max-width:900px}

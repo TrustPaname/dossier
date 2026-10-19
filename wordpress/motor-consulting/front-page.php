@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Achat, vente et dépôt-vente de voitures d'occasion à Chartres — Motor Consulting</title>
 <meta name="description" content="Vendez votre voiture au meilleur prix, achetez un véhicule d'occasion inspecté ou confiez-le-nous en dépôt-vente à Chartres (Mainvilliers, Eure-et-Loir). Estimation gratuite sous 24h.">
-<meta name="keywords" content="vendre sa voiture Chartres, dépôt-vente voiture Chartres, achat voiture occasion Chartres, rachat voiture Eure-et-Loir, estimation gratuite véhicule, voiture occasion Mainvilliers, dépôt vente automobile 28">
+<meta name="keywords" content="vendre sa voiture Chartres, dépôt-vente voiture Chartres, achat voiture occasion Chartres, rachat voiture Eure-et-Loir, estimation gratuite véhicule, voiture occasion Mainvilliers, dépôt vente automobile 28, expertise avant achat voiture Chartres, accompagnement achat voiture particulier, contrôle véhicule occasion avant achat">
 <meta name="author" content="Motor Consulting">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="<?php echo esc_url( home_url( '/' ) ); ?>">
@@ -71,7 +71,7 @@
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dépôt-vente automobile", "description": "Nous vendons votre voiture pour vous : annonce, visites, négociation, paiement sécurisé et formalités.", "areaServed": "Chartres, Eure-et-Loir" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Recherche et négociation de véhicule", "description": "Mandat de recherche : nous trouvons, inspectons et négocions le véhicule à votre place." } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Location de véhicule", "description": "Location courte ou longue durée, LOA et LLD." } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Expertise automobile", "description": "Inspection avant achat et évaluation de véhicule d'occasion." } }
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Accompagnement à l'achat et expertise avant achat", "description": "Inspection du véhicule repéré chez un particulier ou un autre garage, vérification de l'historique, recherche de vices cachés, contrôle des documents et conseil sur le paiement sécurisé.", "areaServed": "Chartres, Eure-et-Loir, Île-de-France" } }
     ]
   }
 }
@@ -139,6 +139,14 @@
     },
     {
       "@type": "Question",
+      "name": "Pouvez-vous m'accompagner pour acheter une voiture à un particulier ou dans un autre garage ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, c'est notre service d'accompagnement à l'achat. Vous nous indiquez le véhicule repéré ; nous vous accompagnons à la visite (ou nous y allons pour vous), contrôlons la mécanique, la carrosserie et l'historique, recherchons les vices cachés, vérifions les documents et l'identité du vendeur, puis vous conseillons sur le paiement pour éviter les escroqueries. Vous recevez un rapport écrit et notre avis sur le prix."
+      }
+    },
+    {
+      "@type": "Question",
       "name": "Pouvez-vous rechercher un véhicule précis pour moi ?",
       "acceptedAnswer": {
         "@type": "Answer",
@@ -164,8 +172,8 @@
         <li><a href="#vehicules">Acheter</a></li>
         <li><a href="#estimation">Vendre</a></li>
         <li><a href="#depot-vente">Dépôt-vente</a></li>
+        <li><a href="#accompagnement">Expertise</a></li>
         <li><a href="#services">Services</a></li>
-        <li><a href="#methode">Méthode</a></li>
         <li><a href="#apropos">À propos</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -187,7 +195,7 @@
     <div>
       <span class="hero__badge">L'expertise automobile à votre service</span>
       <h1>Achetez, vendez ou déposez votre voiture d'occasion <span class="accent">à Chartres, en toute confiance !</span></h1>
-      <p class="hero__sub">Achat · Vente · Dépôt-vente · Reprise · Location — Estimation gratuite sous 24h</p>
+      <p class="hero__sub">Achat · Vente · Dépôt-vente · Reprise · Expertise avant achat · Location — Estimation gratuite sous 24h</p>
       <p class="hero__sub2"><strong id="hero-count">12</strong> véhicules d'occasion disponibles, inspectés et négociés, à Mainvilliers près de Chartres et partout en France.</p>
       <div class="hero__actions">
         <a class="btn btn--primary" href="#vehicules"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m16 16 4.5 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> Acheter un véhicule</a>
@@ -333,7 +341,7 @@
   <div class="container">
     <header class="section__head reveal">
       <span class="label">Nos services</span>
-      <h2>Cinq expertises, <span class="accent">un seul interlocuteur</span></h2>
+      <h2>Six expertises, <span class="accent">un seul interlocuteur</span></h2>
       <p class="lead">Pour les particuliers comme pour les professionnels. L'expertise du véhicule, le contrôle technique et les démarches administratives sont inclus à chaque étape.</p>
     </header>
     <div class="services">
@@ -341,6 +349,7 @@
       <article class="service card reveal reveal--d1"><span class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M7.5 20h9M3.5 8.5h17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M3.5 8.5 1.4 13.6a2.6 2.6 0 0 0 4.2 0L3.5 8.5Zm17 0-2.1 5.1a2.6 2.6 0 0 0 4.2 0L20.5 8.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span><span class="label">Négociation</span><h3>Le juste prix, argumenté</h3><p>État réel, historique, cote du marché : nous négocions à votre place, à l'achat comme à la vente. En moyenne 1 480 € économisés par dossier.</p><a class="link" href="#contact">Faire négocier mon dossier <span aria-hidden="true">→</span></a></article>
       <article class="service card reveal reveal--d2"><span class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 17.5v-3.4l2-4.4c.35-.8 1-1.2 1.9-1.2h9.2c.9 0 1.55.4 1.9 1.2l2 4.4v3.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M3.5 17.5h17M5.6 14.1h2.6M15.8 14.1h2.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="label">Achat / Vente</span><h3>Acheter ou vendre sans effort</h3><p>Voitures d'occasion inspectées, reprise de votre véhicule avec offre de rachat sous 24h, paiement sécurisé et dossier administratif complet.</p><a class="link" href="#estimation" data-intent="vendre">Vendre ma voiture <span aria-hidden="true">→</span></a></article>
       <article class="service card reveal reveal--d2"><span class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5h16v11a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 18.5v-11Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 7.5V6a4 4 0 0 1 8 0v1.5M9 12h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="label">Dépôt-vente</span><h3>Nous vendons pour vous</h3><p>Vous restez propriétaire, nous gérons tout : annonce, visites, essais, négociation, paiement sécurisé et formalités. Payé dès la vente.</p><a class="link" href="#vente-form" data-intent="depot">Déposer mon véhicule <span aria-hidden="true">→</span></a></article>
+      <article class="service card reveal reveal--d3"><span class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5 4 5.4v6c0 5 3.4 9.3 8 10.9 4.6-1.6 8-5.9 8-10.9v-6l-8-2.9Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m8.6 12 2.4 2.4 4.6-4.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Accompagnement à l'achat</span><h3>Achetez ailleurs, protégé par un expert</h3><p>Vous avez repéré une voiture chez un particulier ou un autre garage ? Nous l'inspectons, vérifions son historique, traquons les vices cachés et sécurisons le paiement.</p><a class="link" href="#accompagnement">Me faire accompagner <span aria-hidden="true">→</span></a></article>
       <article class="service card reveal reveal--d3"><span class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="15.6" cy="8.4" r="4.4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12.5 11.5 3.5 20.5M6.4 17.6l2.1 2.1M8.8 15.2l2.1 2.1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="label">Location</span><h3>Courte ou longue durée</h3><p>Location, LOA ou LLD : nous comparons les offres, décryptons les contrats et sélectionnons la formule réellement adaptée à votre usage.</p><a class="link" href="#contact">Étudier une location <span aria-hidden="true">→</span></a></article>
     </div>
   </div>
@@ -370,6 +379,40 @@
       <li class="step card"><span class="step__num">2</span><h3>Exposition et diffusion</h3><p>Votre voiture est préparée, photographiée et exposée dans notre vitrine en ligne et sur les principaux sites d'annonces. Nous filtrons les acheteurs et organisons les essais.</p></li>
       <li class="step card"><span class="step__num">3</span><h3>Vente et paiement sécurisé</h3><p>Nous négocions, vérifions le paiement et gérons les formalités. Vous recevez le prix convenu par virement dès l'encaissement, sans acheteur fantôme ni chèque douteux.</p></li>
     </ol>
+  </div>
+</section>
+
+<!-- ============ ACCOMPAGNEMENT À L'ACHAT ============ -->
+<section class="section" id="accompagnement">
+  <div class="container depot">
+    <div class="reveal">
+      <span class="label">Expertise avant achat</span>
+      <h2>Vous achetez à un particulier ou à un autre garage ? <span class="accent">Un expert vous accompagne</span></h2>
+      <p class="lead">Compteur trafiqué, accident dissimulé, véhicule gagé, faux chèque de banque, acompte envolé : les escroqueries à la voiture d'occasion se multiplient. Vous avez repéré un véhicule ailleurs ? Nous vous accompagnons à chaque étape, de la première visite au paiement, pour acheter sans mauvaise surprise.</p>
+      <ul class="list">
+        <li><span><strong>Contrôle complet du véhicule</strong> : mécanique, carrosserie, châssis, électronique, essai routier et lecture des codes défauts</span></li>
+        <li><span><strong>Historique vérifié</strong> : kilométrage, sinistres, entretien, situation administrative (gage, opposition, vol)</span></li>
+        <li><span><strong>Recherche de vices cachés</strong> : traces de choc, corrosion, réparations masquées, usure anormale</span></li>
+        <li><span><strong>Contrôle des documents</strong> : carte grise, identité du vendeur, contrôle technique, certificat de cession</span></li>
+        <li><span><strong>Conseil sur le paiement</strong> : mode de règlement sûr, pas d'acompte à l'aveugle, remise des clés et des papiers sécurisée</span></li>
+        <li><span><strong>Négociation</strong> du prix selon les défauts constatés, puis rapport écrit remis le jour même</span></li>
+      </ul>
+      <div class="hero__actions depot__actions">
+        <a class="btn btn--primary" href="#contact" data-intent="expertise">Me faire accompagner</a>
+        <a class="btn btn--outline" href="tel:<?php echo esc_attr( motor_opt( 'phone_e164' ) ); ?>"><?php echo esc_html( motor_opt( 'phone_display' ) ); ?></a>
+      </div>
+    </div>
+    <div class="reveal reveal--d1">
+      <h3 class="team__title">Les pièges que nous vous évitons</h3>
+      <div class="values values--2">
+        <div class="value card"><span class="label">Compteur trafiqué</span><p>Kilométrage recoupé avec l'historique d'entretien, les contrôles techniques et l'usure réelle.</p></div>
+        <div class="value card"><span class="label">Accident caché</span><p>Mesure des épaisseurs de peinture, inspection du châssis et des points de soudure.</p></div>
+        <div class="value card"><span class="label">Véhicule gagé ou volé</span><p>Certificat de situation administrative et identité du vendeur vérifiés avant tout paiement.</p></div>
+        <div class="value card"><span class="label">Faux chèque de banque</span><p>Paiement sécurisé, vérification auprès de la banque, remise des clés seulement une fois les fonds confirmés.</p></div>
+        <div class="value card"><span class="label">Acompte sans voir la voiture</span><p>Jamais d'argent versé avant l'inspection physique du véhicule et des documents originaux.</p></div>
+        <div class="value card"><span class="label">Panne dès la sortie</span><p>Essai routier, lecture des codes défauts et contrôle des organes coûteux : moteur, boîte, embrayage, distribution.</p></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -554,6 +597,7 @@
       <details class="faq__item card"><summary>Quelles garanties si j'achète une voiture d'occasion chez vous ?</summary><p>Chaque véhicule est inspecté en 120 points (mécanique, carrosserie, historique, kilométrage), vendu avec un contrôle technique de moins de six mois et couvert par la garantie légale de conformité. Vous recevez un rapport écrit, défauts compris, avant de vous engager.</p></details>
       <details class="faq__item card"><summary>Quels documents dois-je fournir pour vendre ou déposer mon véhicule ?</summary><p>La carte grise, un contrôle technique de moins de six mois pour un véhicule de plus de quatre ans, le certificat de situation administrative (non-gage), le carnet d'entretien et les factures, les clés et une pièce d'identité. Nous vous aidons à réunir ce qui manque.</p></details>
       <details class="faq__item card"><summary>Intervenez-vous en dehors de Chartres ?</summary><p>Notre agence est à Mainvilliers, aux portes de Chartres. Nous intervenons à Lucé, Luisant, Lèves, Dreux, Châteaudun, Nogent-le-Rotrou et dans tout l'Eure-et-Loir, ainsi qu'en Île-de-France. Les véhicules vendus peuvent être livrés partout en France.</p></details>
+      <details class="faq__item card"><summary>Pouvez-vous m'accompagner pour acheter une voiture à un particulier ou dans un autre garage ?</summary><p>Oui, c'est notre service d'accompagnement à l'achat. Vous nous indiquez le véhicule repéré ; nous vous accompagnons à la visite (ou nous y allons pour vous), contrôlons la mécanique, la carrosserie et l'historique, recherchons les vices cachés, vérifions les documents et l'identité du vendeur, puis vous conseillons sur le paiement pour éviter les escroqueries. Vous recevez un rapport écrit et notre avis sur le prix.</p></details>
       <details class="faq__item card"><summary>Pouvez-vous rechercher un véhicule précis pour moi ?</summary><p>Oui, avec un mandat de recherche : vous définissez le modèle, le budget et les critères ; nous trouvons le véhicule partout en France, vérifions son historique, l'inspectons et négocions le prix. Les honoraires ne sont dus que si vous achetez.</p></details>
     </div>
   </div>
@@ -608,6 +652,7 @@
             <option value="Acheter un véhicule">Acheter un véhicule</option>
             <option value="Rechercher un véhicule">Rechercher un véhicule</option>
             <option value="Location (courte ou longue durée)">Location (courte ou longue durée)</option>
+            <option value="Accompagnement à l'achat (expertise)">Accompagnement à l'achat d'un véhicule (expertise)</option>
             <option value="Expertise / estimation">Expertise / estimation</option>
             <option value="Question sur un véhicule en vente">Question sur un véhicule en vente</option>
             <option value="Autre">Autre</option>
@@ -638,9 +683,9 @@
   <div class="container footer__inner">
     <div class="footer__brand">
       <a class="logo" href="#accueil" aria-label="Motor Consulting, retour à l'accueil"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/logo-motor-consulting-600.png" alt="Motor Consulting" width="600" height="345" loading="lazy"></a>
-      <p>Achat, vente, dépôt-vente, reprise, recherche et location de voitures d'occasion à Chartres (Mainvilliers), en Eure-et-Loir et en Île-de-France.</p>
+      <p>Achat, vente, dépôt-vente, reprise, expertise avant achat et location de voitures d'occasion à Chartres (Mainvilliers), en Eure-et-Loir et en Île-de-France.</p>
     </div>
-    <nav class="footer__col" aria-label="Services"><h3>Services</h3><ul><li><a href="#services">Recherche de véhicule</a></li><li><a href="#services">Négociation</a></li><li><a href="#services">Achat / Vente</a></li><li><a href="#depot-vente">Dépôt-vente</a></li><li><a href="#services">Location</a></li><li><a href="#estimation">Estimation gratuite</a></li></ul></nav>
+    <nav class="footer__col" aria-label="Services"><h3>Services</h3><ul><li><a href="#services">Recherche de véhicule</a></li><li><a href="#services">Négociation</a></li><li><a href="#services">Achat / Vente</a></li><li><a href="#depot-vente">Dépôt-vente</a></li><li><a href="#accompagnement">Accompagnement à l'achat</a></li><li><a href="#services">Location</a></li><li><a href="#estimation">Estimation gratuite</a></li></ul></nav>
     <nav class="footer__col" aria-label="Navigation"><h3>Le site</h3><ul><li><a href="#vehicules">Véhicules disponibles</a></li><li><a href="#methode">Comment ça marche</a></li><li><a href="#avis">Avis clients</a></li><li><a href="#faq">Questions fréquentes</a></li><li><a href="#apropos">À propos</a></li><li><a href="#contact">Contact</a></li></ul></nav>
     <div class="footer__col"><h3>Zone d'intervention</h3><p class="footer__seo">Achat, vente et dépôt-vente de voiture d'occasion à Chartres, Mainvilliers, Lucé, Luisant, Lèves, Dreux, Châteaudun, Nogent-le-Rotrou et dans tout l'Eure-et-Loir (28). Rachat de voiture, expertise automobile et estimation gratuite de véhicule, déplacements en Île-de-France et dans toute la France.</p></div>
   </div>

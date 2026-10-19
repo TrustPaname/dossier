@@ -55,7 +55,7 @@
   });
 
   // Pré-remplit le sujet du formulaire de contact selon l'intention cliquée
-  const INTENTS = { vendre: "Vendre un véhicule", depot: "Dépôt-vente", estimation: "Expertise / estimation" };
+  const INTENTS = { vendre: "Vendre un véhicule", depot: "Dépôt-vente", estimation: "Expertise / estimation", expertise: "Accompagnement à l'achat (expertise)" };
   $$("[data-intent]").forEach((el) => {
     el.addEventListener("click", () => {
       const valeur = INTENTS[el.dataset.intent];
