@@ -178,6 +178,7 @@ def copy_shared():
         shutil.copy(os.path.join(WP, "_partage", "inc-ouverture.php"), os.path.join(WP, name, "inc-ouverture.php"))
     for name in ("motor-consulting",):
         shutil.copy(os.path.join(WP, "_partage", "inc-legal.php"), os.path.join(WP, name, "inc-legal.php"))
+        shutil.copy(os.path.join(WP, "_partage", "inc-mail.php"), os.path.join(WP, name, "inc-mail.php"))
     print("modules partagés (inc-ouverture.php, inc-legal.php) copiés")
 
 if __name__ == "__main__":

@@ -28,6 +28,9 @@ require get_template_directory() . '/inc-ouverture.php';
 $motor_legal = array( 'prefix' => 'motor_', 'nom' => 'Motor Consulting', 'opt' => 'motor_opt' );
 require get_template_directory() . '/inc-legal.php';
 
+$motor_mail = array( 'prefix' => 'motor_', 'opt' => 'motor_opt', 'nom' => 'Motor Consulting' );
+require get_template_directory() . '/inc-mail.php';
+
 /* ------------------------------------------------------------------
  * 1. Réglages de base, styles et scripts
  * ---------------------------------------------------------------- */
