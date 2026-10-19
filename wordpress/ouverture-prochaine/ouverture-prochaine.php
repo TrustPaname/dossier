@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Ouverture prochaine (compte à rebours)
  * Description: Affiche aux visiteurs une page « Ouverture le … » avec un compte à rebours, quel que soit le thème actif. Réglages : Apparence → Personnaliser → Ouverture prochaine. Les administrateurs connectés voient le vrai site ; ajoutez ?ouverture=1 à l'adresse pour voir la page d'attente.
- * Version: 1.3.1
+ * Version: 1.4.0
  * Author: Motor Corp
  */
 
@@ -18,7 +18,7 @@ function ouverture_prochaine_config() {
 	$sites = array(
 		'motor-consulting' => array( 'nom' => 'Motor Consulting', 'logo' => 'assets/img/logo-motor-consulting-600.png', 'couleur' => '#0a8cff', 'police' => array( 'Outfit', 'assets/fonts/outfit-300-800-latin.woff2' ) ),
 		'motor-corp'       => array( 'nom' => 'Motor Corp',       'logo' => 'assets/img/logo-motor-corp.png',            'couleur' => '#f04a00', 'police' => array( 'Archivo', 'assets/fonts/archivo-latin.woff2' ) ),
-		'motors-studio'    => array( 'nom' => 'Motors Studio',    'logo' => 'assets/img/logo-motors-studio.png',         'couleur' => '#e3231a', 'police' => array( 'Outfit', 'assets/fonts/outfit-300-800-latin.woff2' ), 'message' => 'Profitez de nos offres d\'ouverture : les premiers clients à prendre rendez-vous bénéficient de conditions exclusives.', 'bouton' => 'Prendre rendez-vous', 'bouton_ancre' => '#devis' ),
+		'motors-studio'    => array( 'nom' => 'Motors Studio',    'logo' => 'assets/img/logo-motors-studio.png',         'couleur' => '#e3231a', 'police' => array( 'Outfit', 'assets/fonts/outfit-300-800-latin.woff2' ), 'kicker' => 'Ça bouge à Mainvilliers · Votre nouveau garage pour Chartres et alentours', 'message_titre' => 'Offres de lancement', 'message' => 'Réservées aux 20 premiers rendez-vous pris', 'offres' => array( array( '-50 %', 'Carrosserie · Peinture · Redressage', 'hors assurance' ), array( '-40 %', 'Pneumatiques', 'montage, équilibrage, remplacement' ), array( 'Franchise offerte', 'Pare-brise', '+ balais d\'essuie-glace offerts' ) ), 'message_note' => 'Offres valables pour les 20 premiers rendez-vous, voir conditions à l\'atelier.', 'bouton' => 'Réserver mon rendez-vous', 'bouton_ancre' => '#devis' ),
 		'ms-motor-studio'  => array( 'nom' => 'Motors Studio',    'logo' => 'assets/img/logo-motors-studio.png',         'couleur' => '#e3231a', 'police' => array() ),
 	);
 	$c = isset( $sites[ $theme ] ) ? $sites[ $theme ] : array( 'nom' => get_bloginfo( 'name' ), 'logo' => '', 'couleur' => '#0a8cff', 'police' => array() );
@@ -207,20 +207,26 @@ function ouverture_prochaine_render( $overlay = false ) {
   radial-gradient(40% 35% at 85% 90%,<?php echo esc_attr( $couleur ); ?>22,transparent 60%),
   linear-gradient(180deg,#15171c 0%,#0b0c10 70%);z-index:-2}
 <?php echo $r; ?>::after{content:"";position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(70% 70% at 50% 50%,#000 20%,transparent 100%);-webkit-mask-image:radial-gradient(70% 70% at 50% 50%,#000 20%,transparent 100%);z-index:-1}
-<?php echo $o; ?>.o{display:grid;gap:26px;justify-items:center;max-width:860px;animation:in .9s ease both}
+<?php echo $o; ?>.o{display:grid;gap:18px;justify-items:center;max-width:860px;width:100%;animation:in .9s ease both}
 @keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-<?php echo $o; ?>.o__logo{width:min(300px,64vw);height:auto;filter:drop-shadow(0 20px 40px rgba(0,0,0,.6))}
+<?php echo $o; ?>.o__logo{width:min(240px,56vw);height:auto;filter:drop-shadow(0 20px 40px rgba(0,0,0,.6))}
 <?php echo $o; ?>.o__nom{font-size:clamp(1.1rem,2.4vw,1.5rem);font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,255,255,.72)}
-<?php echo $o; ?>.o__kicker{display:inline-flex;align-items:center;gap:.7em;padding:9px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05);font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
+<?php echo $o; ?>.o__kicker{display:inline-flex;align-items:center;gap:.7em;padding:8px 16px;max-width:92vw;text-align:center;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05);font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
 <?php echo $o; ?>.o__kicker::before{content:"";width:7px;height:7px;border-radius:50%;background:<?php echo esc_attr( $couleur ); ?>;box-shadow:0 0 12px <?php echo esc_attr( $couleur ); ?>}
-<?php echo $o; ?>.o__date{font-size:clamp(1.9rem,6vw,4rem);font-weight:800;line-height:1.08;letter-spacing:-.02em;color:#fff;font-family:inherit}
+<?php echo $o; ?>.o__date{font-size:clamp(1.7rem,5.2vw,3.4rem);font-weight:800;line-height:1.08;letter-spacing:-.02em;color:#fff;font-family:inherit}
 <?php echo $o; ?>.o__date em{font-style:italic;color:<?php echo esc_attr( $couleur ); ?>;white-space:nowrap;display:inline-block}
 <?php echo $o; ?>.o__cd{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:6px}
-<?php echo $o; ?>.o__cell{min-width:clamp(74px,16vw,118px);padding:16px 10px 12px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(8px)}
-<?php echo $o; ?>.o__cell b{display:block;font-size:clamp(1.9rem,5.2vw,3.2rem);font-weight:800;line-height:1;font-variant-numeric:tabular-nums;color:#fff}
+<?php echo $o; ?>.o__cell{min-width:clamp(64px,14vw,100px);padding:12px 8px 10px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(8px)}
+<?php echo $o; ?>.o__cell b{display:block;font-size:clamp(1.6rem,4.5vw,2.6rem);font-weight:800;line-height:1;font-variant-numeric:tabular-nums;color:#fff}
 <?php echo $o; ?>.o__cell span{display:block;margin-top:8px;font-size:.64rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.55)}
-<?php echo $o; ?>.o__msg{position:relative;margin-top:14px;max-width:640px;padding:22px 26px 20px;border-radius:20px;background:linear-gradient(135deg,<?php echo esc_attr( $couleur ); ?>2e,<?php echo esc_attr( $couleur ); ?>14);border:1px solid <?php echo esc_attr( $couleur ); ?>80;box-shadow:0 0 0 6px <?php echo esc_attr( $couleur ); ?>14,0 20px 50px rgba(0,0,0,.45);color:#fff;font-size:clamp(1.05rem,2.3vw,1.3rem);line-height:1.5;animation:pulse 2.4s ease-in-out infinite}
-<?php echo $o; ?>.o__msg strong{font-weight:700;color:#fff}
+<?php echo $o; ?>.o__msg{position:relative;margin-top:10px;max-width:720px;width:100%;padding:22px 20px 16px;border-radius:20px;background:linear-gradient(135deg,<?php echo esc_attr( $couleur ); ?>2e,<?php echo esc_attr( $couleur ); ?>14);border:1px solid <?php echo esc_attr( $couleur ); ?>80;box-shadow:0 0 0 6px <?php echo esc_attr( $couleur ); ?>14,0 20px 50px rgba(0,0,0,.45);color:#fff;font-size:clamp(1.05rem,2.3vw,1.3rem);line-height:1.5;animation:pulse 2.4s ease-in-out infinite}
+<?php echo $o; ?>.o__msg strong{display:block;font-weight:700;color:#fff}
+<?php echo $o; ?>.o__offres{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));text-align:center}
+<?php echo $o; ?>.o__offres li{display:grid;gap:3px;padding:11px 10px;border-radius:14px;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.12)}
+<?php echo $o; ?>.o__offres b{font-size:clamp(1.5rem,4vw,2.1rem);font-weight:800;line-height:1;color:<?php echo esc_attr( $couleur ); ?>;letter-spacing:-.02em}
+<?php echo $o; ?>.o__offres span{font-size:.92rem;font-weight:700;color:#fff;line-height:1.25}
+<?php echo $o; ?>.o__offres small{font-size:.72rem;color:rgba(255,255,255,.65);line-height:1.3}
+<?php echo $o; ?>.o__note{display:block;margin-top:12px;font-size:.72rem;font-style:normal;color:rgba(255,255,255,.5)}
 <?php echo $o; ?>.o__msg-tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);white-space:nowrap;padding:5px 14px;border-radius:999px;background:<?php echo esc_attr( $couleur ); ?>;color:#fff;font-size:.68rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;box-shadow:0 6px 18px <?php echo esc_attr( $couleur ); ?>66}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 6px <?php echo esc_attr( $couleur ); ?>14,0 20px 50px rgba(0,0,0,.45)}50%{box-shadow:0 0 0 10px <?php echo esc_attr( $couleur ); ?>26,0 20px 50px rgba(0,0,0,.45)}}
 @media (prefers-reduced-motion:reduce){<?php echo $o; ?>.o__msg{animation:none}}
@@ -245,7 +251,7 @@ function ouverture_prochaine_render( $overlay = false ) {
 	<?php else : ?>
 	<p class="o__nom"><?php echo esc_html( $nom ); ?></p>
 	<?php endif; ?>
-	<p class="o__kicker"><?php echo esc_html( $nom ); ?> · Site en préparation</p>
+	<p class="o__kicker"><?php echo esc_html( ouverture_prochaine_cfg( 'kicker', $nom . ' · Site en préparation' ) ); ?></p>
 	<h1 class="o__date"><?php echo esc_html( $titre ); ?> <em><?php echo esc_html( $jour ); ?></em></h1>
 	<div class="o__cd" aria-live="polite" aria-label="Compte à rebours">
 		<div class="o__cell"><b id="cd-j">—</b><span>jours</span></div>
@@ -253,7 +259,20 @@ function ouverture_prochaine_render( $overlay = false ) {
 		<div class="o__cell"><b id="cd-m">—</b><span>minutes</span></div>
 		<div class="o__cell"><b id="cd-s">—</b><span>secondes</span></div>
 	</div>
-	<?php if ( $message ) : ?><p class="o__msg"><span class="o__msg-tag"><?php echo esc_html( ouverture_prochaine_cfg( 'message_titre', 'Offre d\'ouverture' ) ); ?></span><strong><?php echo esc_html( $message ); ?></strong></p><?php endif; ?>
+	<?php $offres = ouverture_prochaine_cfg( 'offres', array() ); if ( $message || $offres ) : ?>
+	<div class="o__msg">
+		<span class="o__msg-tag"><?php echo esc_html( ouverture_prochaine_cfg( 'message_titre', 'Offre d\'ouverture' ) ); ?></span>
+		<?php if ( $message ) : ?><strong><?php echo esc_html( $message ); ?></strong><?php endif; ?>
+		<?php if ( $offres ) : ?>
+		<ul class="o__offres">
+			<?php foreach ( $offres as $of ) : ?>
+			<li><b><?php echo esc_html( $of[0] ); ?></b><span><?php echo esc_html( $of[1] ); ?></span><?php if ( ! empty( $of[2] ) ) : ?><small><?php echo esc_html( $of[2] ); ?></small><?php endif; ?></li>
+			<?php endforeach; ?>
+		</ul>
+		<?php endif; ?>
+		<?php $note = ouverture_prochaine_cfg( 'message_note', '' ); if ( $note ) : ?><em class="o__note"><?php echo esc_html( $note ); ?></em><?php endif; ?>
+	</div>
+	<?php endif; ?>
 	<a class="o__open" href="<?php echo esc_url( home_url( '/' ) ); ?>">Découvrir le site</a>
 	<a class="o__enter" id="o-enter" href="<?php echo esc_url( $lien ); ?>" data-ancre="<?php echo esc_attr( ouverture_prochaine_cfg( 'bouton_ancre', '' ) ); ?>"><?php echo esc_html( $bouton ); ?> <span aria-hidden="true">→</span></a>
 	<p class="o__foot">© <?php echo esc_html( wp_date( 'Y' ) ); ?> <?php echo esc_html( $nom ); ?></p>

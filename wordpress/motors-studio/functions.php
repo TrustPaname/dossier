@@ -22,9 +22,17 @@ $motor_ouverture = array(
 	'couleur' => '#e3231a',
 	'police'  => array( 'Outfit', 'assets/fonts/outfit-300-800-latin.woff2' ),
 
-	'message' => 'Profitez de nos offres d\'ouverture : les premiers clients à prendre rendez-vous bénéficient de conditions exclusives.',
-	'bouton'  => 'Prendre rendez-vous',
-	'bouton_ancre' => '#devis',
+	'kicker'        => 'Ça bouge à Mainvilliers · Votre nouveau garage pour Chartres et alentours',
+	'message_titre' => 'Offres de lancement',
+	'message'       => 'Réservées aux 20 premiers rendez-vous pris',
+	'offres'        => array(
+		array( '-50 %', 'Carrosserie · Peinture · Redressage', 'hors assurance' ),
+		array( '-40 %', 'Pneumatiques', 'montage, équilibrage, remplacement' ),
+		array( 'Franchise offerte', 'Pare-brise', '+ balais d\'essuie-glace offerts' ),
+	),
+	'message_note'  => 'Offres valables pour les 20 premiers rendez-vous, voir conditions à l\'atelier.',
+	'bouton'        => 'Réserver mon rendez-vous',
+	'bouton_ancre'  => '#devis',
 );
 require get_template_directory() . '/inc-ouverture.php';
 
