@@ -1,0 +1,101 @@
+<?php
+/**
+ * Politique de confidentialité — générée par wordpress/build.py (wordpress/legal.py). Ne pas modifier ici.
+ */
+?>
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Politique de confidentialité — <?php echo esc_html( mc_legal_nom() ); ?></title>
+<meta name="description" content="Politique de confidentialité et de protection des données personnelles (RGPD).">
+<meta name="robots" content="noindex, follow">
+<link rel="icon" href="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/favicon.svg" type="image/svg+xml">
+
+<script>document.documentElement.classList.add("js");</script>
+<?php wp_head(); ?>
+</head>
+<body class="legal-page">
+<a class="skip-link" href="#main">Aller au contenu principal</a>
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a class="logo logo--compact" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php echo esc_html( mc_legal_nom() ); ?>, retour à l'accueil">
+      <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/logo-motor-consulting-light-300.png' ); ?>" alt="<?php echo esc_html( mc_legal_nom() ); ?>" width="300" height="172">
+    </a>
+    <nav class="nav legal__topnav" aria-label="Navigation">
+      <div class="nav__cta">
+        <a class="nav__tel" href="tel:<?php echo esc_attr( motor_opt( 'phone_e164' ) ); ?>"><?php echo esc_html( motor_opt( 'phone_display' ) ); ?></a>
+        <a class="btn btn--primary" href="<?php echo esc_url( home_url( '/' ) ); ?>">Retour au site</a>
+      </div>
+    </nav>
+  </div>
+</header>
+<main id="main" class="legal">
+  <div class="container legal__inner">
+    <p class="label">Données personnelles</p>
+    <h1>Politique de confidentialité</h1>
+    <p class="legal__maj">Dernière mise à jour : 19 octobre 2026</p>
+
+    <p class="legal__intro"><?php mc_legal( 'raison' ); ?> (ci-après « <?php echo esc_html( mc_legal_nom() ); ?> », « nous ») accorde une grande importance à la protection de vos données personnelles. La présente politique décrit les données que nous collectons par l'intermédiaire du site <?php echo esc_html( wp_parse_url( home_url(), PHP_URL_HOST ) ); ?>, l'usage que nous en faisons et vos droits, conformément au Règlement général sur la protection des données (RGPD, règlement UE 2016/679) et à la loi Informatique et Libertés.</p>
+
+    <h2>1. Responsable du traitement</h2>
+    <p>Le responsable du traitement est <?php mc_legal( 'raison' ); ?>, <?php echo esc_html( motor_opt( 'address' ) ); ?>. Contact : <a href="mailto:<?php echo esc_html( motor_opt( 'email' ) ); ?>"><?php echo esc_html( motor_opt( 'email' ) ); ?></a> — <a href="tel:<?php echo esc_attr( motor_opt( 'phone_e164' ) ); ?>"><?php echo esc_html( motor_opt( 'phone_display' ) ); ?></a>.</p>
+
+    <h2>2. Données collectées</h2>
+    <p>Nous collectons uniquement les données que vous nous transmettez volontairement :</p>
+    <ul>
+      <li><strong>Formulaires d'estimation et de contact</strong> : nom, téléphone, adresse e-mail, informations sur votre véhicule (marque, modèle, année, kilométrage, carburant, état), message.</li>
+      <li><strong>Prise de contact par WhatsApp, téléphone ou e-mail</strong> : votre numéro ou votre adresse, le contenu de vos échanges et les photos que vous nous envoyez.</li>
+      <li><strong>Transaction</strong> : en cas d'achat, de vente, de reprise ou de location, les données nécessaires au contrat et aux formalités administratives (identité, justificatif de domicile, permis de conduire, carte grise, coordonnées bancaires pour le paiement ou la restitution d'un dépôt de garantie).</li>
+      <li><strong>Données techniques</strong> : adresse IP et horodatage lors de l'envoi d'un formulaire, à des fins de sécurité et de lutte contre les abus.</li>
+    </ul>
+
+    <h2>3. Finalités et bases légales</h2>
+    <ul>
+      <li>Répondre à vos demandes d'estimation, de recherche de véhicule, de location ou d'information (mesures précontractuelles prises à votre demande).</li>
+      <li>Établir, exécuter et suivre les contrats de vente, de reprise, de location ou de mandat de recherche (exécution du contrat) et accomplir les formalités légales associées, notamment la déclaration de cession et le livre de police (obligation légale).</li>
+      <li>Gérer la relation commerciale, les réclamations et la comptabilité (obligation légale et intérêt légitime).</li>
+      <li>Vous adresser, le cas échéant, des informations sur nos services similaires (intérêt légitime, avec possibilité de vous y opposer à tout moment).</li>
+      <li>Assurer la sécurité du site et prévenir les fraudes (intérêt légitime).</li>
+    </ul>
+
+    <h2>4. Destinataires</h2>
+    <p>Vos données sont destinées aux personnes habilitées de <?php mc_legal( 'raison' ); ?>. Elles peuvent être transmises, dans la stricte limite des besoins, à nos prestataires : hébergeur du site (OVH, France), logiciel de gestion du stock et des annonces, organismes de financement ou d'assurance que vous sollicitez, service d'immatriculation (ANTS / habilitation SIV), garages et centres de contrôle technique partenaires. Lorsque vous nous contactez par WhatsApp, vos messages transitent par les services de WhatsApp (Meta Platforms Ireland Ltd), soumis à leur propre politique de confidentialité. Nous ne vendons ni ne louons vos données à des tiers.</p>
+
+    <h2>5. Durée de conservation</h2>
+    <ul>
+      <li>Demandes sans suite (prospects) : 3 ans à compter du dernier contact.</li>
+      <li>Clients : pendant la durée de la relation contractuelle puis 5 ans au titre de la prescription commerciale ; les pièces comptables sont conservées 10 ans.</li>
+      <li>Registre des véhicules (livre de police) : conformément aux obligations légales applicables aux professionnels de l'automobile.</li>
+      <li>Données techniques de sécurité : 12 mois maximum.</li>
+    </ul>
+
+    <h2>6. Vos droits</h2>
+    <p>Vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation du traitement, d'opposition et de portabilité de vos données, ainsi que du droit de définir des directives relatives à leur sort après votre décès. Pour l'exercer, écrivez-nous à <a href="mailto:<?php echo esc_html( motor_opt( 'email' ) ); ?>"><?php echo esc_html( motor_opt( 'email' ) ); ?></a> ou par courrier à <?php mc_legal( 'raison' ); ?>, <?php echo esc_html( motor_opt( 'address' ) ); ?>, en joignant si nécessaire un justificatif d'identité. Nous répondons dans un délai d'un mois. Vous pouvez également introduire une réclamation auprès de la CNIL (<a href="https://www.cnil.fr" target="_blank" rel="noopener">www.cnil.fr</a>, 3 place de Fontenoy, TSA 80715, 75334 Paris Cedex 07).</p>
+
+    <h2>7. Cookies et contenus tiers</h2>
+    <p>Le site n'utilise aucun cookie publicitaire ni outil de mesure d'audience. Seuls des éléments techniques strictement nécessaires (préférences d'affichage, protection des formulaires) peuvent être stockés dans votre navigateur. La carte de localisation est fournie par OpenStreetMap ; son affichage peut transmettre votre adresse IP à la fondation OpenStreetMap. Les boutons WhatsApp n'activent aucun traceur tant que vous ne cliquez pas dessus.</p>
+
+    <h2>8. Sécurité</h2>
+    <p>Le site est accessible exclusivement en HTTPS. Les données transmises par les formulaires sont chiffrées pendant leur transport et stockées sur des serveurs situés en France. L'accès aux données est limité aux personnes habilitées et protégé par mot de passe. Nous mettons en œuvre les mesures techniques et organisationnelles appropriées pour prévenir toute perte, altération ou accès non autorisé.</p>
+
+    <h2>9. Modifications</h2>
+    <p>Nous pouvons modifier la présente politique pour tenir compte de l'évolution de nos services ou de la réglementation. La version applicable est celle publiée sur le site à la date de votre visite.</p>
+
+    <nav class="legal__nav" aria-label="Autres pages légales">
+      <a href="<?php echo esc_url( home_url( '/mentions-legales/' ) ); ?>">Mentions légales</a>
+      <a href="<?php echo esc_url( home_url( '/confidentialite/' ) ); ?>">Politique de confidentialité</a>
+      <a href="<?php echo esc_url( home_url( '/cgv/' ) ); ?>">Conditions générales de vente</a>
+    </nav>
+  </div>
+</main>
+<footer class="footer footer--legal">
+  <div class="container footer__bottom">
+    <p>© <?php echo esc_html( wp_date( 'Y' ) ); ?> <?php echo esc_html( mc_legal_nom() ); ?></p>
+    <ul class="footer__legal"><li><a href="<?php echo esc_url( home_url( '/mentions-legales/' ) ); ?>">Mentions légales</a></li><li><a href="<?php echo esc_url( home_url( '/confidentialite/' ) ); ?>">Confidentialité</a></li><li><a href="<?php echo esc_url( home_url( '/cgv/' ) ); ?>">CGV</a></li></ul>
+  </div>
+</footer>
+<?php wp_footer(); ?>
+</body>
+</html>

@@ -48,6 +48,8 @@ add_action( 'wp_enqueue_scripts', function () {
 		'email'        => motor_opt( 'email' ),
 		'refPrefix'    => 'MS',
 		'brand'        => 'Motors Studio',
+		'phone'        => motor_opt( 'phone_display' ),
+		'phoneLink'    => motor_opt( 'phone_e164' ),
 	);
 	wp_add_inline_script( 'motor-main', 'window.MC_CONFIG = ' . wp_json_encode( $config ) . ';', 'before' );
 

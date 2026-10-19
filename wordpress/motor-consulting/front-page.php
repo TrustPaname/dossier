@@ -9,9 +9,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Motor Consulting — Achat, vente et location de voitures d'occasion à Paris</title>
-<meta name="description" content="Motor Consulting, l'expertise automobile à votre service : recherche, négociation, achat, vente et location de véhicules d'occasion à Paris et en Île-de-France. Estimation gratuite sous 24h.">
-<meta name="keywords" content="achat vente voiture occasion, rachat de voiture, expertise automobile, vendre sa voiture rapidement, estimation gratuite véhicule Paris, location véhicule">
+<title>Motor Consulting — Achat, vente et location de voitures d'occasion à Chartres</title>
+<meta name="description" content="Motor Consulting, l'expertise automobile à votre service : recherche, négociation, achat, vente et location de véhicules d'occasion à Chartres, Mainvilliers et en Eure-et-Loir. Estimation gratuite sous 24h.">
+<meta name="keywords" content="achat vente voiture occasion, rachat de voiture, expertise automobile, vendre sa voiture rapidement, estimation gratuite véhicule Chartres, location véhicule Eure-et-Loir">
 <meta name="author" content="Motor Consulting">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="<?php echo esc_url( home_url( '/' ) ); ?>">
@@ -45,20 +45,22 @@
   "image": "<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/og-cover.png",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "24 avenue de la Grande-Armée",
-    "postalCode": "75017",
-    "addressLocality": "Paris",
-    "addressRegion": "Île-de-France",
+    "streetAddress": "3 rue Florence Arthaud",
+    "postalCode": "28300",
+    "addressLocality": "Mainvilliers",
+    "addressRegion": "Centre-Val de Loire",
     "addressCountry": "FR"
   },
-  "geo": { "@type": "GeoCoordinates", "latitude": 48.8759, "longitude": 2.2895 },
+  "geo": { "@type": "GeoCoordinates", "latitude": 48.4508, "longitude": 1.4497 },
   "areaServed": [
-    { "@type": "City", "name": "Paris" },
+    { "@type": "City", "name": "Chartres" },
+    { "@type": "City", "name": "Mainvilliers" },
+    { "@type": "AdministrativeArea", "name": "Eure-et-Loir" },
     { "@type": "AdministrativeArea", "name": "Île-de-France" }
   ],
   "openingHoursSpecification": [
     { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "19:00" },
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "10:00", "closes": "17:00" }
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "19:00" }
   ],
   "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "312", "bestRating": "5" }
 }
@@ -103,7 +105,7 @@
       <span class="hero__badge">L'expertise automobile à votre service</span>
       <h1>Achetez, vendez ou louez votre véhicule <span class="accent">en toute confiance !</span></h1>
       <p class="hero__sub">Agent dédié · Estimation gratuite · Transaction 100 % sécurisée</p>
-      <p class="hero__sub2"><strong id="hero-count">12</strong> véhicules disponibles, inspectés et négociés, à Paris et partout en France.</p>
+      <p class="hero__sub2"><strong id="hero-count">12</strong> véhicules disponibles, inspectés et négociés, à Chartres et partout en France.</p>
       <div class="hero__actions">
         <a class="btn btn--primary" href="#vehicules"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m16 16 4.5 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> Acheter un véhicule</a>
         <a class="btn btn--light" href="#estimation" data-intent="vendre">Vendre ma voiture <span aria-hidden="true">→</span></a>
@@ -286,7 +288,7 @@
         </div>
         <div class="field">
           <label for="e-tel">Téléphone <span class="req" aria-hidden="true">*</span></label>
-          <input type="tel" id="e-tel" name="telephone" autocomplete="tel" placeholder="<?php echo esc_html( motor_opt( 'phone_display' ) ); ?>" required>
+          <input type="tel" id="e-tel" name="telephone" autocomplete="tel" placeholder="06 00 00 00 00" required>
           <p class="field__error" data-error-for="e-tel"></p>
         </div>
       </div>
@@ -405,15 +407,15 @@
     <div class="contact">
       <div class="reveal">
         <ul class="infos">
-          <li class="card"><strong>Téléphone</strong><a href="tel:<?php echo esc_attr( motor_opt( 'phone_e164' ) ); ?>"><?php echo esc_html( motor_opt( 'phone_display' ) ); ?></a><small><?php echo esc_html( motor_opt( 'hours' ) ); ?></small></li>
+          <li class="card"><strong>Téléphone</strong><a href="tel:<?php echo esc_attr( motor_opt( 'phone_e164' ) ); ?>"><?php echo esc_html( motor_opt( 'phone_display' ) ); ?></a><a href="tel:<?php echo esc_attr( motor_opt( 'mobile_e164' ) ); ?>"><?php echo esc_html( motor_opt( 'mobile_display' ) ); ?></a><small><?php echo esc_html( motor_opt( 'hours' ) ); ?></small></li>
           <li class="card"><strong>E-mail</strong><a href="mailto:<?php echo esc_html( motor_opt( 'email' ) ); ?>"><?php echo esc_html( motor_opt( 'email' ) ); ?></a></li>
           <li class="card"><strong>WhatsApp</strong><a href="https://wa.me/<?php echo esc_attr( motor_opt( 'whatsapp' ) ); ?>?text=Bonjour%2C%20je%20souhaite%20des%20informations%20sur%20la%20vente%20de%20mon%20v%C3%A9hicule." target="_blank" rel="noopener">Discuter sur WhatsApp</a><small>Envoyez-nous directement vos photos</small></li>
-          <li class="card"><strong>Adresse</strong><span><?php echo esc_html( motor_opt( 'address' ) ); ?></span><small>Sur rendez-vous · Déplacements en Île-de-France</small></li>
+          <li class="card"><strong>Adresse</strong><span><?php echo esc_html( motor_opt( 'address' ) ); ?></span><small>Aux portes de Chartres · Sur rendez-vous · Déplacements en Eure-et-Loir et Île-de-France</small></li>
         </ul>
         <div class="map">
           <p class="map__fallback"><?php echo esc_html( motor_opt( 'address' ) ); ?></p>
-          <iframe title="Localisation de Motor Consulting sur la carte" src="https://www.openstreetmap.org/export/embed.html?bbox=2.2755%2C48.8705%2C2.3035%2C48.8815&amp;layer=mapnik&amp;marker=48.8759%2C2.2895" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          <a class="map__link" href="https://www.openstreetmap.org/?mlat=48.8759&amp;mlon=2.2895#map=16/48.8759/2.2895" target="_blank" rel="noopener">Itinéraire ↗</a>
+          <iframe title="Localisation de Motor Consulting sur la carte" src="https://www.openstreetmap.org/export/embed.html?bbox=1.4297%2C48.4428%2C1.4697%2C48.4588&amp;layer=mapnik&amp;marker=48.4508%2C1.4497" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <a class="map__link" href="https://www.openstreetmap.org/?mlat=48.4508&amp;mlon=1.4497#map=16/48.4508/1.4497" target="_blank" rel="noopener">Itinéraire ↗</a>
         </div>
       </div>
       <form class="form card" id="contact-form" novalidate>
@@ -427,7 +429,7 @@
           </div>
           <div class="field">
             <label for="c-tel">Téléphone <span class="req" aria-hidden="true">*</span></label>
-            <input type="tel" id="c-tel" name="telephone" autocomplete="tel" placeholder="<?php echo esc_html( motor_opt( 'phone_display' ) ); ?>" required>
+            <input type="tel" id="c-tel" name="telephone" autocomplete="tel" placeholder="06 00 00 00 00" required>
             <p class="field__error" data-error-for="c-tel"></p>
           </div>
         </div>
@@ -472,15 +474,15 @@
   <div class="container footer__inner">
     <div class="footer__brand">
       <a class="logo" href="#accueil" aria-label="Motor Consulting, retour à l'accueil"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/logo-motor-consulting-600.png" alt="Motor Consulting" width="600" height="345" loading="lazy"></a>
-      <p>L'expertise automobile à votre service. Recherche, négociation, achat, vente et location de véhicules d'occasion à Paris et en Île-de-France.</p>
+      <p>L'expertise automobile à votre service. Recherche, négociation, achat, vente et location de véhicules d'occasion à Chartres, en Eure-et-Loir et en Île-de-France.</p>
     </div>
     <nav class="footer__col" aria-label="Services"><h3>Services</h3><ul><li><a href="#services">Recherche de véhicule</a></li><li><a href="#services">Négociation</a></li><li><a href="#services">Achat / Vente</a></li><li><a href="#services">Location</a></li><li><a href="#estimation">Estimation gratuite</a></li></ul></nav>
     <nav class="footer__col" aria-label="Navigation"><h3>Le site</h3><ul><li><a href="#vehicules">Véhicules disponibles</a></li><li><a href="#methode">Comment ça marche</a></li><li><a href="#avis">Avis clients</a></li><li><a href="#apropos">À propos</a></li><li><a href="#contact">Contact</a></li></ul></nav>
-    <div class="footer__col"><h3>Zone d'intervention</h3><p class="footer__seo">Achat vente de voiture d'occasion à Paris, Boulogne-Billancourt, Neuilly-sur-Seine, Levallois, Versailles et toute l'Île-de-France. Rachat de voiture, expertise automobile et estimation gratuite de véhicule, déplacements dans toute la France.</p></div>
+    <div class="footer__col"><h3>Zone d'intervention</h3><p class="footer__seo">Achat vente de voiture d'occasion à Chartres, Mainvilliers, Lucé, Luisant, Lèves, Dreux, Châteaudun, Nogent-le-Rotrou et dans tout l'Eure-et-Loir. Rachat de voiture, expertise automobile et estimation gratuite de véhicule, déplacements en Île-de-France et dans toute la France.</p></div>
   </div>
   <div class="container footer__bottom">
     <p>© <span id="year">2026</span> Motor Consulting</p>
-    <ul class="footer__legal"><li><a href="#apropos">Mentions légales</a></li><li><a href="#apropos">Confidentialité</a></li><li><a href="#contact">CGV</a></li></ul>
+    <ul class="footer__legal"><li><a href="<?php echo esc_url( home_url( '/mentions-legales/' ) ); ?>">Mentions légales</a></li><li><a href="<?php echo esc_url( home_url( '/confidentialite/' ) ); ?>">Confidentialité</a></li><li><a href="<?php echo esc_url( home_url( '/cgv/' ) ); ?>">CGV</a></li></ul>
   </div>
 </footer>
 

@@ -13,7 +13,9 @@
      ---------------------------------------------------------- */
   const CONFIG = Object.assign({
     formEndpoint: "",
-    whatsapp: "33612345678",
+    whatsapp: "33766636776",
+    phone: "09 55 32 08 89",
+    phoneLink: "+33955320889",
     email: "contact@motorconsulting.fr",
     refPrefix: "MC",
     brand: "Motor Consulting"
@@ -541,7 +543,7 @@
     } catch (err) {
       setStatus(statusEl,
         `L'envoi a échoué. Réessayez ou contactez-nous directement au
-         <a href="tel:+${CONFIG.whatsapp}" >06 12 34 56 78</a>
+         <a href="tel:${CONFIG.phoneLink}" >${CONFIG.phone}</a>
          ou par e-mail à <a href="mailto:${CONFIG.email}" >${CONFIG.email}</a>.`,
         "error");
     } finally {

@@ -7,7 +7,9 @@ Produit wordpress/motor-consulting/ et wordpress/motor-corp/ (front-page.php + a
 puis wordpress/motor-consulting.zip et wordpress/motor-corp.zip, prêts à téléverser
 dans Apparence → Thèmes → Ajouter → Téléverser un thème.
 """
-import os, re, shutil, zipfile
+import os, re, shutil, zipfile, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import legal
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 WP   = os.path.join(ROOT, "wordpress")
@@ -46,12 +48,17 @@ def build_consulting():
 
     # coordonnées → Personnalisateur
     rep = {
-        '06 12 34 56 78'                          : "<?php echo esc_html( motor_opt( 'phone_display' ) ); ?>",
-        '+33612345678'                            : "<?php echo esc_attr( motor_opt( 'phone_e164' ) ); ?>",
-        'wa.me/33612345678'                       : "wa.me/<?php echo esc_attr( motor_opt( 'whatsapp' ) ); ?>",
+        '09 55 32 08 89'                          : "<?php echo esc_html( motor_opt( 'phone_display' ) ); ?>",
+        '+33955320889'                            : "<?php echo esc_attr( motor_opt( 'phone_e164' ) ); ?>",
+        '07 66 63 67 76'                          : "<?php echo esc_html( motor_opt( 'mobile_display' ) ); ?>",
+        '+33766636776'                            : "<?php echo esc_attr( motor_opt( 'mobile_e164' ) ); ?>",
+        'wa.me/33766636776'                       : "wa.me/<?php echo esc_attr( motor_opt( 'whatsapp' ) ); ?>",
         'contact@motorconsulting.fr'             : "<?php echo esc_html( motor_opt( 'email' ) ); ?>",
-        '24 avenue de la Grande-Armée, 75017 Paris': "<?php echo esc_html( motor_opt( 'address' ) ); ?>",
-        'Lun–Ven 9h–19h · Sam 10h–17h'            : "<?php echo esc_html( motor_opt( 'hours' ) ); ?>",
+        '3 rue Florence Arthaud, 28300 Mainvilliers': "<?php echo esc_html( motor_opt( 'address' ) ); ?>",
+        'Lun–Sam 9h–19h'                          : "<?php echo esc_html( motor_opt( 'hours' ) ); ?>",
+        'href="mentions-legales.html"'            : 'href="<?php echo esc_url( home_url( \'/mentions-legales/\' ) ); ?>"',
+        'href="confidentialite.html"'             : 'href="<?php echo esc_url( home_url( \'/confidentialite/\' ) ); ?>"',
+        'href="cgv.html"'                         : 'href="<?php echo esc_url( home_url( \'/cgv/\' ) ); ?>"',
     }
     for a, b in rep.items():
         html = html.replace(a, b)
@@ -62,6 +69,13 @@ def build_consulting():
 
     copy_tree(os.path.join(ROOT, "assets"), os.path.join(theme, "assets"))
     print("thème motor-consulting : front-page.php + assets")
+
+    legal.build(dict(
+        nom="Motor Consulting", domaine="motorconsulting.fr", logo="assets/img/logo-motor-consulting-light-300.png",
+        opt="motor_opt", legal_fn="mc_legal", static_dir=ROOT, theme_dir=theme,
+        static=dict(tel="09 55 32 08 89", tel_link="+33955320889", email="contact@motorconsulting.fr",
+                    adresse="3 rue Florence Arthaud, 28300 Mainvilliers", raison="MOTOR CONSULTING", rcs="Chartres"),
+    ), php_head_foot)
 
 # ---------------------------------------------------------------- Motor Corp
 def build_corp():
@@ -162,7 +176,9 @@ def copy_shared():
     """Modules partagés (page d'ouverture avec compte à rebours)."""
     for name in ("motor-consulting", "motor-corp", "motors-studio"):
         shutil.copy(os.path.join(WP, "_partage", "inc-ouverture.php"), os.path.join(WP, name, "inc-ouverture.php"))
-    print("module inc-ouverture.php copié dans les trois thèmes")
+    for name in ("motor-consulting",):
+        shutil.copy(os.path.join(WP, "_partage", "inc-legal.php"), os.path.join(WP, name, "inc-legal.php"))
+    print("modules partagés (inc-ouverture.php, inc-legal.php) copiés")
 
 if __name__ == "__main__":
     build_consulting()

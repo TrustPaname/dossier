@@ -25,6 +25,9 @@ $motor_ouverture = array(
 );
 require get_template_directory() . '/inc-ouverture.php';
 
+$motor_legal = array( 'prefix' => 'motor_', 'nom' => 'Motor Consulting', 'opt' => 'motor_opt' );
+require get_template_directory() . '/inc-legal.php';
+
 /* ------------------------------------------------------------------
  * 1. Réglages de base, styles et scripts
  * ---------------------------------------------------------------- */
@@ -46,6 +49,8 @@ add_action( 'wp_enqueue_scripts', function () {
 		'formEndpoint' => esc_url_raw( rest_url( 'motor/v1/lead' ) ),
 		'whatsapp'     => motor_opt( 'whatsapp' ),
 		'email'        => motor_opt( 'email' ),
+		'phone'        => motor_opt( 'phone_display' ),
+		'phoneLink'    => motor_opt( 'phone_e164' ),
 	);
 	wp_add_inline_script( 'motor-main', 'window.MC_CONFIG = ' . wp_json_encode( $config ) . ';', 'before' );
 
@@ -64,13 +69,15 @@ add_action( 'wp_enqueue_scripts', function () {
  * ---------------------------------------------------------------- */
 function motor_defaults() {
 	return array(
-		'phone_display' => '06 12 34 56 78',
-		'phone_e164'    => '+33612345678',
-		'whatsapp'      => '33612345678',
-		'email'         => 'contact@motorconsulting.fr',
-		'lead_email'    => get_option( 'admin_email' ),
-		'address'       => '24 avenue de la Grande-Armée, 75017 Paris',
-		'hours'         => 'Lun–Ven 9h–19h · Sam 10h–17h',
+		'phone_display'  => '09 55 32 08 89',
+		'phone_e164'     => '+33955320889',
+		'mobile_display' => '07 66 63 67 76',
+		'mobile_e164'    => '+33766636776',
+		'whatsapp'       => '33766636776',
+		'email'          => 'contact@motorconsulting.fr',
+		'lead_email'     => 'contact@motorconsulting.fr',
+		'address'        => '3 rue Florence Arthaud, 28300 Mainvilliers',
+		'hours'          => 'Lun–Sam 9h–19h',
 		'demo'          => 1,
 	);
 }
@@ -88,9 +95,11 @@ add_action( 'customize_register', function ( $wp_customize ) {
 	) );
 
 	$fields = array(
-		'phone_display' => array( 'Téléphone affiché', 'text' ),
-		'phone_e164'    => array( 'Téléphone pour les liens (format +33…)', 'text' ),
-		'whatsapp'      => array( 'Numéro WhatsApp (chiffres seulement, ex. 33612345678)', 'text' ),
+		'phone_display'  => array( 'Téléphone fixe affiché', 'text' ),
+		'phone_e164'     => array( 'Téléphone fixe pour les liens (format +33…)', 'text' ),
+		'mobile_display' => array( 'Téléphone mobile affiché', 'text' ),
+		'mobile_e164'    => array( 'Téléphone mobile pour les liens (format +33…)', 'text' ),
+		'whatsapp'       => array( 'Numéro WhatsApp (chiffres seulement, ex. 33766636776)', 'text' ),
 		'email'         => array( 'E-mail affiché sur le site', 'email' ),
 		'lead_email'    => array( 'E-mail qui reçoit les demandes des formulaires', 'email' ),
 		'address'       => array( 'Adresse', 'text' ),
