@@ -55,12 +55,14 @@
   });
 
   // Pré-remplit le sujet du formulaire de contact selon l'intention cliquée
+  const INTENTS = { vendre: "Vendre un véhicule", depot: "Dépôt-vente", estimation: "Expertise / estimation" };
   $$("[data-intent]").forEach((el) => {
     el.addEventListener("click", () => {
-      const sujet = $("#c-sujet");
-      if (!sujet) return;
-      if (el.dataset.intent === "vendre") sujet.value = "Vendre un véhicule";
-      if (el.dataset.intent === "estimation") sujet.value = "Expertise / estimation";
+      const valeur = INTENTS[el.dataset.intent];
+      if (!valeur) return;
+      $$("#c-sujet, #v-sujet, #e-sujet").forEach((sel) => {
+        if (Array.from(sel.options).some((o) => o.value === valeur)) sel.value = valeur;
+      });
     });
   });
 

@@ -187,6 +187,7 @@
       <div class="hero__actions">
         <a class="btn btn--primary" href="#vehicules"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m16 16 4.5 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> Acheter un véhicule</a>
         <a class="btn btn--light" href="#vente-form" data-intent="vendre">Vendre ma voiture <span aria-hidden="true">→</span></a>
+        <a class="btn btn--light" href="#vente-form" data-intent="depot">Dépôt-vente <span aria-hidden="true">→</span></a>
       </div>
       <ul class="hero__proof">
         <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.6 2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.1-5.9 3.1 1.2-6.5L2.5 9.5l6.6-.9 2.9-6Z" fill="currentColor"/></svg> <strong>4,9/5</strong> · 312 avis clients</li>
@@ -201,8 +202,9 @@
         <span class="search__count">Estimation gratuite</span>
       </div>
       <p class="hp" aria-hidden="true"><label>Ne pas remplir <input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
-      <input type="hidden" name="sujet" value="Vendre un véhicule (formulaire d'accueil)">
       <div class="search__grid">
+        <div class="search__field search__field--full field"><label for="v-sujet">Votre projet <span class="req" aria-hidden="true">*</span></label>
+          <select id="v-sujet" name="sujet" required><option value="Vendre un véhicule">Vendre mon véhicule</option><option value="Dépôt-vente">Mettre mon véhicule en dépôt-vente</option><option value="Estimation seulement">Connaître le prix de mon véhicule</option></select></div>
         <div class="search__field field"><label for="v-marque">Marque <span class="req" aria-hidden="true">*</span></label>
           <input type="text" id="v-marque" name="marque" placeholder="Renault" autocomplete="off" required><p class="field__error" data-error-for="v-marque"></p></div>
         <div class="search__field field"><label for="v-modele">Modèle <span class="req" aria-hidden="true">*</span></label>
@@ -333,7 +335,7 @@
       <article class="service card reveal"><span class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m16 16 4.5 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="label">Recherche</span><h3>Le bon véhicule, trouvé pour vous</h3><p>Vous décrivez le véhicule et le budget. Nous le trouvons partout en France, vérifions son historique et l'inspectons avant toute visite.</p><a class="link" href="#contact">Confier ma recherche <span aria-hidden="true">→</span></a></article>
       <article class="service card reveal reveal--d1"><span class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M7.5 20h9M3.5 8.5h17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M3.5 8.5 1.4 13.6a2.6 2.6 0 0 0 4.2 0L3.5 8.5Zm17 0-2.1 5.1a2.6 2.6 0 0 0 4.2 0L20.5 8.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span><span class="label">Négociation</span><h3>Le juste prix, argumenté</h3><p>État réel, historique, cote du marché : nous négocions à votre place, à l'achat comme à la vente. En moyenne 1 480 € économisés par dossier.</p><a class="link" href="#contact">Faire négocier mon dossier <span aria-hidden="true">→</span></a></article>
       <article class="service card reveal reveal--d2"><span class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 17.5v-3.4l2-4.4c.35-.8 1-1.2 1.9-1.2h9.2c.9 0 1.55.4 1.9 1.2l2 4.4v3.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M3.5 17.5h17M5.6 14.1h2.6M15.8 14.1h2.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="label">Achat / Vente</span><h3>Acheter ou vendre sans effort</h3><p>Voitures d'occasion inspectées, reprise de votre véhicule avec offre de rachat sous 24h, paiement sécurisé et dossier administratif complet.</p><a class="link" href="#estimation" data-intent="vendre">Vendre ma voiture <span aria-hidden="true">→</span></a></article>
-      <article class="service card reveal reveal--d2"><span class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5h16v11a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 18.5v-11Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 7.5V6a4 4 0 0 1 8 0v1.5M9 12h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="label">Dépôt-vente</span><h3>Nous vendons pour vous</h3><p>Vous restez propriétaire, nous gérons tout : annonce, visites, essais, négociation, paiement sécurisé et formalités. Payé dès la vente.</p><a class="link" href="#depot-vente">Découvrir le dépôt-vente <span aria-hidden="true">→</span></a></article>
+      <article class="service card reveal reveal--d2"><span class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5h16v11a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 18.5v-11Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 7.5V6a4 4 0 0 1 8 0v1.5M9 12h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="label">Dépôt-vente</span><h3>Nous vendons pour vous</h3><p>Vous restez propriétaire, nous gérons tout : annonce, visites, essais, négociation, paiement sécurisé et formalités. Payé dès la vente.</p><a class="link" href="#vente-form" data-intent="depot">Déposer mon véhicule <span aria-hidden="true">→</span></a></article>
       <article class="service card reveal reveal--d3"><span class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="15.6" cy="8.4" r="4.4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12.5 11.5 3.5 20.5M6.4 17.6l2.1 2.1M8.8 15.2l2.1 2.1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="label">Location</span><h3>Courte ou longue durée</h3><p>Location, LOA ou LLD : nous comparons les offres, décryptons les contrats et sélectionnons la formule réellement adaptée à votre usage.</p><a class="link" href="#contact">Étudier une location <span aria-hidden="true">→</span></a></article>
     </div>
   </div>
@@ -354,7 +356,7 @@
         <li>Commission connue à l'avance, rien à payer tant que la voiture n'est pas vendue</li>
       </ul>
       <div class="hero__actions depot__actions">
-        <a class="btn btn--primary" href="#vente-form" data-intent="vendre">Déposer mon véhicule</a>
+        <a class="btn btn--primary" href="#vente-form" data-intent="depot">Déposer mon véhicule</a>
         <a class="btn btn--outline" href="#faq">Questions fréquentes</a>
       </div>
     </div>
@@ -399,6 +401,10 @@
     <form class="form card" id="estimation-form" novalidate>
       <h3 class="form__title">Demander mon estimation</h3>
       <p class="hp" aria-hidden="true"><label>Ne pas remplir <input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
+      <div class="field field--select">
+        <label for="e-sujet">Votre projet <span class="req" aria-hidden="true">*</span></label>
+        <select id="e-sujet" name="sujet" required><option value="Vendre un véhicule">Vendre mon véhicule</option><option value="Dépôt-vente">Mettre mon véhicule en dépôt-vente</option><option value="Estimation seulement">Connaître le prix de mon véhicule</option></select>
+      </div>
             <div class="field-row">
         <div class="field">
           <label for="e-nom">Nom et prénom <span class="req" aria-hidden="true">*</span></label>
@@ -593,6 +599,8 @@
           <label for="c-sujet">Votre demande</label>
           <select id="c-sujet" name="sujet">
             <option value="Vendre un véhicule">Vendre un véhicule</option>
+            <option value="Dépôt-vente">Mettre mon véhicule en dépôt-vente</option>
+            <option value="Acheter un véhicule">Acheter un véhicule</option>
             <option value="Rechercher un véhicule">Rechercher un véhicule</option>
             <option value="Location (courte ou longue durée)">Location (courte ou longue durée)</option>
             <option value="Expertise / estimation">Expertise / estimation</option>

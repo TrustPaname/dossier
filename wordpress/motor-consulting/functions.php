@@ -375,7 +375,10 @@ function motor_handle_lead( WP_REST_Request $req ) {
 
 	$is_estimation = isset( $clean['marque'] ) && isset( $clean['kilometrage'] );
 	$ref           = isset( $clean['reference'] ) ? $clean['reference'] : 'MC-' . strtoupper( wp_generate_password( 4, false ) );
-	$sujet         = $is_estimation ? 'Demande d\'estimation' : ( isset( $clean['sujet'] ) ? $clean['sujet'] : 'Contact' );
+	$sujet         = ! empty( $clean['sujet'] ) ? $clean['sujet'] : ( $is_estimation ? 'Demande d\'estimation' : 'Contact' );
+	if ( $is_estimation && 'Dépôt-vente' !== $sujet ) {
+		$sujet .= ' — estimation';
+	}
 
 	$labels = array(
 		'nom' => 'Nom', 'telephone' => 'Téléphone', 'email' => 'E-mail', 'sujet' => 'Demande',
