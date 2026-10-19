@@ -23,6 +23,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// Si l'extension « Ouverture prochaine » est active, elle fait le travail : le module du thème se retire.
+if ( function_exists( 'ouverture_prochaine_active' ) ) {
+	return;
+}
+
 $GLOBALS['motor_ouverture_cfg'] = isset( $motor_ouverture ) ? $motor_ouverture : array();
 
 function motor_ouverture_cfg( $k, $d = '' ) {
@@ -51,7 +56,11 @@ function motor_ouverture_active() {
 		return false;
 	}
 	// ?ouverture=1 dans l'adresse : force l'affichage de la page d'attente, même connecté (pour vérifier).
+	// ?ouverture=0 : affiche le vrai site sans être connecté (pour vérifier le site avant l'ouverture).
 	$force = isset( $_GET['ouverture'] ) && '1' === $_GET['ouverture']; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	if ( isset( $_GET['ouverture'] ) && '0' === $_GET['ouverture'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		return false;
+	}
 	if ( ! $force && is_user_logged_in() && current_user_can( 'edit_theme_options' ) ) {
 		return false; // l'administrateur continue de voir et régler le vrai site
 	}
