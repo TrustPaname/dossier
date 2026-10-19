@@ -74,6 +74,7 @@ add_action( 'customize_register', function ( $wp_customize ) {
 	) );
 	$fields = array(
 		'active'  => array( 'Afficher la page d\'attente aux visiteurs', 'checkbox', 1 ),
+		'mode'    => array( 'Affichage', 'select', 'overlay' ),
 		'date'    => array( 'Date d\'ouverture (AAAA-MM-JJ)', 'text', '2026-11-05' ),
 		'heure'   => array( 'Heure d\'ouverture (HH:MM)', 'text', '09:00' ),
 		'titre'   => array( 'Texte au-dessus de la date', 'text', 'Ouverture le' ),
@@ -84,11 +85,19 @@ add_action( 'customize_register', function ( $wp_customize ) {
 			'default'           => $f[2],
 			'sanitize_callback' => 'checkbox' === $f[1] ? 'absint' : 'sanitize_text_field',
 		) );
-		$wp_customize->add_control( $p . 'ouverture_' . $k, array(
+		$ctl = array(
 			'label'   => $f[0],
 			'section' => $p . 'ouverture',
 			'type'    => $f[1],
-		) );
+		);
+		if ( 'mode' === $k ) {
+			$ctl['choices']     = array(
+				'overlay' => 'Par-dessus le site (recommandé : Google lit le vrai site)',
+				'page'    => 'Page seule (le site reste invisible, non référencé)',
+			);
+			$ctl['description'] = 'Dans les deux cas le visiteur ne voit que le compte à rebours.';
+		}
+		$wp_customize->add_control( $p . 'ouverture_' . $k, $ctl );
 	}
 } );
 
@@ -104,22 +113,36 @@ add_action( 'admin_notices', function () {
 	echo '<div class="notice notice-warning"><p><strong>' . esc_html( motor_ouverture_cfg( 'nom', 'Site' ) ) . ' :</strong> les visiteurs voient la page « Ouverture le ' . esc_html( wp_date( 'j F Y', $d->getTimestamp() ) ) . ' » avec le compte à rebours. Vous voyez le vrai site parce que vous êtes connecté : pour la voir vous-même, <a href="' . esc_url( home_url( '/?ouverture=1' ) ) . '" target="_blank">ouvrez cette page</a>. Pour ouvrir le site au public : Apparence → Personnaliser → Ouverture prochaine → décochez la case.</p></div>';
 } );
 
-/** Interception de toutes les pages publiques. */
+/** Mode « page » : remplace toutes les pages publiques. Mode « par-dessus » : voir wp_footer plus bas. */
 add_action( 'template_redirect', function () {
-	if ( ! motor_ouverture_active() ) {
+	if ( ! motor_ouverture_active() || 'page' !== motor_ouverture_mod( 'mode', 'overlay' ) ) {
 		return;
 	}
-	if ( is_feed() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) {
+	if ( is_feed() || is_robots() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) {
 		return;
 	}
 	status_header( 200 );
 	nocache_headers();
 	header( 'Content-Type: text/html; charset=utf-8' );
-	motor_ouverture_render();
+	motor_ouverture_render( false );
 	exit;
 } );
 
-function motor_ouverture_render() {
+/** Mode « par-dessus » : le vrai site est servi (Google le lit), le compte à rebours le recouvre pour le visiteur. */
+add_action( 'wp_footer', function () {
+	if ( ! motor_ouverture_active() || 'page' === motor_ouverture_mod( 'mode', 'overlay' ) ) {
+		return;
+	}
+	motor_ouverture_render( true );
+}, 99 );
+add_action( 'wp_head', function () {
+	if ( ! motor_ouverture_active() || 'page' === motor_ouverture_mod( 'mode', 'overlay' ) ) {
+		return;
+	}
+	echo '<style id="o-lock">html.o-lock,html.o-lock body{overflow:hidden!important;height:100%}</style>' . "\n";
+}, 99 );
+
+function motor_ouverture_render( $overlay = false ) {
 	$nom     = motor_ouverture_cfg( 'nom', get_bloginfo( 'name' ) );
 	$couleur = motor_ouverture_cfg( 'couleur', '#0a8cff' );
 	$logo    = motor_ouverture_cfg( 'logo' );
@@ -132,12 +155,15 @@ function motor_ouverture_render() {
 	$message = motor_ouverture_mod( 'message', '' );
 	$font_face = '';
 	$font_name = 'system-ui, -apple-system, "Segoe UI", sans-serif';
+	$r = $overlay ? '.o-ouv' : 'body'; // racine des styles
+	$o = $overlay ? '.o-ouv ' : '';   // préfixe des classes internes
 	if ( is_array( $police ) && ! empty( $police[0] ) ) {
 		$font_name = '"' . $police[0] . '", ' . $font_name;
 		if ( ! empty( $police[1] ) ) {
 			$font_face = '@font-face{font-family:"' . $police[0] . '";font-weight:300 800;font-display:swap;src:url("' . esc_url( get_template_directory_uri() . '/' . ltrim( $police[1], '/' ) ) . '") format("woff2")}';
 		}
 	}
+	if ( ! $overlay ) :
 	?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -147,37 +173,43 @@ function motor_ouverture_render() {
 <meta name="robots" content="noindex, follow">
 <title><?php echo esc_html( $nom ); ?> — <?php echo esc_html( $titre . ' ' . $jour ); ?></title>
 <?php if ( function_exists( 'wp_site_icon' ) ) { wp_site_icon(); } ?>
+<?php else : ?>
+<div class="o-ouv" id="o-ouv" role="dialog" aria-modal="true" aria-label="<?php echo esc_attr( $nom . ' — ' . $titre . ' ' . $jour ); ?>">
+<?php endif; ?>
 <style>
 <?php echo $font_face; // phpcs:ignore WordPress.Security.EscapeOutput -- URL échappée ci-dessus ?>
-*{box-sizing:border-box;margin:0}
-html,body{height:100%}
-body{font-family:<?php echo $font_name; // phpcs:ignore WordPress.Security.EscapeOutput ?>;background:#0b0c10;color:#fff;display:grid;place-items:center;text-align:center;padding:32px 20px;overflow:hidden;position:relative;-webkit-font-smoothing:antialiased}
-body::before{content:"";position:fixed;inset:0;background:
+<?php if ( ! $overlay ) : ?>*{box-sizing:border-box;margin:0}html,body{height:100%}<?php endif; ?>
+<?php echo $r; ?> *{box-sizing:border-box;margin:0}
+<?php echo $r; ?>{font-family:<?php echo $font_name; // phpcs:ignore WordPress.Security.EscapeOutput ?>;background:#0b0c10;color:#fff;display:grid;place-items:center;text-align:center;padding:32px 20px;overflow:hidden;position:relative;-webkit-font-smoothing:antialiased;<?php if ( $overlay ) : ?>position:fixed;inset:0;z-index:2147483647;overflow:auto;min-height:100%;height:auto<?php endif; ?>}
+<?php echo $r; ?>::before{content:"";position:fixed;inset:0;background:
   radial-gradient(60% 50% at 50% 35%,<?php echo esc_attr( $couleur ); ?>33,transparent 65%),
   radial-gradient(40% 35% at 85% 90%,<?php echo esc_attr( $couleur ); ?>22,transparent 60%),
   linear-gradient(180deg,#15171c 0%,#0b0c10 70%);z-index:-2}
-body::after{content:"";position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(70% 70% at 50% 50%,#000 20%,transparent 100%);-webkit-mask-image:radial-gradient(70% 70% at 50% 50%,#000 20%,transparent 100%);z-index:-1}
-.o{display:grid;gap:26px;justify-items:center;max-width:860px;animation:in .9s ease both}
+<?php echo $r; ?>::after{content:"";position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(70% 70% at 50% 50%,#000 20%,transparent 100%);-webkit-mask-image:radial-gradient(70% 70% at 50% 50%,#000 20%,transparent 100%);z-index:-1}
+<?php echo $o; ?>.o{display:grid;gap:26px;justify-items:center;max-width:860px;animation:in .9s ease both}
 @keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-.o__logo{width:min(300px,64vw);height:auto;filter:drop-shadow(0 20px 40px rgba(0,0,0,.6))}
-.o__nom{font-size:clamp(1.1rem,2.4vw,1.5rem);font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,255,255,.72)}
-.o__kicker{display:inline-flex;align-items:center;gap:.7em;padding:9px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05);font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
-.o__kicker::before{content:"";width:7px;height:7px;border-radius:50%;background:<?php echo esc_attr( $couleur ); ?>;box-shadow:0 0 12px <?php echo esc_attr( $couleur ); ?>}
-.o__date{font-size:clamp(2rem,6.5vw,4.4rem);font-weight:800;line-height:1.05;letter-spacing:-.02em}
-.o__date em{font-style:italic;color:<?php echo esc_attr( $couleur ); ?>}
-.o__cd{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:6px}
-.o__cell{min-width:clamp(74px,16vw,118px);padding:16px 10px 12px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(8px)}
-.o__cell b{display:block;font-size:clamp(1.9rem,5.2vw,3.2rem);font-weight:800;line-height:1;font-variant-numeric:tabular-nums;color:#fff}
-.o__cell span{display:block;margin-top:8px;font-size:.64rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.55)}
-.o__msg{color:rgba(255,255,255,.7);font-size:1rem;max-width:520px;line-height:1.6}
-.o__foot{margin-top:10px;font-size:.78rem;color:rgba(255,255,255,.4);letter-spacing:.06em}
-.o__open{display:none}
-.is-open .o__cd,.is-open .o__kicker{display:none}
-.is-open .o__open{display:inline-block;margin-top:8px;padding:14px 26px;border-radius:999px;background:<?php echo esc_attr( $couleur ); ?>;color:#fff;font-weight:700;text-decoration:none}
-@media (prefers-reduced-motion:reduce){.o{animation:none}}
+<?php echo $o; ?>.o__logo{width:min(300px,64vw);height:auto;filter:drop-shadow(0 20px 40px rgba(0,0,0,.6))}
+<?php echo $o; ?>.o__nom{font-size:clamp(1.1rem,2.4vw,1.5rem);font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,255,255,.72)}
+<?php echo $o; ?>.o__kicker{display:inline-flex;align-items:center;gap:.7em;padding:9px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05);font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
+<?php echo $o; ?>.o__kicker::before{content:"";width:7px;height:7px;border-radius:50%;background:<?php echo esc_attr( $couleur ); ?>;box-shadow:0 0 12px <?php echo esc_attr( $couleur ); ?>}
+<?php echo $o; ?>.o__date{font-size:clamp(2rem,6.5vw,4.4rem);font-weight:800;line-height:1.05;letter-spacing:-.02em;color:#fff;font-family:inherit}
+<?php echo $o; ?>.o__date em{font-style:italic;color:<?php echo esc_attr( $couleur ); ?>}
+<?php echo $o; ?>.o__cd{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:6px}
+<?php echo $o; ?>.o__cell{min-width:clamp(74px,16vw,118px);padding:16px 10px 12px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(8px)}
+<?php echo $o; ?>.o__cell b{display:block;font-size:clamp(1.9rem,5.2vw,3.2rem);font-weight:800;line-height:1;font-variant-numeric:tabular-nums;color:#fff}
+<?php echo $o; ?>.o__cell span{display:block;margin-top:8px;font-size:.64rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+<?php echo $o; ?>.o__msg{color:rgba(255,255,255,.7);font-size:1rem;max-width:520px;line-height:1.6}
+<?php echo $o; ?>.o__foot{margin-top:10px;font-size:.78rem;color:rgba(255,255,255,.4);letter-spacing:.06em}
+<?php echo $o; ?>.o__open{display:none}
+<?php echo $o; ?>.is-open .o__cd,<?php echo $o; ?>.is-open .o__kicker{display:none}
+<?php echo $o; ?>.is-open .o__open{display:inline-block;margin-top:8px;padding:14px 26px;border-radius:999px;background:<?php echo esc_attr( $couleur ); ?>;color:#fff;font-weight:700;text-decoration:none}
+@media (prefers-reduced-motion:reduce){<?php echo $o; ?>.o{animation:none}}
+<?php if ( $overlay ) : ?>.o-ouv{color:#fff}.o-ouv h1{font-family:inherit}<?php endif; ?>
 </style>
+<?php if ( ! $overlay ) : ?>
 </head>
 <body>
+<?php endif; ?>
 <main class="o" id="o" data-date="<?php echo esc_attr( $iso ); ?>">
 	<?php if ( $logo ) : ?>
 	<img class="o__logo" src="<?php echo esc_url( $logo ); ?>" alt="<?php echo esc_attr( $nom ); ?>">
@@ -199,11 +231,12 @@ body::after{content:"";position:fixed;inset:0;background-image:linear-gradient(r
 <script>
 (function(){
   var el=document.getElementById('o'),cible=new Date(el.getAttribute('data-date')).getTime();
+  <?php if ( $overlay ) : ?>document.documentElement.classList.add('o-lock');<?php endif; ?>
   var j=document.getElementById('cd-j'),h=document.getElementById('cd-h'),m=document.getElementById('cd-m'),s=document.getElementById('cd-s');
   var p=function(n){return n<10?'0'+n:String(n);};
   function maj(){
     var d=cible-Date.now();
-    if(d<=0){el.classList.add('is-open');return;}
+    if(d<=0){el.classList.add('is-open');<?php if ( $overlay ) : ?>var w=document.getElementById('o-ouv');if(w){w.parentNode.removeChild(w);}document.documentElement.classList.remove('o-lock');<?php endif; ?>return;}
     var sec=Math.floor(d/1000);
     j.textContent=Math.floor(sec/86400);h.textContent=p(Math.floor(sec%86400/3600));m.textContent=p(Math.floor(sec%3600/60));s.textContent=p(sec%60);
     setTimeout(maj,1000-(Date.now()%1000));
@@ -211,7 +244,11 @@ body::after{content:"";position:fixed;inset:0;background-image:linear-gradient(r
   maj();
 })();
 </script>
+<?php if ( $overlay ) : ?>
+</div>
+<?php else : ?>
 </body>
 </html>
+<?php endif; ?>
 	<?php
 }

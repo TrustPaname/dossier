@@ -443,7 +443,11 @@ body.is-locked{overflow:hidden}
   .hero__inner{grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
   .search{padding:28px}
   .grid{grid-template-columns:repeat(3,1fr)}
-  .services,.steps{grid-template-columns:repeat(4,1fr)}
+  .services{grid-template-columns:repeat(5,1fr)}
+  .services .service{padding:26px 20px}
+  .steps{grid-template-columns:repeat(4,1fr)}
+  .steps--col{grid-template-columns:1fr}
+  .depot{grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
   .estimation{grid-template-columns:1fr 1.1fr;gap:64px;align-items:start}
   .about{grid-template-columns:1.2fr .8fr;gap:72px}
   .values{grid-template-columns:repeat(3,1fr)}
@@ -480,3 +484,17 @@ body.is-locked{overflow:hidden}
 .footer--legal{padding:0 0 40px}
 .footer--legal .footer__bottom{border-top:0;margin-top:0;padding-top:28px}
 @media (max-width:640px){.legal__topnav .btn{display:none}}
+
+/* ==================== DÉPÔT-VENTE & FAQ ==================== */
+.depot{display:grid;gap:40px}
+.depot .list{margin-top:18px}
+.depot__actions{margin-top:24px}
+.steps--col{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.faq{display:grid;gap:12px;max-width:900px}
+.faq__item{padding:0;overflow:hidden}
+.faq__item summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 24px;font-family:var(--font-display);font-weight:700;font-size:1.05rem;color:var(--ink)}
+.faq__item summary::-webkit-details-marker{display:none}
+.faq__item summary::after{content:"+";flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--bleu-soft);color:var(--bleu);font-weight:700;font-size:1.2rem;transition:transform var(--t)}
+.faq__item[open] summary::after{transform:rotate(45deg)}
+.faq__item[open] summary{color:var(--bleu)}
+.faq__item p{margin:0;padding:0 24px 22px;color:var(--ink-2)}
