@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Ouverture prochaine (compte à rebours)
  * Description: Affiche aux visiteurs une page « Ouverture le … » avec un compte à rebours, quel que soit le thème actif. Réglages : Apparence → Personnaliser → Ouverture prochaine. Les administrateurs connectés voient le vrai site ; ajoutez ?ouverture=1 à l'adresse pour voir la page d'attente.
- * Version: 1.4.1
+ * Version: 1.4.2
  * Author: Motor Corp
  */
 
@@ -66,11 +66,11 @@ function ouverture_prochaine_active() {
 	}
 	if ( isset( $_GET['ouverture'] ) && '0' === $_GET['ouverture'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( ! headers_sent() ) {
-			setcookie( 'mc_ouverture', '0', time() + DAY_IN_SECONDS, '/' );
+			setcookie( 'mc_ouverture', '0', 0, '/' ); // le temps de la visite : le compte à rebours revient à la prochaine ouverture du navigateur
 		}
 		return false;
 	}
-	// Le visiteur a cliqué sur « Accéder au site » : il navigue librement pendant 24 h.
+	// Le visiteur a cliqué sur « Accéder au site » : il navigue librement le temps de sa visite.
 	if ( ! $force && isset( $_COOKIE['mc_ouverture'] ) && '0' === $_COOKIE['mc_ouverture'] ) {
 		return false;
 	}
@@ -285,7 +285,7 @@ function ouverture_prochaine_render( $overlay = false ) {
   var el=document.getElementById('o'),cible=new Date(el.getAttribute('data-date')).getTime();
   <?php if ( $overlay ) : ?>document.documentElement.classList.add('o-lock');
   var entrer=document.getElementById('o-enter');
-  if(entrer){entrer.addEventListener('click',function(e){e.preventDefault();document.cookie='mc_ouverture=0; path=/; max-age=86400; SameSite=Lax';var w=document.getElementById('o-ouv');if(w){w.parentNode.removeChild(w);}document.documentElement.classList.remove('o-lock');var an=entrer.getAttribute('data-ancre');if(an){var c=document.querySelector(an);if(c){c.scrollIntoView({behavior:'smooth'});}}});}<?php endif; ?>
+  if(entrer){entrer.addEventListener('click',function(e){e.preventDefault();document.cookie='mc_ouverture=0; path=/; SameSite=Lax';var w=document.getElementById('o-ouv');if(w){w.parentNode.removeChild(w);}document.documentElement.classList.remove('o-lock');var an=entrer.getAttribute('data-ancre');if(an){var c=document.querySelector(an);if(c){c.scrollIntoView({behavior:'smooth'});}}});}<?php endif; ?>
   var j=document.getElementById('cd-j'),h=document.getElementById('cd-h'),m=document.getElementById('cd-m'),s=document.getElementById('cd-s');
   var p=function(n){return n<10?'0'+n:String(n);};
   function maj(){
