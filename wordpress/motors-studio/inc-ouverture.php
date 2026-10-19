@@ -58,6 +58,9 @@ function motor_ouverture_active() {
 	// ?ouverture=1 dans l'adresse : force l'affichage de la page d'attente, même connecté (pour vérifier).
 	// ?ouverture=0 : affiche le vrai site sans être connecté (pour vérifier le site avant l'ouverture).
 	$force = isset( $_GET['ouverture'] ) && '1' === $_GET['ouverture']; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	if ( $force && ! headers_sent() ) {
+		setcookie( 'mc_ouverture', '', time() - 3600, '/' ); // annule « Accéder au site » : le compte à rebours revient
+	}
 	if ( isset( $_GET['ouverture'] ) && '0' === $_GET['ouverture'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( ! headers_sent() ) {
 			setcookie( 'mc_ouverture', '0', time() + DAY_IN_SECONDS, '/' );
