@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Ouverture prochaine (compte à rebours)
  * Description: Affiche aux visiteurs une page « Ouverture le … » avec un compte à rebours, quel que soit le thème actif. Réglages : Apparence → Personnaliser → Ouverture prochaine. Les administrateurs connectés voient le vrai site ; ajoutez ?ouverture=1 à l'adresse pour voir la page d'attente.
- * Version: 1.2.0
+ * Version: 1.3.0
  * Author: Motor Corp
  */
 
@@ -18,7 +18,7 @@ function ouverture_prochaine_config() {
 	$sites = array(
 		'motor-consulting' => array( 'nom' => 'Motor Consulting', 'logo' => 'assets/img/logo-motor-consulting-600.png', 'couleur' => '#0a8cff', 'police' => array( 'Outfit', 'assets/fonts/outfit-300-800-latin.woff2' ) ),
 		'motor-corp'       => array( 'nom' => 'Motor Corp',       'logo' => 'assets/img/logo-motor-corp.png',            'couleur' => '#f04a00', 'police' => array( 'Archivo', 'assets/fonts/archivo-latin.woff2' ) ),
-		'motors-studio'    => array( 'nom' => 'Motors Studio',    'logo' => 'assets/img/logo-motors-studio.png',         'couleur' => '#e3231a', 'police' => array( 'Outfit', 'assets/fonts/outfit-300-800-latin.woff2' ) ),
+		'motors-studio'    => array( 'nom' => 'Motors Studio',    'logo' => 'assets/img/logo-motors-studio.png',         'couleur' => '#e3231a', 'police' => array( 'Outfit', 'assets/fonts/outfit-300-800-latin.woff2' ), 'message' => 'Profitez de nos offres d\'ouverture : les premiers clients à prendre rendez-vous bénéficient de conditions exclusives.', 'bouton' => 'Prendre rendez-vous', 'bouton_ancre' => '#devis' ),
 		'ms-motor-studio'  => array( 'nom' => 'Motors Studio',    'logo' => 'assets/img/logo-motors-studio.png',         'couleur' => '#e3231a', 'police' => array() ),
 	);
 	$c = isset( $sites[ $theme ] ) ? $sites[ $theme ] : array( 'nom' => get_bloginfo( 'name' ), 'logo' => '', 'couleur' => '#0a8cff', 'police' => array() );
@@ -97,7 +97,8 @@ add_action( 'customize_register', function ( $wp_customize ) {
 		'date'    => array( 'Date d\'ouverture (AAAA-MM-JJ)', 'text', '2026-11-05' ),
 		'heure'   => array( 'Heure d\'ouverture (HH:MM)', 'text', '09:00' ),
 		'titre'   => array( 'Texte au-dessus de la date', 'text', 'Ouverture le' ),
-		'message' => array( 'Phrase sous le compte à rebours (facultatif)', 'text', '' ),
+		'message' => array( 'Phrase sous le compte à rebours (facultatif)', 'text', ouverture_prochaine_cfg( 'message', '' ) ),
+		'bouton'  => array( 'Texte du bouton d\'accès au site', 'text', ouverture_prochaine_cfg( 'bouton', 'Accéder au site' ) ),
 	);
 	foreach ( $fields as $k => $f ) {
 		$wp_customize->add_setting( $p . 'ouverture_' . $k, array(
@@ -170,7 +171,9 @@ function ouverture_prochaine_render( $overlay = false ) {
 	$iso     = $d->format( 'c' );
 	$jour    = wp_date( 'j F Y', $d->getTimestamp() );
 	$titre   = ouverture_prochaine_mod( 'titre', 'Ouverture le' );
-	$message = ouverture_prochaine_mod( 'message', '' );
+	$message = ouverture_prochaine_mod( 'message', ouverture_prochaine_cfg( 'message', '' ) );
+	$bouton  = ouverture_prochaine_mod( 'bouton', ouverture_prochaine_cfg( 'bouton', 'Accéder au site' ) );
+	$lien    = home_url( '/?ouverture=0' . ouverture_prochaine_cfg( 'bouton_ancre', '' ) );
 	$font_face = '';
 	$font_name = 'system-ui, -apple-system, "Segoe UI", sans-serif';
 	$r = $overlay ? '.o-ouv' : 'body'; // racine des styles
@@ -216,7 +219,8 @@ function ouverture_prochaine_render( $overlay = false ) {
 <?php echo $o; ?>.o__cell{min-width:clamp(74px,16vw,118px);padding:16px 10px 12px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(8px)}
 <?php echo $o; ?>.o__cell b{display:block;font-size:clamp(1.9rem,5.2vw,3.2rem);font-weight:800;line-height:1;font-variant-numeric:tabular-nums;color:#fff}
 <?php echo $o; ?>.o__cell span{display:block;margin-top:8px;font-size:.64rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.55)}
-<?php echo $o; ?>.o__msg{color:rgba(255,255,255,.7);font-size:1rem;max-width:520px;line-height:1.6}
+<?php echo $o; ?>.o__msg{color:rgba(255,255,255,.85);font-size:clamp(1rem,2.2vw,1.2rem);max-width:620px;line-height:1.55;margin-top:4px}
+<?php echo $o; ?>.o__msg strong{font-weight:600;color:#fff}
 <?php echo $o; ?>.o__foot{margin-top:10px;font-size:.78rem;color:rgba(255,255,255,.4);letter-spacing:.06em}
 <?php echo $o; ?>.o__open{display:none}
 <?php echo $o; ?>.is-open .o__cd,<?php echo $o; ?>.is-open .o__kicker{display:none}
@@ -245,9 +249,9 @@ function ouverture_prochaine_render( $overlay = false ) {
 		<div class="o__cell"><b id="cd-m">—</b><span>minutes</span></div>
 		<div class="o__cell"><b id="cd-s">—</b><span>secondes</span></div>
 	</div>
-	<?php if ( $message ) : ?><p class="o__msg"><?php echo esc_html( $message ); ?></p><?php endif; ?>
+	<?php if ( $message ) : ?><p class="o__msg"><strong><?php echo esc_html( $message ); ?></strong></p><?php endif; ?>
 	<a class="o__open" href="<?php echo esc_url( home_url( '/' ) ); ?>">Découvrir le site</a>
-	<a class="o__enter" id="o-enter" href="<?php echo esc_url( home_url( '/?ouverture=0' ) ); ?>">Accéder au site <span aria-hidden="true">→</span></a>
+	<a class="o__enter" id="o-enter" href="<?php echo esc_url( $lien ); ?>" data-ancre="<?php echo esc_attr( ouverture_prochaine_cfg( 'bouton_ancre', '' ) ); ?>"><?php echo esc_html( $bouton ); ?> <span aria-hidden="true">→</span></a>
 	<p class="o__foot">© <?php echo esc_html( wp_date( 'Y' ) ); ?> <?php echo esc_html( $nom ); ?></p>
 </main>
 <script>
@@ -255,7 +259,7 @@ function ouverture_prochaine_render( $overlay = false ) {
   var el=document.getElementById('o'),cible=new Date(el.getAttribute('data-date')).getTime();
   <?php if ( $overlay ) : ?>document.documentElement.classList.add('o-lock');
   var entrer=document.getElementById('o-enter');
-  if(entrer){entrer.addEventListener('click',function(e){e.preventDefault();document.cookie='mc_ouverture=0; path=/; max-age=86400; SameSite=Lax';var w=document.getElementById('o-ouv');if(w){w.parentNode.removeChild(w);}document.documentElement.classList.remove('o-lock');});}<?php endif; ?>
+  if(entrer){entrer.addEventListener('click',function(e){e.preventDefault();document.cookie='mc_ouverture=0; path=/; max-age=86400; SameSite=Lax';var w=document.getElementById('o-ouv');if(w){w.parentNode.removeChild(w);}document.documentElement.classList.remove('o-lock');var an=entrer.getAttribute('data-ancre');if(an){var c=document.querySelector(an);if(c){c.scrollIntoView({behavior:'smooth'});}}});}<?php endif; ?>
   var j=document.getElementById('cd-j'),h=document.getElementById('cd-h'),m=document.getElementById('cd-m'),s=document.getElementById('cd-s');
   var p=function(n){return n<10?'0'+n:String(n);};
   function maj(){

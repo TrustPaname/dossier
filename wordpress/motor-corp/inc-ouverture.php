@@ -94,7 +94,8 @@ add_action( 'customize_register', function ( $wp_customize ) {
 		'date'    => array( 'Date d\'ouverture (AAAA-MM-JJ)', 'text', '2026-11-05' ),
 		'heure'   => array( 'Heure d\'ouverture (HH:MM)', 'text', '09:00' ),
 		'titre'   => array( 'Texte au-dessus de la date', 'text', 'Ouverture le' ),
-		'message' => array( 'Phrase sous le compte à rebours (facultatif)', 'text', '' ),
+		'message' => array( 'Phrase sous le compte à rebours (facultatif)', 'text', motor_ouverture_cfg( 'message', '' ) ),
+		'bouton'  => array( 'Texte du bouton d\'accès au site', 'text', motor_ouverture_cfg( 'bouton', 'Accéder au site' ) ),
 	);
 	foreach ( $fields as $k => $f ) {
 		$wp_customize->add_setting( $p . 'ouverture_' . $k, array(
@@ -168,7 +169,9 @@ function motor_ouverture_render( $overlay = false ) {
 	$iso     = $d->format( 'c' );
 	$jour    = wp_date( 'j F Y', $d->getTimestamp() );
 	$titre   = motor_ouverture_mod( 'titre', 'Ouverture le' );
-	$message = motor_ouverture_mod( 'message', '' );
+	$message = motor_ouverture_mod( 'message', motor_ouverture_cfg( 'message', '' ) );
+	$bouton  = motor_ouverture_mod( 'bouton', motor_ouverture_cfg( 'bouton', 'Accéder au site' ) );
+	$lien    = home_url( '/?ouverture=0' . motor_ouverture_cfg( 'bouton_ancre', '' ) );
 	$font_face = '';
 	$font_name = 'system-ui, -apple-system, "Segoe UI", sans-serif';
 	$r = $overlay ? '.o-ouv' : 'body'; // racine des styles
@@ -214,7 +217,8 @@ function motor_ouverture_render( $overlay = false ) {
 <?php echo $o; ?>.o__cell{min-width:clamp(74px,16vw,118px);padding:16px 10px 12px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(8px)}
 <?php echo $o; ?>.o__cell b{display:block;font-size:clamp(1.9rem,5.2vw,3.2rem);font-weight:800;line-height:1;font-variant-numeric:tabular-nums;color:#fff}
 <?php echo $o; ?>.o__cell span{display:block;margin-top:8px;font-size:.64rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.55)}
-<?php echo $o; ?>.o__msg{color:rgba(255,255,255,.7);font-size:1rem;max-width:520px;line-height:1.6}
+<?php echo $o; ?>.o__msg{color:rgba(255,255,255,.85);font-size:clamp(1rem,2.2vw,1.2rem);max-width:620px;line-height:1.55;margin-top:4px}
+<?php echo $o; ?>.o__msg strong{font-weight:600;color:#fff}
 <?php echo $o; ?>.o__foot{margin-top:10px;font-size:.78rem;color:rgba(255,255,255,.4);letter-spacing:.06em}
 <?php echo $o; ?>.o__open{display:none}
 <?php echo $o; ?>.is-open .o__cd,<?php echo $o; ?>.is-open .o__kicker{display:none}
@@ -243,9 +247,9 @@ function motor_ouverture_render( $overlay = false ) {
 		<div class="o__cell"><b id="cd-m">—</b><span>minutes</span></div>
 		<div class="o__cell"><b id="cd-s">—</b><span>secondes</span></div>
 	</div>
-	<?php if ( $message ) : ?><p class="o__msg"><?php echo esc_html( $message ); ?></p><?php endif; ?>
+	<?php if ( $message ) : ?><p class="o__msg"><strong><?php echo esc_html( $message ); ?></strong></p><?php endif; ?>
 	<a class="o__open" href="<?php echo esc_url( home_url( '/' ) ); ?>">Découvrir le site</a>
-	<a class="o__enter" id="o-enter" href="<?php echo esc_url( home_url( '/?ouverture=0' ) ); ?>">Accéder au site <span aria-hidden="true">→</span></a>
+	<a class="o__enter" id="o-enter" href="<?php echo esc_url( $lien ); ?>" data-ancre="<?php echo esc_attr( motor_ouverture_cfg( 'bouton_ancre', '' ) ); ?>"><?php echo esc_html( $bouton ); ?> <span aria-hidden="true">→</span></a>
 	<p class="o__foot">© <?php echo esc_html( wp_date( 'Y' ) ); ?> <?php echo esc_html( $nom ); ?></p>
 </main>
 <script>
@@ -253,7 +257,7 @@ function motor_ouverture_render( $overlay = false ) {
   var el=document.getElementById('o'),cible=new Date(el.getAttribute('data-date')).getTime();
   <?php if ( $overlay ) : ?>document.documentElement.classList.add('o-lock');
   var entrer=document.getElementById('o-enter');
-  if(entrer){entrer.addEventListener('click',function(e){e.preventDefault();document.cookie='mc_ouverture=0; path=/; max-age=86400; SameSite=Lax';var w=document.getElementById('o-ouv');if(w){w.parentNode.removeChild(w);}document.documentElement.classList.remove('o-lock');});}<?php endif; ?>
+  if(entrer){entrer.addEventListener('click',function(e){e.preventDefault();document.cookie='mc_ouverture=0; path=/; max-age=86400; SameSite=Lax';var w=document.getElementById('o-ouv');if(w){w.parentNode.removeChild(w);}document.documentElement.classList.remove('o-lock');var an=entrer.getAttribute('data-ancre');if(an){var c=document.querySelector(an);if(c){c.scrollIntoView({behavior:'smooth'});}}});}<?php endif; ?>
   var j=document.getElementById('cd-j'),h=document.getElementById('cd-h'),m=document.getElementById('cd-m'),s=document.getElementById('cd-s');
   var p=function(n){return n<10?'0'+n:String(n);};
   function maj(){

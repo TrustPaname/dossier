@@ -21,6 +21,10 @@ $motor_ouverture = array(
 	'logo'    => 'assets/img/logo-motors-studio.png',
 	'couleur' => '#e3231a',
 	'police'  => array( 'Outfit', 'assets/fonts/outfit-300-800-latin.woff2' ),
+
+	'message' => 'Profitez de nos offres d\'ouverture : les premiers clients à prendre rendez-vous bénéficient de conditions exclusives.',
+	'bouton'  => 'Prendre rendez-vous',
+	'bouton_ancre' => '#devis',
 );
 require get_template_directory() . '/inc-ouverture.php';
 
