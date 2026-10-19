@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Ouverture prochaine (compte à rebours)
  * Description: Affiche aux visiteurs une page « Ouverture le … » avec un compte à rebours, quel que soit le thème actif. Réglages : Apparence → Personnaliser → Ouverture prochaine. Les administrateurs connectés voient le vrai site ; ajoutez ?ouverture=1 à l'adresse pour voir la page d'attente.
- * Version: 1.1.1
+ * Version: 1.2.0
  * Author: Motor Corp
  */
 
@@ -62,6 +62,13 @@ function ouverture_prochaine_active() {
 	// ?ouverture=0 : affiche le vrai site sans être connecté (pour vérifier le site avant l'ouverture).
 	$force = isset( $_GET['ouverture'] ) && '1' === $_GET['ouverture']; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	if ( isset( $_GET['ouverture'] ) && '0' === $_GET['ouverture'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( ! headers_sent() ) {
+			setcookie( 'mc_ouverture', '0', time() + DAY_IN_SECONDS, '/' );
+		}
+		return false;
+	}
+	// Le visiteur a cliqué sur « Accéder au site » : il navigue librement pendant 24 h.
+	if ( ! $force && isset( $_COOKIE['mc_ouverture'] ) && '0' === $_COOKIE['mc_ouverture'] ) {
 		return false;
 	}
 	if ( ! $force && is_user_logged_in() && current_user_can( 'edit_theme_options' ) ) {
@@ -213,6 +220,9 @@ function ouverture_prochaine_render( $overlay = false ) {
 <?php echo $o; ?>.o__foot{margin-top:10px;font-size:.78rem;color:rgba(255,255,255,.4);letter-spacing:.06em}
 <?php echo $o; ?>.o__open{display:none}
 <?php echo $o; ?>.is-open .o__cd,<?php echo $o; ?>.is-open .o__kicker{display:none}
+<?php echo $o; ?>.o__enter{display:inline-flex;align-items:center;gap:.5em;margin-top:4px;padding:13px 26px;border-radius:999px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.06);color:#fff;font-weight:600;font-size:.95rem;text-decoration:none;letter-spacing:.02em;transition:background .25s,border-color .25s}
+<?php echo $o; ?>.o__enter:hover{background:<?php echo esc_attr( $couleur ); ?>;border-color:<?php echo esc_attr( $couleur ); ?>}
+<?php echo $o; ?>.is-open .o__enter{display:none}
 <?php echo $o; ?>.is-open .o__open{display:inline-block;margin-top:8px;padding:14px 26px;border-radius:999px;background:<?php echo esc_attr( $couleur ); ?>;color:#fff;font-weight:700;text-decoration:none}
 @media (prefers-reduced-motion:reduce){<?php echo $o; ?>.o{animation:none}}
 <?php if ( $overlay ) : ?>.o-ouv{color:#fff}.o-ouv h1{font-family:inherit}<?php endif; ?>
@@ -237,12 +247,15 @@ function ouverture_prochaine_render( $overlay = false ) {
 	</div>
 	<?php if ( $message ) : ?><p class="o__msg"><?php echo esc_html( $message ); ?></p><?php endif; ?>
 	<a class="o__open" href="<?php echo esc_url( home_url( '/' ) ); ?>">Découvrir le site</a>
+	<a class="o__enter" id="o-enter" href="<?php echo esc_url( home_url( '/?ouverture=0' ) ); ?>">Accéder au site <span aria-hidden="true">→</span></a>
 	<p class="o__foot">© <?php echo esc_html( wp_date( 'Y' ) ); ?> <?php echo esc_html( $nom ); ?></p>
 </main>
 <script>
 (function(){
   var el=document.getElementById('o'),cible=new Date(el.getAttribute('data-date')).getTime();
-  <?php if ( $overlay ) : ?>document.documentElement.classList.add('o-lock');<?php endif; ?>
+  <?php if ( $overlay ) : ?>document.documentElement.classList.add('o-lock');
+  var entrer=document.getElementById('o-enter');
+  if(entrer){entrer.addEventListener('click',function(e){e.preventDefault();document.cookie='mc_ouverture=0; path=/; max-age=86400; SameSite=Lax';var w=document.getElementById('o-ouv');if(w){w.parentNode.removeChild(w);}document.documentElement.classList.remove('o-lock');});}<?php endif; ?>
   var j=document.getElementById('cd-j'),h=document.getElementById('cd-h'),m=document.getElementById('cd-m'),s=document.getElementById('cd-s');
   var p=function(n){return n<10?'0'+n:String(n);};
   function maj(){
