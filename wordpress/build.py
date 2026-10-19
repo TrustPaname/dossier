@@ -172,6 +172,7 @@ def build_studio():
     img = os.path.join(theme, "assets", "img"); os.makedirs(img, exist_ok=True)
     for f in ("logo-motors-studio.png", "logo-motors-studio-light.png"):
         shutil.copy(os.path.join(ROOT, "assets", "img", f), os.path.join(img, f))
+    shutil.copy(os.path.join(src, "img", "og-cover.png"), os.path.join(img, "og-cover.png"))
     shutil.copy(os.path.join(src, "favicon.svg"), os.path.join(theme, "favicon.svg"))
     copy_tree(os.path.join(src, "img"), os.path.join(theme, "img"))
     print("thème motors-studio : front-page.php + assets")

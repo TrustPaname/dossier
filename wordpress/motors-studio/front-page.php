@@ -161,7 +161,7 @@
 <header class="header" id="header">
   <div class="container header__inner">
     <a class="logo logo--compact" href="#accueil" aria-label="Motors Studio, retour à l'accueil">
-      <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/logo-motors-studio-light.png" alt="Motors Studio" width="300" height="150">
+      <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/logo-motors-studio-light.png" alt="Motors Studio" width="300" height="151">
     </a>
     <nav class="nav" id="nav" aria-label="Navigation principale">
       <ul class="nav__list">
