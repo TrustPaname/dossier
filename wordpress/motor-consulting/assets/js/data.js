@@ -179,29 +179,4 @@ const VEHICLES = [
 ];
 
 /* ------------------------- Témoignages ------------------------- */
-const TESTIMONIALS = [
-  {
-    nom: "Sophie L.", ville: "Paris 15e", note: 5, service: "Vente accompagnée",
-    texte: "J'ai vendu ma Golf en 11 jours à 1 900 € de plus que la reprise proposée par mon concessionnaire. Tout a été géré : photos, annonce, visites, papiers. Je n'ai eu qu'à signer."
-  },
-  {
-    nom: "Marc D.", ville: "Boulogne-Billancourt", note: 5, service: "Achat pour compte de tiers",
-    texte: "Je cherchais un SUV hybride depuis trois mois sans succès. Ils ont trouvé le bon modèle en deux semaines, l'ont inspecté et négocié. Le rapport d'expertise était d'une précision impressionnante."
-  },
-  {
-    nom: "Nadia B.", ville: "Créteil", note: 5, service: "Estimation gratuite",
-    texte: "Estimation reçue le lendemain matin, argumentée et réaliste — très loin des estimateurs en ligne. Aucune pression commerciale derrière, ce qui change tout."
-  },
-  {
-    nom: "Julien P.", ville: "Versailles", note: 4, service: "Expertise avant achat",
-    texte: "L'expertise m'a évité d'acheter une voiture au kilométrage trafiqué. 150 € qui m'en ont fait économiser plusieurs milliers. Réactivité et honnêteté au rendez-vous."
-  },
-  {
-    nom: "Karine M.", ville: "Neuilly-sur-Seine", note: 5, service: "Vente accompagnée",
-    texte: "Un interlocuteur unique, disponible, qui explique chaque étape sans jargon. La transaction et le paiement ont été totalement sécurisés. Je recommande sans réserve."
-  },
-  {
-    nom: "Éric T.", ville: "Saint-Denis · Pro", note: 5, service: "Gestion de flotte",
-    texte: "Nous leur confions le renouvellement de nos utilitaires depuis trois ans. Délais tenus, prix négociés, factures claires. Un vrai gain de temps pour notre société."
-  }
-];
+const TESTIMONIALS = []; // aucun avis inventé : les vrais avis seront ajoutés depuis WordPress (menu Témoignages)

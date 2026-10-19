@@ -342,6 +342,9 @@
      ========================================================= */
   const track = $("#testimonials-track");
   const dotsBox = $("#t-dots");
+  const avisSection = $("#avis");
+  if (avisSection && AVIS.length === 0) avisSection.hidden = true; // aucun avis : la section n'apparaît pas
+  if (track && dotsBox && AVIS.length > 0) {
 
   function starsHtml(note) {
     let out = "";
@@ -409,6 +412,7 @@
     if (Math.abs(dx) > 50) goTo(slide + (dx < 0 ? 1 : -1));
     touchX = null;
   }, { passive: true });
+  }
 
   /* =========================================================
      6. Formulaires : validation + envoi
