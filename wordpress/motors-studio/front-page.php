@@ -366,10 +366,17 @@
             <p class="field__error" data-error-for="c-tel"></p>
           </div>
         </div>
-        <div class="field">
-          <label for="c-email">E-mail <span class="req" aria-hidden="true">*</span></label>
-          <input type="email" id="c-email" name="email" autocomplete="email" required>
-          <p class="field__error" data-error-for="c-email"></p>
+        <div class="field-row">
+          <div class="field">
+            <label for="c-email">E-mail <span class="req" aria-hidden="true">*</span></label>
+            <input type="email" id="c-email" name="email" autocomplete="email" required>
+            <p class="field__error" data-error-for="c-email"></p>
+          </div>
+          <div class="field">
+            <label for="c-immat">Immatriculation <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="c-immat" name="immatriculation" placeholder="AB-123-CD" autocapitalize="characters" spellcheck="false" required>
+            <p class="field__error" data-error-for="c-immat"></p>
+          </div>
         </div>
         <div class="field field--select">
           <label for="c-sujet">Votre demande</label>
