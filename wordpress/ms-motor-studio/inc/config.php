@@ -21,7 +21,7 @@ function msms_defaults(): array {
 
 		// Adresse.
 		'adresse_rue'    => '3 rue Florence Arthaud',
-		'adresse_cp'     => '28310',
+		'adresse_cp'     => '28300',
 		'adresse_ville'  => 'Mainvilliers',
 		'gps_lat'        => '48.4497',
 		'gps_lng'        => '1.4595',

@@ -24,6 +24,12 @@ $motor_ouverture = array(
 );
 require get_template_directory() . '/inc-ouverture.php';
 
+$motor_legal = array( 'prefix' => 'motor_', 'nom' => 'Motors Studio', 'opt' => 'motor_opt' );
+require get_template_directory() . '/inc-legal.php';
+
+$motor_mail = array( 'prefix' => 'motor_', 'opt' => 'motor_opt', 'nom' => 'Motors Studio' );
+require get_template_directory() . '/inc-mail.php';
+
 /* ------------------------------------------------------------------
  * 1. Réglages de base, styles et scripts
  * ---------------------------------------------------------------- */
@@ -69,7 +75,7 @@ function motor_defaults() {
 		'whatsapp'      => '33612345678',
 		'email'         => 'contact@motors-studio.fr',
 		'lead_email'    => get_option( 'admin_email' ),
-		'address'       => '3 rue Florence Arthaud, 28310 Mainvilliers',
+		'address'       => '3 rue Florence Arthaud, 28300 Mainvilliers',
 		'hours'         => 'Lun–Sam 9h–12h · 13h30–19h',
 		'demo'          => 1,
 	);

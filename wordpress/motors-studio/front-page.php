@@ -46,7 +46,7 @@
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "3 rue Florence Arthaud",
-    "postalCode": "28310",
+    "postalCode": "28300",
     "addressLocality": "Mainvilliers",
     "addressRegion": "Centre-Val de Loire",
     "addressCountry": "FR"
@@ -74,7 +74,7 @@
       <ul class="nav__list">
         <li><a href="#services">Carrosserie</a></li>
         <li><a href="#services">Mécanique</a></li>
-        <li><a href="#realisations">Réalisations</a></li>
+        <li><a href="#realisations">Interventions</a></li>
         <li><a href="#methode">Méthode</a></li>
         <li><a href="#avis">Avis</a></li>
         <li><a href="#apropos">L'atelier</a></li>
@@ -102,10 +102,10 @@
       <p class="hero__sub2">Un atelier équipé d'une <strong>cabine de peinture</strong> et d'un <strong>marbre de redressage</strong>, des carrossiers et mécaniciens qui garantissent chaque intervention.</p>
       <div class="hero__actions">
         <a class="btn btn--primary" href="#devis"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h7l4 4V20a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12h6M9 15.5h6M9 8.5h3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg> Demander un devis</a>
-        <a class="btn btn--light" href="#realisations">Voir nos réalisations <span aria-hidden="true">→</span></a>
+        <a class="btn btn--light" href="#realisations">Nos interventions <span aria-hidden="true">→</span></a>
       </div>
       <ul class="hero__proof">
-        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.6 2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.1-5.9 3.1 1.2-6.5L2.5 9.5l6.6-.9 2.9-6Z" fill="currentColor"/></svg> <strong>4,9/5</strong> · 186 avis clients</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.6 2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.1-5.9 3.1 1.2-6.5L2.5 9.5l6.6-.9 2.9-6Z" fill="currentColor"/></svg> <strong>Nouveau</strong> à Mainvilliers · ouverture le 5 novembre 2026</li>
         <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 17.5v-3.4l2-4.4c.35-.8 1-1.2 1.9-1.2h9.2c.9 0 1.55.4 1.9 1.2l2 4.4v3.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M3.5 17.5h17M5.6 14.1h2.6M15.8 14.1h2.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg> <strong>Véhicule</strong> de courtoisie</li>
         <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m8.5 12.3 2.4 2.4 4.8-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> <strong>Garantie</strong> sur chaque intervention</li>
       </ul>
@@ -173,18 +173,18 @@
   <div class="container">
     <header class="section__head section__head--row reveal">
       <div>
-        <span class="label">Réalisations</span>
-        <h2>Avant / après, <span class="accent">sans retouche</span></h2>
+        <span class="label">Nos interventions</span>
+        <h2>Ce que nous réparons, <span class="accent">tous les jours</span></h2>
       </div>
-      <p class="lead">Quelques interventions récentes. Les photos de vos propres travaux vous sont remises à la restitution.</p>
+      <p class="lead">Exemples d'interventions courantes à l'atelier. Envoyez-nous des photos de votre véhicule : chiffrage sous 24h, et les photos de vos propres travaux vous sont remises à la restitution.</p>
     </header>
     <div class="works">
-      <article class="work card reveal"><div class="work__visual work__visual--1"><span class="work__tag work__tag--before">Avant</span><span class="work__tag work__tag--after">Après</span></div><div class="work__body"><h3>Aile avant et pare-chocs</h3><p>Choc latéral, redressage, peinture raccord teinte nacrée.</p><ul class="work__meta"><li>Carrosserie</li><li>3 jours</li><li>Assurance</li></ul></div></article>
-      <article class="work card reveal reveal--d1"><div class="work__visual work__visual--2"><span class="work__tag work__tag--before">Avant</span><span class="work__tag work__tag--after">Après</span></div><div class="work__body"><h3>Capot grêlé</h3><p>42 impacts traités en débosselage sans peinture, teinte d'origine conservée.</p><ul class="work__meta"><li>Débosselage</li><li>1 journée</li><li>Sans peinture</li></ul></div></article>
-      <article class="work card reveal reveal--d2"><div class="work__visual work__visual--3"><span class="work__tag work__tag--before">Avant</span><span class="work__tag work__tag--after">Après</span></div><div class="work__body"><h3>Peinture complète</h3><p>Remise à neuf d'une carrosserie ternie, préparation complète et vernis haute brillance.</p><ul class="work__meta"><li>Peinture</li><li>8 jours</li><li>Garantie 3 ans</li></ul></div></article>
-      <article class="work card reveal"><div class="work__visual work__visual--4"><span class="work__tag work__tag--before">Avant</span><span class="work__tag work__tag--after">Après</span></div><div class="work__body"><h3>Portière enfoncée</h3><p>Remplacement de la portière, peinture et réglage des jeux, remontage des garnitures.</p><ul class="work__meta"><li>Carrosserie</li><li>4 jours</li><li>Courtoisie</li></ul></div></article>
-      <article class="work card reveal reveal--d1"><div class="work__visual work__visual--5"><span class="work__tag work__tag--before">Avant</span><span class="work__tag work__tag--after">Après</span></div><div class="work__body"><h3>Jantes et rénovation optiques</h3><p>Jantes rayées reprises et peintes, optiques ternis rénovés et protégés.</p><ul class="work__meta"><li>Esthétique</li><li>1 journée</li><li>Forfait</li></ul></div></article>
-      <article class="work card reveal reveal--d2"><div class="work__visual work__visual--6"><span class="work__tag work__tag--before">Avant</span><span class="work__tag work__tag--after">Après</span></div><div class="work__body"><h3>Freins et distribution</h3><p>Kit de distribution, pompe à eau, disques et plaquettes, essai routier et rapport.</p><ul class="work__meta"><li>Mécanique</li><li>2 jours</li><li>Pièces d'origine</li></ul></div></article>
+      <article class="work card reveal"><div class="work__visual work__visual--1"></div><div class="work__body"><h3>Aile avant et pare-chocs</h3><p>Choc latéral, redressage, peinture raccord teinte nacrée.</p><ul class="work__meta"><li>Carrosserie</li><li>3 jours</li><li>Assurance</li></ul></div></article>
+      <article class="work card reveal reveal--d1"><div class="work__visual work__visual--2"></div><div class="work__body"><h3>Capot grêlé</h3><p>Impacts de grêle traités en débosselage sans peinture, teinte d'origine conservée.</p><ul class="work__meta"><li>Débosselage</li><li>1 journée</li><li>Sans peinture</li></ul></div></article>
+      <article class="work card reveal reveal--d2"><div class="work__visual work__visual--3"></div><div class="work__body"><h3>Peinture complète</h3><p>Remise à neuf d'une carrosserie ternie, préparation complète et vernis haute brillance.</p><ul class="work__meta"><li>Peinture</li><li>8 jours</li><li>Garantie 3 ans</li></ul></div></article>
+      <article class="work card reveal"><div class="work__visual work__visual--4"></div><div class="work__body"><h3>Portière enfoncée</h3><p>Remplacement de la portière, peinture et réglage des jeux, remontage des garnitures.</p><ul class="work__meta"><li>Carrosserie</li><li>4 jours</li><li>Courtoisie</li></ul></div></article>
+      <article class="work card reveal reveal--d1"><div class="work__visual work__visual--5"></div><div class="work__body"><h3>Jantes et rénovation optiques</h3><p>Jantes rayées reprises et peintes, optiques ternis rénovés et protégés.</p><ul class="work__meta"><li>Esthétique</li><li>1 journée</li><li>Forfait</li></ul></div></article>
+      <article class="work card reveal reveal--d2"><div class="work__visual work__visual--6"></div><div class="work__body"><h3>Freins et distribution</h3><p>Kit de distribution, pompe à eau, disques et plaquettes, essai routier et rapport.</p><ul class="work__meta"><li>Mécanique</li><li>2 jours</li><li>Pièces d'origine</li></ul></div></article>
     </div>
   </div>
 </section>
@@ -297,7 +297,6 @@
         <span class="label">Avis clients</span>
         <h2>Ils nous ont <span class="accent">confié leur voiture</span></h2>
       </div>
-      <div class="rating" aria-label="Note moyenne de 4,9 sur 5"><span class="stars stars--lg" aria-hidden="true"></span><span><strong>4,9 / 5</strong> · 186 avis vérifiés</span></div>
     </header>
     <div class="testimonials" id="testimonials"><div class="testimonials__track" id="testimonials-track"></div></div>
     <div class="testimonials__nav">
@@ -323,11 +322,11 @@
       </div>
     </div>
     <div class="about__team reveal reveal--d1">
-      <h3 class="team__title">L'équipe</h3>
+      <h3 class="team__title">Nos engagements</h3>
       <ul class="team">
-        <li class="member card"><strong>Karim M.</strong><span>Gérant · Carrossier-peintre</span><p>20 ans de carrosserie, formé peinture constructeur, spécialiste des teintes nacrées et mates.</p></li>
-        <li class="member card"><strong>Mehdi R.</strong><span>Chef d'atelier mécanique</span><p>Diagnostic électronique et entretien toutes marques, hybrides comprises.</p></li>
-        <li class="member card"><strong>Julie P.</strong><span>Accueil et dossiers assurance</span><p>Votre interlocutrice pour le devis, l'expertise et le véhicule de courtoisie.</p></li>
+        <li class="member card"><strong>Un devis écrit avant tout travail</strong><span>Gratuit, détaillé, sans surprise</span><p>Rien n'est commencé sans votre accord. Si un dommage caché apparaît au démontage, on vous appelle avant d'agir.</p></li>
+        <li class="member card"><strong>Pièces et main-d'œuvre garanties</strong><span>Sur chaque intervention</span><p>Pièces d'origine ou de qualité équivalente, travaux de peinture garantis contre les défauts d'application.</p></li>
+        <li class="member card"><strong>Vous êtes tenu informé</strong><span>Photos à chaque étape</span><p>Avancement des travaux, pièces remplacées, date de restitution : vous savez toujours où en est votre voiture.</p></li>
       </ul>
     </div>
   </div>
@@ -350,7 +349,7 @@
         </ul>
         <div class="map">
           <p class="map__fallback"><?php echo esc_html( motor_opt( 'address' ) ); ?></p>
-          <a class="map__link" href="https://www.google.com/maps/dir/?api=1&amp;destination=Motors%20Studio%2C%203%20rue%20Florence%20Arthaud%2C%2028310%20Mainvilliers" target="_blank" rel="noopener">Itinéraire ↗</a>
+          <a class="map__link" href="https://www.google.com/maps/dir/?api=1&amp;destination=Motors%20Studio%2C%203%20rue%20Florence%20Arthaud%2C%2028300%20Mainvilliers" target="_blank" rel="noopener">Itinéraire ↗</a>
         </div>
       </div>
       <form class="form card" id="contact-form" novalidate>
@@ -412,12 +411,12 @@
       <p>Carrosserie, peinture, débosselage sans peinture, mécanique et entretien toutes marques. Atelier du groupe <a href="https://www.motorcorp.fr/">Motor Corp</a>.</p>
     </div>
     <nav class="footer__col" aria-label="Prestations"><h3>Prestations</h3><ul><li><a href="#services">Carrosserie</a></li><li><a href="#services">Peinture</a></li><li><a href="#services">Débosselage sans peinture</a></li><li><a href="#services">Mécanique et entretien</a></li><li><a href="#devis">Devis gratuit</a></li></ul></nav>
-    <nav class="footer__col" aria-label="Navigation"><h3>Le site</h3><ul><li><a href="#realisations">Réalisations</a></li><li><a href="#methode">Comment ça marche</a></li><li><a href="#avis">Avis clients</a></li><li><a href="#apropos">L'atelier</a></li><li><a href="#contact">Contact</a></li></ul></nav>
+    <nav class="footer__col" aria-label="Navigation"><h3>Le site</h3><ul><li><a href="#realisations">Interventions</a></li><li><a href="#methode">Comment ça marche</a></li><li><a href="#apropos">L'atelier</a></li><li><a href="#contact">Contact</a></li></ul></nav>
     <div class="footer__col"><h3>Le groupe</h3><p class="footer__seo">Motors Studio fait partie de <a href="https://www.motorcorp.fr/">Motor Corp</a>, aux côtés de <a href="https://www.motorconsulting.fr/">Motor Consulting</a> pour l'achat, la vente, la location et l'estimation de véhicules d'occasion. Carrosserie et garage automobile toutes marques à Mainvilliers, Chartres, Lucé, Lèves, Luisant, Le Coudray et dans tout l'Eure-et-Loir. Prise en charge assurance, véhicule de courtoisie.</p></div>
   </div>
   <div class="container footer__bottom">
     <p>© <span id="year">2026</span> Motors Studio</p>
-    <ul class="footer__legal"><li><a href="#apropos">Mentions légales</a></li><li><a href="#apropos">Confidentialité</a></li><li><a href="#contact">CGV</a></li></ul>
+    <ul class="footer__legal"><li><a href="<?php echo esc_url( home_url( '/mentions-legales/' ) ); ?>">Mentions légales</a></li><li><a href="<?php echo esc_url( home_url( '/confidentialite/' ) ); ?>">Confidentialité</a></li><li><a href="<?php echo esc_url( home_url( '/cgv/' ) ); ?>">Conditions de réparation</a></li></ul>
   </div>
 </footer>
 

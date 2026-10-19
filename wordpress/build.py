@@ -145,7 +145,10 @@ def build_studio():
         'contact@motors-studio.fr'                    : "<?php echo esc_html( motor_opt( 'email' ) ); ?>",
         '06 12 34 56 78'                              : "<?php echo esc_html( motor_opt( 'phone_display' ) ); ?>",
         '+33612345678'                                : "<?php echo esc_attr( motor_opt( 'phone_e164' ) ); ?>",
-        '3 rue Florence Arthaud, 28310 Mainvilliers'  : "<?php echo esc_html( motor_opt( 'address' ) ); ?>",
+        '3 rue Florence Arthaud, 28300 Mainvilliers'  : "<?php echo esc_html( motor_opt( 'address' ) ); ?>",
+        'href="mentions-legales.html"'              : 'href="<?php echo esc_url( home_url( \'/mentions-legales/\' ) ); ?>"',
+        'href="confidentialite.html"'               : 'href="<?php echo esc_url( home_url( \'/confidentialite/\' ) ); ?>"',
+        'href="cgv.html"'                           : 'href="<?php echo esc_url( home_url( \'/cgv/\' ) ); ?>"',
         'Lun–Sam 9h–12h · 13h30–19h'                  : "<?php echo esc_html( motor_opt( 'hours' ) ); ?>",
     }
     for a, b in rep.items():
@@ -168,6 +171,14 @@ def build_studio():
     shutil.copy(os.path.join(src, "favicon.svg"), os.path.join(theme, "favicon.svg"))
     print("thème motors-studio : front-page.php + assets")
 
+    legal.build(dict(
+        nom="Motors Studio", domaine="motors-studio.fr", logo="assets/img/logo-motors-studio-light.png", type="atelier",
+        opt="motor_opt", legal_fn="mc_legal", static_dir=src, theme_dir=theme, assets_prefix="../",
+        css_extra='\n<link rel="stylesheet" href="studio.css">',
+        static=dict(tel="06 12 34 56 78", tel_link="+33612345678", email="contact@motors-studio.fr",
+                    adresse="3 rue Florence Arthaud, 28300 Mainvilliers", raison="MOTORS STUDIO", rcs="Chartres"),
+    ), php_head_foot)
+
 # ---------------------------------------------------------------- MS Motors Studio
 # Thème existant du garage (fourni par le client), modifié : logo, charte rouge,
 # bulle WhatsApp. Pas de génération : le dossier wordpress/ms-motor-studio est la source.
@@ -176,7 +187,7 @@ def copy_shared():
     """Modules partagés (page d'ouverture avec compte à rebours)."""
     for name in ("motor-consulting", "motor-corp", "motors-studio"):
         shutil.copy(os.path.join(WP, "_partage", "inc-ouverture.php"), os.path.join(WP, name, "inc-ouverture.php"))
-    for name in ("motor-consulting",):
+    for name in ("motor-consulting", "motors-studio"):
         shutil.copy(os.path.join(WP, "_partage", "inc-legal.php"), os.path.join(WP, name, "inc-legal.php"))
         shutil.copy(os.path.join(WP, "_partage", "inc-mail.php"), os.path.join(WP, name, "inc-mail.php"))
     print("modules partagés (inc-ouverture.php, inc-legal.php) copiés")

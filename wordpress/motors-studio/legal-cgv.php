@@ -1,0 +1,99 @@
+<?php
+/**
+ * Conditions générales de réparation — générée par wordpress/build.py (wordpress/legal.py). Ne pas modifier ici.
+ */
+?>
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conditions générales de réparation — <?php echo esc_html( mc_legal_nom() ); ?></title>
+<meta name="description" content="Conditions générales : devis, réparation, pièces, garanties, dépôt et restitution du véhicule.">
+<meta name="robots" content="noindex, follow">
+<link rel="icon" href="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/favicon.svg" type="image/svg+xml">
+
+<script>document.documentElement.classList.add("js");</script>
+<?php wp_head(); ?>
+</head>
+<body class="legal-page">
+<a class="skip-link" href="#main">Aller au contenu principal</a>
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a class="logo logo--compact" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php echo esc_html( mc_legal_nom() ); ?>, retour à l'accueil">
+      <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/logo-motors-studio-light.png' ); ?>" alt="<?php echo esc_html( mc_legal_nom() ); ?>" width="300" height="172">
+    </a>
+    <nav class="nav legal__topnav" aria-label="Navigation">
+      <div class="nav__cta">
+        <a class="nav__tel" href="tel:<?php echo esc_attr( motor_opt( 'phone_e164' ) ); ?>"><?php echo esc_html( motor_opt( 'phone_display' ) ); ?></a>
+        <a class="btn btn--primary" href="<?php echo esc_url( home_url( '/' ) ); ?>">Retour au site</a>
+      </div>
+    </nav>
+  </div>
+</header>
+<main id="main" class="legal">
+  <div class="container legal__inner">
+    <p class="label">CGV</p>
+    <h1>Conditions générales de réparation</h1>
+    <p class="legal__maj">Dernière mise à jour : 19 octobre 2026</p>
+
+    <p class="legal__intro">Les présentes conditions générales (« CGV ») régissent les prestations de carrosserie, peinture, débosselage, vitrage, mécanique, entretien et services associés réalisées par <?php mc_legal( 'raison' ); ?> (« <?php echo esc_html( mc_legal_nom() ); ?> », « l'Atelier ») pour toute personne physique ou morale (« le Client »). Toute commande de prestation implique l'acceptation sans réserve des présentes CGV, dont le Client reconnaît avoir pris connaissance avant de s'engager.</p>
+
+    <h2>1. Identification de l'Atelier</h2>
+    <p><?php mc_legal( 'raison' ); ?>, <?php mc_legal( 'forme' ); ?> au capital de <?php mc_legal( 'capital' ); ?>, RCS <?php mc_legal( 'rcs' ); ?>, SIRET <?php mc_legal( 'siret' ); ?>, TVA intracommunautaire <?php mc_legal( 'tva' ); ?>. Atelier et siège : <?php echo esc_html( motor_opt( 'address' ) ); ?>. Téléphone : <a href="tel:<?php echo esc_attr( motor_opt( 'phone_e164' ) ); ?>"><?php echo esc_html( motor_opt( 'phone_display' ) ); ?></a>. E-mail : <a href="mailto:<?php echo esc_html( motor_opt( 'email' ) ); ?>"><?php echo esc_html( motor_opt( 'email' ) ); ?></a>.</p>
+
+    <h2>2. Devis</h2>
+    <p>Toute intervention fait l'objet d'un devis écrit gratuit, établi après examen du véhicule ou, pour une première estimation, à partir des photos et informations transmises par le Client. Le devis précise les travaux, les pièces, la main-d'œuvre, le délai prévisionnel et le prix TTC ; il est valable trente jours. Une estimation sur photos n'engage pas l'Atelier : elle est confirmée ou ajustée après examen du véhicule. Les travaux ne commencent qu'après acceptation du devis par le Client (signature, accord écrit ou e-mail), qui vaut ordre de réparation.</p>
+
+    <h2>3. Travaux supplémentaires</h2>
+    <p>Si, en cours d'intervention, des travaux non prévus au devis s'avèrent nécessaires (dommage caché, pièce défectueuse découverte au démontage), l'Atelier en informe le Client et lui soumet un devis complémentaire. Aucun travail supplémentaire payant n'est réalisé sans son accord. En cas de refus, le véhicule est remonté dans l'état permis par les travaux déjà effectués, qui restent dus.</p>
+
+    <h2>4. Prix et paiement</h2>
+    <p>Les prix sont exprimés en euros toutes taxes comprises. Un acompte peut être demandé à l'acceptation du devis, notamment pour la commande de pièces. Le solde est payable à la restitution du véhicule, par carte bancaire, virement ou espèces dans la limite légale. Pour les professionnels, tout retard de paiement entraîne de plein droit des pénalités au taux de trois fois le taux d'intérêt légal et une indemnité forfaitaire de recouvrement de 40 €. Conformément à l'article L.3251-1 du Code civil (droit de rétention), l'Atelier peut conserver le véhicule jusqu'au paiement intégral des sommes dues.</p>
+
+    <h2>5. Sinistres et assurance</h2>
+    <p>Lorsque la réparation est prise en charge par un assureur, l'Atelier établit le devis et le transmet à l'expert mandaté, puis réalise les travaux validés par le rapport d'expertise. Le Client reste redevable des sommes non prises en charge (franchise, vétusté, travaux refusés par l'assureur ou demandés en plus), payables à la restitution. Le Client est libre de choisir son réparateur, conformément à l'article L.211-5-1 du Code des assurances.</p>
+
+    <h2>6. Pièces</h2>
+    <p>Sauf demande contraire du Client, les pièces remplacées sont des pièces d'origine ou de qualité équivalente. Conformément à l'article L.224-67 du Code de la consommation, le Client peut opter pour des pièces issues de l'économie circulaire lorsqu'elles sont disponibles ; l'Atelier l'informe de cette possibilité. Les pièces remplacées sont tenues à la disposition du Client jusqu'à la restitution du véhicule, sauf pièces sous garantie constructeur ou échange standard qui doivent être restituées au fournisseur.</p>
+
+    <h2>7. Délais</h2>
+    <p>Les délais indiqués au devis sont donnés à titre indicatif et courent à compter de l'accord du Client, de la réception des pièces et, le cas échéant, de l'accord de l'assureur. Un retard raisonnable lié à l'approvisionnement, à l'expertise ou à la découverte de dommages cachés ne peut donner lieu à indemnité. Le Client est prévenu de tout décalage important.</p>
+
+    <h2>8. Dépôt, garde et restitution du véhicule</h2>
+    <p>Un état des lieux contradictoire (kilométrage, niveau de carburant, dommages apparents, objets visibles) est établi au dépôt et à la restitution. Le Client est invité à retirer tout objet de valeur ; l'Atelier n'en est pas responsable. Le véhicule est couvert par l'assurance responsabilité civile professionnelle de l'Atelier pendant la durée des travaux. Le Client s'engage à reprendre son véhicule dans les cinq jours suivant l'avis de fin de travaux ; au-delà, des frais de gardiennage peuvent être facturés, au tarif affiché à l'atelier. Si le véhicule n'est pas retiré dans un délai de trois mois après mise en demeure, l'Atelier pourra engager la procédure de vente prévue par la loi du 31 décembre 1903.</p>
+
+    <h2>9. Véhicule de courtoisie</h2>
+    <p>Un véhicule de courtoisie peut être prêté selon disponibilité, dans le cadre d'un contrat de prêt précisant les conditions (permis valide, franchise en cas de dommage, carburant, kilométrage). Les amendes et contraventions encourues pendant le prêt sont à la charge du Client.</p>
+
+    <h2>10. Garanties</h2>
+    <p>Les réparations sont garanties pièces et main-d'œuvre selon les conditions précisées sur la facture, sans préjudice des garanties légales : garantie légale de conformité (articles L.217-3 et suivants du Code de la consommation) et garantie des vices cachés (articles 1641 et suivants du Code civil). Les travaux de peinture sont garantis contre les défauts d'application (cloquage, décollement, écaillage) selon la durée indiquée sur la facture. La garantie ne couvre pas l'usure normale, les dommages résultant d'un choc postérieur, d'un défaut d'entretien, d'une utilisation anormale ou d'une intervention extérieure, ni les pièces fournies par le Client, qui sont montées sous sa seule responsabilité.</p>
+
+    <h2>11. Droit de rétractation</h2>
+    <p>Les prestations commandées dans les locaux de l'Atelier ne sont pas soumises au droit de rétractation. Pour un devis accepté à distance, le consommateur dispose de quatorze jours pour se rétracter (articles L.221-18 et suivants du Code de la consommation), sauf s'il a demandé que les travaux commencent avant la fin de ce délai ; il doit alors régler les prestations déjà réalisées.</p>
+
+    <h2>12. Responsabilité</h2>
+    <p>L'Atelier est tenu d'une obligation de moyens dans la réalisation des travaux et d'une obligation de résultat quant à leur conformité au devis accepté. Sa responsabilité ne saurait être engagée en cas d'inexécution due au fait du Client, d'un tiers ou à un cas de force majeure, ni pour les conséquences de défauts du véhicule étrangers aux travaux commandés et signalés au Client.</p>
+
+    <h2>13. Données personnelles</h2>
+    <p>Les données du Client sont traitées conformément à notre <a href="<?php echo esc_url( home_url( '/confidentialite/' ) ); ?>">politique de confidentialité</a>.</p>
+
+    <h2>14. Médiation et litiges</h2>
+    <p>En cas de réclamation, le Client est invité à nous contacter en priorité à <a href="mailto:<?php echo esc_html( motor_opt( 'email' ) ); ?>"><?php echo esc_html( motor_opt( 'email' ) ); ?></a>. À défaut de solution amiable dans un délai de deux mois, le consommateur peut saisir gratuitement le médiateur de la consommation : <?php mc_legal( 'mediateur' ); ?> — <?php mc_legal( 'mediateur_url' ); ?>, ou utiliser la plateforme européenne de règlement en ligne des litiges (<a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">ec.europa.eu/consumers/odr</a>). Les présentes CGV sont soumises au droit français ; à défaut d'accord amiable, les tribunaux français sont compétents, et pour les professionnels le tribunal de commerce du siège de l'Atelier.</p>
+
+    <nav class="legal__nav" aria-label="Autres pages légales">
+      <a href="<?php echo esc_url( home_url( '/mentions-legales/' ) ); ?>">Mentions légales</a>
+      <a href="<?php echo esc_url( home_url( '/confidentialite/' ) ); ?>">Politique de confidentialité</a>
+      <a href="<?php echo esc_url( home_url( '/cgv/' ) ); ?>">Conditions générales de vente</a>
+    </nav>
+  </div>
+</main>
+<footer class="footer footer--legal">
+  <div class="container footer__bottom">
+    <p>© <?php echo esc_html( wp_date( 'Y' ) ); ?> <?php echo esc_html( mc_legal_nom() ); ?></p>
+    <ul class="footer__legal"><li><a href="<?php echo esc_url( home_url( '/mentions-legales/' ) ); ?>">Mentions légales</a></li><li><a href="<?php echo esc_url( home_url( '/confidentialite/' ) ); ?>">Confidentialité</a></li><li><a href="<?php echo esc_url( home_url( '/cgv/' ) ); ?>">CGV</a></li></ul>
+  </div>
+</footer>
+<?php wp_footer(); ?>
+</body>
+</html>
