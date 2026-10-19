@@ -12,30 +12,44 @@ rng=np.random.default_rng(7)
 def mm(v): return int(round(v*PX))
 
 # ------------------------------------------------------------------ logos
-def logo_rgba(path, light_letters, text_start=0.66):
-    """Logo sur fond noir -> RGBA. light_letters : inverse la luminosité des lettres grises (pour fond sombre)."""
+def logo_rgba(path, light_letters, target_h, text_start=0.66):
+    """Logo sur fond noir -> RGBA nettoyé et agrandi à target_h px :
+    masque géométrique propre (sans poussière de détourage), bords re-nets à la résolution cible,
+    couleurs des bords dé-prémultipliées, lettres éclaircies si fond sombre."""
+    import cv2
     a=np.array(Image.open(path).convert('RGB')).astype(np.float32)/255.0
+    H0,W0=a.shape[:2]
     mx=a.max(axis=2); mn=a.min(axis=2)
-    alpha=np.clip((mx-0.015)/0.14,0,1)
-    # le logo a été aplati sur noir : on retrouve la vraie couleur des bords (dé-prémultiplication) pour éviter les franges sombres
-    safe=np.maximum(alpha,1e-3)[:,:,None]
-    a=np.where(alpha[:,:,None]>0.02, np.clip(a/safe,0,1), a)
-    # lissage léger du bord
-    from PIL import ImageFilter as _F
-    alpha=np.array(Image.fromarray((alpha*255).astype(np.uint8)).filter(_F.GaussianBlur(0.6))).astype(np.float32)/255.0
-    # trous dans les lettres : les pixels noirs entourés (lettres sombres) restent transparents -> on garde, c'est le fond
+    # --- masque : alpha doux (conserve les traits fins), on retire seulement la poussière de détourage
+    alpha_src=np.clip((mx-0.015)/0.14,0,1)
+    comp=(mx>0.06).astype(np.uint8)
+    n,lab,stats,_=cv2.connectedComponentsWithStats(comp,8)
+    keep=np.zeros_like(comp)
+    for i in range(1,n):
+        if stats[i,cv2.CC_STAT_AREA]>=25: keep[lab==i]=1
+    keep=cv2.dilate(keep,cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(3,3)))
+    alpha_src=alpha_src*keep
+    hard=(alpha_src>0.5).astype(np.uint8)
+    # --- couleurs : dé-prémultiplication sur le bord, puis lettres claires
+    safe=np.maximum(alpha_src,1e-3)[:,:,None]
+    rgb=np.where(alpha_src[:,:,None]>0.02, np.clip(a/safe,0,1), a)
     if light_letters:
         l=(mx+mn)/2; d=mx-mn
-        s=np.where(d<1e-6,0,d/(1-np.abs(2*l-1)+1e-6))
-        H_,W_=mx.shape
-        mask=(alpha>0.05)&(s<0.30)
-        mask[:int(H_*text_start),:]=False
-        new=a.copy()
-        inv=1-l
-        for c in range(3):
-            new[:,:,c]=np.where(mask,np.clip(inv*0.9+0.1,0,1),a[:,:,c])
-        a=new
-    rgba=np.dstack([(a*255).astype(np.uint8),(alpha*255).astype(np.uint8)])
+        sat=np.where(d<1e-6,0,d/(1-np.abs(2*l-1)+1e-6))
+        mask=(hard>0)&(sat<0.30); mask[:int(H0*text_start),:]=False
+        inv=np.clip((1-l)*0.9+0.1,0,1)
+        for c in range(3): rgb[:,:,c]=np.where(mask,inv,rgb[:,:,c])
+    # étend les couleurs sous le bord (évite un liseré sombre après ré-échantillonnage)
+    rgb8=(rgb*255).astype(np.uint8)
+    inpaint_mask=((hard>0)&(alpha_src<0.6)).astype(np.uint8)*255
+    rgb8=cv2.inpaint(rgb8,inpaint_mask,3,cv2.INPAINT_TELEA)
+    # --- agrandissement
+    scale=target_h/H0; tw,th=int(round(W0*scale)),int(round(target_h))
+    big=cv2.resize(rgb8,(tw,th),interpolation=cv2.INTER_LANCZOS4)
+    blur=cv2.GaussianBlur(big,(0,0),2.0); big=cv2.addWeighted(big,1.45,blur,-0.45,0)  # netteté douce
+    msk=cv2.resize(alpha_src,(tw,th),interpolation=cv2.INTER_CUBIC)
+    msk=np.clip(msk,0,1)
+    rgba=np.dstack([big,(msk*255).astype(np.uint8)])
     return Image.fromarray(rgba,'RGBA')
 
 # ------------------------------------------------------------------ fond
@@ -90,9 +104,9 @@ def enseigne(nom, logo_path, accent, lignes, tel, site, dark=True, slug=''):
     img=fond(dark,accent)
     band(img,accent,dark)
     # emblème
-    logo=logo_rgba(logo_path, light_letters=dark)
-    lh=mm(820); lw=int(lh*logo.width/logo.height)
-    logo=logo.resize((lw,lh),Image.LANCZOS)
+    lh=mm(820)
+    logo=logo_rgba(logo_path, light_letters=dark, target_h=lh)
+    lw,lh=logo.size
     lx,ly=mm(95), (H-lh)//2+mm(8)
     if dark:
         # ombre portée douce
