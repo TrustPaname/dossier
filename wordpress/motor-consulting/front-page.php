@@ -108,7 +108,7 @@
       <p class="hero__sub2"><strong id="hero-count">12</strong> véhicules disponibles, inspectés et négociés, à Chartres et partout en France.</p>
       <div class="hero__actions">
         <a class="btn btn--primary" href="#vehicules"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m16 16 4.5 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> Acheter un véhicule</a>
-        <a class="btn btn--light" href="#estimation" data-intent="vendre">Vendre ma voiture <span aria-hidden="true">→</span></a>
+        <a class="btn btn--light" href="#vente-form" data-intent="vendre">Vendre ma voiture <span aria-hidden="true">→</span></a>
       </div>
       <ul class="hero__proof">
         <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.6 2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.1-5.9 3.1 1.2-6.5L2.5 9.5l6.6-.9 2.9-6Z" fill="currentColor"/></svg> <strong>4,9/5</strong> · 312 avis clients</li>
@@ -117,32 +117,39 @@
       </ul>
     </div>
 
-    <form class="search" id="hero-search" aria-label="Trouver un véhicule">
+    <form class="search search--vente" id="vente-form" novalidate aria-label="Vendre mon véhicule">
       <div class="search__head">
-        <p class="search__title"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m16 16 4.5 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> Trouvez votre véhicule</p>
-        <span class="search__count"><span id="hero-count-2">12</span> annonces</span>
+        <p class="search__title"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 17.5v-3.4l2-4.4c.35-.8 1-1.2 1.9-1.2h9.2c.9 0 1.55.4 1.9 1.2l2 4.4v3.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M3.5 17.5h17M5.6 14.1h2.6M15.8 14.1h2.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg> Vendre mon véhicule</p>
+        <span class="search__count">Estimation gratuite</span>
       </div>
-      <div class="search__bar">
-        <label class="sr-only" for="hs-q">Marque, modèle, référence</label>
-        <input type="search" id="hs-q" placeholder="Marque, modèle, référence…" autocomplete="off">
-        <button type="submit"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m16 16 4.5 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> Rechercher</button>
-      </div>
+      <p class="hp" aria-hidden="true"><label>Ne pas remplir <input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
+      <input type="hidden" name="sujet" value="Vendre un véhicule (formulaire d'accueil)">
       <div class="search__grid">
-        <div class="search__field"><label for="hs-price">Budget max</label>
-          <select id="hs-price"><option value="">Tous les prix</option><option value="10000">10 000 €</option><option value="15000">15 000 €</option><option value="20000">20 000 €</option><option value="30000">30 000 €</option><option value="50000">50 000 €</option></select></div>
-        <div class="search__field"><label for="hs-fuel">Carburant</label>
-          <select id="hs-fuel"><option value="">Tous</option><option>Essence</option><option>Diesel</option><option>Hybride</option><option>Électrique</option></select></div>
-        <div class="search__field"><label for="hs-gear">Transmission</label>
-          <select id="hs-gear"><option value="">Toutes</option><option>Manuelle</option><option>Automatique</option></select></div>
-        <div class="search__field"><label for="hs-type">Carrosserie</label>
-          <select id="hs-type"><option value="">Toutes</option><option>Citadine</option><option>Berline</option><option>SUV</option><option>Break</option><option>Monospace</option><option>Utilitaire</option></select></div>
+        <div class="search__field field"><label for="v-marque">Marque <span class="req" aria-hidden="true">*</span></label>
+          <input type="text" id="v-marque" name="marque" placeholder="Renault" autocomplete="off" required><p class="field__error" data-error-for="v-marque"></p></div>
+        <div class="search__field field"><label for="v-modele">Modèle <span class="req" aria-hidden="true">*</span></label>
+          <input type="text" id="v-modele" name="modele" placeholder="Clio V" autocomplete="off" required><p class="field__error" data-error-for="v-modele"></p></div>
+        <div class="search__field field"><label for="v-annee">Année <span class="req" aria-hidden="true">*</span></label>
+          <input type="number" id="v-annee" name="annee" placeholder="2019" min="1950" max="2027" inputmode="numeric" required><p class="field__error" data-error-for="v-annee"></p></div>
+        <div class="search__field field"><label for="v-km">Kilométrage <span class="req" aria-hidden="true">*</span></label>
+          <input type="number" id="v-km" name="kilometrage" placeholder="85000" min="0" max="1000000" inputmode="numeric" required><p class="field__error" data-error-for="v-km"></p></div>
+        <div class="search__field field"><label for="v-nom">Nom et prénom <span class="req" aria-hidden="true">*</span></label>
+          <input type="text" id="v-nom" name="nom" autocomplete="name" required><p class="field__error" data-error-for="v-nom"></p></div>
+        <div class="search__field field"><label for="v-tel">Téléphone <span class="req" aria-hidden="true">*</span></label>
+          <input type="tel" id="v-tel" name="telephone" autocomplete="tel" placeholder="06 00 00 00 00" required><p class="field__error" data-error-for="v-tel"></p></div>
+        <div class="search__field search__field--full field"><label for="v-email">E-mail <span class="req" aria-hidden="true">*</span></label>
+          <input type="email" id="v-email" name="email" autocomplete="email" placeholder="vous@exemple.fr" required><p class="field__error" data-error-for="v-email"></p></div>
       </div>
-      <div class="search__pop">
-        <span>Recherches populaires</span>
-        <div class="search__chips">
-          <button type="button" data-q="BMW">BMW</button><button type="button" data-q="Mercedes">Mercedes</button><button type="button" data-q="Peugeot">Peugeot</button><button type="button" data-q="Audi">Audi</button><button type="button" data-q="Tesla">Tesla</button>
-        </div>
+      <div class="field">
+        <label class="check check--dark">
+          <input type="checkbox" id="v-rgpd" name="consentement" required>
+          <span>J'accepte d'être recontacté(e) au sujet de ma demande. <span class="req" aria-hidden="true">*</span></span>
+        </label>
+        <p class="field__error" data-error-for="v-rgpd"></p>
       </div>
+      <button class="btn btn--primary btn--block" type="submit">Recevoir mon estimation gratuite</button>
+      <p class="search__note">Réponse d'un expert sous 24h ouvrées · Sans engagement</p>
+      <p class="form__status" role="status" aria-live="polite" id="vente-status"></p>
     </form>
   </div>
 </section>
