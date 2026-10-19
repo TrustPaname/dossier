@@ -9,13 +9,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Motor Corp — Holding automobile · Motors Studio &amp; Motor Consulting</title>
-<meta name="description" content="Motor Corp, holding automobile : Motors Studio (carrosserie, mécanique) et Motor Consulting (conseil, achat, vente, location). Performance. Passion. Partenariat.">
+<meta name="description" content="Motor Corp, holding automobile à Mainvilliers près de Chartres : Motors Studio (carrosserie, peinture, mécanique, pneus, pare-brise) et Motor Consulting (achat, vente, dépôt-vente, expertise et location de véhicules d'occasion).">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="<?php echo esc_url( home_url( '/' ) ); ?>">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="Motor Corp">
-<meta property="og:title" content="Motor Corp — Holding automobile">
+<meta property="og:title" content="Motor Corp — Holding automobile à Chartres">
 <meta property="og:description" content="Un groupe, deux expertises : la carrosserie et le conseil automobile. Performance. Passion. Partenariat.">
 <meta property="og:url" content="<?php echo esc_url( home_url( '/' ) ); ?>">
 <meta name="theme-color" content="#000000">
@@ -278,6 +278,23 @@ strong{color:#fff;font-weight:500}
   .hero__canvas{display:none}
 }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Motor Corp",
+  "url": "https://www.motorcorp.fr/",
+  "logo": "https://www.motorcorp.fr/assets/img/logo-motor-corp.png",
+  "description": "Holding automobile réunissant Motors Studio (carrosserie, peinture, mécanique, pneus, pare-brise) et Motor Consulting (achat, vente, dépôt-vente, expertise et location de véhicules d'occasion), à Mainvilliers près de Chartres.",
+  "email": "<?php echo esc_html( corp_opt( 'email' ) ); ?>",
+  "telephone": "<?php echo esc_attr( corp_opt( 'phone_e164' ) ); ?>",
+  "address": { "@type": "PostalAddress", "streetAddress": "3 rue Florence Arthaud", "postalCode": "28300", "addressLocality": "Mainvilliers", "addressRegion": "Centre-Val de Loire", "addressCountry": "FR" },
+  "subOrganization": [
+    { "@type": "AutoBodyShop", "name": "Motors Studio", "url": "<?php echo esc_url( corp_opt( 'studio_url' ) ); ?>" },
+    { "@type": "AutoDealer", "name": "Motor Consulting", "url": "https://motorconsulting.fr/" }
+  ]
+}
+</script>
 <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
@@ -307,7 +324,7 @@ strong{color:#fff;font-weight:500}
   <div class="hero__vignette" aria-hidden="true"></div>
 
   <div class="hero__inner" id="hero-inner">
-    <span class="label">Holding automobile · Paris</span>
+    <span class="label">Holding automobile · Chartres</span>
     <img class="hero__logo" src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/logo-motor-corp.png" alt="Motor Corp" width="795" height="373" fetchpriority="high">
     <p class="hero__sub chrome"><i></i>HOLDING AUTOMOBILE<i></i></p>
     <p class="hero__tag"><b>Performance.</b> <b>Passion.</b> <b>Partenariat.</b></p>
@@ -341,7 +358,7 @@ strong{color:#fff;font-weight:500}
         <li><strong>2</strong>marques</li>
         <li><strong>1</strong>parcours complet</li>
         <li><strong>100 %</strong>indépendant</li>
-        <li><strong>Paris</strong>&amp; Île-de-France</li>
+        <li><strong>Chartres</strong>&amp; Eure-et-Loir</li>
       </ul>
     </div>
     <div class="pillars">
@@ -463,7 +480,8 @@ strong{color:#fff;font-weight:500}
     <ul>
       <li><a href="<?php echo esc_url( corp_opt( 'studio_url' ) ); ?>">Motors Studio</a></li>
       <li><a href="<?php echo esc_url( corp_opt( 'consulting_url' ) ); ?>">Motor Consulting</a></li>
-      <li><a href="<?php echo esc_url( corp_opt( 'consulting_url' ) ); ?>#apropos">Mentions légales</a></li>
+      <li><a href="<?php echo esc_url( home_url( '/mentions-legales/' ) ); ?>">Mentions légales</a></li>
+      <li><a href="<?php echo esc_url( home_url( '/confidentialite/' ) ); ?>">Confidentialité</a></li>
     </ul>
   </div>
 </footer>

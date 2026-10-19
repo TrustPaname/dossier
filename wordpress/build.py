@@ -94,9 +94,11 @@ def build_corp():
         '../index.html#apropos'                    : "<?php echo esc_url( corp_opt( 'consulting_url' ) ); ?>#apropos",
         '../index.html'                            : "<?php echo esc_url( corp_opt( 'consulting_url' ) ); ?>",
         'contact@motorcorp.fr'                    : "<?php echo esc_html( corp_opt( 'email' ) ); ?>",
-        '06 12 34 56 78'                           : "<?php echo esc_html( corp_opt( 'phone_display' ) ); ?>",
-        '+33612345678'                             : "<?php echo esc_attr( corp_opt( 'phone_e164' ) ); ?>",
-        '24 avenue de la Grande-Armée, 75017 Paris': "<?php echo esc_html( corp_opt( 'address' ) ); ?>",
+        '09 55 32 08 89'                           : "<?php echo esc_html( corp_opt( 'phone_display' ) ); ?>",
+        '+33955320889'                             : "<?php echo esc_attr( corp_opt( 'phone_e164' ) ); ?>",
+        '3 rue Florence Arthaud, 28300 Mainvilliers': "<?php echo esc_html( corp_opt( 'address' ) ); ?>",
+        'href="mentions-legales.html"'             : 'href="<?php echo esc_url( home_url( \'/mentions-legales/\' ) ); ?>"',
+        'href="confidentialite.html"'              : 'href="<?php echo esc_url( home_url( \'/confidentialite/\' ) ); ?>"',
     }
     for a, b in rep.items():
         html = html.replace(a, b)
@@ -110,6 +112,17 @@ def build_corp():
         shutil.copy(os.path.join(ROOT, "assets", "img", f), os.path.join(img, f))
     shutil.copy(os.path.join(ROOT, "motor-corp", "favicon.svg"), os.path.join(theme, "favicon.svg"))
     print("thème motor-corp : front-page.php + polices")
+
+    css = os.path.join(theme, "assets", "css"); os.makedirs(css, exist_ok=True)
+    shutil.copy(os.path.join(ROOT, "assets", "css", "styles.css"), os.path.join(css, "styles.css"))
+    legal.build(dict(
+        nom="Motor Corp", domaine="motorcorp.fr", logo="assets/img/logo-motor-corp.png", type="holding",
+        opt="corp_opt", legal_fn="mc_legal", static_dir=os.path.join(ROOT, "motor-corp"), theme_dir=theme, assets_prefix="../",
+        pages=["mentions-legales", "confidentialite"], php_css=True,
+        extra_style=":root{--bg:#0f1115;--bg-2:#171a20;--ink:#fff;--ink-2:rgba(255,255,255,.76);--ink-3:rgba(255,255,255,.5);--line:rgba(255,255,255,.14);--bleu:#f04a00;--bleu-fonce:#c43c00;--bleu-clair:#ff8a50;--bleu-soft:rgba(240,74,0,.16);--bleu-line:rgba(240,74,0,.4)}.header{background:#0f1115;border-bottom-color:rgba(255,255,255,.12)}.legal__todo{background:rgba(240,74,0,.18);color:#ffb08a;border-color:rgba(240,74,0,.5)}.footer--legal{border-top:1px solid rgba(255,255,255,.1)}",
+        static=dict(tel="09 55 32 08 89", tel_link="+33955320889", email="contact@motorcorp.fr",
+                    adresse="3 rue Florence Arthaud, 28300 Mainvilliers", raison="MOTOR CORP", rcs="Chartres"),
+    ), php_head_foot)
 
 # ---------------------------------------------------------------- Archives
 def zip_theme(name):
@@ -193,7 +206,7 @@ def copy_shared():
     """Modules partagés (page d'ouverture avec compte à rebours)."""
     for name in ("motor-consulting", "motor-corp", "motors-studio"):
         shutil.copy(os.path.join(WP, "_partage", "inc-ouverture.php"), os.path.join(WP, name, "inc-ouverture.php"))
-    for name in ("motor-consulting", "motors-studio"):
+    for name in ("motor-consulting", "motors-studio", "motor-corp"):
         shutil.copy(os.path.join(WP, "_partage", "inc-legal.php"), os.path.join(WP, name, "inc-legal.php"))
         shutil.copy(os.path.join(WP, "_partage", "inc-mail.php"), os.path.join(WP, name, "inc-mail.php"))
     print("modules partagés (inc-ouverture.php, inc-legal.php) copiés")

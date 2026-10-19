@@ -15,6 +15,7 @@ MAJ = "19 octobre 2026"
 # jetons communs : nom -> (valeur statique via cfg, expression PHP)
 ACTIVITE = {
     "negoce":  "<p>{{nom}} exerce une activité de conseil automobile, d'achat, de vente et de location de véhicules d'occasion ainsi que de recherche, de négociation et d'expertise de véhicules pour le compte de particuliers et de professionnels. Les véhicules présentés sur le site sont proposés sous réserve de disponibilité ; les photographies, descriptions et prix sont donnés à titre indicatif et ne constituent pas une offre contractuelle. Seul le bon de commande signé fait foi.</p>",
+    "holding": "<p>{{nom}} est la société holding du groupe automobile réunissant Motors Studio (carrosserie, peinture et mécanique) et Motor Consulting (achat, vente, dépôt-vente, expertise et location de véhicules d'occasion), à Mainvilliers près de Chartres. Le site présente le groupe et oriente vers les sites de chaque marque ; il ne propose ni vente en ligne ni prise de commande.</p>",
     "atelier": "<p>{{nom}} est un atelier de carrosserie, peinture et mécanique automobile toutes marques. Les prestations, délais et prix mentionnés sur le site sont donnés à titre indicatif ; seul le devis accepté et l'ordre de réparation signé engagent les parties. Les exemples d'interventions présentés illustrent les prestations courantes de l'atelier.</p>",
 }
 
@@ -62,7 +63,7 @@ PAGE = """<!DOCTYPE html>
 <meta name="description" content="{desc}">
 <meta name="robots" content="noindex, follow">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/css/styles.css">{{css}}
+<link rel="stylesheet" href="assets/css/styles.css">{{css}}{style}
 <script>document.documentElement.classList.add("js");</script>
 </head>
 <body class="legal-page">
@@ -87,16 +88,13 @@ PAGE = """<!DOCTYPE html>
     <p class="legal__maj">Dernière mise à jour : {{maj}}</p>
 {corps}
     <nav class="legal__nav" aria-label="Autres pages légales">
-      <a href="{{p_mentions}}">Mentions légales</a>
-      <a href="{{p_confid}}">Politique de confidentialité</a>
-      <a href="{{p_cgv}}">Conditions générales de vente</a>
-    </nav>
+{nav}    </nav>
   </div>
 </main>
 <footer class="footer footer--legal">
   <div class="container footer__bottom">
     <p>© {{annee}} {{nom}}</p>
-    <ul class="footer__legal"><li><a href="{{p_mentions}}">Mentions légales</a></li><li><a href="{{p_confid}}">Confidentialité</a></li><li><a href="{{p_cgv}}">CGV</a></li></ul>
+    <ul class="footer__legal">{footnav}</ul>
   </div>
 </footer>
 </body>
@@ -297,7 +295,16 @@ PAGES = {
 
 def build(cfg, php_head_foot):
     """Écrit les pages statiques (cfg['static_dir']) et PHP (cfg['theme_dir'])."""
+    wanted = cfg.get("pages", list(PAGES))
+    libelles = {"mentions-legales": ("Mentions légales", "Mentions légales", "{{p_mentions}}"),
+                "confidentialite": ("Politique de confidentialité", "Confidentialité", "{{p_confid}}"),
+                "cgv": ("Conditions générales de vente" if cfg.get("type") != "atelier" else "Conditions générales de réparation", "CGV" if cfg.get("type") != "atelier" else "Conditions de réparation", "{{p_cgv}}")}
+    nav = "".join('      <a href="%s">%s</a>\n' % (libelles[k][2], libelles[k][0]) for k in wanted)
+    footnav = "".join('<li><a href="%s">%s</a></li>' % (libelles[k][2], libelles[k][1]) for k in wanted)
+    style = ("\n<style>" + cfg["extra_style"] + "</style>") if cfg.get("extra_style") else ""
     for slug, p in PAGES.items():
+        if slug not in wanted:
+            continue
         p = dict(p)
         if slug == "cgv" and cfg.get("type") == "atelier":
             p["corps"] = CGV_ATELIER
@@ -306,13 +313,14 @@ def build(cfg, php_head_foot):
         html = PAGE
         for k in ("titre", "label", "desc", "corps"):
             html = html.replace("{" + k + "}", p[k])
+        html = html.replace("{nav}", nav).replace("{footnav}", footnav).replace("{style}", style)
         # statique
         out = fill(html, cfg, "static")
         if cfg.get("assets_prefix"):
             out = out.replace('href="assets/', 'href="' + cfg["assets_prefix"] + 'assets/').replace('src="assets/', 'src="' + cfg["assets_prefix"] + 'assets/')
         open(os.path.join(cfg["static_dir"], slug + ".html"), "w", encoding="utf-8").write(out)
         # WordPress
-        php = html.replace('<link rel="stylesheet" href="assets/css/styles.css">', "")
+        php = html.replace('<link rel="stylesheet" href="assets/css/styles.css">', '<link rel="stylesheet" href="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/css/styles.css">' if cfg.get("php_css") else "")
         php = php.replace('href="assets/img/favicon.svg"', "href=\"<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/favicon.svg\"")
         php = fill(php, cfg, "php")
         php = php_head_foot(php)

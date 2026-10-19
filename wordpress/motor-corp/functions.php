@@ -17,14 +17,17 @@ $motor_ouverture = array(
 );
 require get_template_directory() . '/inc-ouverture.php';
 
+$motor_legal = array( 'prefix' => 'corp_', 'nom' => 'Motor Corp', 'opt' => 'corp_opt', 'defaults' => array( 'raison' => 'MOTOR CORP' ) );
+require get_template_directory() . '/inc-legal.php';
+
 function corp_defaults() {
 	return array(
 		'studio_url'     => 'https://www.motors-studio.fr/',
 		'consulting_url' => 'https://www.motorconsulting.fr/',
 		'email'          => 'contact@motorcorp.fr',
-		'phone_display'  => '06 12 34 56 78',
-		'phone_e164'     => '+33612345678',
-		'address'        => '24 avenue de la Grande-Armée, 75017 Paris',
+		'phone_display'  => '09 55 32 08 89',
+		'phone_e164'     => '+33955320889',
+		'address'        => '3 rue Florence Arthaud, 28300 Mainvilliers',
 	);
 }
 

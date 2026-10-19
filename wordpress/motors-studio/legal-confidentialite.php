@@ -86,14 +86,14 @@
     <nav class="legal__nav" aria-label="Autres pages légales">
       <a href="<?php echo esc_url( home_url( '/mentions-legales/' ) ); ?>">Mentions légales</a>
       <a href="<?php echo esc_url( home_url( '/confidentialite/' ) ); ?>">Politique de confidentialité</a>
-      <a href="<?php echo esc_url( home_url( '/cgv/' ) ); ?>">Conditions générales de vente</a>
+      <a href="<?php echo esc_url( home_url( '/cgv/' ) ); ?>">Conditions générales de réparation</a>
     </nav>
   </div>
 </main>
 <footer class="footer footer--legal">
   <div class="container footer__bottom">
     <p>© <?php echo esc_html( wp_date( 'Y' ) ); ?> <?php echo esc_html( mc_legal_nom() ); ?></p>
-    <ul class="footer__legal"><li><a href="<?php echo esc_url( home_url( '/mentions-legales/' ) ); ?>">Mentions légales</a></li><li><a href="<?php echo esc_url( home_url( '/confidentialite/' ) ); ?>">Confidentialité</a></li><li><a href="<?php echo esc_url( home_url( '/cgv/' ) ); ?>">CGV</a></li></ul>
+    <ul class="footer__legal"><li><a href="<?php echo esc_url( home_url( '/mentions-legales/' ) ); ?>">Mentions légales</a></li><li><a href="<?php echo esc_url( home_url( '/confidentialite/' ) ); ?>">Confidentialité</a></li><li><a href="<?php echo esc_url( home_url( '/cgv/' ) ); ?>">Conditions de réparation</a></li></ul>
   </div>
 </footer>
 <?php wp_footer(); ?>
