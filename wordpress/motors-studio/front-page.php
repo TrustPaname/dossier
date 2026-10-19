@@ -9,9 +9,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Motors Studio — Carrosserie, peinture et mécanique à Mainvilliers, près de Chartres</title>
-<meta name="description" content="Motors Studio, carrosserie et garage automobile toutes marques à Mainvilliers, près de Chartres : redressage, peinture en cabine, débosselage sans peinture, mécanique, entretien, pneus, diagnostic. Devis gratuit, prise en charge assurance, véhicule de courtoisie.">
-<meta name="keywords" content="carrosserie, garage automobile, peinture voiture, débosselage sans peinture, réparation pare-chocs, entretien auto, vidange, freins, pneus, devis carrosserie gratuit">
+<title>Carrosserie, mécanique, pneus et pare-brise à Chartres — Motors Studio Mainvilliers</title>
+<meta name="description" content="Garage et carrosserie Motors Studio à Mainvilliers, près de Chartres : carrosserie, peinture, débosselage sans peinture, mécanique, entretien, pneus, pare-brise. Devis gratuit, assurance, courtoisie.">
+<meta name="keywords" content="carrosserie Chartres, carrossier Mainvilliers, garage Chartres, garage Mainvilliers, peinture voiture Chartres, débosselage sans peinture Chartres, mécanique entretien Chartres, pneus Chartres, pare-brise Chartres, réparation carrosserie Eure-et-Loir, devis carrosserie gratuit">
 <meta name="author" content="Motors Studio">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="<?php echo esc_url( home_url( '/' ) ); ?>">
@@ -19,8 +19,8 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="Motors Studio">
-<meta property="og:title" content="Motors Studio — Carrosserie & mécanique toutes marques">
-<meta property="og:description" content="Carrosserie, peinture, débosselage, mécanique et entretien. Devis gratuit, prise en charge assurance, véhicule de courtoisie.">
+<meta property="og:title" content="Motors Studio — Carrosserie, mécanique, pneus et pare-brise à Chartres">
+<meta property="og:description" content="Garage toutes marques à Mainvilliers, aux portes de Chartres : carrosserie, peinture, débosselage, mécanique, pneus, pare-brise. Devis gratuit sous 24h, prise en charge assurance, véhicule de courtoisie.">
 <meta property="og:url" content="<?php echo esc_url( home_url( '/' ) ); ?>">
 <meta property="og:image" content="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/og-cover.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -34,10 +34,10 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "AutoBodyShop",
+  "@type": ["AutoBodyShop", "AutoRepair"],
   "name": "Motors Studio",
-  "slogan": "Carrosserie & mécanique toutes marques",
-  "description": "Atelier de carrosserie et de mécanique automobile : redressage, peinture, débosselage sans peinture, entretien, révision, pneus, diagnostic. Devis gratuit et prise en charge assurance.",
+  "slogan": "Carrosserie · Mécanique · Pneus · Pare-brise",
+  "description": "Garage et carrosserie toutes marques à Mainvilliers, près de Chartres : redressage, peinture en cabine, débosselage sans peinture, mécanique, entretien, révision, freins, pneumatiques, pare-brise. Devis gratuit sous 24h, prise en charge assurance, véhicule de courtoisie.",
   "url": "<?php echo esc_url( home_url( '/' ) ); ?>",
   "telephone": "<?php echo esc_attr( motor_opt( 'phone_e164' ) ); ?>",
   "email": "<?php echo esc_html( motor_opt( 'email' ) ); ?>",
@@ -55,8 +55,101 @@
     { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "19:00" },
     { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "19:00" }
   ],
+  "geo": { "@type": "GeoCoordinates", "latitude": 48.4508, "longitude": 1.4497 },
+  "areaServed": [
+    { "@type": "City", "name": "Chartres" },
+    { "@type": "City", "name": "Mainvilliers" },
+    { "@type": "City", "name": "Lucé" },
+    { "@type": "City", "name": "Lèves" },
+    { "@type": "City", "name": "Luisant" },
+    { "@type": "AdministrativeArea", "name": "Eure-et-Loir" }
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Prestations",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Carrosserie", "description": "Redressage sur marbre, remplacement d'éléments, réparation de pare-chocs, ailes et portières, toutes marques." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Peinture automobile", "description": "Peinture en cabine avec recherche de teinte au spectrophotomètre, raccords invisibles, vernis." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Débosselage sans peinture", "description": "Bosses de parking, grêle, coups de portière, sans retouche de peinture." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mécanique et entretien", "description": "Révision constructeur, vidange, distribution, freins, diagnostic électronique, climatisation, préparation au contrôle technique." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pneumatiques", "description": "Vente, montage, équilibrage et remplacement de pneus toutes marques." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pare-brise et vitrage", "description": "Réparation d'impact et remplacement de pare-brise, prise en charge assurance." } }
+    ]
+  },
   "parentOrganization": { "@type": "Organization", "name": "Motor Corp", "url": "https://www.motorcorp.fr/" },
   "sameAs": ["https://www.motorcorp.fr/"]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Combien coûte une réparation de carrosserie à Chartres ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tout dépend de l'élément touché et de la profondeur du dégât : une rayure légère se polit, une bosse sans éclat se traite en débosselage sans peinture, un choc plus important demande redressage et peinture. Envoyez-nous des photos par WhatsApp ou via le formulaire : vous recevez un premier chiffrage gratuit sous 24h, confirmé par un devis écrit après examen du véhicule à l'atelier de Mainvilliers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Prenez-vous en charge les sinistres assurance ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui. Vous êtes libre de choisir votre réparateur, quel que soit votre assureur. Nous établissons le devis, le transmettons à l'expert, réalisons les travaux validés et vous ne réglez que la franchise éventuelle. Un véhicule de courtoisie peut être prêté pendant la durée des travaux."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Qu'est-ce que le débosselage sans peinture ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "C'est une technique qui consiste à redresser la tôle par l'intérieur, sans ponçage ni peinture, pour les bosses de parking, les coups de portière et les impacts de grêle, quand la peinture n'est pas abîmée. C'est plus rapide (souvent dans la journée) et moins cher qu'une réparation classique, et la teinte d'origine est conservée."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Faites-vous l'entretien sans perdre la garantie constructeur ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui. Depuis 2002, vous pouvez faire entretenir votre voiture dans le garage de votre choix sans perdre la garantie constructeur, à condition de respecter le plan d'entretien et d'utiliser des pièces de qualité équivalente. Nous suivons le carnet constructeur et le tamponnons."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Réparez-vous ou remplacez-vous les pare-brise ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Les deux. Un impact plus petit qu'une pièce de deux euros, hors du champ de vision du conducteur, se répare en moins d'une heure. Sinon, nous remplaçons le pare-brise, avec recalibrage des caméras d'aide à la conduite si votre véhicule en est équipé. Le bris de glace est généralement pris en charge par votre assurance."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Montez-vous des pneus que je n'ai pas achetés chez vous ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, nous montons et équilibrons vos pneus, que vous les achetiez chez nous ou ailleurs. Nous pouvons aussi vous proposer des pneus toutes marques, été, hiver ou 4 saisons, et vérifier la géométrie si l'usure est irrégulière."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Combien de temps dure une réparation ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Un débosselage sans peinture ou un impact de pare-brise se font souvent dans la journée. Une réparation de carrosserie avec peinture prend en général deux à cinq jours selon le nombre d'éléments et le séchage. Le délai est indiqué sur le devis et nous vous prévenons si les pièces ou l'expertise le modifient."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Où se trouve l'atelier et quelle zone couvrez-vous ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "L'atelier est au 3 rue Florence Arthaud à Mainvilliers, aux portes de Chartres, ouvert du lundi au samedi. Nous accueillons les clients de Chartres, Lucé, Lèves, Luisant, Le Coudray, Champhol et de tout l'Eure-et-Loir."
+      }
+    }
+  ]
 }
 </script>
 <?php wp_head(); ?>
@@ -96,8 +189,8 @@
   <div class="container hero__inner">
     <div>
       <span class="hero__badge">Carrosserie · Peinture · Mécanique</span>
-      <h1>Votre voiture remise à neuf, <span class="accent">comme au premier jour !</span></h1>
-      <p class="hero__sub">Toutes marques · Devis gratuit · Prise en charge assurance</p>
+      <h1>Carrosserie et mécanique à Chartres : votre voiture remise à neuf, <span class="accent">comme au premier jour !</span></h1>
+      <p class="hero__sub">Carrosserie · Peinture · Débosselage · Mécanique · Pneus · Pare-brise — Toutes marques, à Mainvilliers</p>
       <p class="hero__sub2">Un atelier équipé d'une <strong>cabine de peinture</strong> et d'un <strong>marbre de redressage</strong>, des carrossiers et mécaniciens qui garantissent chaque intervention.</p>
       <div class="hero__actions">
         <a class="btn btn--primary" href="#devis"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h7l4 4V20a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12h6M9 15.5h6M9 8.5h3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg> Demander un devis</a>
@@ -155,14 +248,16 @@
   <div class="container">
     <header class="section__head reveal">
       <span class="label">Nos prestations</span>
-      <h2>Carrosserie et mécanique, <span class="accent">sous un même toit</span></h2>
+      <h2>Carrosserie, mécanique, pneus et pare-brise, <span class="accent">sous un même toit</span></h2>
       <p class="lead">Du petit choc de parking à la remise en état complète après sinistre, de la vidange au diagnostic électronique : un seul atelier, un seul interlocuteur, toutes marques.</p>
     </header>
     <div class="services">
-      <article class="service card reveal"><span class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 15.5v-3l2.2-4.6c.4-.8 1-1.2 1.9-1.2h8.8c.9 0 1.5.4 1.9 1.2l2.2 4.6v3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M3.5 15.5h17M6 12.5h3M15 12.5h3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="m14 4.5 4.5-2.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="label">Carrosserie</span><h3>Redressage, remplacement, finition</h3><p>Chocs, rayures, pare-chocs, ailes, portières. Marbre de redressage, pièces d'origine ou de qualité équivalente, remontage et contrôle des jeux.</p><a class="link" href="#devis" data-prestation="Carrosserie / choc">Chiffrer une réparation <span aria-hidden="true">→</span></a></article>
-      <article class="service card reveal reveal--d1"><span class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h10v6H4zM14 7h3.5a2 2 0 0 1 2 2v2.5a2 2 0 0 1-2 2H12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9.5 10v3a2 2 0 0 0 2 2h.5v6h-3v-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span><span class="label">Peinture</span><h3>Cabine, teinte exacte, vernis</h3><p>Peinture en cabine avec recherche de teinte au spectrophotomètre : raccords invisibles, vernis brillant, protection longue durée. Peinture complète ou élément.</p><a class="link" href="#devis" data-prestation="Peinture">Demander un devis peinture <span aria-hidden="true">→</span></a></article>
-      <article class="service card reveal reveal--d2"><span class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 3.5 20.5 9.5 9.5 20.5l-6-6 11-11Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m12 6 2 2M9 9l2 2M6 12l2 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="label">Débosselage</span><h3>Sans peinture, en quelques heures</h3><p>Bosses de parking, grêle, coups de portière : redressage par l'intérieur sans retouche de peinture. Moins cher, plus rapide, teinte d'origine conservée.</p><a class="link" href="#devis" data-prestation="Débosselage sans peinture">Faire chiffrer une bosse <span aria-hidden="true">→</span></a></article>
-      <article class="service card reveal reveal--d3"><span class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 10.5 9 16a2.5 2.5 0 0 1-3.5 0 2.5 2.5 0 0 1 0-3.5l5.5-5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M13 4.5a4 4 0 0 1 5.5 5.5l1 1-3.5 3.5-1-1a4 4 0 0 1-5.5-5.5l2.2 2.2 1.6-1.6L13 4.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span><span class="label">Mécanique</span><h3>Entretien, freins, pneus, diagnostic</h3><p>Révision constructeur sans perte de garantie, vidange, distribution, freinage, pneumatiques, climatisation, diagnostic électronique et préparation au contrôle technique.</p><a class="link" href="#devis" data-prestation="Entretien / révision">Prendre rendez-vous <span aria-hidden="true">→</span></a></article>
+      <article class="service card reveal"><span class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 15.5v-3l2.2-4.6c.4-.8 1-1.2 1.9-1.2h8.8c.9 0 1.5.4 1.9 1.2l2.2 4.6v3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M3.5 15.5h17M6 12.5h3M15 12.5h3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="m14 4.5 4.5-2.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="label">Carrosserie</span><h3>Redressage, remplacement, finition</h3><p>Chocs, rayures, pare-chocs, ailes, portières. Marbre de redressage, pièces d'origine ou de qualité équivalente, remontage et contrôle des jeux.</p><a class="link" href="#devis" data-prestation="Carrosserie / Peinture / Débosselage">Chiffrer une réparation <span aria-hidden="true">→</span></a></article>
+      <article class="service card reveal reveal--d1"><span class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h10v6H4zM14 7h3.5a2 2 0 0 1 2 2v2.5a2 2 0 0 1-2 2H12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9.5 10v3a2 2 0 0 0 2 2h.5v6h-3v-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span><span class="label">Peinture</span><h3>Cabine, teinte exacte, vernis</h3><p>Peinture en cabine avec recherche de teinte au spectrophotomètre : raccords invisibles, vernis brillant, protection longue durée. Peinture complète ou élément.</p><a class="link" href="#devis" data-prestation="Carrosserie / Peinture / Débosselage">Demander un devis peinture <span aria-hidden="true">→</span></a></article>
+      <article class="service card reveal reveal--d2"><span class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 3.5 20.5 9.5 9.5 20.5l-6-6 11-11Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m12 6 2 2M9 9l2 2M6 12l2 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="label">Débosselage</span><h3>Sans peinture, en quelques heures</h3><p>Bosses de parking, grêle, coups de portière : redressage par l'intérieur sans retouche de peinture. Moins cher, plus rapide, teinte d'origine conservée.</p><a class="link" href="#devis" data-prestation="Carrosserie / Peinture / Débosselage">Faire chiffrer une bosse <span aria-hidden="true">→</span></a></article>
+      <article class="service card reveal reveal--d3"><span class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 10.5 9 16a2.5 2.5 0 0 1-3.5 0 2.5 2.5 0 0 1 0-3.5l5.5-5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M13 4.5a4 4 0 0 1 5.5 5.5l1 1-3.5 3.5-1-1a4 4 0 0 1-5.5-5.5l2.2 2.2 1.6-1.6L13 4.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span><span class="label">Mécanique</span><h3>Entretien, révision, freins, diagnostic</h3><p>Révision constructeur sans perte de garantie, vidange, distribution, freinage, climatisation, diagnostic électronique et préparation au contrôle technique.</p><a class="link" href="#devis" data-prestation="Entretien / Révision / Freins">Prendre rendez-vous <span aria-hidden="true">→</span></a></article>
+      <article class="service card reveal reveal--d1"><span class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 3.5v3M12 17.5v3M3.5 12h3M17.5 12h3M6 6l2.1 2.1M15.9 15.9 18 18M6 18l2.1-2.1M15.9 8.1 18 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><span class="label">Pneumatiques</span><h3>Vente, montage, équilibrage</h3><p>Pneus toutes marques et toutes dimensions, été, hiver ou 4 saisons : montage, équilibrage, remplacement, contrôle de la géométrie et de l'usure.</p><a class="link" href="#devis" data-prestation="Pneus">Demander un prix pneus <span aria-hidden="true">→</span></a></article>
+      <article class="service card reveal reveal--d2"><span class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 7.5c2.5-1.3 5.3-2 8.5-2s6 .7 8.5 2l-1.5 9c-2.2-.7-4.5-1-7-1s-4.8.3-7 1l-1.5-9Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m9 9 3 3-1.5 2.5M12 12l2.5-1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><span class="label">Pare-brise</span><h3>Réparation d'impact, remplacement</h3><p>Impact réparé en moins d'une heure si possible, sinon remplacement du pare-brise ou des vitrages avec recalibrage des aides à la conduite. Prise en charge assurance bris de glace.</p><a class="link" href="#devis" data-prestation="Pare-brise">Faire réparer mon pare-brise <span aria-hidden="true">→</span></a></article>
     </div>
   </div>
 </section>
@@ -334,6 +429,26 @@
   </div>
 </section>
 
+<!-- ============ FAQ ============ -->
+<section class="section section--alt" id="faq">
+  <div class="container">
+    <header class="section__head reveal">
+      <span class="label">Questions fréquentes</span>
+      <h2>Carrosserie, mécanique, pneus et pare-brise à Chartres : <span class="accent">vos questions</span></h2>
+    </header>
+    <div class="faq reveal">
+      <details class="faq__item card"><summary>Combien coûte une réparation de carrosserie à Chartres ?</summary><p>Tout dépend de l'élément touché et de la profondeur du dégât : une rayure légère se polit, une bosse sans éclat se traite en débosselage sans peinture, un choc plus important demande redressage et peinture. Envoyez-nous des photos par WhatsApp ou via le formulaire : vous recevez un premier chiffrage gratuit sous 24h, confirmé par un devis écrit après examen du véhicule à l'atelier de Mainvilliers.</p></details>
+      <details class="faq__item card"><summary>Prenez-vous en charge les sinistres assurance ?</summary><p>Oui. Vous êtes libre de choisir votre réparateur, quel que soit votre assureur. Nous établissons le devis, le transmettons à l'expert, réalisons les travaux validés et vous ne réglez que la franchise éventuelle. Un véhicule de courtoisie peut être prêté pendant la durée des travaux.</p></details>
+      <details class="faq__item card"><summary>Qu'est-ce que le débosselage sans peinture ?</summary><p>C'est une technique qui consiste à redresser la tôle par l'intérieur, sans ponçage ni peinture, pour les bosses de parking, les coups de portière et les impacts de grêle, quand la peinture n'est pas abîmée. C'est plus rapide (souvent dans la journée) et moins cher qu'une réparation classique, et la teinte d'origine est conservée.</p></details>
+      <details class="faq__item card"><summary>Faites-vous l'entretien sans perdre la garantie constructeur ?</summary><p>Oui. Depuis 2002, vous pouvez faire entretenir votre voiture dans le garage de votre choix sans perdre la garantie constructeur, à condition de respecter le plan d'entretien et d'utiliser des pièces de qualité équivalente. Nous suivons le carnet constructeur et le tamponnons.</p></details>
+      <details class="faq__item card"><summary>Réparez-vous ou remplacez-vous les pare-brise ?</summary><p>Les deux. Un impact plus petit qu'une pièce de deux euros, hors du champ de vision du conducteur, se répare en moins d'une heure. Sinon, nous remplaçons le pare-brise, avec recalibrage des caméras d'aide à la conduite si votre véhicule en est équipé. Le bris de glace est généralement pris en charge par votre assurance.</p></details>
+      <details class="faq__item card"><summary>Montez-vous des pneus que je n'ai pas achetés chez vous ?</summary><p>Oui, nous montons et équilibrons vos pneus, que vous les achetiez chez nous ou ailleurs. Nous pouvons aussi vous proposer des pneus toutes marques, été, hiver ou 4 saisons, et vérifier la géométrie si l'usure est irrégulière.</p></details>
+      <details class="faq__item card"><summary>Combien de temps dure une réparation ?</summary><p>Un débosselage sans peinture ou un impact de pare-brise se font souvent dans la journée. Une réparation de carrosserie avec peinture prend en général deux à cinq jours selon le nombre d'éléments et le séchage. Le délai est indiqué sur le devis et nous vous prévenons si les pièces ou l'expertise le modifient.</p></details>
+      <details class="faq__item card"><summary>Où se trouve l'atelier et quelle zone couvrez-vous ?</summary><p>L'atelier est au 3 rue Florence Arthaud à Mainvilliers, aux portes de Chartres, ouvert du lundi au samedi. Nous accueillons les clients de Chartres, Lucé, Lèves, Luisant, Le Coudray, Champhol et de tout l'Eure-et-Loir.</p></details>
+    </div>
+  </div>
+</section>
+
 <!-- ============ CONTACT ============ -->
 <section class="section" id="contact">
   <div class="container">
@@ -419,7 +534,7 @@
       <p>Carrosserie, peinture, débosselage sans peinture, mécanique et entretien toutes marques. Atelier du groupe <a href="https://www.motorcorp.fr/">Motor Corp</a>.</p>
     </div>
     <nav class="footer__col" aria-label="Prestations"><h3>Prestations</h3><ul><li><a href="#services">Carrosserie</a></li><li><a href="#services">Peinture</a></li><li><a href="#services">Débosselage sans peinture</a></li><li><a href="#services">Mécanique et entretien</a></li><li><a href="#devis">Devis gratuit</a></li></ul></nav>
-    <nav class="footer__col" aria-label="Navigation"><h3>Le site</h3><ul><li><a href="#realisations">Interventions</a></li><li><a href="#methode">Comment ça marche</a></li><li><a href="#apropos">L'atelier</a></li><li><a href="#contact">Contact</a></li></ul></nav>
+    <nav class="footer__col" aria-label="Navigation"><h3>Le site</h3><ul><li><a href="#realisations">Interventions</a></li><li><a href="#methode">Comment ça marche</a></li><li><a href="#apropos">L'atelier</a></li><li><a href="#faq">Questions fréquentes</a></li><li><a href="#contact">Contact</a></li></ul></nav>
     <div class="footer__col"><h3>Le groupe</h3><p class="footer__seo">Motors Studio fait partie de <a href="https://www.motorcorp.fr/">Motor Corp</a>, aux côtés de <a href="https://www.motorconsulting.fr/">Motor Consulting</a> pour l'achat, la vente, la location et l'estimation de véhicules d'occasion. Carrosserie et garage automobile toutes marques à Mainvilliers, Chartres, Lucé, Lèves, Luisant, Le Coudray et dans tout l'Eure-et-Loir. Prise en charge assurance, véhicule de courtoisie.</p></div>
   </div>
   <div class="container footer__bottom">
