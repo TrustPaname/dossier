@@ -84,6 +84,7 @@ def build_corp():
     html  = '<?php\n/**\n * Page d\'accueil Motor Corp — générée par wordpress/build.py à partir de motor-corp/index.html.\n */\n?>\n' + html
     html = html.replace("url('../assets/fonts/", f"url('{URI}/assets/fonts/")
     html = html.replace('src="../assets/img/', f'src="{URI}/assets/img/')
+    html = html.replace('src="img/', f'src="{URI}/img/').replace('srcset="img/', f'srcset="{URI}/img/').replace(', img/', f', {URI}/img/')
     html = html.replace('href="favicon.svg"', f'href="{URI}/favicon.svg"')
     html = html.replace('href="https://www.motorcorp.fr/"', 'href="<?php echo esc_url( home_url( \'/\' ) ); ?>"')
     html = html.replace('content="https://www.motorcorp.fr/"', 'content="<?php echo esc_url( home_url( \'/\' ) ); ?>"')
@@ -139,6 +140,7 @@ def build_studio():
     html = html.replace('content="https://www.motors-studio.fr/"', 'content="<?php echo esc_url( home_url( \'/\' ) ); ?>"')
     html = html.replace('"url": "https://www.motors-studio.fr/"', '"url": "<?php echo esc_url( home_url( \'/\' ) ); ?>"')
     html = html.replace('src="../assets/img/', f'src="{URI}/assets/img/')
+    html = html.replace('src="img/', f'src="{URI}/img/').replace('srcset="img/', f'srcset="{URI}/img/').replace(', img/', f', {URI}/img/')
 
     rep = {
         'wa.me/33766636776'                           : "wa.me/<?php echo esc_attr( motor_opt( 'whatsapp' ) ); ?>",
@@ -171,6 +173,7 @@ def build_studio():
     for f in ("logo-motors-studio.png", "logo-motors-studio-light.png"):
         shutil.copy(os.path.join(ROOT, "assets", "img", f), os.path.join(img, f))
     shutil.copy(os.path.join(src, "favicon.svg"), os.path.join(theme, "favicon.svg"))
+    copy_tree(os.path.join(src, "img"), os.path.join(theme, "img"))
     print("thème motors-studio : front-page.php + assets")
 
     legal.build(dict(

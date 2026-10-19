@@ -41,16 +41,9 @@
 /* réalisations : vignettes avant / après */
 .works{display:grid;gap:18px}
 .work{display:flex;flex-direction:column;overflow:hidden;padding:0}
-.work__visual{position:relative;aspect-ratio:16/9;background:#1a1d23;overflow:hidden}
-.work__visual::before,.work__visual::after{content:"";position:absolute;inset:0}
-.work__visual::before{clip-path:polygon(0 0,58% 0,42% 100%,0 100%);filter:saturate(.25) brightness(.7)}
-.work__visual::after{clip-path:polygon(58% 0,100% 0,100% 100%,42% 100%)}
-.work__visual--1::before,.work__visual--1::after{background:radial-gradient(80% 60% at 50% 70%,#9aa3ad 0%,#4b535c 55%,#1a1d23 100%)}
-.work__visual--2::before,.work__visual--2::after{background:radial-gradient(80% 60% at 50% 60%,#cfd5db 0%,#6b737c 55%,#1a1d23 100%)}
-.work__visual--3::before,.work__visual--3::after{background:radial-gradient(80% 60% at 50% 70%,#e3231a 0%,#7a1410 55%,#1a1d23 100%)}
-.work__visual--4::before,.work__visual--4::after{background:radial-gradient(80% 60% at 50% 70%,#5b7fa6 0%,#243a55 55%,#1a1d23 100%)}
-.work__visual--5::before,.work__visual--5::after{background:radial-gradient(70% 60% at 50% 60%,#d9dde2 0%,#8a9098 55%,#1a1d23 100%)}
-.work__visual--6::before,.work__visual--6::after{background:radial-gradient(80% 60% at 50% 70%,#b3b9c2 0%,#3b424b 55%,#1a1d23 100%)}
+.work__visual{position:relative;aspect-ratio:3/2;background:#1a1d23;overflow:hidden}
+.work__visual img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.work:hover .work__visual img{transform:scale(1.03)}
 .work__tag{position:absolute;top:12px;z-index:1;padding:5px 11px;border-radius:var(--pill);font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
 .work__tag--before{left:12px;background:rgba(15,17,21,.75);color:#fff}
 .work__tag--after{right:12px;background:var(--bleu);color:#fff}
@@ -61,3 +54,11 @@
 .work__meta li{padding:4px 10px;border-radius:var(--pill);background:var(--bg-2);border:1px solid var(--line);font-size:.74rem;color:var(--ink-2)}
 @media (min-width:600px){.works{grid-template-columns:1fr 1fr}}
 @media (min-width:900px){.works{grid-template-columns:repeat(3,1fr)}}
+
+.work--cta{justify-content:center;background:var(--dark);color:#fff;border-color:var(--dark)}
+.work--cta .work__body{padding:28px 24px;gap:10px}
+.work--cta h3{color:#fff;font-size:1.25rem}
+.work--cta p{color:rgba(255,255,255,.75)}
+.work--cta .label{color:var(--bleu-clair)}
+.work--cta .hero__actions{margin-top:8px}
+.work--cta .btn--outline{color:#fff;border-color:rgba(255,255,255,.4)}
