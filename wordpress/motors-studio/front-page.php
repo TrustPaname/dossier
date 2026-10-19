@@ -118,7 +118,7 @@
       <p class="hp" aria-hidden="true"><label>Ne pas remplir <input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
       <div class="search__grid">
         <div class="search__field"><label for="q-prestation">Prestation</label>
-          <select id="q-prestation" name="prestation"><option value="">Choisir…</option><option>Carrosserie / choc</option><option>Peinture</option><option>Débosselage sans peinture</option><option>Pare-brise</option><option>Entretien / révision</option><option>Freins / pneus</option><option>Diagnostic / panne</option><option>Autre</option></select></div>
+          <select id="q-prestation" name="prestation"><option value="">Choisir…</option><option>Carrosserie / Peinture / Débosselage</option><option>Entretien / Révision / Freins</option><option>Pneus</option><option>Pare-brise</option><option>Diagnostic / panne</option><option>Autre</option></select></div>
         <div class="search__field"><label for="q-marque">Marque et modèle</label>
           <input type="text" id="q-marque" name="vehicule" placeholder="Peugeot 308"></div>
         <div class="search__field"><label for="q-tel">Téléphone</label>
@@ -130,7 +130,7 @@
       <div class="search__pop">
         <span>Demandes fréquentes</span>
         <div class="search__chips">
-          <button type="button" data-prestation="Carrosserie / choc">Rayure</button><button type="button" data-prestation="Carrosserie / choc">Pare-chocs</button><button type="button" data-prestation="Débosselage sans peinture">Grêle</button><button type="button" data-prestation="Entretien / révision">Vidange</button><button type="button" data-prestation="Freins / pneus">Pneus</button>
+          <button type="button" data-prestation="Carrosserie / Peinture / Débosselage">Rayure</button><button type="button" data-prestation="Carrosserie / Peinture / Débosselage">Pare-chocs</button><button type="button" data-prestation="Carrosserie / Peinture / Débosselage">Grêle</button><button type="button" data-prestation="Entretien / Révision / Freins">Vidange</button><button type="button" data-prestation="Entretien / Révision / Freins">Freins</button><button type="button" data-prestation="Pneus">Pneus</button>
         </div>
       </div>
       <p class="form__status" role="status" aria-live="polite" id="quick-status"></p>
@@ -254,7 +254,7 @@
         <div class="field field--select">
           <label for="e-prestation">Prestation <span class="req" aria-hidden="true">*</span></label>
           <select id="e-prestation" name="prestation" required>
-            <option value="">Choisir…</option><option>Carrosserie / choc</option><option>Peinture</option><option>Débosselage sans peinture</option><option>Pare-brise</option><option>Entretien / révision</option><option>Freins / pneus</option><option>Diagnostic / panne</option><option>Autre</option>
+            <option value="">Choisir…</option><option>Carrosserie / Peinture / Débosselage</option><option>Entretien / Révision / Freins</option><option>Pneus</option><option>Pare-brise</option><option>Diagnostic / panne</option><option>Autre</option>
           </select>
           <p class="field__error" data-error-for="e-prestation"></p>
         </div>
