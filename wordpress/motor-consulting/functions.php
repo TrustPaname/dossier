@@ -78,7 +78,7 @@ function motor_defaults() {
 		'lead_email'     => 'contact@motorconsulting.fr',
 		'address'        => '3 rue Florence Arthaud, 28300 Mainvilliers',
 		'hours'          => 'Lun–Sam 9h–19h',
-		'demo'          => 1,
+		'demo'          => 0,
 	);
 }
 
@@ -118,7 +118,7 @@ add_action( 'customize_register', function ( $wp_customize ) {
 		) );
 	}
 
-	$wp_customize->add_setting( 'motor_demo', array( 'default' => 1, 'sanitize_callback' => 'absint' ) );
+	$wp_customize->add_setting( 'motor_demo', array( 'default' => 0, 'sanitize_callback' => 'absint' ) );
 	$wp_customize->add_control( 'motor_demo', array(
 		'label'       => 'Afficher les véhicules et avis de démonstration tant qu\'aucun n\'est saisi',
 		'description' => 'Décochez avant la mise en ligne si vous n\'avez pas encore saisi de véhicules.',

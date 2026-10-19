@@ -31,6 +31,15 @@
 
   const $ = (sel, ctx) => (ctx || document).querySelector(sel);
   const $$ = (sel, ctx) => Array.from((ctx || document).querySelectorAll(sel));
+
+  // Sans véhicule en stock : section masquée, phrase de l'accueil masquée, « Acheter » mène au contact.
+  if (LIST.length === 0) {
+    const sec = $("#vehicules");
+    if (sec) sec.hidden = true;
+    const count = $("#hero-count");
+    if (count && count.parentElement) count.parentElement.hidden = true;
+    $$('a[href="#vehicules"]').forEach((a) => { a.setAttribute("href", "#contact"); a.dataset.intent = "acheter"; });
+  }
   const euros = (n) => new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n);
   const nombre = (n) => new Intl.NumberFormat("fr-FR").format(n);
 
@@ -55,7 +64,7 @@
   });
 
   // Pré-remplit le sujet du formulaire de contact selon l'intention cliquée
-  const INTENTS = { vendre: "Vendre un véhicule", depot: "Dépôt-vente", estimation: "Expertise / estimation", expertise: "Accompagnement à l'achat (expertise)" };
+  const INTENTS = { vendre: "Vendre un véhicule", depot: "Dépôt-vente", acheter: "Acheter un véhicule", estimation: "Expertise / estimation", expertise: "Accompagnement à l'achat (expertise)" };
   $$("[data-intent]").forEach((el) => {
     el.addEventListener("click", () => {
       const valeur = INTENTS[el.dataset.intent];
