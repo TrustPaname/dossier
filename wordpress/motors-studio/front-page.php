@@ -375,11 +375,10 @@
           <label for="c-sujet">Votre demande</label>
           <select id="c-sujet" name="sujet">
             <option value="Devis carrosserie">Devis carrosserie</option>
-            <option value="Devis peinture">Devis peinture</option>
             <option value="Rendez-vous entretien / mécanique">Rendez-vous entretien / mécanique</option>
+            <option value="Pneus">Pneus</option>
+            <option value="Pare-brise">Pare-brise</option>
             <option value="Sinistre assurance">Sinistre assurance</option>
-            <option value="Véhicule de courtoisie">Véhicule de courtoisie</option>
-            <option value="Autre">Autre</option>
           </select>
         </div>
         <div class="field">
