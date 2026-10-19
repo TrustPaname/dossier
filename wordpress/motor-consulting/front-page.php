@@ -217,7 +217,7 @@
       <p class="hp" aria-hidden="true"><label>Ne pas remplir <input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
       <div class="search__grid">
         <div class="search__field search__field--full field"><label for="v-sujet">Votre projet <span class="req" aria-hidden="true">*</span></label>
-          <select id="v-sujet" name="sujet" required><option value="Vendre un véhicule">Vendre mon véhicule</option><option value="Dépôt-vente">Mettre mon véhicule en dépôt-vente</option><option value="Estimation seulement">Connaître le prix de mon véhicule</option></select></div>
+          <select id="v-sujet" name="sujet" required><option value="Vendre un véhicule">Vendre mon véhicule</option><option value="Dépôt-vente">Mettre mon véhicule en dépôt-vente</option></select></div>
         <div class="search__field field"><label for="v-marque">Marque <span class="req" aria-hidden="true">*</span></label>
           <input type="text" id="v-marque" name="marque" placeholder="Renault" autocomplete="off" required><p class="field__error" data-error-for="v-marque"></p></div>
         <div class="search__field field"><label for="v-modele">Modèle <span class="req" aria-hidden="true">*</span></label>
@@ -451,7 +451,7 @@
       <p class="hp" aria-hidden="true"><label>Ne pas remplir <input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
       <div class="field field--select">
         <label for="e-sujet">Votre projet <span class="req" aria-hidden="true">*</span></label>
-        <select id="e-sujet" name="sujet" required><option value="Vendre un véhicule">Vendre mon véhicule</option><option value="Dépôt-vente">Mettre mon véhicule en dépôt-vente</option><option value="Estimation seulement">Connaître le prix de mon véhicule</option></select>
+        <select id="e-sujet" name="sujet" required><option value="Vendre un véhicule">Vendre mon véhicule</option><option value="Dépôt-vente">Mettre mon véhicule en dépôt-vente</option></select>
       </div>
             <div class="field-row">
         <div class="field">
