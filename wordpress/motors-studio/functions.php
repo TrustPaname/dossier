@@ -291,12 +291,12 @@ function motor_handle_lead( WP_REST_Request $req ) {
 		return new WP_REST_Response( array( 'ok' => false, 'message' => 'Un téléphone ou un e-mail valide est requis.' ), 400 );
 	}
 	if ( empty( $clean['nom'] ) ) {
-		$clean['nom'] = 'Devis express';
+		$clean['nom'] = 'Demande de rendez-vous (accueil)';
 	}
 
 	$is_devis = isset( $clean['prestation'] );
 	$ref      = isset( $clean['reference'] ) ? $clean['reference'] : 'MS-' . strtoupper( wp_generate_password( 4, false ) );
-	$sujet    = $is_devis ? 'Demande de devis' : ( isset( $clean['sujet'] ) ? $clean['sujet'] : 'Contact' );
+	$sujet    = ! empty( $clean['sujet'] ) ? $clean['sujet'] : ( $is_devis ? 'Demande de devis' : 'Contact' );
 
 	$labels = array(
 		'nom' => 'Nom', 'telephone' => 'Téléphone', 'email' => 'E-mail', 'sujet' => 'Demande',

@@ -198,12 +198,13 @@
       </ul>
     </div>
 
-    <form class="search" id="quick-form" aria-label="Devis express" novalidate>
+    <form class="search" id="quick-form" aria-label="Demande de rendez-vous" novalidate>
       <div class="search__head">
-        <p class="search__title"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h7l4 4V20a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12h6M9 15.5h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg> Devis express</p>
-        <span class="search__count">Réponse sous 24h</span>
+        <p class="search__title"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h7l4 4V20a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12h6M9 15.5h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg> Demande de rendez-vous</p>
+        <span class="search__count">Rappel sous 24h</span>
       </div>
       <p class="hp" aria-hidden="true"><label>Ne pas remplir <input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
+      <input type="hidden" name="sujet" value="Demande de rendez-vous">
       <div class="search__grid">
         <div class="search__field"><label for="q-prestation">Prestation</label>
           <select id="q-prestation" name="prestation"><option value="">Choisir…</option><option>Carrosserie / Peinture / Débosselage</option><option>Entretien / Révision / Freins</option><option>Pneus</option><option>Pare-brise</option><option>Diagnostic / panne</option><option>Autre</option></select></div>
@@ -214,7 +215,7 @@
         <div class="search__field"><label for="q-sinistre">Sinistre assurance ?</label>
           <select id="q-sinistre" name="assurance"><option>Non</option><option>Oui, dossier assurance</option><option>Je ne sais pas</option></select></div>
       </div>
-      <button class="search__submit" type="submit"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 11.5 20 4l-4 16-4.5-6.5L3.5 11.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg> Être rappelé pour un devis</button>
+      <button class="search__submit" type="submit"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 11.5 20 4l-4 16-4.5-6.5L3.5 11.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg> Être rappelé pour un RDV</button>
       <div class="search__pop">
         <span>Demandes fréquentes</span>
         <div class="search__chips">

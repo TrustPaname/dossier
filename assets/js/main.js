@@ -601,7 +601,9 @@
     });
   }
 
-  wireForm("#quick-form", "#quick-status", "Merci ! Votre demande d'estimation est bien reçue : un expert vous répond sous 24h ouvrées.");
+  wireForm("#quick-form", "#quick-status", CONFIG.refPrefix === "MS"
+    ? "Merci ! Votre demande de rendez-vous est bien reçue : nous vous rappelons sous 24h ouvrées pour fixer la date."
+    : "Merci ! Votre demande d'estimation est bien reçue : un expert vous répond sous 24h ouvrées.");
   wireForm("#vente-form", "#vente-status", "Merci ! Votre demande est envoyée à " + CONFIG.email + ". Un expert analyse votre véhicule et vous répond sous 24h ouvrées.");
   wireForm("#estimation-form", "#estimation-status", "Merci ! Votre demande d'estimation gratuite est enregistrée. Un expert analyse votre véhicule et vous répond sous 24h ouvrées.");
   wireForm("#contact-form", "#contact-status", "Merci ! Votre message est bien parti. Nous vous recontactons sous 24h ouvrées.");
