@@ -300,7 +300,7 @@ function motor_handle_lead( WP_REST_Request $req ) {
 
 	$labels = array(
 		'nom' => 'Nom', 'prenom' => 'Prénom', 'telephone' => 'Téléphone', 'email' => 'E-mail', 'sujet' => 'Demande',
-		'prestation' => 'Prestation', 'marque' => 'Marque', 'modele' => 'Modèle', 'vehicule' => 'Véhicule',
+		'prestation' => 'Prestation', 'demandes' => 'Demandes précises', 'marque' => 'Marque', 'modele' => 'Modèle', 'vehicule' => 'Véhicule',
 		'immatriculation' => 'Immatriculation', 'etat' => 'Dossier assurance', 'assurance' => 'Dossier assurance',
 		'message' => 'Message', 'reference' => 'Référence',
 	);

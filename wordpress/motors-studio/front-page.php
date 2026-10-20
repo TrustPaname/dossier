@@ -220,7 +220,7 @@
         <div class="search__field"><label for="q-tel">Téléphone</label>
           <input type="tel" id="q-tel" name="telephone" placeholder="06 00 00 00 00" required><p class="field__error" data-error-for="q-tel"></p></div>
         <div class="search__field"><label for="q-prestation">Prestation</label>
-          <select id="q-prestation" name="prestation"><option value="">Choisir…</option><option>Carrosserie / Peinture / Débosselage</option><option>Entretien / Révision / Freins</option><option>Pneus</option><option>Pare-brise</option><option>Diagnostic / panne</option><option>Autre</option></select></div>
+          <select id="q-prestation" name="prestation"><option value="">Choisir…</option><option>Carrosserie / Peinture / Débosselage</option><option>Entretien / Révision / Freins</option><option>Pneus</option><option>Pare-brise</option><option>Diagnostic / panne</option><option>Plusieurs prestations</option><option>Autre</option></select></div>
         <div class="search__field"><label for="q-immat">Immatriculation</label>
           <input type="text" id="q-immat" name="immatriculation" placeholder="AB-123-CD" autocapitalize="characters" spellcheck="false" required><p class="field__error" data-error-for="q-immat"></p></div>
         <div class="search__field"><label for="q-sinistre">Sinistre assurance ?</label>
@@ -228,10 +228,11 @@
       </div>
       <button class="search__submit" type="submit"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 11.5 20 4l-4 16-4.5-6.5L3.5 11.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg> Être rappelé pour un RDV</button>
       <div class="search__pop">
-        <span>Demandes fréquentes</span>
-        <div class="search__chips">
-          <button type="button" data-prestation="Carrosserie / Peinture / Débosselage">Rayure</button><button type="button" data-prestation="Carrosserie / Peinture / Débosselage">Pare-chocs</button><button type="button" data-prestation="Carrosserie / Peinture / Débosselage">Grêle</button><button type="button" data-prestation="Entretien / Révision / Freins">Vidange</button><button type="button" data-prestation="Entretien / Révision / Freins">Freins</button><button type="button" data-prestation="Pneus">Pneus</button>
+        <span>Demandes fréquentes · plusieurs choix possibles</span>
+        <div class="search__chips" id="q-chips">
+          <button type="button" data-prestation="Carrosserie / Peinture / Débosselage" aria-pressed="false">Rayure</button><button type="button" data-prestation="Carrosserie / Peinture / Débosselage" aria-pressed="false">Pare-chocs</button><button type="button" data-prestation="Carrosserie / Peinture / Débosselage" aria-pressed="false">Portière</button><button type="button" data-prestation="Carrosserie / Peinture / Débosselage" aria-pressed="false">Aile</button><button type="button" data-prestation="Carrosserie / Peinture / Débosselage" aria-pressed="false">Capot</button><button type="button" data-prestation="Carrosserie / Peinture / Débosselage" aria-pressed="false">Grêle</button><button type="button" data-prestation="Carrosserie / Peinture / Débosselage" aria-pressed="false">Peinture complète</button><button type="button" data-prestation="Entretien / Révision / Freins" aria-pressed="false">Vidange</button><button type="button" data-prestation="Entretien / Révision / Freins" aria-pressed="false">Révision</button><button type="button" data-prestation="Entretien / Révision / Freins" aria-pressed="false">Disques</button><button type="button" data-prestation="Entretien / Révision / Freins" aria-pressed="false">Plaquettes</button><button type="button" data-prestation="Entretien / Révision / Freins" aria-pressed="false">Distribution</button><button type="button" data-prestation="Entretien / Révision / Freins" aria-pressed="false">Climatisation</button><button type="button" data-prestation="Entretien / Révision / Freins" aria-pressed="false">Contrôle technique</button><button type="button" data-prestation="Pneus" aria-pressed="false">Pneus été</button><button type="button" data-prestation="Pneus" aria-pressed="false">Pneus hiver</button><button type="button" data-prestation="Pneus" aria-pressed="false">Équilibrage</button><button type="button" data-prestation="Pneus" aria-pressed="false">Géométrie</button><button type="button" data-prestation="Pare-brise" aria-pressed="false">Impact pare-brise</button><button type="button" data-prestation="Pare-brise" aria-pressed="false">Remplacement pare-brise</button><button type="button" data-prestation="Pare-brise" aria-pressed="false">Vitre latérale</button>
         </div>
+        <input type="hidden" name="demandes" id="q-demandes" value="">
       </div>
       <p class="form__status" role="status" aria-live="polite" id="quick-status"></p>
     </form>
@@ -359,7 +360,7 @@
         <div class="field field--select">
           <label for="e-prestation">Prestation <span class="req" aria-hidden="true">*</span></label>
           <select id="e-prestation" name="prestation" required>
-            <option value="">Choisir…</option><option>Carrosserie / Peinture / Débosselage</option><option>Entretien / Révision / Freins</option><option>Pneus</option><option>Pare-brise</option><option>Diagnostic / panne</option><option>Autre</option>
+            <option value="">Choisir…</option><option>Carrosserie / Peinture / Débosselage</option><option>Entretien / Révision / Freins</option><option>Pneus</option><option>Pare-brise</option><option>Diagnostic / panne</option><option>Plusieurs prestations</option><option>Autre</option>
           </select>
           <p class="field__error" data-error-for="e-prestation"></p>
         </div>

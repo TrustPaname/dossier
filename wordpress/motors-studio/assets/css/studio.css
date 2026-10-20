@@ -62,3 +62,7 @@
 .work--cta .label{color:var(--bleu-clair)}
 .work--cta .hero__actions{margin-top:8px}
 .work--cta .btn--outline{color:#fff;border-color:rgba(255,255,255,.4)}
+
+.search__chips button.is-on{background:var(--bleu);border-color:var(--bleu);color:#fff;font-weight:600}
+.search__chips button.is-on::before{content:"✓ ";font-size:.75em}
+.search__pop span{letter-spacing:.1em}
