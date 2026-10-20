@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Ouverture prochaine (compte à rebours)
  * Description: Affiche aux visiteurs une page « Ouverture le … » avec un compte à rebours, quel que soit le thème actif. Réglages : Apparence → Personnaliser → Ouverture prochaine. Les administrateurs connectés voient le vrai site ; ajoutez ?ouverture=1 à l'adresse pour voir la page d'attente.
- * Version: 1.4.2
+ * Version: 1.4.3
  * Author: Motor Corp
  */
 
@@ -18,7 +18,7 @@ function ouverture_prochaine_config() {
 	$sites = array(
 		'motor-consulting' => array( 'nom' => 'Motor Consulting', 'logo' => 'assets/img/logo-motor-consulting-600.png', 'couleur' => '#0a8cff', 'police' => array( 'Outfit', 'assets/fonts/outfit-300-800-latin.woff2' ) ),
 		'motor-corp'       => array( 'nom' => 'Motor Corp',       'logo' => 'assets/img/logo-motor-corp.png',            'couleur' => '#f04a00', 'police' => array( 'Archivo', 'assets/fonts/archivo-latin.woff2' ) ),
-		'motors-studio'    => array( 'nom' => 'Motors Studio',    'logo' => 'assets/img/logo-motors-studio.png',         'couleur' => '#e3231a', 'police' => array( 'Outfit', 'assets/fonts/outfit-300-800-latin.woff2' ), 'kicker' => 'Ça bouge à Mainvilliers · Votre nouveau garage pour Chartres et alentours', 'message_titre' => 'Offres de lancement', 'message' => 'Réservées aux 20 premiers rendez-vous pris', 'offres' => array( array( '-50 %', 'Carrosserie · Peinture · Redressage', 'hors assurance' ), array( '-40 %', 'Pneumatiques', 'montage, équilibrage, remplacement' ), array( 'Franchise offerte', 'Pare-brise', '+ balais d\'essuie-glace offerts' ) ), 'message_note' => 'Offres valables pour les 20 premiers rendez-vous, voir conditions à l\'atelier.', 'bouton' => 'Réserver mon rendez-vous', 'bouton_ancre' => '#devis' ),
+		'motors-studio'    => array( 'nom' => 'Motors Studio',    'logo' => 'assets/img/logo-motors-studio.png',         'couleur' => '#e3231a', 'police' => array( 'Outfit', 'assets/fonts/outfit-300-800-latin.woff2' ), 'kicker' => 'Ça bouge à Mainvilliers · Votre nouveau garage pour Chartres et alentours', 'message_titre' => 'Offres de lancement', 'message' => 'Réservées aux 20 premiers rendez-vous pris', 'offres' => array( array( '-50 %', 'Carrosserie · Peinture · Redressage', 'hors assurance' ), array( '-40 %', 'Pneumatiques', 'montage, équilibrage, remplacement' ), array( 'Franchise offerte', 'Pare-brise', '+ balais d\'essuie-glace offerts' ) ), 'message_note' => 'Offres valables pour les 20 premiers rendez-vous, voir conditions à l\'atelier.', 'bouton' => 'Réserver mon rendez-vous', 'bouton_ancre' => '#quick-form' ),
 		'ms-motor-studio'  => array( 'nom' => 'Motors Studio',    'logo' => 'assets/img/logo-motors-studio.png',         'couleur' => '#e3231a', 'police' => array() ),
 	);
 	$c = isset( $sites[ $theme ] ) ? $sites[ $theme ] : array( 'nom' => get_bloginfo( 'name' ), 'logo' => '', 'couleur' => '#0a8cff', 'police' => array() );

@@ -16,11 +16,13 @@
     }));
     // Avant l'envoi (phase de capture), recopie les champs dans le formulaire complet
     quick.addEventListener("submit", () => {
-      const map = { "#q-prestation": "#e-prestation", "#q-immat": "#e-immat", "#q-tel": "#e-tel" };
+      const map = { "#q-prestation": "#e-prestation", "#q-immat": "#e-immat", "#q-tel": "#e-tel", "#q-email": "#e-email" };
       Object.keys(map).forEach((from) => {
         const a = $(from), b = $(map[from]);
         if (a && b && a.value && !b.value) b.value = a.value;
       });
+      const nom = $("#q-nom"), prenom = $("#q-prenom"), cible = $("#e-nom");
+      if (cible && !cible.value && (nom || prenom)) cible.value = [prenom && prenom.value, nom && nom.value].filter(Boolean).join(" ");
     }, true);
   }
 

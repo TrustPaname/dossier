@@ -32,7 +32,7 @@ $motor_ouverture = array(
 	),
 	'message_note'  => 'Offres valables pour les 20 premiers rendez-vous, voir conditions à l\'atelier.',
 	'bouton'        => 'Réserver mon rendez-vous',
-	'bouton_ancre'  => '#devis',
+	'bouton_ancre'  => '#quick-form',
 );
 require get_template_directory() . '/inc-ouverture.php';
 
@@ -299,7 +299,7 @@ function motor_handle_lead( WP_REST_Request $req ) {
 	$sujet    = ! empty( $clean['sujet'] ) ? $clean['sujet'] : ( $is_devis ? 'Demande de devis' : 'Contact' );
 
 	$labels = array(
-		'nom' => 'Nom', 'telephone' => 'Téléphone', 'email' => 'E-mail', 'sujet' => 'Demande',
+		'nom' => 'Nom', 'prenom' => 'Prénom', 'telephone' => 'Téléphone', 'email' => 'E-mail', 'sujet' => 'Demande',
 		'prestation' => 'Prestation', 'marque' => 'Marque', 'modele' => 'Modèle', 'vehicule' => 'Véhicule',
 		'immatriculation' => 'Immatriculation', 'etat' => 'Dossier assurance', 'assurance' => 'Dossier assurance',
 		'message' => 'Message', 'reference' => 'Référence',
