@@ -1,0 +1,309 @@
+<?php
+/**
+ * Page « Ouverture prochaine » avec compte à rebours.
+ *
+ * Partagée par les thèmes Motor Consulting, Motor Corp et Motors Studio
+ * (copiée dans chaque thème par wordpress/build.py).
+ *
+ * Le thème qui l'inclut définit avant le require :
+ *   $motor_ouverture = array(
+ *     'prefix'  => 'motor_',            // préfixe des réglages du Personnalisateur
+ *     'nom'     => 'Motor Consulting',  // nom affiché
+ *     'logo'    => 'assets/img/x.png',  // chemin du logo dans le thème
+ *     'couleur' => '#0a8cff',           // couleur d'accent
+ *     'police'  => array( 'Outfit', 'assets/fonts/outfit-300-800-latin.woff2' ), // facultatif
+ *   );
+ *
+ * Réglages : Apparence → Personnaliser → Ouverture prochaine.
+ * Les administrateurs connectés voient toujours le vrai site.
+ * Une fois la date passée, le site s'affiche automatiquement.
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+// Si l'extension « Ouverture prochaine » est active, elle fait le travail : le module du thème se retire.
+if ( function_exists( 'ouverture_prochaine_active' ) ) {
+	return;
+}
+
+$GLOBALS['motor_ouverture_cfg'] = isset( $motor_ouverture ) ? $motor_ouverture : array();
+
+function motor_ouverture_cfg( $k, $d = '' ) {
+	$c = $GLOBALS['motor_ouverture_cfg'];
+	return isset( $c[ $k ] ) ? $c[ $k ] : $d;
+}
+
+function motor_ouverture_mod( $k, $d = '' ) {
+	return get_theme_mod( motor_ouverture_cfg( 'prefix', 'motor_' ) . 'ouverture_' . $k, $d );
+}
+
+/** Date-heure d'ouverture (objet DateTime dans le fuseau du site) ou null. */
+function motor_ouverture_date() {
+	$date  = trim( (string) motor_ouverture_mod( 'date', '2026-11-05' ) );
+	$heure = trim( (string) motor_ouverture_mod( 'heure', '09:00' ) );
+	try {
+		return new DateTime( $date . ' ' . ( $heure ? $heure : '09:00' ), wp_timezone() );
+	} catch ( Exception $e ) {
+		return null;
+	}
+}
+
+/** La page d'attente doit-elle s'afficher pour ce visiteur ? */
+function motor_ouverture_active() {
+	if ( ! motor_ouverture_mod( 'active', 1 ) ) {
+		return false;
+	}
+	if ( apply_filters( 'motor_ouverture_bypass', false ) ) {
+		return false; // pages exclues par le thème (ex. page d'atterrissage /rdv/)
+	}
+	// ?ouverture=1 dans l'adresse : force l'affichage de la page d'attente, même connecté (pour vérifier).
+	// ?ouverture=0 : affiche le vrai site sans être connecté (pour vérifier le site avant l'ouverture).
+	$force = isset( $_GET['ouverture'] ) && '1' === $_GET['ouverture']; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	if ( $force && ! headers_sent() ) {
+		setcookie( 'mc_ouverture', '', time() - 3600, '/' ); // annule « Accéder au site » : le compte à rebours revient
+	}
+	if ( isset( $_GET['ouverture'] ) && '0' === $_GET['ouverture'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( ! headers_sent() ) {
+			setcookie( 'mc_ouverture', '0', 0, '/' ); // le temps de la visite : le compte à rebours revient à la prochaine ouverture du navigateur
+		}
+		return false;
+	}
+	// Le visiteur a cliqué sur « Accéder au site » : il navigue librement le temps de sa visite.
+	if ( ! $force && isset( $_COOKIE['mc_ouverture'] ) && '0' === $_COOKIE['mc_ouverture'] ) {
+		return false;
+	}
+	if ( ! $force && is_user_logged_in() && current_user_can( 'edit_theme_options' ) ) {
+		return false; // l'administrateur continue de voir et régler le vrai site
+	}
+	if ( is_customize_preview() ) {
+		return false;
+	}
+	$d = motor_ouverture_date();
+	if ( ! $d ) {
+		return false;
+	}
+	return $d->getTimestamp() > current_time( 'timestamp', true );
+}
+
+add_action( 'customize_register', function ( $wp_customize ) {
+	$p = motor_ouverture_cfg( 'prefix', 'motor_' );
+	$wp_customize->add_section( $p . 'ouverture', array(
+		'title'       => 'Ouverture prochaine (compte à rebours)',
+		'priority'    => 10,
+		'description' => 'Tant que la case est cochée et que la date n\'est pas passée, les visiteurs voient une page « Ouverture le … » avec un compte à rebours. Vous, connecté, voyez le vrai site.',
+	) );
+	$fields = array(
+		'active'  => array( 'Afficher la page d\'attente aux visiteurs', 'checkbox', 1 ),
+		'mode'    => array( 'Affichage', 'select', 'overlay' ),
+		'date'    => array( 'Date d\'ouverture (AAAA-MM-JJ)', 'text', '2026-11-05' ),
+		'heure'   => array( 'Heure d\'ouverture (HH:MM)', 'text', '09:00' ),
+		'titre'   => array( 'Texte au-dessus de la date', 'text', 'Ouverture le' ),
+		'message' => array( 'Phrase sous le compte à rebours (facultatif)', 'text', motor_ouverture_cfg( 'message', '' ) ),
+		'bouton'  => array( 'Texte du bouton d\'accès au site', 'text', motor_ouverture_cfg( 'bouton', 'Accéder au site' ) ),
+	);
+	foreach ( $fields as $k => $f ) {
+		$wp_customize->add_setting( $p . 'ouverture_' . $k, array(
+			'default'           => $f[2],
+			'sanitize_callback' => 'checkbox' === $f[1] ? 'absint' : 'sanitize_text_field',
+		) );
+		$ctl = array(
+			'label'   => $f[0],
+			'section' => $p . 'ouverture',
+			'type'    => $f[1],
+		);
+		if ( 'mode' === $k ) {
+			$ctl['choices']     = array(
+				'overlay' => 'Par-dessus le site (recommandé : Google lit le vrai site)',
+				'page'    => 'Page seule (le site reste invisible, non référencé)',
+			);
+			$ctl['description'] = 'Dans les deux cas le visiteur ne voit que le compte à rebours.';
+		}
+		$wp_customize->add_control( $p . 'ouverture_' . $k, $ctl );
+	}
+} );
+
+/** Bandeau de rappel dans l'administration tant que la page d'attente est active. */
+add_action( 'admin_notices', function () {
+	if ( ! current_user_can( 'edit_theme_options' ) || ! motor_ouverture_mod( 'active', 1 ) ) {
+		return;
+	}
+	$d = motor_ouverture_date();
+	if ( ! $d || $d->getTimestamp() <= current_time( 'timestamp', true ) ) {
+		return;
+	}
+	echo '<div class="notice notice-warning"><p><strong>' . esc_html( motor_ouverture_cfg( 'nom', 'Site' ) ) . ' :</strong> les visiteurs voient la page « Ouverture le ' . esc_html( wp_date( 'j F Y', $d->getTimestamp() ) ) . ' » avec le compte à rebours. Vous voyez le vrai site parce que vous êtes connecté : pour la voir vous-même, <a href="' . esc_url( home_url( '/?ouverture=1' ) ) . '" target="_blank">ouvrez cette page</a>. Pour ouvrir le site au public : Apparence → Personnaliser → Ouverture prochaine → décochez la case.</p></div>';
+} );
+
+/** Mode « page » : remplace toutes les pages publiques. Mode « par-dessus » : voir wp_footer plus bas. */
+add_action( 'template_redirect', function () {
+	if ( ! motor_ouverture_active() || 'page' !== motor_ouverture_mod( 'mode', 'overlay' ) ) {
+		return;
+	}
+	if ( is_feed() || is_robots() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) {
+		return;
+	}
+	status_header( 200 );
+	nocache_headers();
+	header( 'Content-Type: text/html; charset=utf-8' );
+	motor_ouverture_render( false );
+	exit;
+} );
+
+/** Mode « par-dessus » : le vrai site est servi (Google le lit), le compte à rebours le recouvre pour le visiteur. */
+add_action( 'wp_footer', function () {
+	if ( ! motor_ouverture_active() || 'page' === motor_ouverture_mod( 'mode', 'overlay' ) ) {
+		return;
+	}
+	motor_ouverture_render( true );
+}, 99 );
+add_action( 'wp_head', function () {
+	if ( ! motor_ouverture_active() || 'page' === motor_ouverture_mod( 'mode', 'overlay' ) ) {
+		return;
+	}
+	echo '<style id="o-lock">html.o-lock,html.o-lock body{overflow:hidden!important;height:100%}</style>' . "\n";
+}, 99 );
+
+function motor_ouverture_render( $overlay = false ) {
+	$nom     = motor_ouverture_cfg( 'nom', get_bloginfo( 'name' ) );
+	$couleur = motor_ouverture_cfg( 'couleur', '#0a8cff' );
+	$logo    = motor_ouverture_cfg( 'logo' );
+	$logo    = $logo ? get_template_directory_uri() . '/' . ltrim( $logo, '/' ) : '';
+	$police  = motor_ouverture_cfg( 'police' );
+	$d       = motor_ouverture_date();
+	$iso     = $d->format( 'c' );
+	$jour    = wp_date( 'j F Y', $d->getTimestamp() );
+	$titre   = motor_ouverture_mod( 'titre', 'Ouverture le' );
+	$message = motor_ouverture_mod( 'message', motor_ouverture_cfg( 'message', '' ) );
+	$bouton  = motor_ouverture_mod( 'bouton', motor_ouverture_cfg( 'bouton', 'Accéder au site' ) );
+	$lien    = home_url( '/?ouverture=0' . motor_ouverture_cfg( 'bouton_ancre', '' ) );
+	$font_face = '';
+	$font_name = 'system-ui, -apple-system, "Segoe UI", sans-serif';
+	$r = $overlay ? '.o-ouv' : 'body'; // racine des styles
+	$o = $overlay ? '.o-ouv ' : '';   // préfixe des classes internes
+	if ( is_array( $police ) && ! empty( $police[0] ) ) {
+		$font_name = '"' . $police[0] . '", ' . $font_name;
+		if ( ! empty( $police[1] ) ) {
+			$font_face = '@font-face{font-family:"' . $police[0] . '";font-weight:300 800;font-display:swap;src:url("' . esc_url( get_template_directory_uri() . '/' . ltrim( $police[1], '/' ) ) . '") format("woff2")}';
+		}
+	}
+	if ( ! $overlay ) :
+	?>
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, follow">
+<title><?php echo esc_html( $nom ); ?> — <?php echo esc_html( $titre . ' ' . $jour ); ?></title>
+<?php if ( function_exists( 'wp_site_icon' ) ) { wp_site_icon(); } ?>
+<?php else : ?>
+<div class="o-ouv" id="o-ouv" role="dialog" aria-modal="true" aria-label="<?php echo esc_attr( $nom . ' — ' . $titre . ' ' . $jour ); ?>">
+<?php endif; ?>
+<style>
+<?php echo $font_face; // phpcs:ignore WordPress.Security.EscapeOutput -- URL échappée ci-dessus ?>
+<?php if ( ! $overlay ) : ?>*{box-sizing:border-box;margin:0}html,body{height:100%}<?php endif; ?>
+<?php echo $r; ?> *{box-sizing:border-box;margin:0}
+<?php echo $r; ?>{font-family:<?php echo $font_name; // phpcs:ignore WordPress.Security.EscapeOutput ?>;background:#0b0c10;color:#fff;display:grid;place-items:center;text-align:center;padding:32px 20px;overflow:hidden;position:relative;-webkit-font-smoothing:antialiased;<?php if ( $overlay ) : ?>position:fixed;inset:0;z-index:2147483647;overflow:auto;min-height:100%;height:auto<?php endif; ?>}
+<?php echo $r; ?>::before{content:"";position:fixed;inset:0;background:
+  radial-gradient(60% 50% at 50% 35%,<?php echo esc_attr( $couleur ); ?>33,transparent 65%),
+  radial-gradient(40% 35% at 85% 90%,<?php echo esc_attr( $couleur ); ?>22,transparent 60%),
+  linear-gradient(180deg,#15171c 0%,#0b0c10 70%);z-index:-2}
+<?php echo $r; ?>::after{content:"";position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(70% 70% at 50% 50%,#000 20%,transparent 100%);-webkit-mask-image:radial-gradient(70% 70% at 50% 50%,#000 20%,transparent 100%);z-index:-1}
+<?php echo $o; ?>.o{display:grid;gap:18px;justify-items:center;max-width:860px;width:100%;animation:in .9s ease both}
+@keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+<?php echo $o; ?>.o__logo{width:min(240px,56vw);height:auto;filter:drop-shadow(0 20px 40px rgba(0,0,0,.6))}
+<?php echo $o; ?>.o__nom{font-size:clamp(1.1rem,2.4vw,1.5rem);font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,255,255,.72)}
+<?php echo $o; ?>.o__kicker{display:inline-flex;align-items:center;gap:.7em;padding:8px 16px;max-width:92vw;text-align:center;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05);font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
+<?php echo $o; ?>.o__kicker::before{content:"";width:7px;height:7px;border-radius:50%;background:<?php echo esc_attr( $couleur ); ?>;box-shadow:0 0 12px <?php echo esc_attr( $couleur ); ?>}
+<?php echo $o; ?>.o__date{font-size:clamp(1.7rem,5.2vw,3.4rem);font-weight:800;line-height:1.08;letter-spacing:-.02em;color:#fff;font-family:inherit}
+<?php echo $o; ?>.o__date em{font-style:italic;color:<?php echo esc_attr( $couleur ); ?>;white-space:nowrap;display:inline-block}
+<?php echo $o; ?>.o__cd{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:6px}
+<?php echo $o; ?>.o__cell{min-width:clamp(64px,14vw,100px);padding:12px 8px 10px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(8px)}
+<?php echo $o; ?>.o__cell b{display:block;font-size:clamp(1.6rem,4.5vw,2.6rem);font-weight:800;line-height:1;font-variant-numeric:tabular-nums;color:#fff}
+<?php echo $o; ?>.o__cell span{display:block;margin-top:8px;font-size:.64rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+<?php echo $o; ?>.o__msg{position:relative;margin-top:10px;max-width:720px;width:100%;padding:22px 20px 16px;border-radius:20px;background:linear-gradient(135deg,<?php echo esc_attr( $couleur ); ?>2e,<?php echo esc_attr( $couleur ); ?>14);border:1px solid <?php echo esc_attr( $couleur ); ?>80;box-shadow:0 0 0 6px <?php echo esc_attr( $couleur ); ?>14,0 20px 50px rgba(0,0,0,.45);color:#fff;font-size:clamp(1.05rem,2.3vw,1.3rem);line-height:1.5;animation:pulse 2.4s ease-in-out infinite}
+<?php echo $o; ?>.o__msg strong{display:block;font-weight:700;color:#fff}
+<?php echo $o; ?>.o__offres{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));text-align:center}
+<?php echo $o; ?>.o__offres li{display:grid;gap:3px;padding:11px 10px;border-radius:14px;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.12)}
+<?php echo $o; ?>.o__offres b{font-size:clamp(1.5rem,4vw,2.1rem);font-weight:800;line-height:1;color:<?php echo esc_attr( $couleur ); ?>;letter-spacing:-.02em}
+<?php echo $o; ?>.o__offres span{font-size:.92rem;font-weight:700;color:#fff;line-height:1.25}
+<?php echo $o; ?>.o__offres small{font-size:.72rem;color:rgba(255,255,255,.65);line-height:1.3}
+<?php echo $o; ?>.o__note{display:block;margin-top:12px;font-size:.72rem;font-style:normal;color:rgba(255,255,255,.5)}
+<?php echo $o; ?>.o__msg-tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);white-space:nowrap;padding:5px 14px;border-radius:999px;background:<?php echo esc_attr( $couleur ); ?>;color:#fff;font-size:.68rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;box-shadow:0 6px 18px <?php echo esc_attr( $couleur ); ?>66}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 6px <?php echo esc_attr( $couleur ); ?>14,0 20px 50px rgba(0,0,0,.45)}50%{box-shadow:0 0 0 10px <?php echo esc_attr( $couleur ); ?>26,0 20px 50px rgba(0,0,0,.45)}}
+@media (prefers-reduced-motion:reduce){<?php echo $o; ?>.o__msg{animation:none}}
+<?php echo $o; ?>.o__foot{margin-top:10px;font-size:.78rem;color:rgba(255,255,255,.4);letter-spacing:.06em}
+<?php echo $o; ?>.o__open{display:none}
+<?php echo $o; ?>.is-open .o__cd,<?php echo $o; ?>.is-open .o__kicker{display:none}
+<?php echo $o; ?>.o__enter{display:inline-flex;align-items:center;gap:.5em;margin-top:4px;padding:13px 26px;border-radius:999px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.06);color:#fff;font-weight:600;font-size:.95rem;text-decoration:none;letter-spacing:.02em;transition:background .25s,border-color .25s}
+<?php echo $o; ?>.o__msg + .o__open + .o__enter,<?php echo $o; ?>.o__msg ~ .o__enter{background:<?php echo esc_attr( $couleur ); ?>;border-color:<?php echo esc_attr( $couleur ); ?>;font-weight:700;padding:15px 30px;box-shadow:0 12px 30px <?php echo esc_attr( $couleur ); ?>55}
+<?php echo $o; ?>.o__enter:hover{background:<?php echo esc_attr( $couleur ); ?>;border-color:<?php echo esc_attr( $couleur ); ?>}
+<?php echo $o; ?>.is-open .o__enter{display:none}
+<?php echo $o; ?>.is-open .o__open{display:inline-block;margin-top:8px;padding:14px 26px;border-radius:999px;background:<?php echo esc_attr( $couleur ); ?>;color:#fff;font-weight:700;text-decoration:none}
+@media (prefers-reduced-motion:reduce){<?php echo $o; ?>.o{animation:none}}
+<?php if ( $overlay ) : ?>.o-ouv{color:#fff}.o-ouv h1{font-family:inherit}<?php endif; ?>
+</style>
+<?php if ( ! $overlay ) : ?>
+</head>
+<body>
+<?php endif; ?>
+<main class="o" id="o" data-date="<?php echo esc_attr( $iso ); ?>">
+	<?php if ( $logo ) : ?>
+	<img class="o__logo" src="<?php echo esc_url( $logo ); ?>" alt="<?php echo esc_attr( $nom ); ?>">
+	<?php else : ?>
+	<p class="o__nom"><?php echo esc_html( $nom ); ?></p>
+	<?php endif; ?>
+	<p class="o__kicker"><?php echo esc_html( motor_ouverture_cfg( 'kicker', $nom . ' · Site en préparation' ) ); ?></p>
+	<h1 class="o__date"><?php echo esc_html( $titre ); ?> <em><?php echo esc_html( $jour ); ?></em></h1>
+	<div class="o__cd" aria-live="polite" aria-label="Compte à rebours">
+		<div class="o__cell"><b id="cd-j">—</b><span>jours</span></div>
+		<div class="o__cell"><b id="cd-h">—</b><span>heures</span></div>
+		<div class="o__cell"><b id="cd-m">—</b><span>minutes</span></div>
+		<div class="o__cell"><b id="cd-s">—</b><span>secondes</span></div>
+	</div>
+	<?php $offres = motor_ouverture_cfg( 'offres', array() ); if ( $message || $offres ) : ?>
+	<div class="o__msg">
+		<span class="o__msg-tag"><?php echo esc_html( motor_ouverture_cfg( 'message_titre', 'Offre d\'ouverture' ) ); ?></span>
+		<?php if ( $message ) : ?><strong><?php echo esc_html( $message ); ?></strong><?php endif; ?>
+		<?php if ( $offres ) : ?>
+		<ul class="o__offres">
+			<?php foreach ( $offres as $of ) : ?>
+			<li><b><?php echo esc_html( $of[0] ); ?></b><span><?php echo esc_html( $of[1] ); ?></span><?php if ( ! empty( $of[2] ) ) : ?><small><?php echo esc_html( $of[2] ); ?></small><?php endif; ?></li>
+			<?php endforeach; ?>
+		</ul>
+		<?php endif; ?>
+		<?php $note = motor_ouverture_cfg( 'message_note', '' ); if ( $note ) : ?><em class="o__note"><?php echo esc_html( $note ); ?></em><?php endif; ?>
+	</div>
+	<?php endif; ?>
+	<a class="o__open" href="<?php echo esc_url( home_url( '/' ) ); ?>">Découvrir le site</a>
+	<a class="o__enter" id="o-enter" href="<?php echo esc_url( $lien ); ?>" data-ancre="<?php echo esc_attr( motor_ouverture_cfg( 'bouton_ancre', '' ) ); ?>"><?php echo esc_html( $bouton ); ?> <span aria-hidden="true">→</span></a>
+	<p class="o__foot">© <?php echo esc_html( wp_date( 'Y' ) ); ?> <?php echo esc_html( $nom ); ?></p>
+</main>
+<script>
+(function(){
+  var el=document.getElementById('o'),cible=new Date(el.getAttribute('data-date')).getTime();
+  <?php if ( $overlay ) : ?>document.documentElement.classList.add('o-lock');
+  var entrer=document.getElementById('o-enter');
+  if(entrer){entrer.addEventListener('click',function(e){e.preventDefault();document.cookie='mc_ouverture=0; path=/; SameSite=Lax';var w=document.getElementById('o-ouv');if(w){w.parentNode.removeChild(w);}document.documentElement.classList.remove('o-lock');var an=entrer.getAttribute('data-ancre');if(an){var c=document.querySelector(an);if(c){c.scrollIntoView({behavior:'smooth'});}}});}<?php endif; ?>
+  var j=document.getElementById('cd-j'),h=document.getElementById('cd-h'),m=document.getElementById('cd-m'),s=document.getElementById('cd-s');
+  var p=function(n){return n<10?'0'+n:String(n);};
+  function maj(){
+    var d=cible-Date.now();
+    if(d<=0){el.classList.add('is-open');<?php if ( $overlay ) : ?>var w=document.getElementById('o-ouv');if(w){w.parentNode.removeChild(w);}document.documentElement.classList.remove('o-lock');<?php endif; ?>return;}
+    var sec=Math.floor(d/1000);
+    j.textContent=Math.floor(sec/86400);h.textContent=p(Math.floor(sec%86400/3600));m.textContent=p(Math.floor(sec%3600/60));s.textContent=p(sec%60);
+    setTimeout(maj,1000-(Date.now()%1000));
+  }
+  maj();
+})();
+</script>
+<?php if ( $overlay ) : ?>
+</div>
+<?php else : ?>
+</body>
+</html>
+<?php endif; ?>
+	<?php
+}
