@@ -26,6 +26,8 @@ function motor_stock_defaults() {
 		'root'         => '',   // clé du tableau dans le JSON/XML (vide = détection automatique)
 		'interval'     => 1,    // heures
 		'mode'         => 'replace', // replace : le flux remplace les véhicules WP ; merge : les deux
+		'page_param'   => 'page',    // nom du paramètre de pagination (vide = pas de pagination)
+		'page_size'    => 100,
 	);
 }
 
@@ -49,6 +51,8 @@ add_action( 'customize_register', function ( $wp_customize ) {
 		'root'        => array( 'Clé du tableau de véhicules dans le flux (vide = automatique)', 'text' ),
 		'interval'    => array( 'Fréquence de mise à jour (heures)', 'number' ),
 		'mode'        => array( 'Véhicules saisis dans WordPress', 'select', array( 'replace' => 'Ignorés quand le flux est actif', 'merge' => 'Affichés en plus du flux' ) ),
+		'page_param'  => array( 'Pagination : nom du paramètre de page (ex. page ; vide = tout dans une seule réponse)', 'text' ),
+		'page_size'   => array( 'Pagination : véhicules par page (ex. 100)', 'number' ),
 	);
 	$d = motor_stock_defaults();
 	foreach ( $fields as $key => $f ) {
@@ -93,23 +97,54 @@ function motor_stock_import() {
 	if ( motor_stock_opt( 'auth_header' ) && motor_stock_opt( 'auth_value' ) ) {
 		$args['headers'][ motor_stock_opt( 'auth_header' ) ] = motor_stock_opt( 'auth_value' );
 	}
-	$res = wp_remote_get( $url, $args );
-	if ( is_wp_error( $res ) ) {
-		motor_stock_status( 'error', $res->get_error_message() );
-		return $res;
+	$page_param = motor_stock_opt( 'page_param' );
+	$page_size  = max( 1, (int) motor_stock_opt( 'page_size' ) );
+	$rows       = array();
+	$seen       = array();
+	for ( $page = 1; $page <= 50; $page++ ) {
+		$u = $url;
+		if ( $page_param ) {
+			$u = add_query_arg( array( $page_param => $page, 'limit' => $page_size, 'per_page' => $page_size ), $url );
+		}
+		$res = wp_remote_get( $u, $args );
+		if ( is_wp_error( $res ) ) {
+			motor_stock_status( 'error', $res->get_error_message() );
+			return $res;
+		}
+		$code = wp_remote_retrieve_response_code( $res );
+		$body = wp_remote_retrieve_body( $res );
+		if ( 200 !== (int) $code || '' === $body ) {
+			if ( $page > 1 ) {
+				break; // fin de la pagination
+			}
+			motor_stock_status( 'error', 'Réponse HTTP ' . $code . ( $body ? ' — ' . mb_substr( wp_strip_all_tags( $body ), 0, 200 ) : '' ) );
+			return new WP_Error( 'http', 'Réponse HTTP ' . $code );
+		}
+		$part = motor_stock_parse( $body, wp_remote_retrieve_header( $res, 'content-type' ) );
+		if ( is_wp_error( $part ) ) {
+			if ( $page > 1 ) {
+				break;
+			}
+			motor_stock_status( 'error', $part->get_error_message() );
+			return $part;
+		}
+		if ( empty( $part ) ) {
+			break;
+		}
+		$new = 0;
+		foreach ( $part as $r ) {
+			$sig = md5( wp_json_encode( $r ) );
+			if ( ! isset( $seen[ $sig ] ) ) {
+				$seen[ $sig ] = 1;
+				$rows[]       = $r;
+				$new++;
+			}
+		}
+		if ( ! $page_param || 0 === $new || count( $part ) < $page_size ) {
+			break;
+		}
 	}
-	$code = wp_remote_retrieve_response_code( $res );
-	$body = wp_remote_retrieve_body( $res );
-	if ( 200 !== (int) $code || '' === $body ) {
-		motor_stock_status( 'error', 'Réponse HTTP ' . $code );
-		return new WP_Error( 'http', 'Réponse HTTP ' . $code );
-	}
-
-	$rows = motor_stock_parse( $body, wp_remote_retrieve_header( $res, 'content-type' ) );
-	if ( is_wp_error( $rows ) ) {
-		motor_stock_status( 'error', $rows->get_error_message() );
-		return $rows;
-	}
+	update_option( 'motor_stock_sample', array_slice( $rows, 0, 1 ), false ); // premier véhicule brut, pour diagnostic
 
 	$vehicules = array();
 	$i         = 0;
@@ -428,6 +463,10 @@ function motor_stock_admin_page() {
 			echo '<tr><td>' . esc_html( $v['ref'] ) . '</td><td>' . esc_html( $v['marque'] . ' ' . $v['modele'] . ' ' . $v['version'] ) . '</td><td>' . esc_html( $v['annee'] ) . '</td><td>' . esc_html( number_format( $v['km'], 0, ',', ' ' ) ) . '</td><td>' . esc_html( number_format( $v['prix'], 0, ',', ' ' ) ) . ' €</td><td>' . count( $v['photos'] ) . '</td></tr>';
 		}
 		echo '</tbody></table>';
+	}
+	$sample = get_option( 'motor_stock_sample', array() );
+	if ( $sample ) {
+		echo '<h2>Premier véhicule tel que reçu de Kepler (diagnostic)</h2><p class="description">Si un champ n\'est pas repris sur le site, envoyez ce bloc à votre webmaster.</p><pre style="max-height:320px;overflow:auto;background:#fff;border:1px solid #ccd0d4;padding:12px">' . esc_html( wp_json_encode( $sample[0], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) ) . '</pre>';
 	}
 	echo '<h2>Marche à suivre avec Kepler VO</h2><ol>
 	<li>Dans Kepler VO, demandez l\'activation de l\'<strong>API véhicule</strong> (ou d\'un export de stock) pour votre site internet : votre conseiller Kepler vous fournit une <strong>adresse</strong> et, le cas échéant, une <strong>clé</strong>.</li>
