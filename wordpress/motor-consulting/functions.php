@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 define( 'MOTOR_VERSION', '1.1.0' );
 require get_template_directory() . '/inc-stock.php';
+require get_template_directory() . '/inc-kepler.php'; // API Kepler VO (clé dans Apparence → Personnaliser → Stock Kepler)
 
 // Page « Ouverture prochaine » avec compte à rebours (Apparence → Personnaliser).
 $motor_ouverture = array(

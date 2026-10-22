@@ -75,11 +75,21 @@ add_filter( 'cron_schedules', function ( $s ) {
 	return $s;
 } );
 
+/**
+ * Une source de stock est-elle configurée (clé API Kepler VO ou adresse de flux) ?
+ */
+function motor_stock_active() {
+	if ( function_exists( 'motor_kepler_key' ) && motor_kepler_key() ) {
+		return true;
+	}
+	return (bool) motor_stock_opt( 'url' );
+}
+
 add_action( 'init', function () {
-	if ( motor_stock_opt( 'url' ) && ! wp_next_scheduled( 'motor_stock_sync' ) ) {
+	if ( motor_stock_active() && ! wp_next_scheduled( 'motor_stock_sync' ) ) {
 		wp_schedule_event( time() + 60, 'motor_stock_interval', 'motor_stock_sync' );
 	}
-	if ( ! motor_stock_opt( 'url' ) && wp_next_scheduled( 'motor_stock_sync' ) ) {
+	if ( ! motor_stock_active() && wp_next_scheduled( 'motor_stock_sync' ) ) {
 		wp_clear_scheduled_hook( 'motor_stock_sync' );
 	}
 } );
@@ -89,9 +99,33 @@ add_action( 'motor_stock_sync', 'motor_stock_import' );
  * Import
  * ---------------------------------------------------------------- */
 function motor_stock_import() {
+	if ( function_exists( 'motor_kepler_key' ) && motor_kepler_key() ) {
+		$rows = motor_kepler_fetch();
+		if ( is_wp_error( $rows ) ) {
+			motor_stock_status( 'error', $rows->get_error_message() );
+			return $rows;
+		}
+		update_option( 'motor_stock_sample', array_slice( $rows, 0, 1 ), false );
+		$vehicules = array();
+		$i         = 0;
+		foreach ( $rows as $row ) {
+			$v = is_array( $row ) ? motor_kepler_map( $row, ++$i ) : null;
+			if ( $v ) {
+				$vehicules[] = apply_filters( 'motor_stock_map', $v, $row );
+			}
+		}
+		if ( empty( $vehicules ) ) {
+			motor_stock_status( 'error', count( $rows ) . ' véhicule(s) lus chez Kepler mais aucun à afficher (tous vendus/sortis ou non disponibles à la vente ?).' );
+			return new WP_Error( 'empty', 'Aucun véhicule à afficher' );
+		}
+		update_option( 'motor_stock_vehicules', $vehicules, false );
+		motor_stock_status( 'ok', count( $vehicules ) . ' véhicules importés depuis Kepler VO (' . count( $rows ) . ' lus)' );
+		return $vehicules;
+	}
+
 	$url = motor_stock_opt( 'url' );
 	if ( ! $url ) {
-		return new WP_Error( 'no_url', 'Aucune adresse de flux configurée.' );
+		return new WP_Error( 'no_url', 'Aucune clé API Kepler ni adresse de flux configurée.' );
 	}
 	$args = array( 'timeout' => 30, 'headers' => array( 'Accept' => 'application/json, application/xml, text/csv, */*' ) );
 	if ( motor_stock_opt( 'auth_header' ) && motor_stock_opt( 'auth_value' ) ) {
@@ -403,7 +437,7 @@ function motor_stock_map( $row, $i ) {
  * Fusion avec les véhicules saisis dans WordPress
  * ---------------------------------------------------------------- */
 add_filter( 'motor_vehicules', function ( $wp_vehicules ) {
-	if ( ! motor_stock_opt( 'url' ) ) {
+	if ( ! motor_stock_active() ) {
 		return $wp_vehicules;
 	}
 	$flux = get_option( 'motor_stock_vehicules', array() );
@@ -440,11 +474,16 @@ function motor_stock_admin_page() {
 	$status = get_option( 'motor_stock_status', array() );
 	$list   = get_option( 'motor_stock_vehicules', array() );
 	$url    = motor_stock_opt( 'url' );
+	$kepler = function_exists( 'motor_kepler_key' ) && motor_kepler_key();
 	echo '<div class="wrap"><h1>Stock Kepler / flux d\'annonces</h1>';
-	if ( ! $url ) {
-		echo '<div class="notice notice-warning"><p>Aucun flux configuré. Renseignez l\'adresse du flux dans <a href="' . esc_url( admin_url( 'customize.php?autofocus[section]=motor_stock' ) ) . '">Apparence → Personnaliser → Stock Kepler</a>.</p></div>';
+	if ( ! $kepler && ! $url ) {
+		echo '<div class="notice notice-warning"><p>Aucune source configurée. Collez votre <strong>clé API Kepler VO</strong> (ou l\'adresse d\'un flux) dans <a href="' . esc_url( admin_url( 'customize.php?autofocus[section]=motor_stock' ) ) . '">Apparence → Personnaliser → Stock Kepler</a>.</p></div>';
 	} else {
-		echo '<p><strong>Flux :</strong> <code>' . esc_html( $url ) . '</code></p>';
+		if ( $kepler ) {
+			echo '<p><strong>Source :</strong> API Kepler VO (clé configurée, ' . esc_html( MOTOR_KEPLER_BASE ) . ')</p>';
+		} else {
+			echo '<p><strong>Flux :</strong> <code>' . esc_html( $url ) . '</code></p>';
+		}
 		if ( $status ) {
 			$cls = 'ok' === $status['state'] ? 'notice-success' : 'notice-error';
 			echo '<div class="notice ' . $cls . '"><p><strong>' . ( 'ok' === $status['state'] ? 'Dernier import réussi' : 'Erreur' ) . '</strong> — ' . esc_html( $status['message'] ) . ' (' . esc_html( wp_date( 'd/m/Y H:i', $status['time'] ) ) . ')</p></div>';
@@ -469,8 +508,8 @@ function motor_stock_admin_page() {
 		echo '<h2>Premier véhicule tel que reçu de Kepler (diagnostic)</h2><p class="description">Si un champ n\'est pas repris sur le site, envoyez ce bloc à votre webmaster.</p><pre style="max-height:320px;overflow:auto;background:#fff;border:1px solid #ccd0d4;padding:12px">' . esc_html( wp_json_encode( $sample[0], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) ) . '</pre>';
 	}
 	echo '<h2>Marche à suivre avec Kepler VO</h2><ol>
-	<li>Dans Kepler VO, demandez l\'activation de l\'<strong>API véhicule</strong> (ou d\'un export de stock) pour votre site internet : votre conseiller Kepler vous fournit une <strong>adresse</strong> et, le cas échéant, une <strong>clé</strong>.</li>
-	<li>Collez-les dans Apparence → Personnaliser → Stock Kepler, puis cliquez « Synchroniser maintenant ».</li>
+	<li>Dans Kepler VO, activez le module <strong>API</strong> : Kepler vous envoie une <strong>clé API</strong> par e-mail.</li>
+	<li>Collez-la dans Apparence → Personnaliser → Stock Kepler → « Clé API Kepler VO », publiez, puis cliquez « Synchroniser maintenant ». Le site demande lui-même le jeton et lit vos véhicules (quota Kepler : 100 appels par heure, la synchronisation automatique reste donc espacée).</li>
 	<li>Si le tableau ci-dessus reste vide ou incomplet, envoyez un extrait du flux à votre webmaster : la correspondance des champs s\'ajuste en quelques lignes (filtre <code>motor_stock_map</code>).</li>
 	</ol></div>';
 }
