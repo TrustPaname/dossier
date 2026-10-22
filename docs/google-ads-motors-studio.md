@@ -173,9 +173,9 @@ Carrosserie Toutes Marques
 ```
 Descriptions
 ```
-Nouveau garage carrosserie à Mainvilliers, aux portes de Chartres. -50 % hors assurance pour les 20 premiers RDV.
-Envoyez vos photos, recevez un devis gratuit sous 24h. Prise en charge assurance, véhicule de courtoisie.
-Redressage, peinture en cabine, débosselage sans peinture. Réservez votre rendez-vous en 1 minute.
+Nouvelle carrosserie près de Chartres. -50 % hors assurance pour les 20 premiers rendez-vous.
+Envoyez vos photos, devis gratuit sous 24h. Assurance prise en charge, courtoisie offerte.
+Redressage, peinture en cabine, débosselage sans peinture. Réservez votre RDV en 1 minute.
 Ouverture le 5 novembre 2026. Réservez dès maintenant et profitez des offres de lancement.
 ```
 
@@ -200,10 +200,10 @@ Lun–Sam 9h–19h
 ```
 Descriptions
 ```
-Nouveau garage toutes marques à Mainvilliers. Vidange, révision, freins, distribution, clim, diagnostic.
-Entretien selon le carnet constructeur, sans perdre la garantie. Devis gratuit, rappel sous 24h.
-Réservez votre créneau en ligne en 1 minute. Ouverture le 5 novembre 2026, aux portes de Chartres.
-Mécanique et carrosserie sous un même toit. Pièces d'origine ou équivalentes, interventions garanties.
+Nouveau garage toutes marques à Mainvilliers : vidange, révision, freins, clim,…
+Entretien selon le carnet constructeur, garantie conservée. Devis gratuit, rappel sous…
+Réservez votre créneau en ligne en 1 minute. Ouverture le 5 novembre, près de Chartres.
+Mécanique et carrosserie sous un même toit. Pièces d'origine, interventions garanties.
 ```
 
 ### Groupe 3 · Pare-brise
@@ -227,10 +227,10 @@ Réservez en 1 Minute
 ```
 Descriptions
 ```
-Offre de lancement : franchise offerte + balais d'essuie-glace offerts pour les 20 premiers clients.
-Impact réparé en moins d'une heure quand c'est possible, sinon remplacement avec recalibrage.
-Bris de glace pris en charge par votre assurance. Réservez votre rendez-vous à Mainvilliers.
-Nouveau garage pare-brise, carrosserie et mécanique aux portes de Chartres. Ouverture le 5 novembre.
+Offre de lancement : franchise offerte + balais d'essuie-glace, pour les 20 premiers…
+Impact réparé en moins d'une heure si possible, sinon remplacement avec recalibrage.
+Bris de glace pris en charge par votre assurance. Réservez votre RDV à Mainvilliers.
+Pare-brise, carrosserie et mécanique aux portes de Chartres. Ouverture le 5 novembre 2026.
 ```
 
 ### Groupe 4 · Pneus
@@ -254,7 +254,7 @@ Changement Rapide
 ```
 Descriptions
 ```
--40 % sur les pneumatiques pour les 20 premiers rendez-vous : montage, équilibrage, remplacement.
+-40 % sur les pneus pour les 20 premiers RDV : montage, équilibrage, remplacement.
 Pneus toutes marques, toutes dimensions, été ou hiver. Réservez votre créneau en 1 minute.
 Nouveau garage à Mainvilliers, aux portes de Chartres. Ouverture le 5 novembre 2026.
 Géométrie et contrôle d'usure inclus sur demande. Devis gratuit, rappel sous 24h.
@@ -274,7 +274,7 @@ Pare-brise
 ```
 Descriptions
 ```
-Site officiel. Carrosserie, mécanique, pneus, pare-brise à Mainvilliers. Réservez en ligne.
+Site officiel. Carrosserie, mécanique, pneus, pare-brise à Mainvilliers. Réservez en ligne
 Offres de lancement pour les 20 premiers rendez-vous. Rappel sous 24h, devis gratuit.
 ```
 
