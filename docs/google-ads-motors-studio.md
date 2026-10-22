@@ -173,7 +173,7 @@ Carrosserie Toutes Marques
 ```
 Descriptions
 ```
-Nouvelle carrosserie près de Chartres. -50 % hors assurance pour les 20 premiers rendez-vous.
+Nouvelle carrosserie près de Chartres. -50 % hors assurance pour les 20 premiers RDV.
 Envoyez vos photos, devis gratuit sous 24h. Assurance prise en charge, courtoisie offerte.
 Redressage, peinture en cabine, débosselage sans peinture. Réservez votre RDV en 1 minute.
 Ouverture le 5 novembre 2026. Réservez dès maintenant et profitez des offres de lancement.
