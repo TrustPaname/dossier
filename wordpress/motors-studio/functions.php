@@ -42,6 +42,39 @@ require get_template_directory() . '/inc-legal.php';
 $motor_mail = array( 'prefix' => 'motor_', 'opt' => 'motor_opt', 'nom' => 'Motors Studio' );
 require get_template_directory() . '/inc-mail.php';
 
+$motor_ads = array( 'prefix' => 'motor_' );
+require get_template_directory() . '/inc-ads.php';
+
+/* ------------------------------------------------------------------
+ * Page d'atterrissage « Prendre rendez-vous » : /rdv/ (annonces Google Ads, flyers)
+ * Sans compte à rebours, formulaire de rendez-vous en premier.
+ * ---------------------------------------------------------------- */
+add_action( 'init', function () {
+	add_rewrite_rule( '^rdv/?$', 'index.php?mc_rdv=1', 'top' );
+	if ( get_option( 'mc_rdv_rules' ) !== '1' ) {
+		flush_rewrite_rules( false );
+		update_option( 'mc_rdv_rules', '1' );
+	}
+} );
+add_filter( 'query_vars', function ( $vars ) { $vars[] = 'mc_rdv'; return $vars; } );
+function motor_is_rdv() {
+	if ( get_query_var( 'mc_rdv' ) ) {
+		return true;
+	}
+	$uri = isset( $_SERVER['REQUEST_URI'] ) ? wp_parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH ) : '';
+	return (bool) preg_match( '#/rdv/?$#', (string) $uri ) || isset( $_GET['mc_rdv'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+}
+add_filter( 'motor_ouverture_bypass', function ( $skip ) { return $skip || motor_is_rdv(); } );
+add_action( 'template_redirect', function () {
+	if ( ! motor_is_rdv() ) {
+		return;
+	}
+	status_header( 200 );
+	include get_template_directory() . '/landing-rdv.php';
+	exit;
+}, 4 );
+add_filter( 'pre_get_document_title', function ( $t ) { return motor_is_rdv() ? 'Prendre rendez-vous — Motors Studio' : $t; } );
+
 /* ------------------------------------------------------------------
  * 1. Réglages de base, styles et scripts
  * ---------------------------------------------------------------- */

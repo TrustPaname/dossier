@@ -55,6 +55,9 @@ function motor_ouverture_active() {
 	if ( ! motor_ouverture_mod( 'active', 1 ) ) {
 		return false;
 	}
+	if ( apply_filters( 'motor_ouverture_bypass', false ) ) {
+		return false; // pages exclues par le thème (ex. page d'atterrissage /rdv/)
+	}
 	// ?ouverture=1 dans l'adresse : force l'affichage de la page d'attente, même connecté (pour vérifier).
 	// ?ouverture=0 : affiche le vrai site sans être connecté (pour vérifier le site avant l'ouverture).
 	$force = isset( $_GET['ouverture'] ) && '1' === $_GET['ouverture']; // phpcs:ignore WordPress.Security.NonceVerification.Recommended

@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Ouverture prochaine (compte à rebours)
  * Description: Affiche aux visiteurs une page « Ouverture le … » avec un compte à rebours, quel que soit le thème actif. Réglages : Apparence → Personnaliser → Ouverture prochaine. Les administrateurs connectés voient le vrai site ; ajoutez ?ouverture=1 à l'adresse pour voir la page d'attente.
- * Version: 1.4.3
+ * Version: 1.4.4
  * Author: Motor Corp
  */
 
@@ -57,6 +57,9 @@ function ouverture_prochaine_date() {
 function ouverture_prochaine_active() {
 	if ( ! ouverture_prochaine_mod( 'active', 1 ) ) {
 		return false;
+	}
+	if ( apply_filters( 'motor_ouverture_bypass', false ) ) {
+		return false; // pages exclues par le thème (ex. page d'atterrissage /rdv/)
 	}
 	// ?ouverture=1 dans l'adresse : force l'affichage de la page d'attente, même connecté (pour vérifier).
 	// ?ouverture=0 : affiche le vrai site sans être connecté (pour vérifier le site avant l'ouverture).

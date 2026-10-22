@@ -173,6 +173,22 @@ def build_studio():
     html = php_head_foot(html)
     open(os.path.join(theme, "front-page.php"), "w", encoding="utf-8").write(html)
 
+    # page d'atterrissage /rdv/ : mêmes remplacements que l'accueil
+    rdv = open(os.path.join(src, "rdv.html"), encoding="utf-8").read()
+    rdv = '<?php\n/**\n * Page « Prendre rendez-vous » (/rdv/) — générée par wordpress/build.py à partir de motors-studio/rdv.html.\n */\n?>\n' + rdv
+    rdv = re.sub(r'<link rel="stylesheet" href="\.\./assets/css/styles\.css">\n', '', rdv)
+    rdv = re.sub(r'<link rel="stylesheet" href="studio\.css">\n', '', rdv)
+    rdv = re.sub(r'<script>window\.MC_CONFIG = [^\n]*</script>\n', '', rdv)
+    rdv = re.sub(r'<script src="(?:\.\./assets/js/|)[^"]+\.js" defer></script>\n?', '', rdv)
+    rdv = rdv.replace('href="favicon.svg"', f'href="{URI}/favicon.svg"')
+    rdv = rdv.replace('https://www.motors-studio.fr/assets/img/og-cover.png', f'{URI}/assets/img/og-cover.png')
+    rdv = rdv.replace('src="../assets/img/', f'src="{URI}/assets/img/')
+    rdv = rdv.replace('href="index.html"', 'href="<?php echo esc_url( home_url( \'/\' ) ); ?>"')
+    for a, b in rep.items():
+        rdv = rdv.replace(a, b)
+    rdv = php_head_foot(rdv)
+    open(os.path.join(theme, "landing-rdv.php"), "w", encoding="utf-8").write(rdv)
+
     # ressources : feuille commune + surcharge, scripts, polices, logos
     css = os.path.join(theme, "assets", "css"); os.makedirs(css, exist_ok=True)
     shutil.copy(os.path.join(ROOT, "assets", "css", "styles.css"), os.path.join(css, "styles.css"))
@@ -209,6 +225,8 @@ def copy_shared():
     for name in ("motor-consulting", "motors-studio", "motor-corp"):
         shutil.copy(os.path.join(WP, "_partage", "inc-legal.php"), os.path.join(WP, name, "inc-legal.php"))
         shutil.copy(os.path.join(WP, "_partage", "inc-mail.php"), os.path.join(WP, name, "inc-mail.php"))
+    for name in ("motors-studio",):
+        shutil.copy(os.path.join(WP, "_partage", "inc-ads.php"), os.path.join(WP, name, "inc-ads.php"))
     print("modules partagés (inc-ouverture.php, inc-legal.php) copiés")
 
 if __name__ == "__main__":

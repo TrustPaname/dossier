@@ -50,18 +50,20 @@
   const nav = $("#nav");
   const burger = $("#burger");
 
-  burger.addEventListener("click", () => {
-    const open = nav.classList.toggle("is-open");
-    burger.setAttribute("aria-expanded", String(open));
-    burger.setAttribute("aria-label", open ? "Fermer le menu" : "Ouvrir le menu");
-  });
-
-  $$('a[href^="#"]').forEach((a) => {
-    a.addEventListener("click", () => {
-      nav.classList.remove("is-open");
-      burger.setAttribute("aria-expanded", "false");
+  if (burger && nav) {
+    burger.addEventListener("click", () => {
+      const open = nav.classList.toggle("is-open");
+      burger.setAttribute("aria-expanded", String(open));
+      burger.setAttribute("aria-label", open ? "Fermer le menu" : "Ouvrir le menu");
     });
-  });
+
+    $$('a[href^="#"]').forEach((a) => {
+      a.addEventListener("click", () => {
+        nav.classList.remove("is-open");
+        burger.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
 
   // Pré-remplit le sujet du formulaire de contact selon l'intention cliquée
   const INTENTS = { vendre: "Vendre un véhicule", depot: "Dépôt-vente", acheter: "Acheter un véhicule", estimation: "Expertise / estimation", expertise: "Accompagnement à l'achat (expertise)" };
@@ -77,7 +79,7 @@
 
   const onScroll = () => {
     const y = window.scrollY;
-    header.classList.toggle("is-scrolled", y > 20);
+    if (header) header.classList.toggle("is-scrolled", y > 20);
     if (toTop) toTop.classList.toggle("is-visible", y > 600);
   };
 
@@ -566,6 +568,8 @@
         "success");
       form.reset();
       $$(".field.has-error", form).forEach((f) => f.classList.remove("has-error"));
+      // Suivi des conversions (Google Ads, etc.) : le thème écoute cet évènement.
+      try { document.dispatchEvent(new CustomEvent("mc:lead", { detail: { form: form.id, reference: data.reference, sujet: data.sujet || "" } })); } catch (e) { /* sans conséquence */ }
     } catch (err) {
       setStatus(statusEl,
         `L'envoi a échoué. Réessayez ou contactez-nous directement au
