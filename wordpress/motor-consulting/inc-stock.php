@@ -508,6 +508,9 @@ function motor_stock_admin_page() {
 	}
 	$sample = get_option( 'motor_stock_sample', array() );
 	if ( $sample ) {
+		if ( function_exists( 'motor_kepler_photo_diagnostic' ) && function_exists( 'motor_kepler_key' ) && motor_kepler_key() ) {
+			motor_kepler_photo_diagnostic( $sample[0] );
+		}
 		echo '<h2>Premier véhicule tel que reçu de Kepler (diagnostic)</h2><p class="description">Si un champ n\'est pas repris sur le site, envoyez ce bloc à votre webmaster.</p><pre style="max-height:320px;overflow:auto;background:#fff;border:1px solid #ccd0d4;padding:12px">' . esc_html( wp_json_encode( $sample[0], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) ) . '</pre>';
 	}
 	echo '<h2>Marche à suivre avec Kepler VO</h2><ol>

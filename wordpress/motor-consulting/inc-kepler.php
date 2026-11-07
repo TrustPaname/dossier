@@ -162,10 +162,30 @@ function motor_kepler_name( $v ) {
 	return is_scalar( $v ) ? trim( (string) $v ) : '';
 }
 
+/**
+ * Normalise l'état Kepler : « vehicle.state.on_arrival » → ARRIVAGE, « vehicle.state.sold » → VENDU…
+ */
+function motor_kepler_state( $raw ) {
+	$raw = strtolower( trim( (string) $raw ) );
+	if ( '' === $raw ) {
+		return '';
+	}
+	$last = substr( $raw, strrpos( $raw, '.' ) !== false ? strrpos( $raw, '.' ) + 1 : 0 );
+	$map  = array(
+		'on_arrival' => 'ARRIVAGE', 'arrival' => 'ARRIVAGE', 'arrivage' => 'ARRIVAGE',
+		'in_stock' => 'PARC', 'stock' => 'PARC', 'parc' => 'PARC', 'park' => 'PARC', 'available' => 'PARC',
+		'sold' => 'VENDU', 'vendu' => 'VENDU',
+		'out' => 'SORTI', 'exit' => 'SORTI', 'exited' => 'SORTI', 'released' => 'SORTI', 'sorti' => 'SORTI', 'delivered' => 'SORTI', 'livre' => 'SORTI', 'livré' => 'SORTI',
+		'reserved' => 'RESERVE', 'reserve' => 'RESERVE', 'réservé' => 'RESERVE', 'booked' => 'RESERVE',
+		'archived' => 'ARCHIVE', 'archive' => 'ARCHIVE', 'deleted' => 'SUPPRIME', 'removed' => 'SUPPRIME',
+	);
+	return isset( $map[ $last ] ) ? $map[ $last ] : strtoupper( $last );
+}
+
 function motor_kepler_map( $row, $i ) {
 	$g = function ( $k, $d = '' ) use ( $row ) { return isset( $row[ $k ] ) ? $row[ $k ] : $d; };
 
-	$state = strtoupper( motor_kepler_name( $g( 'state' ) ) );
+	$state = motor_kepler_state( motor_kepler_name( $g( 'state' ) ) );
 	$allowed = array_filter( array_map( 'trim', explode( ',', strtoupper( (string) get_theme_mod( 'motor_stock_kepler_states', '' ) ) ) ) );
 	if ( $allowed ) {
 		if ( $state && ! in_array( $state, $allowed, true ) ) {
@@ -347,34 +367,13 @@ function motor_kepler_local_photos( $urls ) {
 			$out[] = $base . '/' . $index[ $key ];
 			continue;
 		}
-		$headers = array( 'Accept' => 'image/*,*/*' );
-		if ( false !== strpos( $url, 'keplervo.com' ) || false !== strpos( $url, 'kepler-soft' ) ) {
-			$token = motor_kepler_token();
-			if ( ! is_wp_error( $token ) ) {
-				$headers['X-Auth-Token'] = $token;
-			}
-		}
-		$res = wp_remote_get( $url, array( 'timeout' => 20, 'headers' => $headers ) );
-		if ( is_wp_error( $res ) || 200 !== (int) wp_remote_retrieve_response_code( $res ) ) {
+		$img = motor_kepler_download_image( $url );
+		if ( is_wp_error( $img ) ) {
 			$out[] = $url; // on garde l'adresse d'origine, au cas où
 			continue;
 		}
-		$body = wp_remote_retrieve_body( $res );
-		$type = (string) wp_remote_retrieve_header( $res, 'content-type' );
-		$ext  = '';
-		if ( preg_match( '#image/(jpe?g|png|webp|gif)#i', $type, $m ) ) {
-			$ext = 'jpeg' === strtolower( $m[1] ) ? 'jpg' : strtolower( $m[1] );
-		} elseif ( preg_match( '#\.(jpe?g|png|webp|gif)(\?|$)#i', $url, $m ) ) {
-			$ext = strtolower( $m[1] );
-		} elseif ( strlen( $body ) > 4 && "\xFF\xD8\xFF" === substr( $body, 0, 3 ) ) {
-			$ext = 'jpg';
-		} elseif ( strlen( $body ) > 8 && "\x89PNG" === substr( $body, 0, 4 ) ) {
-			$ext = 'png';
-		}
-		if ( ! $ext || strlen( $body ) < 1000 ) {
-			$out[] = $url;
-			continue;
-		}
+		$body = $img['body'];
+		$ext  = $img['ext'];
 		$file = $key . '.' . $ext;
 		if ( false === file_put_contents( $dir . '/' . $file, $body ) ) {
 			$out[] = $url;
@@ -388,4 +387,119 @@ function motor_kepler_local_photos( $urls ) {
 		update_option( 'motor_kepler_media', $index, false );
 	}
 	return $out;
+}
+
+/**
+ * Télécharge une image Kepler (jeton envoyé si l'adresse est chez Kepler).
+ * Si l'adresse renvoie du JSON décrivant le média, suit l'adresse ou le contenu base64 qu'il contient.
+ * Retourne array( body, ext, type, code, url ) ou WP_Error avec le diagnostic.
+ */
+function motor_kepler_download_image( $url, $depth = 0 ) {
+	$headers = array( 'Accept' => 'image/*,*/*' );
+	if ( false !== strpos( $url, 'keplervo.com' ) || false !== strpos( $url, 'kepler-soft' ) || false !== strpos( $url, 'kepler' ) ) {
+		$token = motor_kepler_token();
+		if ( ! is_wp_error( $token ) ) {
+			$headers['X-Auth-Token'] = $token;
+		}
+	}
+	$res = wp_remote_get( $url, array( 'timeout' => 20, 'headers' => $headers ) );
+	if ( is_wp_error( $res ) ) {
+		return new WP_Error( 'http', 'Erreur réseau : ' . $res->get_error_message() );
+	}
+	$code = (int) wp_remote_retrieve_response_code( $res );
+	$body = (string) wp_remote_retrieve_body( $res );
+	$type = (string) wp_remote_retrieve_header( $res, 'content-type' );
+	if ( 200 !== $code ) {
+		return new WP_Error( 'http', 'HTTP ' . $code . ' (' . $type . ') : ' . mb_substr( wp_strip_all_tags( $body ), 0, 200 ) );
+	}
+	$ext = '';
+	if ( preg_match( '#image/(jpe?g|png|webp|gif)#i', $type, $m ) ) {
+		$ext = 'jpeg' === strtolower( $m[1] ) ? 'jpg' : strtolower( $m[1] );
+	} elseif ( strlen( $body ) > 4 && "\xFF\xD8\xFF" === substr( $body, 0, 3 ) ) {
+		$ext = 'jpg';
+	} elseif ( strlen( $body ) > 8 && "\x89PNG" === substr( $body, 0, 4 ) ) {
+		$ext = 'png';
+	} elseif ( strlen( $body ) > 12 && 'RIFF' === substr( $body, 0, 4 ) && 'WEBP' === substr( $body, 8, 4 ) ) {
+		$ext = 'webp';
+	} elseif ( preg_match( '#\.(jpe?g|png|webp|gif)(\?|$)#i', $url, $m ) && strlen( $body ) > 1000 && false === stripos( $type, 'json' ) && false === stripos( $type, 'html' ) ) {
+		$ext = strtolower( $m[1] );
+	}
+	if ( $ext ) {
+		return array( 'body' => $body, 'ext' => $ext, 'type' => $type, 'code' => $code, 'url' => $url );
+	}
+	// Réponse JSON : l'adresse décrit peut-être le média (adresse réelle ou contenu encodé)
+	$json = json_decode( $body, true );
+	if ( is_array( $json ) && $depth < 2 ) {
+		$found = '';
+		array_walk_recursive( $json, function ( $x, $k ) use ( &$found ) {
+			if ( ! $found && is_string( $x ) && preg_match( '#^https?://#', $x ) && in_array( strtolower( (string) $k ), array( 'url', 'link', 'href', 'src', 'path', 'content', 'file', 'download', 'downloadurl', 'original', 'large' ), true ) ) {
+				$found = $x;
+			}
+		} );
+		if ( ! $found ) {
+			array_walk_recursive( $json, function ( $x ) use ( &$found ) {
+				if ( ! $found && is_string( $x ) && preg_match( '#^https?://.*\.(jpe?g|png|webp)#i', $x ) ) {
+					$found = $x;
+				}
+			} );
+		}
+		if ( $found && $found !== $url ) {
+			return motor_kepler_download_image( $found, $depth + 1 );
+		}
+		foreach ( array( 'content', 'data', 'base64', 'file' ) as $k ) {
+			if ( ! empty( $json[ $k ] ) && is_string( $json[ $k ] ) && strlen( $json[ $k ] ) > 1000 ) {
+				$raw = base64_decode( preg_replace( '#^data:[^,]+,#', '', $json[ $k ] ), true );
+				if ( $raw && "\xFF\xD8\xFF" === substr( $raw, 0, 3 ) ) {
+					return array( 'body' => $raw, 'ext' => 'jpg', 'type' => 'base64', 'code' => $code, 'url' => $url );
+				}
+				if ( $raw && "\x89PNG" === substr( $raw, 0, 4 ) ) {
+					return array( 'body' => $raw, 'ext' => 'png', 'type' => 'base64', 'code' => $code, 'url' => $url );
+				}
+			}
+		}
+	}
+	return new WP_Error( 'notimage', 'HTTP ' . $code . ' mais pas une image (' . ( $type ? $type : 'type inconnu' ) . ', ' . strlen( $body ) . ' octets) : ' . mb_substr( wp_strip_all_tags( $body ), 0, 200 ) );
+}
+
+/**
+ * Bloc de diagnostic des photos pour la page Véhicules → Stock Kepler.
+ */
+function motor_kepler_photo_diagnostic( $sample ) {
+	if ( ! is_array( $sample ) ) {
+		return;
+	}
+	echo '<h2>Photos du premier véhicule (diagnostic)</h2>';
+	$gal = null;
+	foreach ( array( 'gallery', 'photos', 'medias', 'media', 'images', 'pictures' ) as $k ) {
+		if ( isset( $sample[ $k ] ) ) {
+			$gal = $sample[ $k ];
+			echo '<p><strong>Champ « ' . esc_html( $k ) . ' »</strong> (' . ( is_array( $gal ) ? count( $gal ) . ' éléments' : gettype( $gal ) ) . '). Premier élément :</p>';
+			echo '<pre style="max-height:220px;overflow:auto;background:#fff;border:1px solid #ccd0d4;padding:12px">' . esc_html( wp_json_encode( is_array( $gal ) ? reset( $gal ) : $gal, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) ) . '</pre>';
+			break;
+		}
+	}
+	if ( null === $gal ) {
+		echo '<p>Aucun champ gallery / photos / medias dans le véhicule reçu. Clés présentes : <code>' . esc_html( implode( ', ', array_keys( $sample ) ) ) . '</code></p>';
+		return;
+	}
+	$v = motor_kepler_map( $sample, 1 );
+	$first = ( $v && ! empty( $v['photos'] ) ) ? $v['photos'][0] : '';
+	if ( ! $first ) {
+		echo '<p>Aucune adresse d\'image reconnue dans ce champ.</p>';
+		return;
+	}
+	echo '<p><strong>Adresse utilisée sur le site :</strong> <code>' . esc_html( $first ) . '</code></p>';
+	// Test de téléchargement de l'adresse d'origine (avant copie locale)
+	$orig = '';
+	if ( is_array( $gal ) ) {
+		array_walk_recursive( $gal, function ( $x ) use ( &$orig ) { if ( ! $orig && is_string( $x ) && preg_match( '#^https?://#', $x ) ) { $orig = $x; } } );
+	}
+	if ( $orig ) {
+		$t = motor_kepler_download_image( $orig );
+		if ( is_wp_error( $t ) ) {
+			echo '<div class="notice notice-error inline"><p><strong>Test de téléchargement de la photo d\'origine :</strong> ' . esc_html( $t->get_error_message() ) . '<br><code>' . esc_html( $orig ) . '</code></p></div>';
+		} else {
+			echo '<div class="notice notice-success inline"><p><strong>Test de téléchargement :</strong> image ' . esc_html( $t['ext'] ) . ' de ' . esc_html( number_format( strlen( $t['body'] ) / 1024, 0, ',', ' ' ) ) . ' Ko reçue (' . esc_html( $t['type'] ) . ').</p></div>';
+		}
+	}
 }
