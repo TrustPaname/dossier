@@ -1,0 +1,587 @@
+<?php
+/**
+ * Page d'accueil Motors Studio — générée par wordpress/build.py à partir de motors-studio/index.html.
+ * Ne pas modifier ici : modifiez motors-studio/index.html puis relancez le script.
+ */
+?>
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carrosserie, mécanique, pneus et pare-brise à Chartres — Motors Studio Mainvilliers</title>
+<meta name="description" content="Garage et carrosserie Motors Studio à Mainvilliers, près de Chartres : carrosserie, peinture, débosselage sans peinture, mécanique, entretien, pneus, pare-brise. Devis gratuit, assurance, courtoisie.">
+<meta name="keywords" content="carrosserie Chartres, carrossier Mainvilliers, garage Chartres, garage Mainvilliers, peinture voiture Chartres, débosselage sans peinture Chartres, mécanique entretien Chartres, pneus Chartres, pare-brise Chartres, réparation carrosserie Eure-et-Loir, devis carrosserie gratuit">
+<meta name="author" content="Motors Studio">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Motors Studio">
+<meta property="og:title" content="Motors Studio — Carrosserie, mécanique, pneus et pare-brise à Chartres">
+<meta property="og:description" content="Garage toutes marques à Mainvilliers, aux portes de Chartres : carrosserie, peinture, débosselage, mécanique, pneus, pare-brise. Devis gratuit sous 24h, prise en charge assurance, véhicule de courtoisie.">
+<meta property="og:url" content="<?php echo esc_url( home_url( '/' ) ); ?>">
+<meta property="og:image" content="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/og-cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#ffffff">
+
+<link rel="icon" href="<?php echo esc_url( get_template_directory_uri() ); ?>/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="<?php echo esc_url( get_template_directory_uri() ); ?>/favicon.svg">
+
+<script>document.documentElement.classList.add("js");</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["AutoBodyShop", "AutoRepair"],
+  "name": "Motors Studio",
+  "slogan": "Carrosserie · Mécanique · Pneus · Pare-brise",
+  "description": "Garage et carrosserie toutes marques à Mainvilliers, près de Chartres : redressage, peinture en cabine, débosselage sans peinture, mécanique, entretien, révision, freins, pneumatiques, pare-brise. Devis gratuit sous 24h, prise en charge assurance, véhicule de courtoisie.",
+  "url": "<?php echo esc_url( home_url( '/' ) ); ?>",
+  "telephone": "<?php echo esc_attr( motor_opt( 'phone_e164' ) ); ?>",
+  "email": "<?php echo esc_html( motor_opt( 'email' ) ); ?>",
+  "priceRange": "€€",
+  "image": "<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/og-cover.png",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "3 rue Florence Arthaud",
+    "postalCode": "28300",
+    "addressLocality": "Mainvilliers",
+    "addressRegion": "Centre-Val de Loire",
+    "addressCountry": "FR"
+  },
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "19:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "19:00" }
+  ],
+  "geo": { "@type": "GeoCoordinates", "latitude": 48.4508, "longitude": 1.4497 },
+  "areaServed": [
+    { "@type": "City", "name": "Chartres" },
+    { "@type": "City", "name": "Mainvilliers" },
+    { "@type": "City", "name": "Lucé" },
+    { "@type": "City", "name": "Lèves" },
+    { "@type": "City", "name": "Luisant" },
+    { "@type": "AdministrativeArea", "name": "Eure-et-Loir" }
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Prestations",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Carrosserie", "description": "Redressage sur marbre, remplacement d'éléments, réparation de pare-chocs, ailes et portières, toutes marques." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Peinture automobile", "description": "Peinture en cabine avec recherche de teinte au spectrophotomètre, raccords invisibles, vernis." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Débosselage sans peinture", "description": "Bosses de parking, grêle, coups de portière, sans retouche de peinture." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mécanique et entretien", "description": "Révision constructeur, vidange, distribution, freins, diagnostic électronique, climatisation, préparation au contrôle technique." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pneumatiques", "description": "Vente, montage, équilibrage et remplacement de pneus toutes marques." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pare-brise et vitrage", "description": "Réparation d'impact et remplacement de pare-brise, prise en charge assurance." } }
+    ]
+  },
+  "parentOrganization": { "@type": "Organization", "name": "Motor Corp", "url": "https://www.motorcorp.fr/" },
+  "sameAs": ["https://www.motorcorp.fr/"]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Combien coûte une réparation de carrosserie à Chartres ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tout dépend de l'élément touché et de la profondeur du dégât : une rayure légère se polit, une bosse sans éclat se traite en débosselage sans peinture, un choc plus important demande redressage et peinture. Envoyez-nous des photos par WhatsApp ou via le formulaire : vous recevez un premier chiffrage gratuit sous 24h, confirmé par un devis écrit après examen du véhicule à l'atelier de Mainvilliers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Prenez-vous en charge les sinistres assurance ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui. Vous êtes libre de choisir votre réparateur, quel que soit votre assureur. Nous établissons le devis, le transmettons à l'expert, réalisons les travaux validés et vous ne réglez que la franchise éventuelle. Un véhicule de courtoisie peut être prêté pendant la durée des travaux."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Qu'est-ce que le débosselage sans peinture ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "C'est une technique qui consiste à redresser la tôle par l'intérieur, sans ponçage ni peinture, pour les bosses de parking, les coups de portière et les impacts de grêle, quand la peinture n'est pas abîmée. C'est plus rapide (souvent dans la journée) et moins cher qu'une réparation classique, et la teinte d'origine est conservée."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Faites-vous l'entretien sans perdre la garantie constructeur ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui. Depuis 2002, vous pouvez faire entretenir votre voiture dans le garage de votre choix sans perdre la garantie constructeur, à condition de respecter le plan d'entretien et d'utiliser des pièces de qualité équivalente. Nous suivons le carnet constructeur et le tamponnons."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Réparez-vous ou remplacez-vous les pare-brise ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Les deux. Un impact plus petit qu'une pièce de deux euros, hors du champ de vision du conducteur, se répare en moins d'une heure. Sinon, nous remplaçons le pare-brise, avec recalibrage des caméras d'aide à la conduite si votre véhicule en est équipé. Le bris de glace est généralement pris en charge par votre assurance."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Montez-vous des pneus que je n'ai pas achetés chez vous ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, nous montons et équilibrons vos pneus, que vous les achetiez chez nous ou ailleurs. Nous pouvons aussi vous proposer des pneus toutes marques, été, hiver ou 4 saisons, et vérifier la géométrie si l'usure est irrégulière."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Combien de temps dure une réparation ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Un débosselage sans peinture ou un impact de pare-brise se font souvent dans la journée. Une réparation de carrosserie avec peinture prend en général deux à cinq jours selon le nombre d'éléments et le séchage. Le délai est indiqué sur le devis et nous vous prévenons si les pièces ou l'expertise le modifient."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Où se trouve l'atelier et quelle zone couvrez-vous ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "L'atelier est au 3 rue Florence Arthaud à Mainvilliers, aux portes de Chartres, ouvert du lundi au samedi. Nous accueillons les clients de Chartres, Lucé, Lèves, Luisant, Le Coudray, Champhol et de tout l'Eure-et-Loir."
+      }
+    }
+  ]
+}
+</script>
+<?php wp_head(); ?>
+</head>
+<body <?php body_class(); ?>>
+<a class="skip-link" href="#main">Aller au contenu principal</a>
+
+<!-- ============ EN-TÊTE ============ -->
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a class="logo logo--compact" href="#accueil" aria-label="Motors Studio, retour à l'accueil">
+      <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/logo-motors-studio-light.png" alt="Motors Studio" width="300" height="151">
+    </a>
+    <nav class="nav" id="nav" aria-label="Navigation principale">
+      <ul class="nav__list">
+        <li><a href="#services">Carrosserie</a></li>
+        <li><a href="#services">Mécanique</a></li>
+        <li><a href="#realisations">Interventions</a></li>
+        <li><a href="#methode">Méthode</a></li>
+        <li><a href="#apropos">L'atelier</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav__cta">
+        <a class="nav__tel" href="tel:<?php echo esc_attr( motor_opt( 'phone_e164' ) ); ?>"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 6 6l1.5-2 4 1.5v3c0 .9-.7 1.6-1.6 1.5C10.6 19.9 4.1 13.4 3.5 5.1A1.5 1.5 0 0 1 5 3.5h1.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg> <?php echo esc_html( motor_opt( 'phone_display' ) ); ?></a>
+        <a class="btn btn--primary" href="#devis">Devis gratuit</a>
+      </div>
+    </nav>
+    <button class="burger" id="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============ ACCUEIL ============ -->
+<section class="hero" id="accueil">
+  <div class="hero__bg" aria-hidden="true"></div>
+  <div class="container hero__inner">
+    <div>
+      <span class="hero__badge">Carrosserie · Peinture · Mécanique</span>
+      <h1>Carrosserie et mécanique à Chartres : votre voiture remise à neuf, <span class="accent">comme au premier jour !</span></h1>
+      <p class="hero__sub">Carrosserie · Peinture · Débosselage · Mécanique · Pneus · Pare-brise — Toutes marques, à Mainvilliers</p>
+      <p class="hero__sub2">Un atelier équipé d'une <strong>cabine de peinture</strong> et d'un <strong>marbre de redressage</strong>, des carrossiers et mécaniciens qui garantissent chaque intervention.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#devis"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h7l4 4V20a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12h6M9 15.5h6M9 8.5h3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg> Demander un devis</a>
+        <a class="btn btn--light" href="#realisations">Nos interventions <span aria-hidden="true">→</span></a>
+      </div>
+      <ul class="hero__proof">
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.6 2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.1-5.9 3.1 1.2-6.5L2.5 9.5l6.6-.9 2.9-6Z" fill="currentColor"/></svg> <strong>Nouveau</strong> à Mainvilliers · ouverture le 5 novembre 2026</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 17.5v-3.4l2-4.4c.35-.8 1-1.2 1.9-1.2h9.2c.9 0 1.55.4 1.9 1.2l2 4.4v3.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M3.5 17.5h17M5.6 14.1h2.6M15.8 14.1h2.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg> <strong>Véhicule</strong> de courtoisie</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m8.5 12.3 2.4 2.4 4.8-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> <strong>Garantie</strong> sur chaque intervention</li>
+      </ul>
+    </div>
+
+    <form class="search" id="quick-form" aria-label="Demande de rendez-vous" novalidate>
+      <div class="search__head">
+        <p class="search__title"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h7l4 4V20a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12h6M9 15.5h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg> Demande de rendez-vous</p>
+        <span class="search__count">Rappel sous 24h</span>
+      </div>
+      <p class="hp" aria-hidden="true"><label>Ne pas remplir <input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
+      <input type="hidden" name="sujet" value="Demande de rendez-vous">
+      <div class="search__grid">
+        <div class="search__field"><label for="q-nom">Nom</label>
+          <input type="text" id="q-nom" name="nom" autocomplete="family-name" required><p class="field__error" data-error-for="q-nom"></p></div>
+        <div class="search__field"><label for="q-prenom">Prénom</label>
+          <input type="text" id="q-prenom" name="prenom" autocomplete="given-name" required><p class="field__error" data-error-for="q-prenom"></p></div>
+        <div class="search__field"><label for="q-email">E-mail</label>
+          <input type="email" id="q-email" name="email" autocomplete="email" placeholder="vous@exemple.fr" required><p class="field__error" data-error-for="q-email"></p></div>
+        <div class="search__field"><label for="q-tel">Téléphone</label>
+          <input type="tel" id="q-tel" name="telephone" placeholder="06 00 00 00 00" required><p class="field__error" data-error-for="q-tel"></p></div>
+        <div class="search__field"><label for="q-prestation">Prestation</label>
+          <select id="q-prestation" name="prestation"><option value="">Choisir…</option><option>Carrosserie / Peinture / Débosselage</option><option>Entretien / Révision / Freins</option><option>Pneus</option><option>Pare-brise</option><option>Diagnostic / panne</option><option>Plusieurs prestations</option><option>Autre</option></select></div>
+        <div class="search__field"><label for="q-immat">Immatriculation</label>
+          <input type="text" id="q-immat" name="immatriculation" placeholder="AB-123-CD" autocapitalize="characters" spellcheck="false" required><p class="field__error" data-error-for="q-immat"></p></div>
+        <div class="search__field"><label for="q-sinistre">Sinistre assurance ?</label>
+          <select id="q-sinistre" name="assurance"><option>Non</option><option>Oui, dossier assurance</option><option>Je ne sais pas</option></select></div>
+      </div>
+      <button class="search__submit" type="submit"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 11.5 20 4l-4 16-4.5-6.5L3.5 11.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg> Être rappelé pour un RDV</button>
+      <div class="search__pop">
+        <span>Demandes fréquentes · plusieurs choix possibles</span>
+        <div class="search__chips" id="q-chips">
+          <button type="button" data-prestation="Carrosserie / Peinture / Débosselage" aria-pressed="false">Rayure</button><button type="button" data-prestation="Carrosserie / Peinture / Débosselage" aria-pressed="false">Pare-chocs</button><button type="button" data-prestation="Carrosserie / Peinture / Débosselage" aria-pressed="false">Portière</button><button type="button" data-prestation="Carrosserie / Peinture / Débosselage" aria-pressed="false">Aile</button><button type="button" data-prestation="Carrosserie / Peinture / Débosselage" aria-pressed="false">Capot</button><button type="button" data-prestation="Carrosserie / Peinture / Débosselage" aria-pressed="false">Grêle</button><button type="button" data-prestation="Carrosserie / Peinture / Débosselage" aria-pressed="false">Peinture complète</button><button type="button" data-prestation="Entretien / Révision / Freins" aria-pressed="false">Vidange</button><button type="button" data-prestation="Entretien / Révision / Freins" aria-pressed="false">Révision</button><button type="button" data-prestation="Entretien / Révision / Freins" aria-pressed="false">Disques</button><button type="button" data-prestation="Entretien / Révision / Freins" aria-pressed="false">Plaquettes</button><button type="button" data-prestation="Entretien / Révision / Freins" aria-pressed="false">Distribution</button><button type="button" data-prestation="Entretien / Révision / Freins" aria-pressed="false">Climatisation</button><button type="button" data-prestation="Entretien / Révision / Freins" aria-pressed="false">Contrôle technique</button><button type="button" data-prestation="Pneus" aria-pressed="false">Pneus été</button><button type="button" data-prestation="Pneus" aria-pressed="false">Pneus hiver</button><button type="button" data-prestation="Pneus" aria-pressed="false">Équilibrage</button><button type="button" data-prestation="Pneus" aria-pressed="false">Géométrie</button><button type="button" data-prestation="Pare-brise" aria-pressed="false">Impact pare-brise</button><button type="button" data-prestation="Pare-brise" aria-pressed="false">Remplacement pare-brise</button><button type="button" data-prestation="Pare-brise" aria-pressed="false">Vitre latérale</button>
+        </div>
+        <input type="hidden" name="demandes" id="q-demandes" value="">
+      </div>
+      <p class="form__status" role="status" aria-live="polite" id="quick-status"></p>
+    </form>
+  </div>
+</section>
+
+<!-- ============ RÉASSURANCE ============ -->
+<div class="reassure">
+  <div class="container">
+    <ul class="reassure__grid">
+      <li class="reassure__item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5 4 5.4v6c0 5 3.4 9.3 8 10.9 4.6-1.6 8-5.9 8-10.9v-6l-8-2.9Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m8.6 12 2.4 2.4 4.6-4.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong>Agréé toutes assurances</strong><span>Nous gérons le dossier et l'expertise avec votre assureur</span></div></li>
+      <li class="reassure__item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 17.5v-3.4l2-4.4c.35-.8 1-1.2 1.9-1.2h9.2c.9 0 1.55.4 1.9 1.2l2 4.4v3.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M3.5 17.5h17M5.6 14.1h2.6M15.8 14.1h2.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><div><strong>Véhicule de courtoisie</strong><span>Sur demande, pendant la durée des travaux</span></div></li>
+      <li class="reassure__item"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5.4l3.4 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><div><strong>Devis gratuit sous 24h</strong><span>Chiffré, détaillé, sans engagement</span></div></li>
+      <li class="reassure__item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 5 7v5c0 4.4 3 8.3 7 9.5 4-1.2 7-5.1 7-9.5V7l-7-3.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 8v4.5M12 15.5v.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><div><strong>Pièces d'origine ou équivalentes</strong><span>Interventions garanties, facture détaillée</span></div></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ SERVICES ============ -->
+<section class="section" id="services">
+  <div class="container">
+    <header class="section__head reveal">
+      <span class="label">Nos prestations</span>
+      <h2>Carrosserie, mécanique, pneus et pare-brise, <span class="accent">sous un même toit</span></h2>
+      <p class="lead">Du petit choc de parking à la remise en état complète après sinistre, de la vidange au diagnostic électronique : un seul atelier, un seul interlocuteur, toutes marques.</p>
+    </header>
+    <div class="services">
+      <article class="service card reveal"><span class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 15.5v-3l2.2-4.6c.4-.8 1-1.2 1.9-1.2h8.8c.9 0 1.5.4 1.9 1.2l2.2 4.6v3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M3.5 15.5h17M6 12.5h3M15 12.5h3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="m14 4.5 4.5-2.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="label">Carrosserie</span><h3>Redressage, remplacement, finition</h3><p>Chocs, rayures, pare-chocs, ailes, portières. Marbre de redressage, pièces d'origine ou de qualité équivalente, remontage et contrôle des jeux.</p><a class="link" href="#devis" data-prestation="Carrosserie / Peinture / Débosselage">Chiffrer une réparation <span aria-hidden="true">→</span></a></article>
+      <article class="service card reveal reveal--d1"><span class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h10v6H4zM14 7h3.5a2 2 0 0 1 2 2v2.5a2 2 0 0 1-2 2H12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9.5 10v3a2 2 0 0 0 2 2h.5v6h-3v-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span><span class="label">Peinture</span><h3>Cabine, teinte exacte, vernis</h3><p>Peinture en cabine avec recherche de teinte au spectrophotomètre : raccords invisibles, vernis brillant, protection longue durée. Peinture complète ou élément.</p><a class="link" href="#devis" data-prestation="Carrosserie / Peinture / Débosselage">Demander un devis peinture <span aria-hidden="true">→</span></a></article>
+      <article class="service card reveal reveal--d2"><span class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 3.5 20.5 9.5 9.5 20.5l-6-6 11-11Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m12 6 2 2M9 9l2 2M6 12l2 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="label">Débosselage</span><h3>Sans peinture, en quelques heures</h3><p>Bosses de parking, grêle, coups de portière : redressage par l'intérieur sans retouche de peinture. Moins cher, plus rapide, teinte d'origine conservée.</p><a class="link" href="#devis" data-prestation="Carrosserie / Peinture / Débosselage">Faire chiffrer une bosse <span aria-hidden="true">→</span></a></article>
+      <article class="service card reveal reveal--d3"><span class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 10.5 9 16a2.5 2.5 0 0 1-3.5 0 2.5 2.5 0 0 1 0-3.5l5.5-5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M13 4.5a4 4 0 0 1 5.5 5.5l1 1-3.5 3.5-1-1a4 4 0 0 1-5.5-5.5l2.2 2.2 1.6-1.6L13 4.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span><span class="label">Mécanique</span><h3>Entretien, révision, freins, diagnostic</h3><p>Révision constructeur sans perte de garantie, vidange, distribution, freinage, climatisation, diagnostic électronique et préparation au contrôle technique.</p><a class="link" href="#devis" data-prestation="Entretien / Révision / Freins">Prendre rendez-vous <span aria-hidden="true">→</span></a></article>
+      <article class="service card reveal reveal--d1"><span class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 3.5v3M12 17.5v3M3.5 12h3M17.5 12h3M6 6l2.1 2.1M15.9 15.9 18 18M6 18l2.1-2.1M15.9 8.1 18 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><span class="label">Pneumatiques</span><h3>Vente, montage, équilibrage</h3><p>Pneus toutes marques et toutes dimensions, été, hiver ou 4 saisons : montage, équilibrage, remplacement, contrôle de la géométrie et de l'usure.</p><a class="link" href="#devis" data-prestation="Pneus">Demander un prix pneus <span aria-hidden="true">→</span></a></article>
+      <article class="service card reveal reveal--d2"><span class="service__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 7.5c2.5-1.3 5.3-2 8.5-2s6 .7 8.5 2l-1.5 9c-2.2-.7-4.5-1-7-1s-4.8.3-7 1l-1.5-9Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m9 9 3 3-1.5 2.5M12 12l2.5-1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><span class="label">Pare-brise</span><h3>Réparation d'impact, remplacement</h3><p>Impact réparé en moins d'une heure si possible, sinon remplacement du pare-brise ou des vitrages avec recalibrage des aides à la conduite. Prise en charge assurance bris de glace.</p><a class="link" href="#devis" data-prestation="Pare-brise">Faire réparer mon pare-brise <span aria-hidden="true">→</span></a></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RÉALISATIONS ============ -->
+<section class="section section--alt" id="realisations">
+  <div class="container">
+    <header class="section__head reveal">
+      <div>
+        <span class="label">Avant / après</span>
+        <h2>Ce que nous réparons, <span class="accent">tous les jours</span></h2>
+      </div>
+      <p class="lead">Exemples de réparations de carrosserie avant / après. Les photos de vos propres travaux vous sont remises à la restitution.</p>
+    </header>
+    <div class="works">
+      <article class="work card reveal"><div class="work__visual"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/img/realisations/aile-arriere-mercedes-600.webp" srcset="<?php echo esc_url( get_template_directory_uri() ); ?>/img/realisations/aile-arriere-mercedes-600.webp 600w, <?php echo esc_url( get_template_directory_uri() ); ?>/img/realisations/aile-arriere-mercedes.webp 1200w" sizes="(min-width: 900px) 400px, 100vw" alt="Avant / après : aile arrière et portière enfoncées puis réparées sur une Mercedes Classe A" width="1200" height="800" loading="lazy"></div><div class="work__body"><h3>Aile arrière et portière</h3><p>Choc latéral : redressage de l'aile, reprise de la portière, peinture raccord teinte métallisée.</p><ul class="work__meta"><li>Carrosserie</li><li>Peinture</li><li>Assurance</li></ul></div></article>
+      <article class="work card reveal reveal--d1"><div class="work__visual"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/img/realisations/aile-avant-clio-600.webp" srcset="<?php echo esc_url( get_template_directory_uri() ); ?>/img/realisations/aile-avant-clio-600.webp 600w, <?php echo esc_url( get_template_directory_uri() ); ?>/img/realisations/aile-avant-clio.webp 1200w" sizes="(min-width: 900px) 400px, 100vw" alt="Avant / après : aile avant bosselée et rayée puis réparée sur une Renault Clio" width="1200" height="800" loading="lazy"></div><div class="work__body"><h3>Aile avant</h3><p>Bosse et rayures : débosselage, mastic, apprêt et peinture raccord invisible.</p><ul class="work__meta"><li>Carrosserie</li><li>Peinture</li></ul></div></article>
+      <article class="work card reveal reveal--d2"><div class="work__visual"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/img/realisations/hayon-308-600.webp" srcset="<?php echo esc_url( get_template_directory_uri() ); ?>/img/realisations/hayon-308-600.webp 600w, <?php echo esc_url( get_template_directory_uri() ); ?>/img/realisations/hayon-308.webp 1200w" sizes="(min-width: 900px) 400px, 100vw" alt="Avant / après : hayon et pare-chocs arrière enfoncés puis remis en état sur une Peugeot 308" width="1200" height="800" loading="lazy"></div><div class="work__body"><h3>Hayon et pare-chocs arrière</h3><p>Choc arrière de parking : redressage du hayon, reprise du pare-chocs, peinture rouge nacré au spectrophotomètre.</p><ul class="work__meta"><li>Carrosserie</li><li>Peinture</li><li>Courtoisie</li></ul></div></article>
+      <article class="work card reveal"><div class="work__visual"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/img/realisations/pare-chocs-arriere-208-600.webp" srcset="<?php echo esc_url( get_template_directory_uri() ); ?>/img/realisations/pare-chocs-arriere-208-600.webp 600w, <?php echo esc_url( get_template_directory_uri() ); ?>/img/realisations/pare-chocs-arriere-208.webp 1200w" sizes="(min-width: 900px) 400px, 100vw" alt="Avant / après : pare-chocs arrière rayé et enfoncé puis réparé sur une Peugeot 208" width="1200" height="800" loading="lazy"></div><div class="work__body"><h3>Pare-chocs arrière</h3><p>Rayures profondes et déformation : réparation du plastique, ponçage, peinture et vernis.</p><ul class="work__meta"><li>Carrosserie</li><li>Peinture</li></ul></div></article>
+      <article class="work card reveal reveal--d1"><div class="work__visual"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/img/realisations/pare-chocs-avant-clio-600.webp" srcset="<?php echo esc_url( get_template_directory_uri() ); ?>/img/realisations/pare-chocs-avant-clio-600.webp 600w, <?php echo esc_url( get_template_directory_uri() ); ?>/img/realisations/pare-chocs-avant-clio.webp 1200w" sizes="(min-width: 900px) 400px, 100vw" alt="Avant / après : pare-chocs avant rayé puis réparé sur une Renault Clio blanche" width="1200" height="800" loading="lazy"></div><div class="work__body"><h3>Pare-chocs avant</h3><p>Éclats et rayures : réparation sans remplacement, peinture blanc nacré raccordée à l'aile.</p><ul class="work__meta"><li>Carrosserie</li><li>Peinture</li><li>Forfait</li></ul></div></article>
+      <article class="work card reveal reveal--d2"><div class="work__visual"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/img/realisations/bas-de-porte-cupra-600.webp" srcset="<?php echo esc_url( get_template_directory_uri() ); ?>/img/realisations/bas-de-porte-cupra-600.webp 600w, <?php echo esc_url( get_template_directory_uri() ); ?>/img/realisations/bas-de-porte-cupra.webp 1200w" sizes="(min-width: 900px) 400px, 100vw" alt="Avant / après : bas de portière et bas de caisse rayés puis réparés sur un SUV Cupra" width="1200" height="800" loading="lazy"></div><div class="work__body"><h3>Bas de portière et bas de caisse</h3><p>Frottement sur un trottoir : redressage du bas de porte, reprise du bas de caisse, peinture gris métallisé raccordée.</p><ul class="work__meta"><li>Carrosserie</li><li>Peinture</li></ul></div></article>
+      <article class="work card reveal"><div class="work__visual"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/img/realisations/portiere-arriere-golf-600.webp" srcset="<?php echo esc_url( get_template_directory_uri() ); ?>/img/realisations/portiere-arriere-golf-600.webp 600w, <?php echo esc_url( get_template_directory_uri() ); ?>/img/realisations/portiere-arriere-golf.webp 1200w" sizes="(min-width: 900px) 400px, 100vw" alt="Avant / après : portière arrière enfoncée et rayée puis réparée sur une Volkswagen Golf bleue" width="1200" height="800" loading="lazy"></div><div class="work__body"><h3>Portière arrière</h3><p>Enfoncement et rayures au-dessus du passage de roue : débosselage, reprise et peinture bleu nuit métallisé.</p><ul class="work__meta"><li>Carrosserie</li><li>Peinture</li><li>Assurance</li></ul></div></article>
+      <article class="work card reveal reveal--d1"><div class="work__visual"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/img/realisations/portieres-audi-600.webp" srcset="<?php echo esc_url( get_template_directory_uri() ); ?>/img/realisations/portieres-audi-600.webp 600w, <?php echo esc_url( get_template_directory_uri() ); ?>/img/realisations/portieres-audi.webp 1200w" sizes="(min-width: 900px) 400px, 100vw" alt="Avant / après : deux portières rayées et enfoncées puis réparées sur une Audi A3 noire" width="1200" height="800" loading="lazy"></div><div class="work__body"><h3>Portières avant et arrière</h3><p>Rayures et enfoncements sur les deux portes : redressage, préparation et peinture noir brillant sur les deux éléments.</p><ul class="work__meta"><li>Carrosserie</li><li>Peinture</li><li>Courtoisie</li></ul></div></article>
+      <article class="work card work--cta reveal reveal--d2"><div class="work__body"><span class="label">Et votre voiture ?</span><h3>Envoyez-nous vos photos</h3><p>Rayure, bosse, pare-chocs, aile : photographiez les dégâts avec votre téléphone, nous vous répondons avec un premier chiffrage sous 24h.</p><div class="hero__actions"><a class="btn btn--primary" href="#devis">Demander un devis</a><a class="btn btn--outline" href="https://wa.me/<?php echo esc_attr( motor_opt( 'whatsapp' ) ); ?>?text=Bonjour%2C%20voici%20des%20photos%20des%20d%C3%A9g%C3%A2ts%20sur%20ma%20voiture%20pour%20un%20devis." target="_blank" rel="noopener">Par WhatsApp</a></div></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MÉTHODE ============ -->
+<section class="section" id="methode">
+  <div class="container">
+    <header class="section__head reveal">
+      <span class="label">Comment ça marche</span>
+      <h2>Quatre étapes, du devis <span class="accent">à la restitution</span></h2>
+    </header>
+    <ol class="steps">
+      <li class="step card reveal"><span class="step__num">1</span><h3>Vous nous envoyez des photos</h3><p>Par WhatsApp ou via le formulaire. Un premier chiffrage vous est envoyé sous 24h, un devis définitif après examen à l'atelier.</p></li>
+      <li class="step card reveal reveal--d1"><span class="step__num">2</span><h3>Nous gérons l'assurance</h3><p>Déclaration, expertise, accord : nous échangeons directement avec votre assureur. Vous ne réglez que votre franchise.</p></li>
+      <li class="step card reveal reveal--d2"><span class="step__num">3</span><h3>Nous réparons, vous roulez</h3><p>Véhicule de courtoisie sur demande. Vous recevez les photos de l'avancement des travaux.</p></li>
+      <li class="step card reveal reveal--d3"><span class="step__num">4</span><h3>Restitution propre et garantie</h3><p>Contrôle qualité, lavage, facture détaillée et garantie sur l'intervention. Vous repartez comme au premier jour.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ DEVIS ============ -->
+<section class="section section--alt" id="devis">
+  <div class="container estimation">
+    <div class="reveal">
+      <span class="label">Devis gratuit</span>
+      <h2>Un chiffrage clair, <span class="accent">sous 24h</span></h2>
+      <p class="lead">Décrivez les dégâts ou l'entretien souhaité, joignez vos photos par WhatsApp, et recevez un devis détaillé poste par poste. Aucun travail n'est lancé sans votre accord.</p>
+      <ul class="list">
+        <li>Gratuit et sans engagement</li>
+        <li>Réponse sous 24h ouvrées</li>
+        <li>Prise en charge du dossier assurance</li>
+        <li>Véhicule de courtoisie sur demande</li>
+      </ul>
+    </div>
+    <form class="form card" id="estimation-form" novalidate>
+      <h3 class="form__title">Demander mon devis</h3>
+      <p class="hp" aria-hidden="true"><label>Ne pas remplir <input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
+      <div class="field-row">
+        <div class="field">
+          <label for="e-nom">Nom et prénom <span class="req" aria-hidden="true">*</span></label>
+          <input type="text" id="e-nom" name="nom" autocomplete="name" required>
+          <p class="field__error" data-error-for="e-nom"></p>
+        </div>
+        <div class="field">
+          <label for="e-tel">Téléphone <span class="req" aria-hidden="true">*</span></label>
+          <input type="tel" id="e-tel" name="telephone" autocomplete="tel" placeholder="06 00 00 00 00" required>
+          <p class="field__error" data-error-for="e-tel"></p>
+        </div>
+      </div>
+      <div class="field">
+        <label for="e-email">E-mail <span class="req" aria-hidden="true">*</span></label>
+        <input type="email" id="e-email" name="email" autocomplete="email" placeholder="vous@exemple.fr" required>
+        <p class="field__error" data-error-for="e-email"></p>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="e-marque">Marque <span class="req" aria-hidden="true">*</span></label>
+          <input type="text" id="e-marque" name="marque" placeholder="Peugeot" required>
+          <p class="field__error" data-error-for="e-marque"></p>
+        </div>
+        <div class="field">
+          <label for="e-modele">Modèle <span class="req" aria-hidden="true">*</span></label>
+          <input type="text" id="e-modele" name="modele" placeholder="308" required>
+          <p class="field__error" data-error-for="e-modele"></p>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field field--select">
+          <label for="e-prestation">Prestation <span class="req" aria-hidden="true">*</span></label>
+          <select id="e-prestation" name="prestation" required>
+            <option value="">Choisir…</option><option>Carrosserie / Peinture / Débosselage</option><option>Entretien / Révision / Freins</option><option>Pneus</option><option>Pare-brise</option><option>Diagnostic / panne</option><option>Plusieurs prestations</option><option>Autre</option>
+          </select>
+          <p class="field__error" data-error-for="e-prestation"></p>
+        </div>
+        <div class="field">
+          <label for="e-immat">Immatriculation</label>
+          <input type="text" id="e-immat" name="immatriculation" placeholder="AB-123-CD" autocomplete="off">
+        </div>
+      </div>
+      <fieldset class="field field--radios">
+        <legend>Dossier assurance <span class="req" aria-hidden="true">*</span></legend>
+        <div class="radios">
+          <label class="radio"><input type="radio" name="etat" value="Oui, sinistre déclaré" required><span>Oui, sinistre déclaré</span></label>
+          <label class="radio"><input type="radio" name="etat" value="Non, à ma charge"><span>Non, à ma charge</span></label>
+          <label class="radio"><input type="radio" name="etat" value="Je ne sais pas"><span>Je ne sais pas</span></label>
+        </div>
+        <p class="field__error" data-error-for="etat"></p>
+      </fieldset>
+      <div class="field">
+        <label for="e-message">Description des dégâts ou de l'entretien</label>
+        <textarea id="e-message" name="message" rows="3" placeholder="Rayure profonde sur la portière avant gauche, environ 30 cm…"></textarea>
+      </div>
+      <label class="check">
+        <input type="checkbox" id="e-rgpd" name="consentement" required>
+        <span>J'accepte d'être recontacté(e) au sujet de ma demande. <span class="req" aria-hidden="true">*</span></span>
+      </label>
+      <p class="field__error" data-error-for="e-rgpd"></p>
+      <button class="btn btn--primary btn--block" type="submit">Recevoir mon devis</button>
+      <p class="form__note">Photos bienvenues par WhatsApp · Réponse sous 24h ouvrées · <span class="req">*</span> champs obligatoires</p>
+      <p class="form__status" role="status" aria-live="polite" id="estimation-status"></p>
+    </form>
+  </div>
+</section>
+
+<!-- ============ AVIS ============ -->
+<section class="section" id="avis">
+  <div class="container">
+    <header class="section__head section__head--row reveal">
+      <div>
+        <span class="label">Avis clients</span>
+        <h2>Ils nous ont <span class="accent">confié leur voiture</span></h2>
+      </div>
+    </header>
+    <div class="testimonials" id="testimonials"><div class="testimonials__track" id="testimonials-track"></div></div>
+    <div class="testimonials__nav">
+      <button class="round-btn" type="button" id="t-prev" aria-label="Témoignage précédent">←</button>
+      <div class="dots" id="t-dots" role="tablist" aria-label="Sélection du témoignage"></div>
+      <button class="round-btn" type="button" id="t-next" aria-label="Témoignage suivant">→</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ L'ATELIER ============ -->
+<section class="section section--alt" id="apropos">
+  <div class="container about">
+    <div class="about__text reveal">
+      <span class="label">L'atelier</span>
+      <h2>Le soin d'un artisan, <span class="accent">l'équipement d'un pro</span></h2>
+      <p>Motors Studio est l'atelier du groupe Motor Corp. Carrossiers et mécaniciens formés toutes marques, cabine de peinture, marbre de redressage, outillage de diagnostic constructeur : nous réparons comme nous aimerions qu'on répare nos propres voitures.</p>
+      <p>Chaque véhicule repart avec une <strong>facture détaillée</strong>, les <strong>photos des travaux</strong> et une <strong>garantie</strong> sur l'intervention. Et si vous cherchez à acheter ou vendre un véhicule, notre partenaire <a href="https://www.motorconsulting.fr/">Motor Consulting</a> s'appuie sur notre expertise technique.</p>
+      <div class="values">
+        <div class="value card"><span class="label">Précision</span><p>Teinte au spectrophotomètre, jeux réglés au millimètre, contrôle qualité avant restitution.</p></div>
+        <div class="value card"><span class="label">Transparence</span><p>Devis poste par poste, photos avant / pendant / après, aucun travail sans accord.</p></div>
+        <div class="value card"><span class="label">Rapidité</span><p>Devis sous 24h, débosselage à la journée, courtoisie pour les travaux longs.</p></div>
+      </div>
+    </div>
+    <div class="about__team reveal reveal--d1">
+      <h3 class="team__title">Nos engagements</h3>
+      <ul class="team">
+        <li class="member card"><strong>Un devis écrit avant tout travail</strong><span>Gratuit, détaillé, sans surprise</span><p>Rien n'est commencé sans votre accord. Si un dommage caché apparaît au démontage, on vous appelle avant d'agir.</p></li>
+        <li class="member card"><strong>Pièces et main-d'œuvre garanties</strong><span>Sur chaque intervention</span><p>Pièces d'origine ou de qualité équivalente, travaux de peinture garantis contre les défauts d'application.</p></li>
+        <li class="member card"><strong>Vous êtes tenu informé</strong><span>Photos à chaque étape</span><p>Avancement des travaux, pièces remplacées, date de restitution : vous savez toujours où en est votre voiture.</p></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section section--alt" id="faq">
+  <div class="container">
+    <header class="section__head reveal">
+      <span class="label">Questions fréquentes</span>
+      <h2>Carrosserie, mécanique, pneus et pare-brise à Chartres : <span class="accent">vos questions</span></h2>
+    </header>
+    <div class="faq reveal">
+      <details class="faq__item card"><summary>Combien coûte une réparation de carrosserie à Chartres ?</summary><p>Tout dépend de l'élément touché et de la profondeur du dégât : une rayure légère se polit, une bosse sans éclat se traite en débosselage sans peinture, un choc plus important demande redressage et peinture. Envoyez-nous des photos par WhatsApp ou via le formulaire : vous recevez un premier chiffrage gratuit sous 24h, confirmé par un devis écrit après examen du véhicule à l'atelier de Mainvilliers.</p></details>
+      <details class="faq__item card"><summary>Prenez-vous en charge les sinistres assurance ?</summary><p>Oui. Vous êtes libre de choisir votre réparateur, quel que soit votre assureur. Nous établissons le devis, le transmettons à l'expert, réalisons les travaux validés et vous ne réglez que la franchise éventuelle. Un véhicule de courtoisie peut être prêté pendant la durée des travaux.</p></details>
+      <details class="faq__item card"><summary>Qu'est-ce que le débosselage sans peinture ?</summary><p>C'est une technique qui consiste à redresser la tôle par l'intérieur, sans ponçage ni peinture, pour les bosses de parking, les coups de portière et les impacts de grêle, quand la peinture n'est pas abîmée. C'est plus rapide (souvent dans la journée) et moins cher qu'une réparation classique, et la teinte d'origine est conservée.</p></details>
+      <details class="faq__item card"><summary>Faites-vous l'entretien sans perdre la garantie constructeur ?</summary><p>Oui. Depuis 2002, vous pouvez faire entretenir votre voiture dans le garage de votre choix sans perdre la garantie constructeur, à condition de respecter le plan d'entretien et d'utiliser des pièces de qualité équivalente. Nous suivons le carnet constructeur et le tamponnons.</p></details>
+      <details class="faq__item card"><summary>Réparez-vous ou remplacez-vous les pare-brise ?</summary><p>Les deux. Un impact plus petit qu'une pièce de deux euros, hors du champ de vision du conducteur, se répare en moins d'une heure. Sinon, nous remplaçons le pare-brise, avec recalibrage des caméras d'aide à la conduite si votre véhicule en est équipé. Le bris de glace est généralement pris en charge par votre assurance.</p></details>
+      <details class="faq__item card"><summary>Montez-vous des pneus que je n'ai pas achetés chez vous ?</summary><p>Oui, nous montons et équilibrons vos pneus, que vous les achetiez chez nous ou ailleurs. Nous pouvons aussi vous proposer des pneus toutes marques, été, hiver ou 4 saisons, et vérifier la géométrie si l'usure est irrégulière.</p></details>
+      <details class="faq__item card"><summary>Combien de temps dure une réparation ?</summary><p>Un débosselage sans peinture ou un impact de pare-brise se font souvent dans la journée. Une réparation de carrosserie avec peinture prend en général deux à cinq jours selon le nombre d'éléments et le séchage. Le délai est indiqué sur le devis et nous vous prévenons si les pièces ou l'expertise le modifient.</p></details>
+      <details class="faq__item card"><summary>Où se trouve l'atelier et quelle zone couvrez-vous ?</summary><p>L'atelier est au 3 rue Florence Arthaud à Mainvilliers, aux portes de Chartres, ouvert du lundi au samedi. Nous accueillons les clients de Chartres, Lucé, Lèves, Luisant, Le Coudray, Champhol et de tout l'Eure-et-Loir.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section" id="contact">
+  <div class="container">
+    <header class="section__head reveal">
+      <span class="label">Contact</span>
+      <h2>Passez nous voir, <span class="accent">ou envoyez vos photos</span></h2>
+    </header>
+    <div class="contact">
+      <div class="reveal">
+        <ul class="infos">
+          <li class="card"><strong>Téléphone</strong><a href="tel:<?php echo esc_attr( motor_opt( 'phone_e164' ) ); ?>"><?php echo esc_html( motor_opt( 'phone_display' ) ); ?></a><a href="tel:<?php echo esc_attr( motor_opt( 'mobile_e164' ) ); ?>"><?php echo esc_html( motor_opt( 'mobile_display' ) ); ?></a><small><?php echo esc_html( motor_opt( 'hours' ) ); ?></small></li>
+          <li class="card"><strong>E-mail</strong><a href="mailto:<?php echo esc_html( motor_opt( 'email' ) ); ?>"><?php echo esc_html( motor_opt( 'email' ) ); ?></a></li>
+          <li class="card"><strong>WhatsApp</strong><a href="https://wa.me/<?php echo esc_attr( motor_opt( 'whatsapp' ) ); ?>?text=Bonjour%2C%20je%20souhaite%20un%20devis%20carrosserie." target="_blank" rel="noopener">Envoyer des photos sur WhatsApp</a><small>Premier chiffrage sous 24h</small></li>
+          <li class="card"><strong>Atelier</strong><span><?php echo esc_html( motor_opt( 'address' ) ); ?></span><small>Aux portes de Chartres · Dépôt du véhicule dès 9h</small></li>
+        </ul>
+        <div class="map">
+          <p class="map__fallback"><?php echo esc_html( motor_opt( 'address' ) ); ?></p>
+          <a class="map__link" href="https://www.google.com/maps/dir/?api=1&amp;destination=Motors%20Studio%2C%203%20rue%20Florence%20Arthaud%2C%2028300%20Mainvilliers" target="_blank" rel="noopener">Itinéraire ↗</a>
+        </div>
+      </div>
+      <form class="form card" id="contact-form" novalidate>
+        <h3 class="form__title">Nous écrire</h3>
+        <p class="hp" aria-hidden="true"><label>Ne pas remplir <input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
+        <div class="field-row">
+          <div class="field">
+            <label for="c-nom">Nom et prénom <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="c-nom" name="nom" autocomplete="name" required>
+            <p class="field__error" data-error-for="c-nom"></p>
+          </div>
+          <div class="field">
+            <label for="c-tel">Téléphone <span class="req" aria-hidden="true">*</span></label>
+            <input type="tel" id="c-tel" name="telephone" autocomplete="tel" placeholder="06 00 00 00 00" required>
+            <p class="field__error" data-error-for="c-tel"></p>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="c-email">E-mail <span class="req" aria-hidden="true">*</span></label>
+            <input type="email" id="c-email" name="email" autocomplete="email" required>
+            <p class="field__error" data-error-for="c-email"></p>
+          </div>
+          <div class="field">
+            <label for="c-immat">Immatriculation <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="c-immat" name="immatriculation" placeholder="AB-123-CD" autocapitalize="characters" spellcheck="false" required>
+            <p class="field__error" data-error-for="c-immat"></p>
+          </div>
+        </div>
+        <div class="field field--select">
+          <label for="c-sujet">Votre demande</label>
+          <select id="c-sujet" name="sujet">
+            <option value="Devis carrosserie">Devis carrosserie</option>
+            <option value="Rendez-vous entretien / mécanique">Rendez-vous entretien / mécanique</option>
+            <option value="Pneus">Pneus</option>
+            <option value="Pare-brise">Pare-brise</option>
+            <option value="Sinistre assurance">Sinistre assurance</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="c-message">Votre message <span class="req" aria-hidden="true">*</span></label>
+          <textarea id="c-message" name="message" rows="3" placeholder="Décrivez votre besoin en quelques lignes…" required></textarea>
+          <p class="field__error" data-error-for="c-message"></p>
+        </div>
+        <label class="check">
+          <input type="checkbox" id="c-rgpd" name="consentement" required>
+          <span>J'accepte d'être recontacté(e) au sujet de ma demande. <span class="req" aria-hidden="true">*</span></span>
+        </label>
+        <p class="field__error" data-error-for="c-rgpd"></p>
+        <button class="btn btn--primary btn--block" type="submit">Envoyer</button>
+        <p class="form__note">Réponse sous 24h ouvrées · <span class="req">*</span> champs obligatoires</p>
+        <p class="form__status" role="status" aria-live="polite" id="contact-status"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ PIED DE PAGE ============ -->
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <a class="logo" href="#accueil" aria-label="Motors Studio, retour à l'accueil"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/logo-motors-studio.png" alt="Motors Studio" width="510" height="255" loading="lazy"></a>
+      <p>Carrosserie, peinture, débosselage sans peinture, mécanique et entretien toutes marques. Atelier du groupe <a href="https://www.motorcorp.fr/">Motor Corp</a>.</p>
+    </div>
+    <nav class="footer__col" aria-label="Prestations"><h3>Prestations</h3><ul><li><a href="#services">Carrosserie</a></li><li><a href="#services">Peinture</a></li><li><a href="#services">Débosselage sans peinture</a></li><li><a href="#services">Mécanique et entretien</a></li><li><a href="#devis">Devis gratuit</a></li></ul></nav>
+    <nav class="footer__col" aria-label="Navigation"><h3>Le site</h3><ul><li><a href="#realisations">Interventions</a></li><li><a href="#methode">Comment ça marche</a></li><li><a href="#apropos">L'atelier</a></li><li><a href="#faq">Questions fréquentes</a></li><li><a href="#contact">Contact</a></li></ul></nav>
+    <div class="footer__col"><h3>Le groupe</h3><p class="footer__seo">Motors Studio fait partie de <a href="https://www.motorcorp.fr/">Motor Corp</a>, aux côtés de <a href="https://www.motorconsulting.fr/">Motor Consulting</a> pour l'achat, la vente, la location et l'estimation de véhicules d'occasion. Carrosserie et garage automobile toutes marques à Mainvilliers, Chartres, Lucé, Lèves, Luisant, Le Coudray et dans tout l'Eure-et-Loir. Prise en charge assurance, véhicule de courtoisie.</p></div>
+  </div>
+  <div class="container footer__bottom">
+    <p>© <span id="year">2026</span> Motors Studio</p>
+    <ul class="footer__legal"><li><a href="<?php echo esc_url( home_url( '/mentions-legales/' ) ); ?>">Mentions légales</a></li><li><a href="<?php echo esc_url( home_url( '/confidentialite/' ) ); ?>">Confidentialité</a></li><li><a href="<?php echo esc_url( home_url( '/cgv/' ) ); ?>">Conditions de réparation</a></li></ul>
+  </div>
+</footer>
+
+<!-- ============ WHATSAPP EN DIRECT ============ -->
+<div class="wa" id="wa">
+  <div class="wa__panel" id="wa-panel" hidden>
+    <div class="wa__head">
+      <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/logo-motors-studio-light.png" alt="" width="40" height="40">
+      <div><strong>Motors Studio</strong><small>En ligne · répond en quelques minutes</small></div>
+      <button class="wa__close" type="button" id="wa-close" aria-label="Fermer la discussion">✕</button>
+    </div>
+    <div class="wa__body">
+      <div class="wa__msg">Bonjour 👋 Envoyez-nous les photos des dégâts ou décrivez l'entretien souhaité : on vous répond avec un premier chiffrage sur WhatsApp.<small id="wa-time"></small></div>
+    </div>
+    <div class="wa__form">
+      <label class="sr-only" for="wa-text">Votre message</label>
+      <input type="text" id="wa-text" placeholder="Écrivez votre message…" autocomplete="off">
+      <a id="wa-send" href="https://wa.me/<?php echo esc_attr( motor_opt( 'whatsapp' ) ); ?>" target="_blank" rel="noopener" aria-label="Envoyer sur WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 11.5 20 4l-4 16-4.5-6.5L3.5 11.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m11.5 13.5 8.5-9.5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></a>
+    </div>
+  </div>
+  <button class="wa__btn" id="wa-open" type="button" aria-label="Discuter en direct sur WhatsApp" aria-expanded="false" aria-controls="wa-panel">
+    <span class="wa__ring" aria-hidden="true"></span>
+    <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/logo-motors-studio-light.png" alt="" width="44" height="22">
+    <span class="wa__badge" aria-hidden="true">1</span>
+  </button>
+</div>
+
+<!-- Barre d'action mobile -->
+<div class="mobile-bar" aria-label="Contact rapide">
+  <a class="mobile-bar__btn" href="tel:<?php echo esc_attr( motor_opt( 'phone_e164' ) ); ?>"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 6 6l1.5-2 4 1.5v3c0 .9-.7 1.6-1.6 1.5C10.6 19.9 4.1 13.4 3.5 5.1A1.5 1.5 0 0 1 5 3.5h1.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg> Appeler</a>
+  <a class="mobile-bar__btn mobile-bar__btn--wa" href="https://wa.me/<?php echo esc_attr( motor_opt( 'whatsapp' ) ); ?>?text=Bonjour%2C%20je%20souhaite%20un%20devis%20carrosserie." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5a8.5 8.5 0 0 0-7.3 12.8L3.5 20.5l4.4-1.1A8.5 8.5 0 1 0 12 3.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 8.6c.3-.6.6-.6 1-.6.4 0 .6.4.8.9.2.5.4.9.1 1.3-.2.3-.5.4-.3.8.4.9 1.4 1.9 2.3 2.3.4.2.5-.1.8-.3.4-.3.8-.1 1.3.1.5.2.9.4.9.8s0 .7-.6 1c-.6.3-1.6.4-3-.2a8 8 0 0 1-3.7-3.7c-.6-1.4-.5-2.4-.2-3Z" fill="currentColor"/></svg> WhatsApp</a>
+  <a class="mobile-bar__btn mobile-bar__btn--cta" href="#devis">Devis</a>
+</div>
+
+<?php wp_footer(); ?>
+</body>
+</html>
