@@ -26,6 +26,13 @@
       chip.setAttribute("aria-pressed", chip.classList.contains("is-on") ? "true" : "false");
       syncChips();
     }));
+    // Lien d'arrivée ?prestation=carrosserie|mecanique|pneus|pare-brise (liens annexes Google Ads)
+    try {
+      const param = (new URLSearchParams(location.search).get("prestation") || "").toLowerCase();
+      const fam = { carrosserie: "Carrosserie / Peinture / Débosselage", mecanique: "Entretien / Révision / Freins", pneus: "Pneus", "pare-brise": "Pare-brise", parebrise: "Pare-brise" }[param];
+      const sel = $("#q-prestation");
+      if (fam && sel && Array.from(sel.options).some((o) => o.value === fam)) sel.value = fam;
+    } catch (e) { /* URL non lisible : on ignore */ }
     quick.addEventListener("reset", () => { chips.forEach((c) => { c.classList.remove("is-on"); c.setAttribute("aria-pressed", "false"); }); if (hidden) hidden.value = ""; });
     // Avant l'envoi (phase de capture), recopie les champs dans le formulaire complet
     quick.addEventListener("submit", () => {

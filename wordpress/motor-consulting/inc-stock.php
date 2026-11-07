@@ -100,6 +100,9 @@ add_action( 'motor_stock_sync', 'motor_stock_import' );
  * ---------------------------------------------------------------- */
 function motor_stock_import() {
 	if ( function_exists( 'motor_kepler_key' ) && motor_kepler_key() ) {
+		if ( function_exists( 'set_time_limit' ) ) {
+			@set_time_limit( 300 ); // copie des photos
+		}
 		$rows = motor_kepler_fetch();
 		if ( is_wp_error( $rows ) ) {
 			motor_stock_status( 'error', $rows->get_error_message() );

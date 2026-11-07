@@ -250,6 +250,7 @@ function motor_kepler_map( $row, $i ) {
 		}
 	}
 	$photos = array_values( array_unique( $photos ) );
+	$photos = motor_kepler_local_photos( array_slice( $photos, 0, 12 ) );
 
 	// Description : note site web > note publique > note
 	$desc  = '';
@@ -314,4 +315,77 @@ function motor_kepler_map( $row, $i ) {
 		'photos'      => array_slice( $photos, 0, 12 ),
 		'url'         => '',
 	);
+}
+
+/* ------------------------------------------------------------------
+ * Copie locale des photos
+ * Les visuels Kepler peuvent exiger le jeton ou refuser l'affichage depuis
+ * un autre site : on les recopie une fois dans wp-content/uploads/kepler/.
+ * ---------------------------------------------------------------- */
+function motor_kepler_local_photos( $urls ) {
+	if ( empty( $urls ) ) {
+		return array();
+	}
+	$up = wp_upload_dir();
+	if ( ! empty( $up['error'] ) ) {
+		return $urls;
+	}
+	$dir  = trailingslashit( $up['basedir'] ) . 'kepler';
+	$base = trailingslashit( $up['baseurl'] ) . 'kepler';
+	if ( ! is_dir( $dir ) ) {
+		wp_mkdir_p( $dir );
+	}
+	$index = get_option( 'motor_kepler_media', array() );
+	if ( ! is_array( $index ) ) {
+		$index = array();
+	}
+	$out     = array();
+	$changed = false;
+	foreach ( $urls as $url ) {
+		$key = md5( $url );
+		if ( isset( $index[ $key ] ) && file_exists( $dir . '/' . $index[ $key ] ) ) {
+			$out[] = $base . '/' . $index[ $key ];
+			continue;
+		}
+		$headers = array( 'Accept' => 'image/*,*/*' );
+		if ( false !== strpos( $url, 'keplervo.com' ) || false !== strpos( $url, 'kepler-soft' ) ) {
+			$token = motor_kepler_token();
+			if ( ! is_wp_error( $token ) ) {
+				$headers['X-Auth-Token'] = $token;
+			}
+		}
+		$res = wp_remote_get( $url, array( 'timeout' => 20, 'headers' => $headers ) );
+		if ( is_wp_error( $res ) || 200 !== (int) wp_remote_retrieve_response_code( $res ) ) {
+			$out[] = $url; // on garde l'adresse d'origine, au cas où
+			continue;
+		}
+		$body = wp_remote_retrieve_body( $res );
+		$type = (string) wp_remote_retrieve_header( $res, 'content-type' );
+		$ext  = '';
+		if ( preg_match( '#image/(jpe?g|png|webp|gif)#i', $type, $m ) ) {
+			$ext = 'jpeg' === strtolower( $m[1] ) ? 'jpg' : strtolower( $m[1] );
+		} elseif ( preg_match( '#\.(jpe?g|png|webp|gif)(\?|$)#i', $url, $m ) ) {
+			$ext = strtolower( $m[1] );
+		} elseif ( strlen( $body ) > 4 && "\xFF\xD8\xFF" === substr( $body, 0, 3 ) ) {
+			$ext = 'jpg';
+		} elseif ( strlen( $body ) > 8 && "\x89PNG" === substr( $body, 0, 4 ) ) {
+			$ext = 'png';
+		}
+		if ( ! $ext || strlen( $body ) < 1000 ) {
+			$out[] = $url;
+			continue;
+		}
+		$file = $key . '.' . $ext;
+		if ( false === file_put_contents( $dir . '/' . $file, $body ) ) {
+			$out[] = $url;
+			continue;
+		}
+		$index[ $key ] = $file;
+		$changed       = true;
+		$out[]         = $base . '/' . $file;
+	}
+	if ( $changed ) {
+		update_option( 'motor_kepler_media', $index, false );
+	}
+	return $out;
 }

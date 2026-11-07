@@ -26,7 +26,7 @@
   const LIST = Array.isArray(window.MC_VEHICLES) ? window.MC_VEHICLES : VEHICLES;
   const AVIS = Array.isArray(window.MC_TESTIMONIALS) ? window.MC_TESTIMONIALS : TESTIMONIALS;
   const media = (v, suffix) => v.photo
-    ? `<img src="${v.photo}" alt="${v.marque} ${v.modele}" loading="lazy" width="800" height="440">`
+    ? `<img src="${v.photo}" alt="${v.marque} ${v.modele}" loading="lazy" referrerpolicy="no-referrer" width="800" height="440">`
     : carSvg(v, suffix);
 
   const $ = (sel, ctx) => (ctx || document).querySelector(sel);
@@ -299,7 +299,7 @@
 
     modalContent.innerHTML = `
       <div class="modal__media" id="modal-media">${media(v, "m")}</div>
-      ${Array.isArray(v.photos) && v.photos.length > 1 ? `<div class="modal__thumbs">${v.photos.map((p, i) => `<button type="button" class="${i === 0 ? "is-active" : ""}" data-photo="${p}" aria-label="Photo ${i + 1}"><img src="${p}" alt="" loading="lazy"></button>`).join("")}</div>` : ""}
+      ${Array.isArray(v.photos) && v.photos.length > 1 ? `<div class="modal__thumbs">${v.photos.map((p, i) => `<button type="button" class="${i === 0 ? "is-active" : ""}" data-photo="${p}" aria-label="Photo ${i + 1}"><img src="${p}" alt="" loading="lazy" referrerpolicy="no-referrer"></button>`).join("")}</div>` : ""}
       <div class="modal__body">
         <h3 id="modal-title">${v.marque} ${v.modele}</h3>
         <p class="modal__version">${v.version}</p>
