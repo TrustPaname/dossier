@@ -249,27 +249,43 @@ function motor_kepler_map( $row, $i ) {
 		$annee = isset( $m[0] ) ? (int) $m[0] : 0;
 	}
 
-	// Photos : tableau de Media (url, path, src, thumbnail…) ou chaînes
+	// Photos : tableau de Media Kepler v3.8 { photo (S3, publique), large/big/thumb (API, réservées à l'admin), position, category }
 	$photos = array();
 	$gal    = $g( 'gallery', array() );
 	if ( is_array( $gal ) ) {
+		// Catégorie « Commerciales » en priorité, puis ordre de position
+		$items = array();
 		foreach ( $gal as $m ) {
 			if ( is_string( $m ) && preg_match( '#^https?://#', $m ) ) {
-				$photos[] = $m;
+				$items[] = array( 'cands' => array( $m ), 'pos' => count( $items ), 'com' => 1 );
 			} elseif ( is_array( $m ) ) {
-				foreach ( array( 'url', 'urlLarge', 'large', 'src', 'path', 'link', 'original', 'urlOriginal', 'thumbnail' ) as $k ) {
+				$cands = array();
+				foreach ( array( 'photo', 'url', 'original', 'urlOriginal', 'large', 'urlLarge', 'big', 'src', 'path', 'link', 'thumbnail', 'thumb' ) as $k ) {
 					if ( ! empty( $m[ $k ] ) && is_string( $m[ $k ] ) && preg_match( '#^https?://#', $m[ $k ] ) ) {
-						$photos[] = $m[ $k ];
-						break;
+						$cands[] = $m[ $k ];
 					}
 				}
-				if ( empty( $photos ) || end( $photos ) === null ) {
-					array_walk_recursive( $m, function ( $x ) use ( &$photos ) { if ( is_string( $x ) && preg_match( '#^https?://.*\.(jpe?g|png|webp)#i', $x ) ) { $photos[] = $x; } } );
+				if ( ! $cands ) {
+					array_walk_recursive( $m, function ( $x ) use ( &$cands ) { if ( is_string( $x ) && preg_match( '#^https?://#', $x ) ) { $cands[] = $x; } } );
+				}
+				if ( $cands ) {
+					$cat     = isset( $m['category'] ) ? strtolower( (string) $m['category'] ) : '';
+					$items[] = array(
+						'cands' => array_values( array_unique( $cands ) ),
+						'pos'   => isset( $m['position'] ) ? (int) $m['position'] : count( $items ),
+						'com'   => ( '' === $cat || false !== strpos( $cat, 'commercial' ) ) ? 1 : 0,
+					);
 				}
 			}
 		}
+		usort( $items, function ( $a, $b ) { return ( $b['com'] - $a['com'] ) ?: ( $a['pos'] - $b['pos'] ); } );
+		if ( array_sum( array_column( $items, 'com' ) ) > 0 ) {
+			$items = array_filter( $items, function ( $x ) { return $x['com']; } );
+		}
+		foreach ( $items as $it ) {
+			$photos[] = $it['cands'];
+		}
 	}
-	$photos = array_values( array_unique( $photos ) );
 	$photos = motor_kepler_local_photos( array_slice( $photos, 0, 12 ) );
 
 	// Description : note site web > note publique > note
@@ -361,24 +377,36 @@ function motor_kepler_local_photos( $urls ) {
 	}
 	$out     = array();
 	$changed = false;
-	foreach ( $urls as $url ) {
-		$key = md5( $url );
+	foreach ( $urls as $item ) {
+		$cands = array_values( array_filter( (array) $item, 'is_string' ) );
+		if ( ! $cands ) {
+			continue;
+		}
+		// Adresse de secours si la copie échoue : une adresse publique (pas « context=admin »)
+		$public = $cands[0];
+		foreach ( $cands as $c ) {
+			if ( false === strpos( $c, 'context=admin' ) ) { $public = $c; break; }
+		}
+		$key = md5( $cands[0] );
 		if ( isset( $index[ $key ] ) && file_exists( $dir . '/' . $index[ $key ] ) ) {
 			$out[] = $base . '/' . $index[ $key ];
 			continue;
 		}
-		$img = motor_kepler_download_image( $url );
-		if ( is_wp_error( $img ) ) {
-			$out[] = $url; // on garde l'adresse d'origine, au cas où
+		$img = null;
+		foreach ( $cands as $c ) {
+			$try = motor_kepler_download_image( $c );
+			if ( ! is_wp_error( $try ) ) { $img = $try; break; }
+		}
+		if ( ! $img ) {
+			$out[] = $public;
 			continue;
 		}
-		$body = $img['body'];
-		$ext  = $img['ext'];
-		$file = $key . '.' . $ext;
-		if ( false === file_put_contents( $dir . '/' . $file, $body ) ) {
-			$out[] = $url;
+		$file = $key . '.' . $img['ext'];
+		if ( false === file_put_contents( $dir . '/' . $file, $img['body'] ) ) {
+			$out[] = $public;
 			continue;
 		}
+		motor_kepler_shrink( $dir . '/' . $file );
 		$index[ $key ] = $file;
 		$changed       = true;
 		$out[]         = $base . '/' . $file;
@@ -492,8 +520,19 @@ function motor_kepler_photo_diagnostic( $sample ) {
 	// Test de téléchargement de l'adresse d'origine (avant copie locale)
 	$orig = '';
 	if ( is_array( $gal ) ) {
-		array_walk_recursive( $gal, function ( $x ) use ( &$orig ) { if ( ! $orig && is_string( $x ) && preg_match( '#^https?://#', $x ) ) { $orig = $x; } } );
+		$first_m = reset( $gal );
+		if ( is_array( $first_m ) ) {
+			foreach ( array( 'photo', 'url', 'original', 'large', 'big', 'thumb' ) as $k ) {
+				if ( ! empty( $first_m[ $k ] ) && is_string( $first_m[ $k ] ) && preg_match( '#^https?://#', $first_m[ $k ] ) ) { $orig = $first_m[ $k ]; break; }
+			}
+		}
+		if ( ! $orig ) {
+			array_walk_recursive( $gal, function ( $x ) use ( &$orig ) { if ( ! $orig && is_string( $x ) && preg_match( '#^https?://#', $x ) ) { $orig = $x; } } );
+		}
 	}
+	$up = wp_upload_dir();
+	$kd = trailingslashit( $up['basedir'] ) . 'kepler';
+	echo '<p><strong>Dossier des copies locales :</strong> <code>' . esc_html( $kd ) . '</code> — ' . ( is_dir( $kd ) ? ( wp_is_writable( $kd ) ? 'existe, accessible en écriture, ' . count( glob( $kd . '/*' ) ) . ' fichier(s)' : 'existe mais <strong>non accessible en écriture</strong>' ) : '<strong>absent</strong> (création impossible ?)' ) . '</p>';
 	if ( $orig ) {
 		$t = motor_kepler_download_image( $orig );
 		if ( is_wp_error( $t ) ) {
@@ -502,4 +541,25 @@ function motor_kepler_photo_diagnostic( $sample ) {
 			echo '<div class="notice notice-success inline"><p><strong>Test de téléchargement :</strong> image ' . esc_html( $t['ext'] ) . ' de ' . esc_html( number_format( strlen( $t['body'] ) / 1024, 0, ',', ' ' ) ) . ' Ko reçue (' . esc_html( $t['type'] ) . ').</p></div>';
 		}
 	}
+}
+
+/**
+ * Réduit une photo trop lourde à 1600 px de large maximum (qualité 82).
+ */
+function motor_kepler_shrink( $path ) {
+	if ( ! function_exists( 'wp_get_image_editor' ) || filesize( $path ) < 400 * 1024 ) {
+		return;
+	}
+	$ed = wp_get_image_editor( $path );
+	if ( is_wp_error( $ed ) ) {
+		return;
+	}
+	$size = $ed->get_size();
+	if ( empty( $size['width'] ) || $size['width'] <= 1600 ) {
+		if ( method_exists( $ed, 'set_quality' ) ) { $ed->set_quality( 82 ); $ed->save( $path ); }
+		return;
+	}
+	$ed->resize( 1600, null, false );
+	if ( method_exists( $ed, 'set_quality' ) ) { $ed->set_quality( 82 ); }
+	$ed->save( $path );
 }
